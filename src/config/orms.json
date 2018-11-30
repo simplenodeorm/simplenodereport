@@ -1,0 +1,9 @@
+[
+{
+    "name" : "hr",
+    "url"  : "http://35.227.159.75:8888/hrorm",
+    "defaultUsername" : "user",
+    "defaultPassword" : "pass"
+}
+]
+

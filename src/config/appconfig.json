@@ -1,0 +1,15 @@
+{
+    "textmsg": {
+        "logintitletext": "Simple Node ORM",
+        "adddocument": "Add Document",
+        "setupmenuname": "Setup",
+        "filemenuname": "File",
+        "newmenuname": "New",
+        "newdocument": "New",
+        "preferencesmenuname": "Preferences",
+        "savedocumenttitle": "Save Document",
+        "authenticatorlabel": "Authorizer:",
+        "documentnamelabel": "Document Name:"
+    },
+    "defaultReportAuthenticator": "DefaultAuthorizer"
+}
