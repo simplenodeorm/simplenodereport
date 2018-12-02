@@ -1,9 +1,9 @@
 {
-  "name": "@simplenodeorm/simplenodedreport",
+  "name": "@simplenodeorm/simplenodereport",
   "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rbtucker/simplenodedreport.git"
+    "url": "git+https://github.com/rbtucker/simplenodereport.git"
   },
   "author": "Rob Tucker <rbtucker16@gmail.com>",
   "license": "ISC",
@@ -22,7 +22,7 @@
 
   },
   "bugs": {
-    "url": "https://github.com/rbtucker/simplenodedreport/issues"
+    "url": "https://github.com/rbtucker/simplenodereport/issues"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,8 +1,8 @@
 import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig.json';
-import {ComparisonValueInput} from './ComparisonValueInput';
 import {ModalDialog} from './ModalDialog';
+import {ComparisonValueInput} from './ComparisonValueInput';
 import {isUnaryOperator} from './helpers';
 
 class ParameterInputPanel extends ModalDialog {
@@ -11,9 +11,6 @@ class ParameterInputPanel extends ModalDialog {
         this.setValue = this.setValue.bind(this);
         this.getValue = this.getValue.bind(this);
         this.allowCharacter = this.allowCharacter.bind(this);
-        this.onResultFormatChange = this.onResultFormatChange.bind(this);
-        this.onDistinctChange = this.onDistinctChange.bind(this);
-        this.onValidityCheckOnlyChange = this.onValidityCheckOnlyChange.bind(this);
         this.params = [];
         this.comparisonOperators = [];
         this.distinct = false;
@@ -47,47 +44,13 @@ class ParameterInputPanel extends ModalDialog {
             });
         };
         
-        let formatSelect = <select onChange={this.onResultFormatChange}><option value='object' selected>object graph</option><option value='result set'>result set</option></select>;
-        if ( document.designData.currentDocument &&  (document.designData.currentDocument.resultFormat === 'result set')) {
-            formatSelect = <select onChange={this.onResultFormatChange}><option value='object'>object graph</option><option value='result set' selected>result set</option></select>;
-            this.resultFormat = 'result set';
-        }
-        
         return <div className="parameterInputPanel">
-            <table>
-                <tr>
-                    <td className="inputLabel">{config.textmsg.resultformatlabel}</td>
-                    <td>
-                        {formatSelect}
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>&nbsp;&nbsp;&nbsp;<input onChange={this.onDistinctChange} defaultValue={this.distinct} type="checkbox"/>{config.textmsg.distinct}</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>&nbsp;&nbsp;&nbsp;<input onChange={this.onValidityCheckOnlyChange} type="checkbox" defaultValue={this.validityCheckOnly}/>{config.textmsg.validitycheckonly}</td>
-                </tr>
-            </table>
-            <hr />
             <div   className="inputEntryList">
                 <table>{inputLoop(document.designData.whereComparisons)}</table>
             </div>
         </div>;
     }
-    onResultFormatChange(e) {
-        this.resultFormat = e.target.value;
-    }
 
-    onDistinctChange(e) {
-        this.distinct = e.target.checked;
-    }
-    
-    onValidityCheckOnlyChange(e) {
-        this.validityCheckOnly = e.target.checked;
-    }
-    
     isComplete() {
         let retval = true;
     
@@ -125,9 +88,6 @@ class ParameterInputPanel extends ModalDialog {
     getResult() {
         return { 
             interactive: true,
-            distinct: this.distinct,
-            resultFormat: this.resultFormat, 
-            validityCheckOnly: this.validityCheckOnly, 
             parameters: this.params,
             authenticator: config.defaultDesignAuthenticator
         };

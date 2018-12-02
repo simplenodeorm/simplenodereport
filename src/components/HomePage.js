@@ -1,6 +1,7 @@
 import React from 'react';
 import SplitPane from 'react-split-pane';
 import { DocumentTree } from './DocumentTree';
+import { DesignPanel } from './DesignPanel';
 import {AppToolbar} from './AppToolbar';
 import {StatusBar} from './StatusBar';
 import '../app/App.css';
@@ -12,7 +13,6 @@ var statusBar;
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
-        this.setTabState = this.setTabState.bind(this);
     }
 
     render() {
@@ -26,8 +26,8 @@ class HomePage extends React.Component {
                         defaultSize={150}>
                         <DocumentTree ref={(dtree) => {documentTree = dtree}} 
                             setStatus={this.setStatus} 
-                            setCurrentDocument={this.setCurrentDocument}
-                            setTabState={this.setTabState}/>
+                            setCurrentDocument={this.setCurrentDocument} />
+                        <DesignPanel/>
                     </SplitPane>
             </div>
             <StatusBar ref={(status) => {statusBar = status}} />

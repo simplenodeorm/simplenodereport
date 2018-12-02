@@ -11,13 +11,13 @@ import {updateState} from './HomePage';
 const rdimage = <img alt="report document" src="/images/report-document.png"/>;
 const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 
-var groups;
 class DocumentTree extends BaseDesignComponent {
      constructor(props) {
         super(props);
         
         this.state = {
-            selectedDocument: ''
+            selectedDocument: '',
+            groups: ''
         };
 
         this.loadDocumentGroups();
@@ -35,8 +35,8 @@ class DocumentTree extends BaseDesignComponent {
     }
 
     render() {
-        const {documents} = this.state;
-        if (groups && documents) {
+        const {documents, groups} = this.state;
+        if (groups) {
             let treeData = JSON.parse(JSON.stringify(groups));
             this.traverseDocumentGroups(treeData,  documents);
             
@@ -57,21 +57,23 @@ class DocumentTree extends BaseDesignComponent {
     traverseDocumentGroups(grp,  documents) {
         if (!grp.isLeaf) {
             let canRecurse = grp.children;
-            let docs = documents[grp.key];
-            if (docs) {
-                if (!grp.children) {
-                    grp.children = [];
-                    canRecurse = false;
-                } 
-                
-                for (let j = 0; j < docs.length; ++j) {
-                    let leaf = {
-                        title: docs[j].replace(/_/g, ' ').replace('.json', ''),
-                        isLeaf: true,
-                        key: (grp.key + '.' + docs[j])
-                    };
-                    grp.children.push(leaf);
-                    
+            if (documents) {
+                let docs = documents[grp.key];
+                if (docs) {
+                    if (!grp.children) {
+                        grp.children = [];
+                        canRecurse = false;
+                    } 
+
+                    for (let j = 0; j < docs.length; ++j) {
+                        let leaf = {
+                            title: docs[j].replace(/_/g, ' ').replace('.json', ''),
+                            isLeaf: true,
+                            key: (grp.key + '.' + docs[j])
+                        };
+                        grp.children.push(leaf);
+
+                   }
                }
             }
 
@@ -153,14 +155,14 @@ class DocumentTree extends BaseDesignComponent {
         axios.get(orm.url + '/report/document/groups', config)
             .then((response) => {
                 if (response.status === 200) {
-                    groups = response.data;
+                    curcomp.setState({groups: response.data});
                     curcomp.loadDocuments();
                 } else {
                     curcomp.props.setStatus(response.statusText, true);
                 }
             })
             .catch((err) => {
-                curcomp.setStatus(err.toString(), true);
+                curcomp.props.setStatus(err.toString(), true);
             });
 
     }
@@ -181,7 +183,7 @@ class DocumentTree extends BaseDesignComponent {
                 }
             })
             .catch((err) => {
-                curcomp.setStatus(err.toString(), true);
+                curcomp.props.setStatus(err.toString(), true);
             });
 
     }

@@ -1,33 +1,25 @@
 import React from 'react';
 import config from '../config/appconfig.json';
 import {ModalDialog} from './ModalDialog';
-import groups from '../config/document-groups.json';
 import Tree from 'rc-tree';
 import './defaultTree.css';
 import "../app/App.css";
 import {defaultSaveSettings} from './helpers';
 import axios from 'axios';
 
-const qfimage = <img alt="query folder" src="/images/queryfolder.png"/>;
-
+const rfimage = <img alt="query folder" src="/images/report-folder.png"/>;
 class SaveDocumentPanel extends ModalDialog {
     constructor(props) {
         super(props);
         this.onSelect = this.onSelect.bind(this);
         this.onAuthenticatorChange = this.onAuthenticatorChange.bind(this);
-        this.onResultFormatChange = this.onResultFormatChange.bind(this);
-        this.onDistinctChange = this.onDistinctChange.bind(this);
         this.onNameChange = this.onNameChange.bind(this);
         
         if (document.designData.currentDocument) {
-            this.distinct = document.designData.currentDocument.distinct;
-            this.resultFormat = document.designData.currentDocument.resultFormat; 
             this.authenticator = document.designData.currentDocument.authenticator;
             this.documentName = document.designData.currentDocument.documentName.replace(/_/g, ' ');
             this.selectedGroup = document.designData.currentDocument.group;
         } else {
-            this.distinct = false;
-            this.resultFormat = 'object'; 
             this.authenticator = 'DefaultAuthorizer';
             this.documentName = 'new document';
         }
@@ -35,17 +27,19 @@ class SaveDocumentPanel extends ModalDialog {
         
         
         this.state = {
-            authorizers: ''
+            authorizers: '',
+            groups: ''
         };
 
+        this.loadDocumentGroups();
     }
 
     getIcon(props) {
-        return qfimage;
+        return rfimage;
     }
     
     getContent() {
-        const {authorizers} = this.state;
+        const {authorizers, groups} = this.state;
         
         if (!authorizers) {
             this.loadAuthorizers();
@@ -57,20 +51,9 @@ class SaveDocumentPanel extends ModalDialog {
             });
         };
 
-        let formatSelect = <select onChange={this.onResultFormatChange}><option value='object' selected>object graph</option><option value='result set'>result set</option></select>;
-        if ( document.designData.currentDocument &&  (document.designData.currentDocument.resultFormat === 'result set')) {
-            formatSelect = <select onChange={this.onResultFormatChange}><option value='object'>object graph</option><option value='result set' selected>result set</option></select>;
-            this.resultFormat = 'result set';
-        }
         return <div className="saveDocumentPanel">
             <div className="parameterInputPanel">
                 <table>
-                    <tr>
-                    <td className="inputLabel">{config.textmsg.resultformatlabel}</td>
-                        <td>
-                            {formatSelect}
-                        </td>
-                    </tr>
                     <tr>
                         <td className="inputLabel">{config.textmsg.authenticatorlabel}</td>
                         <td>
@@ -83,14 +66,11 @@ class SaveDocumentPanel extends ModalDialog {
                         <td className="inputLabel">{config.textmsg.documentnamelabel}</td>
                         <td><input type="text" onBlur={this.onNameChange} defaultValue={this.documentName} /></td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td>&nbsp;&nbsp;&nbsp;<input onChange={this.onDistinctChange} type="checkbox" defaultValue={this.distinct}/>{config.textmsg.distinct}</td>
-                    </tr>
                 </table>
              </div>
             <hr />
             <div><div className="modalTreeContainer">
+            {groups && 
                 <Tree 
                   onSelect={this.onSelect}
                   showLine
@@ -98,7 +78,7 @@ class SaveDocumentPanel extends ModalDialog {
                   showIcon={true}
                   defaultExpandAll={true}
                   defaultSelectedKeys={this.selectedGroup}
-                  treeData={groups}></Tree>
+                  treeData={groups}></Tree> }
             </div></div>
         </div>;
     }
@@ -113,14 +93,6 @@ class SaveDocumentPanel extends ModalDialog {
     
     onAuthenticatorChange(e) {
         this.authenticator = e.target.value;
-    }
-    
-    onResultFormatChange(e) {
-        this.resultFormat = e.target.value;
-    }
-
-    onDistinctChange(e) {
-        this.distinct = e.target.checked;
     }
     
     getTitle() {
@@ -139,11 +111,9 @@ class SaveDocumentPanel extends ModalDialog {
 
     getResult() {
         return { 
-            interactice: false,
+            interactive: false,
             documentName: this.documentName, 
             group: this.selectedGroup, 
-            distinct: this.distinct, 
-            resultFormat: this.resultFormat, 
             authenticator: this.authenticator
         };
     }
@@ -168,6 +138,28 @@ class SaveDocumentPanel extends ModalDialog {
                 curcomp.setState({error: err.toString()});
             });
     }
+    
+    loadDocumentGroups() {
+        const curcomp = this;
+        const orm = JSON.parse(localStorage.getItem('orm'));
+        const config = {
+            headers: {'Authorization': orm.authString}
+        };
+
+        axios.get(orm.url + '/report/document/groups', config)
+            .then((response) => {
+                if (response.status === 200) {
+                    curcomp.setState({groups: response.data});
+                } else {
+                    curcomp.props.setStatus(response.statusText, true);
+                }
+            })
+            .catch((err) => {
+                curcomp.setStatus(err.toString(), true);
+            });
+
+    }
+
 
 }
 
