@@ -225,7 +225,7 @@ input[type="submit"] {
     width: 95%;
 }
 
-.tabSplitPaneContainer {
+.designSplitPaneContainer {
     position: absolute;
     box-sizing:border-box;
     background: var(--default-bkcolor);
@@ -234,7 +234,7 @@ input[type="submit"] {
     width: 100%;
 }
 
-.tabChildContainer {
+.designChildContainer {
     position: absolute;
     box-sizing:border-box;
     background: var(--default-bkcolor);
@@ -655,44 +655,6 @@ input[type="checkbox"] {
 .filterComparisonValue {
     width: 100px;
 }
-
-.formattedSql {
-    color: var(--sql-text-font-color);
-    font-size: var(--default-font-size);
-}
-
-.formattedSql .keyWord {
-    color:darkGreen;
-    font-weight: 700;
-}
-
-.formattedSql .sqlText {
-    padding-left: 20px;
-    white-space: nowrap;
-}
-
-.formattedSql .sqlText2 {
-    padding-left: 5px;
-    white-space: nowrap;
-}
-
-.formattedSql .noWrap {
-    white-space: nowrap;
-}
-
-.formattedSql .join {
-    color:darkGreen;
-    padding-left: 20px;
-    white-space: nowrap;
-    font-weight: 600;
-}
-
-.formattedSql .table {
-    color: darkred;
-    padding-left: 5px;
-    font-weight: 700;
-}
-
 
 .modalContainer {
     position: relative;
