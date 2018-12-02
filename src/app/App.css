@@ -852,8 +852,11 @@ input[type="checkbox"] {
 }
 
 .designPanel {
-    background-color: var(--default-bkcolor);
-    height: 100%;
+    position: absolute;
+    background: var(--default-bkcolor);
+    padding-left: 2px;
+    margin-left: 3px;
+    height:98%;
     width: 100%;
 }
 
