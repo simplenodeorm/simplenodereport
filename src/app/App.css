@@ -192,9 +192,11 @@ input[type="submit"] {
     border-left: 5px solid rgba(0, 0, 0, 0.5);
     border-right: 5px solid rgba(0, 0, 0, 0.5);
 }
+
 .Resizer.disabled {
     cursor: not-allowed;
 }
+
 .Resizer.disabled:hover {
     border-color: transparent;
 }
@@ -205,24 +207,6 @@ input[type="submit"] {
     height:100%;
     width:100%;
     overflow: auto;
-}
-
-.tabSetContainer {
-    position: absolute;
-    background: var(--default-bkcolor);
-    padding-left: 2px;
-    margin-left: 3px;
-    height:98%;
-    width: 100%;
-}
-
-.tabContainer {
-    position: absolute;
-    box-sizing:border-box;
-    background: var(--default-bkcolor);
-    overflow: auto;
-    height: 85%;
-    width: 95%;
 }
 
 .designSplitPaneContainer {
@@ -292,7 +276,7 @@ input[type="submit"] {
     text-decoration: none;
     font-weight: 200;
 }
-/* Change the link color to #111 (black) on hover */
+
 .minimalist-toolbar> ul> li a:hover {
     background-color: #111;
     cursor:default;
@@ -320,7 +304,6 @@ input[type="submit"] {
     height: 100%;
 }
 
-/*dropdown*/
 .minimalist-toolbar .dropdown {
     position: relative;
     display: inline-block;
@@ -380,149 +363,6 @@ input[type="submit"] {
     text-align: center;
 }
 
-.menuButton {
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 0;
-    height: 25px;
-    padding-left: 10px;
-    width:20px;
-    -moz-user-select: none;
-    white-space:nowrap;
-    cursor:pointer;
-}
-
-.menuButton a{
-    color: var(--menu-button-color);
-    text-decoration: none;
-    text-align: left;
-    vertical-align: middle;
-    white-space: nowrap;
-}
-
-.menuButton path {
-    fill: var(--menu-button-color);
-}  
-    
-.menuButton svg {
-    vertical-align: top;
-}
-
-.menuButton span {
-    vertical-align: middle;
-    margin-left: 5px;
-}
-
-.sidebarContainer {
-    overflow: hidden;
-    background: #eceeee;
-    border: 1px solid #a1a3a3;
-    padding:1px; 
-    border:none; 
-    cursor:pointer;
-}
-
-.sidebarContainer button {
-    background: none;
-    display: block;
-    color: inherit;
-    border: none;
-    padding: 0;
-    font: inherit;
-    cursor: pointer;
-    outline: inherit;
-}
-
-.sidebarContainer button:hover {
-   color: var(--sidebar-hover-text-color);
-   text-align: left;
-   height: 25px;
-   padding-left: 5px;
-   background: var(--popup-background);
-   width: 100%;
-   font-size: var(--default-font-size);
-   margin: 4px;
-}
-
-.panelPrompt1 {
-    color: var(--header-text-color);
-    background-color: var(--default-bkcolor);
-    font-size: var(--med-font-size);
-    font-weight: 400;
-    margin: 30px;
-}
-
-.react-tabs {
-  -webkit-tap-highlight-color: transparent;
-}
-
-.react-tabs__tab-list {
-  border-bottom: 1px solid #aaa;
-  margin: 0 0 10px;
-  padding: 0;
-  white-space:nowrap;
-}
-
-.react-tabs__tab {
-  display: inline-block;
-  border: 1px solid transparent;
-  border-bottom: none;
-  bottom: -1px;
-  position: relative;
-  list-style: none;
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.react-tabs__tab--selected {
-  background: #fff;
-  border-color: #aaa;
-  color: black;
-  border-radius: 5px 5px 0 0;
-}
-
-.react-tabs__tab--disabled {
-  color: GrayText;
-  cursor: default;
-}
-
-.react-tabs__tab:focus {
-  box-shadow: 0 0 5px hsl(208, 99%, 50%);
-  border-color: hsl(208, 99%, 50%);
-  outline: none;
-}
-
-.react-tabs__tab:focus:after {
-  content: "";
-  position: absolute;
-  height: 5px;
-  left: -4px;
-  right: -4px;
-  bottom: -5px;
-  background: #fff;
-}
-
-.react-tabs__tab-panel {
-  display: none;
-  height:100%;
-}
-
-.react-tabs__tab-panel--selected {
-  display: block;
-}
-
-
-.formatSelectionLine {
-    border-style: solid;
-    border-width: 1px;    
-    border-color: var(--default-border-color);
-    padding-bottom: 2px;
-}
-
 .label {
     font-weight: 600;
 }
@@ -534,68 +374,11 @@ input[type="submit"] {
     font-weight: 600;
 }
 
-.lineStyle1 {
-    color: darkBlue;
-    white-space: nowrap;
-    margin: 2px;
-}
-
-.lineStyle1 table {
-    margin-left: 20px;
-}
-
-.formatSelectionLine select {
-    margin: 2px;
-    width: 70px;
-    height: 18px;
-}
-
-.formatSelectionLine input {
-    margin: 2px;
-    width: 65px;
-    height: 18px;
-}
-
-.formatSelectionLine .customColumnInput {
-    margin: 2px;
-    width: 150px;
-    height: 18px;
-}
-
-.formatSelectionLine .dateInput {
-    margin: 2px;
-    width: 70px;
-    height: 18px;
-}
-
-.formatSelectionLine .customFilterInput {
-    margin: 2px;
-    width: 300px;
-    height: 18px;
-}
-
 input[type="checkbox"] {
     width: 12px;
     height: 12px;
     vertical-align: middle;
     margin: 2px;
-}
-
-.moveButton {
-    cursor: pointer;
-    vertical-align: bottom;
-    padding: 0;
-    border: none;
-    background: none;
-}
-
-.addFilter {
-    cursor: pointer;
-    vertical-align: middle;
-    padding: 0;
-    margin: 0;
-    border: none;
-    background: none;
 }
 
 .saveButton {
@@ -638,22 +421,6 @@ input[type="checkbox"] {
     padding-left: 50px;
     border: none;
     background: none;
-}
-
-.addFilterColumn {
-    border-bottom: 1px solid var(--default-border-color);
-    padding-bottom: 5px;
-}
-
-.filterLine {
-    border-style: solid;
-    border-width: 1px;    
-    border-color: var(--default-border-color);
-    padding-bottom: 2px;
-}
-
-.filterComparisonValue {
-    width: 100px;
 }
 
 .modalContainer {
@@ -719,11 +486,6 @@ input[type="checkbox"] {
     margin: 0;
     vertical-align: middle;
     padding-top: 10px
-}
-
-.formattedJson {
-    color: var(--query-results-font-color);
-    font-size: var(--small-font-size);
 }
 
 .saveDocumentPanel {
@@ -795,18 +557,6 @@ input[type="checkbox"] {
     color: white;
     padding-right: 10px;
     text-align: right;
-}
-
-.clipboardButton {
-    position:fixed;
-    float: right;
-    cursor: pointer;
-    vertical-align: middle;
-    margin-top: 2px;
-    right: 30px;
-    padding: 0;
-    border: none;
-    background: none;
 }
 
 .loginTitle {

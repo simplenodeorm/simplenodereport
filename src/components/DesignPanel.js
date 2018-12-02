@@ -23,13 +23,13 @@ class DesignPanel extends BaseDesignComponent {
         return <div className="designPanel">
              <SplitPane 
                  split="horizontal" 
-                 minSize={20} 
-                 defaultSize={250}>
+                 minSize={0} 
+                 defaultSize={350}>
                  <div className="designSplitPaneContainer">
                     <SplitPane 
                        split="horizontal" 
                        minSize={20} 
-                       defaultSize={250}>
+                       defaultSize={30}>
                        <HeaderPanel setStatus={this.props.setStatus}/>
                        <BodyPanel setStatus={this.props.setStatus}/>
                     </SplitPane> 
