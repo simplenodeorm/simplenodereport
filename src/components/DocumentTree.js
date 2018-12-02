@@ -3,15 +3,15 @@ import ReactDOM from 'react-dom';
 import Tree from 'rc-tree';
 import '../app/App.css';
 import './defaultTree.css';
-import groups from '../config/document-groups.json';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import axios from 'axios';
 import {clearContextMenu} from './helpers';
 import {getContextMenu} from './helpers';
 import {updateState} from './HomePage';
-const qdimage = <img alt="query document" src="/images/querydoc.png"/>;
-const qfimage = <img alt="query folder" src="/images/queryfolder.png"/>;
+const rdimage = <img alt="report document" src="/images/report-document.png"/>;
+const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 
+var groups;
 class DocumentTree extends BaseDesignComponent {
      constructor(props) {
         super(props);
@@ -20,7 +20,7 @@ class DocumentTree extends BaseDesignComponent {
             selectedDocument: ''
         };
 
-        this.loadDocuments();
+        this.loadDocumentGroups();
         this.onRightClick = this.onRightClick.bind(this);
         this.editDocument = this.editDocument.bind(this);
         this.deleteDocument = this.deleteDocument.bind(this);
@@ -28,15 +28,15 @@ class DocumentTree extends BaseDesignComponent {
     
     getIcon(props) {
         if (props.isLeaf) {
-            return qdimage;
+            return rdimage;
         } else {
-            return qfimage;
+            return rfimage;
         }
     }
 
     render() {
         const {documents} = this.state;
-        if (documents) {
+        if (groups && documents) {
             let treeData = JSON.parse(JSON.stringify(groups));
             this.traverseDocumentGroups(treeData,  documents);
             
@@ -50,7 +50,7 @@ class DocumentTree extends BaseDesignComponent {
                   treeData={treeData}></Tree></div>;
 
         } else {
-            return <div className="treeContainer"></div>
+            return <div className="treeContainer"></div>;
         }
     }
     
@@ -83,8 +83,6 @@ class DocumentTree extends BaseDesignComponent {
         }
     }
 
-
-    
     onRightClick(info) {
         const tree = this;
         if (info.node.props.isLeaf) {
@@ -103,7 +101,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/design/loaddocument/' + selectedDocument, config)
+        axios.get(orm.url + '/report/loaddocument/' + selectedDocument, config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.loadDocumentData(response.data)
@@ -127,10 +125,10 @@ class DocumentTree extends BaseDesignComponent {
                 headers: {'Authorization': orm.authString}
             };
 
-            axios.get(orm.url + '/design/deletedocument/' + selectedDocument, config)
+            axios.get(orm.url + '/report/deletedocument/' + selectedDocument, config)
                 .then((response) => {
                     if (response.status === 200) {
-                        curcomp.loadDocuments()
+                        curcomp.loadDocuments();
                         curcomp.props.setStatus('document deleted', false);
                     } else {
                         curcomp.props.setStatus(response.statusText, true);
@@ -145,6 +143,28 @@ class DocumentTree extends BaseDesignComponent {
         clearContextMenu();
     }
     
+    loadDocumentGroups() {
+        const curcomp = this;
+        const orm = JSON.parse(localStorage.getItem('orm'));
+        const config = {
+            headers: {'Authorization': orm.authString}
+        };
+
+        axios.get(orm.url + '/report/document/groups', config)
+            .then((response) => {
+                if (response.status === 200) {
+                    groups = response.data;
+                    curcomp.loadDocuments();
+                } else {
+                    curcomp.props.setStatus(response.statusText, true);
+                }
+            })
+            .catch((err) => {
+                curcomp.setStatus(err.toString(), true);
+            });
+
+    }
+
     loadDocuments() {
         const curcomp = this;
         const orm = JSON.parse(localStorage.getItem('orm'));
@@ -152,7 +172,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/design/documents', config)
+        axios.get(orm.url + '/report/documents', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({documents: response.data});
@@ -167,83 +187,13 @@ class DocumentTree extends BaseDesignComponent {
     }
     
     loadDocumentData(doc) {
-        this.showWaitMessage('Loading model hierarchy...');
-        const curcomp = this;
-        const seldoc = doc
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
-        };
-
-        curcomp.setState({model: seldoc.document.rootModel});
-        axios.get(orm.url + '/design/modeltree/' + seldoc.document.rootModel, config)
-            .then((response) => {
-                if (response.status === 200) {
-                    curcomp.setCurrentDocument(seldoc, response.data);
-                } else {
-                    curcomp.props.setStatus(response.statusText, true);
-                }
-                
-                curcomp.clearWaitMessage();
-            })
-            .catch((err) => {
-               curcomp.props.setStatus('' + err, true);
-               curcomp.clearWaitMessage();
-            });     
     }
 
     setCurrentDocument(doc, data) {
-        document.designData.modelHierarchy = data;
-        document.designData.currentDocument = doc;
-        document.designData.whereComparisons = doc.document.whereComparisons;
-        document.designData.selnodes = [];
-        document.designData.selectedObjectKeys = [];
-        
-        for (let i = 0; i < doc.document.selectedColumns.length; ++i) {
-            let selnode = this.findNode(document.designData.modelHierarchy, doc.document.selectedColumns[i].path);
-            if (selnode) {
-                selnode.__path__ = doc.document.selectedColumns[i].path;
-                selnode.__columnLabel = doc.document.selectedColumns[i].label;
-                selnode.__selectedFunction = doc.document.selectedColumns[i].function;
-                selnode.__sortPosition = doc.document.selectedColumns[i].sortPosition;
-                selnode.__sortDescending = doc.document.selectedColumns[i].sortDescending;
-                selnode.__customColumnInput = doc.document.selectedColumns[i].customInput;
-                document.designData.selnodes.push(selnode);
-                document.designData.selectedObjectKeys.push(selnode.key);
-            }
-        }
-
         this.clearWaitMessage();
         this.props.setCurrentDocument(doc.documentName);
     }
     
-    findNode(node, path) {
-        let retval;
-        let parts = path.split('\.');
-        let curnode = node;
-        if (parts.length > 1) {
-            for (let i = 0; curnode && (i < (parts.length-1)); ++i) {
-                for (let j = 0; j < curnode.children.length; ++j) {
-                    if (curnode.children[j].title === parts[i]) {
-                        curnode = curnode.children[j];
-                        break;
-                    }
-                }
-            }
-        }
-        
-        for (let i = 0; i < curnode.children.length; ++i) {
-            if (curnode.children[i].title === parts[parts.length-1]) {
-                retval = curnode.children[i];
-                break;
-            }
-        }
-        
-        return retval;
-    }
 }
-
-
-
 
 export { DocumentTree };
