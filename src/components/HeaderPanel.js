@@ -14,7 +14,7 @@ class HeaderPanel extends BaseDesignComponent {
     }
 
     render() {
-        return <div className="designChildContainer">header</div>;
+        return <div className="designHeaderContainer">header</div>;
     }
 }
 

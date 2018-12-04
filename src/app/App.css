@@ -227,6 +227,16 @@ input[type="submit"] {
     width: 98%;
 }
 
+.designHeaderContainer {
+    position: absolute;
+    box-sizing:border-box;
+    border-top: 1px solid #a1a3a3;
+    background: var(--default-bkcolor);
+    overflow: auto;
+    height: 100%;
+    width: 98%;
+}
+
 .minimalist-toolbar{
     overflow-y: visible;
     position: absolute;
@@ -566,9 +576,31 @@ input[type="checkbox"] {
 .designPanel {
     position: absolute;
     background: var(--default-bkcolor);
-    padding-left: 2px;
+    padding-left: 24px;
     margin-left: 3px;
     height:98%;
+    float: right;
     width: 100%;
 }
+
+.verticalRule {
+    background-color: lightGray;
+    width: 21px;
+    padding-top: 20px;
+    padding-left: 2px;
+    margin-left: 3px;
+    height: 1536px;
+    position:relative;
+    border-right: 1px solid #a1a3a3;
+}
+
+.horizontalRule {
+    background-color: lightGray;
+    width: 100%;
+    padding-left: 2px;
+    margin-left: 3px;
+    height: 20px;
+    position:relative;
+}
+
 
