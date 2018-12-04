@@ -586,7 +586,6 @@ input[type="checkbox"] {
 .verticalRule {
     background-color: lightGray;
     width: 21px;
-    padding-top: 20px;
     padding-left: 2px;
     margin-left: 3px;
     height: 1536px;
@@ -602,5 +601,3 @@ input[type="checkbox"] {
     height: 20px;
     position:relative;
 }
-
-

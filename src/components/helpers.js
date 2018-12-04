@@ -1,10 +1,9 @@
+const defaultDocumentWidth = getPixelsPerInch() * 8.5;
+const defaultDocumentHeight = getPixelsPerInch() * 11;
+
 document.designData = {
-    models: '',
-    modelHierarchy: '',
-    selectedObjectKeys: '',
-    selnodes: '',
-    whereComparisons: '',
-    queryResults: '',
+    documentWidth: defaultDocumentWidth,
+    documentHeight: defaultDocumentHeight,
     currentDocument: ''
 };
 
@@ -16,16 +15,12 @@ var popupMenuClick = function(e) {
         clearContextMenu();
     }
 };
-
+var ppi;
 export function clearDocumentDesignData() {
     document.designData = {
-        models: '',
-        modelHierarchy: '',
-        selectedObjectKeys: '',
-        selnodes: '',
-        whereComparisons: '',
-        queryResults: '',
-        currentDocument: ''
+        documentWidth: defaultDocumentWidth,
+        documentHeight: defaultDocumentHeight,
+        currentDocument: ''    
     };
 }
     
@@ -182,4 +177,24 @@ export function clearSelectedText() {
     } 
         
      catch (err) {};    
+}
+
+export function getPixelsPerInch() {
+    if (!ppi) {
+        let dpiHtmlStyle = 'data-dpi-test { height: 1in; left: -100%; position: absolute; top: -100%; width: 1in; }';
+        let head = document.getElementsByTagName('head')[0];
+        let dpiElement = document.createElement('style');
+        dpiElement.setAttribute('type', 'text/css');
+        dpiElement.setAttribute('rel', 'stylesheet');
+        dpiElement.innerHTML = dpiHtmlStyle;
+        head.appendChild(dpiElement);
+
+        let body = document.getElementsByTagName('body')[0];
+        let dpiTestElement = document.createElement('data-dpi-test');
+        dpiTestElement.setAttribute('id', 'dpi-test');
+        body.appendChild(dpiTestElement);
+        ppi = document.getElementById('dpi-test').offsetHeight;
+    }
+    
+    return ppi;
 }
