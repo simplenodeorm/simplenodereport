@@ -18,7 +18,7 @@ class HorizontalRule extends React.Component {
     
     render() {
         return <div className="horizontalRule">
-        <svg width={document.designData.documentWidth}>{loop(this.getLines())}</svg>
+            <svg width={document.designData.documentWidth + getPixelsPerInch()}>{loop(this.getLines())}</svg>
         </div>;
     }
     

@@ -10,9 +10,6 @@ class FooterPanel extends BaseDesignComponent {
         };
     }
     
-    componentWillReceiveProps(nextProps) {
-    }
-
     render() {
         return <div className="designChildContainer">footer</div>;
     }

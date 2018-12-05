@@ -20,8 +20,11 @@ class VerticalRule extends React.Component {
     }
     
     render() {
-        return <div className="verticalRule">
-            <svg height={document.designData.documentHeight}>{loop(this.getLines())}</svg>
+        const myStyle = {
+            height: document.designData.documentHeight + getPixelsPerInch() + 'px'
+        }
+        return <div className="verticalRule" style={myStyle}>
+            <svg height={document.designData.documentHeight + getPixelsPerInch()}>{loop(this.getLines())}</svg>
         </div>;
     }
 

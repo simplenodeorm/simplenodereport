@@ -14,31 +14,37 @@ import {clearDocumentDesignData} from './helpers';
 import {getModalContainer} from './helpers';
 import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
+import {getPixelsPerInch} from './helpers.js';
 
 class DesignPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
     }
-
+    
     render() {
-        return  <div> 
+        const designStyle = {
+            height: document.designData.documentHeight + 'px',
+            width: document.designData.documentWidth + 'px'
+        };
+        
+        return  <div className="designContainer"> 
             <HorizontalRule/>
-            <div className="designPanel">
+            <div className="designPanel" style={designStyle}>
                 <SplitPane 
                     split="horizontal" 
                     minSize={0} 
-                    defaultSize={350}>
+                    defaultSize={document.designData.documentHeight - getPixelsPerInch()}>
                     <div>
                         <SplitPane 
                             split="horizontal" 
                             minSize={0} 
-                            defaultSize={30}>
+                            defaultSize={getPixelsPerInch()}>
                             <HeaderPanel setStatus={this.props.setStatus}/>
                             <BodyPanel setStatus={this.props.setStatus}/>
                         </SplitPane> 
                     </div>
                     <FooterPanel setStatus={this.props.setStatus}/>
-                    </SplitPane>
+                </SplitPane>
             </div>
             <VerticalRule/>
         </div>

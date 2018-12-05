@@ -209,32 +209,9 @@ input[type="submit"] {
     overflow: auto;
 }
 
-.designSplitPaneContainer {
-    position: absolute;
-    box-sizing:border-box;
-    background: var(--default-bkcolor);
-    overflow: none;
-    height: 85%;
-    width: 100%;
-}
-
 .designChildContainer {
-    position: absolute;
-    box-sizing:border-box;
     background: var(--default-bkcolor);
-    overflow: auto;
-    height: 100%;
-    width: 98%;
-}
-
-.designHeaderContainer {
-    position: absolute;
-    box-sizing:border-box;
-    border-top: 1px solid #a1a3a3;
-    background: var(--default-bkcolor);
-    overflow: auto;
-    height: 100%;
-    width: 98%;
+    position:relative;
 }
 
 .minimalist-toolbar{
@@ -576,19 +553,21 @@ input[type="checkbox"] {
 .designPanel {
     position: absolute;
     background: var(--default-bkcolor);
-    padding-left: 24px;
+    margin-left: 24px;
+    margin-top: 1px;
+    overflow:auto;
+}
+
+.designContainer {
+    position: relative;
+    background-color: darkGray;
     margin-left: 3px;
-    height:98%;
-    float: right;
-    width: 100%;
 }
 
 .verticalRule {
     background-color: lightGray;
-    width: 21px;
+    width: 22px;
     padding-left: 2px;
-    margin-left: 3px;
-    height: 1536px;
     position:relative;
     border-right: 1px solid #a1a3a3;
 }
@@ -597,7 +576,6 @@ input[type="checkbox"] {
     background-color: lightGray;
     width: 100%;
     padding-left: 2px;
-    margin-left: 3px;
     height: 20px;
     position:relative;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import "../app/App.css";
 import {BaseDesignComponent} from './BaseDesignComponent';
+import {getPixelsPerInch} from './helpers.js';
 
 class HeaderPanel extends BaseDesignComponent {
     constructor(props) {
@@ -10,11 +11,8 @@ class HeaderPanel extends BaseDesignComponent {
         };
     }
     
-    componentWillReceiveProps(nextProps) {
-    }
-
     render() {
-        return <div className="designHeaderContainer">header</div>;
+        return <div className="designChildContainer">header</div>;
     }
 }
 
