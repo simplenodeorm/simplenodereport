@@ -28,6 +28,7 @@
     --info-message-color: lightGreen;
     --input-background:linear-gradient(top, #d6d7d7, #dee0e0);
     --sidebar-hover-text-color: khaki;
+    --rule-background-color: lightGray;
   }
 
 html {
@@ -493,6 +494,7 @@ input[type="checkbox"] {
     font-weight:550;
     color: var(--wait-message-font-color);
     white-space: nowrap;
+    z-index: 1;
 }
 
 .waitMessage span {
@@ -559,21 +561,19 @@ input[type="checkbox"] {
 }
 
 .designContainer {
-    position: relative;
     background-color: darkGray;
     margin-left: 3px;
 }
 
 .verticalRule {
-    background-color: lightGray;
+    background-color: var(--rule-background-color);
     width: 22px;
     padding-left: 2px;
-    position:relative;
     border-right: 1px solid #a1a3a3;
 }
 
 .horizontalRule {
-    background-color: lightGray;
+    background-color: var(--rule-background-color);
     width: 100%;
     padding-left: 2px;
     height: 20px;
