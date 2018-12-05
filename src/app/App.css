@@ -553,29 +553,46 @@ input[type="checkbox"] {
 }
 
 .designPanel {
-    position: absolute;
+    position:absolute;
     background: var(--default-bkcolor);
-    margin-left: 24px;
+    margin-left: 33px;
     margin-top: 1px;
-    overflow:auto;
 }
 
 .designContainer {
+    position: fixed;
     background-color: darkGray;
     margin-left: 3px;
+    width:100%;
+    height:100%;
+    overflow: hidden;
 }
 
 .verticalRule {
+    position: fixed;
     background-color: var(--rule-background-color);
-    width: 22px;
+    width: 30px;
     padding-left: 2px;
     border-right: 1px solid #a1a3a3;
 }
 
 .horizontalRule {
+    position: fixed;
     background-color: var(--rule-background-color);
     width: 100%;
     padding-left: 2px;
-    height: 20px;
+    height: 30px;
     position:relative;
+}
+
+.horizontalRule .slider {
+    height: 10px;
+    width: 150px;
+    margin-left: 30px;
+}
+
+.verticalRule .slider {
+    display:inline;
+    height: 150px;
+    width: 10px;
 }

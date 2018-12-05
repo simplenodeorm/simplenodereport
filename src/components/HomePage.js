@@ -22,7 +22,7 @@ class HomePage extends React.Component {
                     <br />
                     <SplitPane 
                         split="vertical" 
-                        minSize={10} 
+                        minSize={0} 
                         defaultSize={150}>
                         <DocumentTree ref={(dtree) => {documentTree = dtree}} 
                             setStatus={this.setStatus} 

@@ -34,15 +34,13 @@ class DesignPanel extends BaseDesignComponent {
                     split="horizontal" 
                     minSize={0} 
                     defaultSize={document.designData.documentHeight - getPixelsPerInch()}>
-                    <div>
-                        <SplitPane 
-                            split="horizontal" 
-                            minSize={0} 
-                            defaultSize={getPixelsPerInch()}>
-                            <HeaderPanel setStatus={this.props.setStatus}/>
-                            <BodyPanel setStatus={this.props.setStatus}/>
-                        </SplitPane> 
-                    </div>
+                    <SplitPane 
+                        split="horizontal" 
+                        minSize={0} 
+                        defaultSize={getPixelsPerInch()}>
+                        <HeaderPanel setStatus={this.props.setStatus}/>
+                        <BodyPanel setStatus={this.props.setStatus}/>
+                    </SplitPane> 
                     <FooterPanel setStatus={this.props.setStatus}/>
                 </SplitPane>
             </div>
