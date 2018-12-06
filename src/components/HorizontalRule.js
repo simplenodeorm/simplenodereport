@@ -61,7 +61,7 @@ class HorizontalRule extends React.Component {
                     }}
                 railStyle={{ backgroundColor: 'steelBlue', height: 3 }}/>
             </div>
-            <svg width={document.designData.documentWidth + getPixelsPerInch()}>{loop(this.getLines())}</svg>
+            <svg height="30" width={document.designData.documentWidth + getPixelsPerInch()}>{loop(this.getLines())}</svg>
         </div>;
     }
     

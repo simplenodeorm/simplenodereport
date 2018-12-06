@@ -74,7 +74,7 @@ class VerticalRule extends React.Component {
                     }}
                     railStyle={{ marginLeft: -3, backgroundColor: 'steelBlue', width: 3.5, height: 150}}/>
             </div>
-            <svg height={document.designData.documentHeight + getPixelsPerInch()}>{loop(this.getLines())}</svg>
+            <svg width="33" height={document.designData.documentHeight + getPixelsPerInch()}>{loop(this.getLines())}</svg>
         </div>;
     }
     

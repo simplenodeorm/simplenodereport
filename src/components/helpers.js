@@ -1,3 +1,5 @@
+import config from '../config/appconfig.json';
+
 document.designData = {
     currentDocument: ''
 };
@@ -188,7 +190,7 @@ export function getPixelsPerInch() {
         let dpiTestElement = document.createElement('data-dpi-test');
         dpiTestElement.setAttribute('id', 'dpi-test');
         body.appendChild(dpiTestElement);
-        ppi = document.getElementById('dpi-test').offsetHeight;
+        ppi = document.getElementById('dpi-test').offsetHeight/config.zoomFactor;
     }
     
     return ppi;

@@ -11,5 +11,6 @@
         "authenticatorlabel": "Authorizer:",
         "documentnamelabel": "Document Name:"
     },
-    "defaultReportAuthenticator": "DefaultAuthorizer"
+    "defaultReportAuthenticator": "DefaultAuthorizer",
+    "zoomFactor": 1.25
 }

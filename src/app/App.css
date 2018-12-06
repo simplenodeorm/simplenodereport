@@ -150,8 +150,8 @@ input[type="submit"] {
 
 .Resizer {
     background-color: var(--split-resizer-color);
-    opacity: .4;
-    z-index: 1;
+    opacity: 0.4;
+    z-index: 1000000;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -212,7 +212,8 @@ input[type="submit"] {
 
 .designChildContainer {
     background: var(--default-bkcolor);
-    position:relative;
+    position:absolute;
+    overflow:hidden;
 }
 
 .minimalist-toolbar{
@@ -617,4 +618,8 @@ input[type="checkbox"] {
     float:left;
     height: 150px;
     width: 10px;
+}
+
+.marginLines {
+    display: inline;
 }
