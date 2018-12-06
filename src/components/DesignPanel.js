@@ -9,8 +9,10 @@ import {HeaderPanel} from './HeaderPanel';
 import {BodyPanel} from './BodyPanel';
 import {FooterPanel} from './FooterPanel';
 import config from '../config/appconfig.json';
+import defaults from '../config/defaults.json';
 import axios from 'axios';
 import {clearDocumentDesignData} from './helpers';
+import {getDocumentDimensions} from './helpers';
 import {getModalContainer} from './helpers';
 import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
@@ -31,13 +33,19 @@ class DesignPanel extends BaseDesignComponent {
     
     render() {
         const {left, top} = this.state;
-    
+
+        if (!document.designData.documentHeight) {
+            let dim = getDocumentDimensions(defaults.documentSize);
+            document.designData.documentWidth = (getPixelsPerInch() * dim[0]);
+            document.designData.documentHeight = (getPixelsPerInch() * dim[1]);
+        }
+        
         const designStyle = {
             left: left,
             top: top,
             height: (document.designData.documentHeight + 'px'),
-            width: (document.designData.documentWidth + 'px'),
-        }
+            width: (document.designData.documentWidth + 'px')
+        };
         
         return  <div className="designContainer"> 
             <HorizontalRule left={left} horizontalPositionChange={this.horizontalPositionChange}/>

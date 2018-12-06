@@ -1,9 +1,4 @@
-const defaultDocumentWidth = getPixelsPerInch() * 8.5;
-const defaultDocumentHeight = getPixelsPerInch() * 11;
-
 document.designData = {
-    documentWidth: defaultDocumentWidth,
-    documentHeight: defaultDocumentHeight,
     currentDocument: ''
 };
 
@@ -18,8 +13,8 @@ var popupMenuClick = function(e) {
 var ppi;
 export function clearDocumentDesignData() {
     document.designData = {
-        documentWidth: defaultDocumentWidth,
-        documentHeight: defaultDocumentHeight,
+        documentWidth: '',
+        documentHeight: '',
         currentDocument: ''    
     };
 }
@@ -197,4 +192,59 @@ export function getPixelsPerInch() {
     }
     
     return ppi;
+}
+
+export function getDocumentDimensions(type) {
+    let retval = [8.5, 11];
+    switch(type.toUpperCase()) {
+        case '4A0':
+            retval = [66.2,93.6];
+            break;
+        case '2A0':
+            retval = [46.8,66.2];
+            break;
+        case 'A0':
+            retval = [33.1,46.8];
+            break;
+        case 'A1':
+            retval = [23.4,33.1];
+            break;
+        case 'A2':
+            retval = [16.5,23.4];
+            break;
+        case 'A3':
+            retval = [11.7,16.5];
+            break;
+        case 'A4':
+            retval = [8.3,11.7];
+            break;
+        case 'A5':
+            retval = [5.8,8.3];
+            break;
+        case 'A6':
+            retval = [4.1,5.8];
+            break;
+        case 'A7':
+            retval = [2.9, 4.1];
+        case 'A8':
+            retval = [2.0,2.9];
+            break;
+        case 'A9':
+            retval = [1.5,2.0];
+            break;
+        case 'A10':
+            retval = [1.0,1.5];
+            break;
+        case 'LETTER':
+            retval = [8.5,11];
+            break;
+        case 'LEGAL':
+            retval = [8.5,14];
+            break;
+        default:
+            retval = [8.5,11];
+            break;
+    }
+    
+    return retval;
 }
