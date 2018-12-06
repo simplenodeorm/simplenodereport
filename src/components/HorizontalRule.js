@@ -1,7 +1,7 @@
 import React from 'react';
-import {getPixelsPerInch} from './helpers.js';
 import Slider, { Range } from 'rc-slider';
 import Tooltip from 'rc-tooltip';
+import {getPixelsPerInch} from './helpers.js';
 import 'rc-slider/assets/index.css';
 import '../app/App.css'
 
@@ -22,7 +22,7 @@ const handle = (props) => {
   return (
     <Tooltip
       prefixCls="rc-slider-tooltip"
-      overlay={value}
+      overlay={(value/getPixelsPerInch()).toFixed(2)}
       visible={dragging}
       placement="top"
       key={index}
@@ -31,10 +31,14 @@ const handle = (props) => {
     </Tooltip>
   );
 };
+
 class HorizontalRule extends React.Component {
     constructor(props) {
         super(props);
         this.onAfterChange = this.onAfterChange.bind(this);
+        this.state = {
+            left: '0px'
+        }
     }
     
     render() {
@@ -43,8 +47,8 @@ class HorizontalRule extends React.Component {
                 <Slider
                     defaultValue={0}
                     handle={handle}
-                    max={document.designData.documentWidth/getPixelsPerInch()}
-                    trackStyle={{ marginLeft: 0, backgroundColor: 'slateGray', height: 3 }}
+                    max={document.designData.documentWidth}
+                    trackStyle={{ marginLeft: 0, backgroundColor: 'steelBlue', height: 3 }}
                     onAfterChange={this.onAfterChange}
                         handleStyle={{
                         height: 8,
@@ -61,17 +65,23 @@ class HorizontalRule extends React.Component {
         </div>;
     }
     
+    componentWillReceiveProps(nextProps) {
+        this.setState({ left: nextProps.left });
+    }
+    
     onAfterChange(value) {
+        this.props.horizontalPositionChange(value);
     }
     
     getLines() {
         let retval = [];
-        
-        let ppi = getPixelsPerInch();
-        let eigthInch = ppi/8;
+        const {left} = this.state;
+        let x = Math.round(Number(left.replace('px', '').replace('-', '')));
+        let eigthInch = getPixelsPerInch()/8;
+        let start = Math.round((x/eigthInch)) + 1;
         let cx = (document.designData.documentWidth/eigthInch);
-        for (let i = 1; i <= cx; i++) {
-            let xpos = Number(i*eigthInch);
+        let xpos = eigthInch;
+        for (let i = start; i <= cx; i++) {
             switch(i%8) {
                 case 0:
                     retval.push([xpos, 5, xpos, 20, i/8]);
@@ -98,6 +108,8 @@ class HorizontalRule extends React.Component {
                     retval.push([xpos, 15, xpos, 20]);
                     break;
             }
+            
+            xpos += eigthInch;
         }
 
         return retval;

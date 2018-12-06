@@ -19,33 +19,59 @@ import {getPixelsPerInch} from './helpers.js';
 class DesignPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
+        this.horizontalPositionChange = this.horizontalPositionChange.bind(this);
+        this.verticalPositionChange = this.verticalPositionChange.bind(this);
+        this.dw;
+        
+        this.state = {
+            left: 0,
+            top: 0
+        };
     }
     
     render() {
+        const {left, top} = this.state;
+    
         const designStyle = {
-            height: document.designData.documentHeight + 'px',
-            width: document.designData.documentWidth + 'px'
-        };
+            left: left,
+            top: top,
+            height: (document.designData.documentHeight + 'px'),
+            width: (document.designData.documentWidth + 'px'),
+        }
         
         return  <div className="designContainer"> 
-            <HorizontalRule/>
-            <div className="designPanel" style={designStyle}>
-                <SplitPane 
-                    split="horizontal" 
-                    minSize={0} 
-                    defaultSize={document.designData.documentHeight - getPixelsPerInch()}>
+            <HorizontalRule left={left} horizontalPositionChange={this.horizontalPositionChange}/>
+            <div className="designPanel">
+                <div ref={(dw) => {this.dw = dw}} className="documentWrapper" style={designStyle}>
                     <SplitPane 
                         split="horizontal" 
                         minSize={0} 
-                        defaultSize={getPixelsPerInch()}>
-                        <HeaderPanel setStatus={this.props.setStatus}/>
-                        <BodyPanel setStatus={this.props.setStatus}/>
-                    </SplitPane> 
-                    <FooterPanel setStatus={this.props.setStatus}/>
-                </SplitPane>
+                        defaultSize={document.designData.documentHeight - getPixelsPerInch()}>
+                        <SplitPane 
+                            split="horizontal" 
+                            minSize={0} 
+                            defaultSize={getPixelsPerInch()}>
+                            <HeaderPanel setStatus={this.props.setStatus}/>
+                            <BodyPanel setStatus={this.props.setStatus}/>
+                        </SplitPane> 
+                        <FooterPanel setStatus={this.props.setStatus}/>
+                    </SplitPane>
+                </div>
             </div>
-            <VerticalRule/>
+            <VerticalRule top={top} verticalPositionChange={this.verticalPositionChange}/>
         </div>
+    }
+    
+    horizontalPositionChange(value) {
+        if (this.dw) {
+            this.setState({left: (-value) + 'px', top: this.dw.style.top});
+        }
+    }
+  
+    verticalPositionChange(value) {
+        if (this.dw) {
+            this.setState({left: this.dw.style.left, top: (-value) + 'px'});
+        }
     }
 }
 

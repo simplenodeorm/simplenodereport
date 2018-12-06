@@ -557,6 +557,15 @@ input[type="checkbox"] {
     background: var(--default-bkcolor);
     margin-left: 33px;
     margin-top: 1px;
+    height:100%;
+    width:100%;
+    overflow:hidden;
+}
+
+.documentWrapper {
+    position: absolute;
+    border: 1px solid #a1a3a3;
+    overflow: auto;
 }
 
 .designContainer {
@@ -574,6 +583,12 @@ input[type="checkbox"] {
     width: 30px;
     padding-left: 2px;
     border-right: 1px solid #a1a3a3;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
 }
 
 .horizontalRule {
@@ -583,6 +598,12 @@ input[type="checkbox"] {
     padding-left: 2px;
     height: 30px;
     position:relative;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; 
 }
 
 .horizontalRule .slider {

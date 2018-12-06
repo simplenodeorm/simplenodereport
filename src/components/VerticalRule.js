@@ -1,7 +1,7 @@
 import React from 'react';
-import {getPixelsPerInch} from './helpers.js';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
+import {getPixelsPerInch} from './helpers.js';
 
 import 'rc-slider/assets/index.css';
 import '../app/App.css'
@@ -13,7 +13,7 @@ const handle = (props) => {
   return (
     <Tooltip
       prefixCls="rc-slider-tooltip"
-      overlay={-value}
+      overlay={-(value/getPixelsPerInch()).toFixed(2)}
       visible={dragging}
       placement="top"
       key={index}
@@ -41,6 +41,13 @@ class VerticalRule extends React.Component {
     constructor(props) {
         super(props);
         this.onAfterChange = this.onAfterChange.bind(this);
+        this.state = {
+            top: '0px'
+        };
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        this.setState({ top: nextProps.top });
     }
     
     render() {
@@ -48,7 +55,7 @@ class VerticalRule extends React.Component {
             <div className="slider">
                 <Slider 
                     handle={handle}
-                    min={-document.designData.documentHeight/getPixelsPerInch()}
+                    min={-document.designData.documentHeight}
                     defaultValue={0}
                     inverted={true}
                     max={0}
@@ -72,16 +79,18 @@ class VerticalRule extends React.Component {
     }
     
     onAfterChange(value) {
+        this.props.verticalPositionChange(-value);
     }
 
     getLines() {
         let retval = [];
-        
-        let ppi = getPixelsPerInch();
-        let eigthInch = ppi/8;
+        const {top} = this.state;
+        let eigthInch = getPixelsPerInch()/8;
+        let y = Math.round(Number(top.replace('px', '').replace('-', '')));
+        let start = Math.round((y/eigthInch)) + 1;
         let cy = (document.designData.documentHeight/eigthInch);
-        for (let i = 1; i <= cy; i++) {
-            let ypos = (i*eigthInch) + 4;
+        let ypos = eigthInch + 4
+        for (let i = start; i <= cy; i++) {
             switch(i%8) {
                 case 0:
                     retval.push([15, ypos, 31, ypos, i/8]);
@@ -108,6 +117,8 @@ class VerticalRule extends React.Component {
                     retval.push([25, ypos, 31, ypos]);
                     break;
             }
+            
+            ypos += eigthInch;
         }
 
         return retval;
