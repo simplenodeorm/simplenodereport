@@ -220,7 +220,7 @@ input[type="submit"] {
     position: absolute;
     height: 25px;
     top:0px;
-    left: 200px;
+    left: 100px;
     z-index: 1;
     width: 100%;
     background-color: var(--bar-color);
