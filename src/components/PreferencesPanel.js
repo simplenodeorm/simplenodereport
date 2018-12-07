@@ -5,8 +5,16 @@ import defaults from '../config/defaults.json';
 import {ModalDialog} from './ModalDialog';
 import {NumericInput} from './NumericInput';
 
-const defaultNames = ['marginLeft', 'marginTop', 'marginRight', 'marginBottom', 'fontSize', 'documentSize'];
-
+const preferenceNames = ['marginLeft', 'marginTop', 'marginRight', 'marginBottom', 'fontSize', 'documentSize'];
+const documentSizeLoop = (docSize, data) => {
+    return data.map((item) => {
+        if (docSize === item) {
+            return <option value={item} selected>{item}</option>;
+        } else {
+            return <option value={item}>{item}</option>;
+        }
+    });
+};
 
 class PreferencesPanel extends ModalDialog {
     constructor(props) {
@@ -27,8 +35,7 @@ class PreferencesPanel extends ModalDialog {
         }
 
     }
-    
-    
+
     getContent() {
         return <div className="preferencesPanel">
             <table>
@@ -39,21 +46,7 @@ class PreferencesPanel extends ModalDialog {
                 <tr><th>{config.textmsg.fontsize}</th><td><NumericInput maxLength='2' onBlur={this.setFontSize} defaultValue={this.myPreferences.fontSize}/></td></tr>
                 <tr><th>{config.textmsg.documentsize}</th><td>
                     <select onChange={this.setDocumentSize}>
-                        <option value="LETTER">LETTER</option>
-                        <option value="LEGAL">LEGAL</option>
-                        <option value="4A0">4A0</option>
-                        <option value="2A0">2A0</option>
-                        <option value="A0">A0</option>
-                        <option value="A1">A1</option>
-                        <option value="A2">A2</option>
-                        <option value="A3">A3</option>
-                        <option value="A4">A4</option>
-                        <option value="A5">A5</option>
-                        <option value="A6">A6</option>
-                        <option value="A7">A7</option>
-                        <option value="A8">A8</option>
-                        <option value="A9">A9</option>
-                        <option value="A10">A10</option>
+                    {documentSizeLoop(this.myPreferences.documentSize, config.documentSizeNames)}
                     </select>
                     </td></tr>
             </table>
@@ -87,8 +80,8 @@ class PreferencesPanel extends ModalDialog {
     isComplete() {
         let retval = true;
     
-        for (let i = 0; i < defaultNames.length; ++i) {
-            if (!this.myPreferences[defaultNames[i]]) {
+        for (let i = 0; i < preferenceNames.length; ++i) {
+            if (!this.myPreferences[preferenceNames[i]]) {
                 retval = false;
                 break;
             }

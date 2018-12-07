@@ -19,5 +19,7 @@
         "defaultsettings": "Default Settings"
     },
     "defaultReportAuthenticator": "DefaultAuthorizer",
-    "zoomFactor": 1.25
+    "zoomFactor": 1.25,
+    "documentSizeNames": ["LETTER", "LEGAL", "4A0", "2A0", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10"]
+
 }

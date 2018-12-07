@@ -48,7 +48,6 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     savePreferences(results) {
-        alert('---------->' + JSON.stringify(results));
         localStorage.setItem('preferences', JSON.stringify(results));
     }
 }
