@@ -2,6 +2,7 @@ import React from 'react';
 import Slider, { Range } from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import {getPixelsPerInch} from './helpers.js';
+import config from '../config/appconfig.json';
 import 'rc-slider/assets/index.css';
 import '../app/App.css'
 
@@ -76,12 +77,14 @@ class HorizontalRule extends React.Component {
     getLines() {
         let retval = [];
         const {left} = this.state;
+        
         let x = Math.round(Number(left.replace('px', '').replace('-', '')));
         let eigthInch = getPixelsPerInch()/8;
         let start = Math.round((x/eigthInch)) + 1;
         let cx = (document.designData.documentWidth/eigthInch);
         let xpos = eigthInch;
-        for (let i = start; i <= cx; i++) {
+        let vp = (window.innerWidth/config.zoomFactor);
+        for (let i = start; (((i-start)*eigthInch) < vp) && (i <= cx); i++) {
             switch(i%8) {
                 case 0:
                     retval.push([xpos, 5, xpos, 20, i/8]);

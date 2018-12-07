@@ -18,7 +18,6 @@ const ppi = getPixelsPerInch();
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
-        
         // set document default
         if (!document.designData.documentHeight) {
             let dim = getDocumentDimensions(defaults.documentSize);

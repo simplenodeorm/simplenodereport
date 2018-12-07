@@ -2,6 +2,7 @@ import React from 'react';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import {getPixelsPerInch} from './helpers.js';
+import config from '../config/appconfig.json';
 
 import 'rc-slider/assets/index.css';
 import '../app/App.css'
@@ -89,8 +90,9 @@ class VerticalRule extends React.Component {
         let y = Math.round(Number(top.replace('px', '').replace('-', '')));
         let start = Math.round((y/eigthInch)) + 1;
         let cy = (document.designData.documentHeight/eigthInch);
+        let vp = (window.innerHeight/config.zoomFactor);
         let ypos = eigthInch + 4
-        for (let i = start; i <= cy; i++) {
+        for (let i = start; (((i-start)*eigthInch) < vp) && (i <= cy); i++) {
             switch(i%8) {
                 case 0:
                     retval.push([15, ypos, 31, ypos, i/8]);
