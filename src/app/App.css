@@ -274,7 +274,7 @@ input[type="submit"] {
 
 .minimalist-toolbar-brand{
     color:var(--text-hover);
-    padding-top: 3px;
+    padding-top: 2px;
     padding-left: 5px;
     font-weight: var(--strong-font-weight);
     background: transparent;
@@ -288,6 +288,7 @@ input[type="submit"] {
     width: 20px;
     margin-right: 5px;
     margin-left:5px;
+    margin-bottom:2px;
     padding:auto;
     vertical-align: middle;
     height: 100%;
