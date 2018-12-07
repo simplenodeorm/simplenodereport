@@ -6,10 +6,17 @@
         "filemenuname": "File",
         "newmenuname": "New",
         "newdocument": "New",
+        "leftmargin": "Left Margin:",
+        "topmargin": "Top Margin:",
+        "rightmargin": "Right Margin:",
+        "bottommargin": "Bottom Margin:",
+        "fontsize": "Font Size:",
+        "documentsize": "Document Size:",
         "preferencesmenuname": "Preferences",
         "savedocumenttitle": "Save Document",
         "authenticatorlabel": "Authorizer:",
-        "documentnamelabel": "Document Name:"
+        "documentnamelabel": "Document Name:",
+        "defaultsettings": "Default Settings"
     },
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25

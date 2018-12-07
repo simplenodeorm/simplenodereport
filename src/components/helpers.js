@@ -228,6 +228,7 @@ export function getDocumentDimensions(type) {
             break;
         case 'A7':
             retval = [2.9, 4.1];
+            break;
         case 'A8':
             retval = [2.0,2.9];
             break;

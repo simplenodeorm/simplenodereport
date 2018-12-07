@@ -1,16 +1,19 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import Toolbar from './Toolbar';
 import '../app/App.css';
 import config from '../config/appconfig';
 import {BaseDesignComponent} from './BaseDesignComponent';
+import {PreferencesPanel} from './PreferencesPanel';
 import {clearDocumentDesignData} from './helpers';
+import {getModalContainer} from './helpers';
 
 class AppToolbar extends BaseDesignComponent {
     constructor(props) {
         super(props);
         this.newDocument = this.newDocument.bind(this);
-        this.setup = this.setup.bind(this);
         this.preferences = this.preferences.bind(this);
+        this.savePreferences = this.savePreferences.bind(this);
     }
     
     
@@ -22,11 +25,6 @@ class AppToolbar extends BaseDesignComponent {
                 {
                     text: config.textmsg.newmenuname,
                     callback: this.newDocument
-                },
-
-                {
-                    text: config.textmsg.setupmenuname,
-                    callback: this.setup
                 },
                 {
                     text: config.textmsg.preferencesmenuname,
@@ -44,11 +42,13 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     preferences() {
-        alert("under construction");
+        let rc = {left: 200, top: 50, width: 300, height: 400};
+        let mc = getModalContainer(rc);
+        ReactDOM.render(<PreferencesPanel onOk={this.savePreferences}/>, mc);
     }
-
-    setup() {
-        alert("under construction");
+    
+    savePreferences() {
+        alert('--------->savePreferences');
     }
 }
 
