@@ -47,8 +47,9 @@ class AppToolbar extends BaseDesignComponent {
         ReactDOM.render(<PreferencesPanel onOk={this.savePreferences}/>, mc);
     }
     
-    savePreferences() {
-        alert('--------->savePreferences');
+    savePreferences(results) {
+        alert('---------->' + JSON.stringify(results));
+        localStorage.setItem('preferences', JSON.stringify(results));
     }
 }
 

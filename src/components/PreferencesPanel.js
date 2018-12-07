@@ -19,6 +19,12 @@ class PreferencesPanel extends ModalDialog {
         this.setFontSize = this.setFontSize.bind(this);
         this.setDocumentSize = this.setDocumentSize.bind(this);
         this.allowCharacter = this.allowCharacter.bind(this);
+        
+         this.myPreferences = JSON.parse(localStorage.getItem('preferences'));
+        
+        if (!this.myPreferences || !this.myPreferences.documentSize) {                        
+            this.myPreferences = defaults;
+        }
 
     }
     
@@ -26,11 +32,11 @@ class PreferencesPanel extends ModalDialog {
     getContent() {
         return <div className="preferencesPanel">
             <table>
-            <tr><th>{config.textmsg.leftmargin}</th><td><NumericInput maxLength='4' onBlur={this.setLeftMargin} allowCharacter={this.allowCharacter}  defaultValue={defaults.marginLeft}/></td></tr>
-                <tr><th>{config.textmsg.topmargin}</th><td><NumericInput maxLength='4' onBlur={this.setTopMargin} allowCharacter={this.allowCharacter}  defaultValue={defaults.marginTop}/></td></tr>
-                <tr><th>{config.textmsg.rightmargin}</th><td><NumericInput maxLength='4' onBlur={this.setRightMargin} allowCharacter={this.allowCharacter}  defaultValue={defaults.marginRight}/></td></tr>
-                <tr><th>{config.textmsg.bottommargin}</th><td><NumericInput maxLength='4' onBlur={this.setBottomMargin} allowCharacter={this.allowCharacter}  defaultValue={defaults.marginBottom}/></td></tr>
-                <tr><th>{config.textmsg.fontsize}</th><td><NumericInput maxLength='2' onBlur={this.setFontSize} defaultValue={defaults.fontSize}/></td></tr>
+            <tr><th>{config.textmsg.leftmargin}</th><td><NumericInput maxLength='4' onBlur={this.setLeftMargin} allowCharacter={this.allowCharacter}  defaultValue={this.myPreferences.marginLeft}/></td></tr>
+                <tr><th>{config.textmsg.topmargin}</th><td><NumericInput maxLength='4' onBlur={this.setTopMargin} allowCharacter={this.allowCharacter}  defaultValue={this.myPreferences.marginTop}/></td></tr>
+                <tr><th>{config.textmsg.rightmargin}</th><td><NumericInput maxLength='4' onBlur={this.setRightMargin} allowCharacter={this.allowCharacter}  defaultValue={this.myPreferences.marginRight}/></td></tr>
+                <tr><th>{config.textmsg.bottommargin}</th><td><NumericInput maxLength='4' onBlur={this.setBottomMargin} allowCharacter={this.allowCharacter}  defaultValue={this.myPreferences.marginBottom}/></td></tr>
+                <tr><th>{config.textmsg.fontsize}</th><td><NumericInput maxLength='2' onBlur={this.setFontSize} defaultValue={this.myPreferences.fontSize}/></td></tr>
                 <tr><th>{config.textmsg.documentsize}</th><td>
                     <select onChange={this.setDocumentSize}>
                         <option value="LETTER">LETTER</option>
@@ -55,34 +61,34 @@ class PreferencesPanel extends ModalDialog {
     }
 
     setLeftMargin(e) {
-        defaults.leftMargin = e.value;
+        this.myPreferences.marginLeft = e.target.value;
     }
     
     setTopMargin(e) {
-        defaults.topMargin = e.value;
+        this.myPreferences.marginTop = e.target.value;
     }
         
     setRightMargin(e) {
-        defaults.rightMargin = e.value;
+        this.myPreferences.marginRight = e.target.value;
     }
     
     setBottomMargin(e) {
-        defaults.bottomMargin = e.value;
+        this.myPreferences.marginBottom = e.target.value;
     }
     
     setFontSize(e) {
-        defaults.fontSize = e.value;
+        this.myPreferences.fontSize = e.target.value;
     }
     
     setDocumentSize(e) {
-        defaults.documentSize = e.value;
+        this.myPreferences.documentSize = e.target.options[e.target.selectedIndex].value;
     }
 
     isComplete() {
         let retval = true;
     
         for (let i = 0; i < defaultNames.length; ++i) {
-            if (!defaults[defaultNames[i]]) {
+            if (!this.myPreferences[defaultNames[i]]) {
                 retval = false;
                 break;
             }
@@ -96,7 +102,7 @@ class PreferencesPanel extends ModalDialog {
     }
     
     getResult() {
-        return defaults;
+        return this.myPreferences;
     }
     
     allowCharacter(charCode) {
