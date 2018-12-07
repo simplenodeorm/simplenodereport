@@ -34,7 +34,7 @@ class AppToolbar extends BaseDesignComponent {
             }
         ];
         const orm = JSON.parse(localStorage.getItem('orm'));
-        return <Toolbar menu={menu} brand={orm.name} logo="logo.png"></Toolbar>
+        return <Toolbar menu={menu} brand={orm.name} logo="logo.png"></Toolbar>;
     }
 
     newDocument() {
