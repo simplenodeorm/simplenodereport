@@ -5,6 +5,8 @@ import defaults from '../config/defaults.json';
 import {ModalDialog} from './ModalDialog';
 import {NumericInput} from './NumericInput';
 
+const defaultNames = ['marginLeft', 'marginTop', 'marginRight', 'marginBottom', 'fontSize', 'documentSize'];
+
 
 class PreferencesPanel extends ModalDialog {
     constructor(props) {
@@ -79,10 +81,8 @@ class PreferencesPanel extends ModalDialog {
     isComplete() {
         let retval = true;
     
-        let names = ['leftMatgin', 'topMargin', 'rightMargin', 'bottomMargin', 'fontSize', 'documentSize'];
-        
-        for (let i = 0; i < names.length; ++i) {
-            if (!defaults[names[i]]) {
+        for (let i = 0; i < defaultNames.length; ++i) {
+            if (!defaults[defaultNames[i]]) {
                 retval = false;
                 break;
             }
