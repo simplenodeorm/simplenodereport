@@ -236,13 +236,15 @@ input[type="submit"] {
     background: none;
 }
 
-.buttonbar .label {
+.buttonbar .button .label {
     display: inline;
     padding-bottom: 10px;
     vertical-align: middle;
+    padding-left: 2px;
     font-weight: 300;
     text-align: left;
     font-size:8pt;
+    color: var(--text-color-toolbar);
 }
 
 .buttonbar .aligntool {

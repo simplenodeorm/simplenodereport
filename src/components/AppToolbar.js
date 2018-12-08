@@ -43,20 +43,17 @@ class AppToolbar extends BaseDesignComponent {
         return <div>
             <Toolbar menu={menu} brand={orm.name} logo="logo.png"></Toolbar>
             <div className="buttonbar">
-                <button className="button" title='add new report' onClick={this.newReport}><img alt='new report' src='/images/newreport.png'/></button>
-                <span className="label">New Report</span>
-                <button className="button" title='add new report object' onClick={this.newReportObject}><img alt='new report' src='/images/newobject.png'/></button>
-                <span className="label">Add Object</span>
+                <button className="button" title='add new report' onClick={this.newReport}><img alt='new report' src='/images/newreport.png'/><span className="label">New Report</span></button>
+                <button className="button" title='add new report object' onClick={this.newReportObject}><img alt='new report' src='/images/newobject.png'/><span className="label">Add Object</span></button>
                 <div className="aligntool">
                     <button className="button" title='align selected objects left' onClick={this.alignLeft}><img alt='align left' src='/images/align-left.png'/></button>
                     <button className="button" title='align selected objects top' onClick={this.alignTop}><img alt='align top' src='/images/align-top.png'/></button>
                     <button className="button" title='align selected objects right' onClick={this.alignRight}><img alt='align right' src='/images/align-right.png'/></button>
                     <button className="button" title='align selected objects bottom' onClick={this.alignBottom}><img alt='align right' src='/images/align-bottom.png'/></button>
                 </div>
-                <button className="button" title='delete selected report object report' onClick={this.deleteReportObjects}><img alt='delete report objects' src='/images/delete.png'/></button>
-                <span className="label">Delete Objects</span>
-                <button className="button" title='save report' onClick={this.saveReport}><img alt='save report' src='/images/save.png'/></button>
-                <span className="label">Save Report</span>
+                <button className="button" title='delete selected report object report' onClick={this.deleteReportObjects}><img alt='delete report objects' src='/images/delete.png'/><span className="label">Delete Objects</span></button>
+                <button className="button" title='save report' onClick={this.saveReport}><img alt='save report' src='/images/save.png'/><span className="label">Save Report</span></button>
+                
             </div>
         </div>;
     }
