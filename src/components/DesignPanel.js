@@ -34,6 +34,7 @@ class DesignPanel extends BaseDesignComponent {
             left: 0,
             top: 0
         };
+        
     }
     
     render() {

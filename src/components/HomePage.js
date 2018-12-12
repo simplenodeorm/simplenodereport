@@ -10,9 +10,6 @@ import config from '../config/appconfig.json';
 import {getPixelsPerInch} from './helpers.js';
 import {getDocumentDimensions} from './helpers';
 
-var documentTree;
-var statusBar;
-
 const ppi = getPixelsPerInch();
 
 class HomePage extends React.Component {
@@ -31,8 +28,6 @@ class HomePage extends React.Component {
             }
         }
 
-
-
         // set document default
         if (!document.designData.documentHeight) {
             let dim = getDocumentDimensions(myPreferences.documentSize);
@@ -45,45 +40,85 @@ class HomePage extends React.Component {
             document.designData.fontSize = myPreferences.fontSize;
             document.designData.fontFamily = myPreferences.fontFamily;
         }
+    
+        this.getDesignPanel = this.getDesignPanel.bind(this);
+        this.setDesignPanel = this.setDesignPanel.bind(this);
+        this.getDocumentTree = this.getDocumentTree.bind(this);
+        this.setDocumentTree = this.setDocumentTree.bind(this);
+        this.getStatusBar = this.getStatusBar.bind(this);
+        this.setStatusBar = this.setStatusBar.bind(this);
+        this.reloadDocuments = this.reloadDocuments.bind(this);
+        this.setCurrentDocument = this.setCurrentDocument.bind(this);
     }
 
     render() {
+        const curobj = this
+    
         return <div>
             <div>
-                <AppToolbar setCurrentDocument={this.setCurrentDocument}/>
-                    <br />
-                    <SplitPane 
-                        split="vertical" 
-                        minSize={0} 
-                        defaultSize={150}>
-                        <DocumentTree ref={(dtree) => {documentTree = dtree}} 
-                            setStatus={this.setStatus} 
-                            setCurrentDocument={this.setCurrentDocument} />
-                        <DesignPanel/>
-                    </SplitPane>
+                <AppToolbar 
+                    getDocumentTree={curobj.getDocumentTree}  
+                    getDesignPanel={curobj.getDesignPanel}  
+                    getStatusBar={curobj.getStatusBar}  
+                    setCurrentDocument={this.setCurrentDocument}/>
+                <br />
+                <SplitPane 
+                    split="vertical" 
+                    minSize={0} 
+                    defaultSize={150}>
+                    <DocumentTree ref={(dt) => {curobj.setDocumentTree(dt) }} 
+                        toolBar={this.toolBar}
+                        setStatus={this.setStatus} 
+                        setCurrentDocument={this.setCurrentDocument} />
+                    <DesignPanel ref={(dp) => {curobj.setDesignPanel(dp) }} />
+                </SplitPane>
             </div>
-            <StatusBar ref={(status) => {statusBar = status}} />
+            <StatusBar ref={(sb) => {curobj.setStatusBar(sb)}} />
             </div>;
 
     }
     
+    getDesignPanel() {
+        return this.designPanel;
+    }
+    
+    setDesignPanel(dp) {
+        this.designPanel = dp;
+    }
+
+    getDocumentTree() {
+        return this.documentTree;
+    }
+    
+    setDocumentTree(dt) {
+        this.documentTree = dt;
+    }
+    
+    getStatusBar() {
+        return this.statusBar;
+    }
+    
+    setStatusBar(sb) {
+        this.statusBar = sb;
+    }
+                    
     reloadDocuments() {
-        documentTree.loadDocuments();
+        this.toolBar.getDocumentTree().loadDocuments();
     }
 
     setCurrentDocument(docname) {
         if (docname) {
-            statusBar.setState({currentDocument: docname});
+            this.statusBar.setState({currentDocument: docname});
         } else {
-            statusBar.setState({currentDocument: config.textmsg.newdocument, error: '', inf0: ''});
+            this.statusBar.setState({currentDocument: config.textmsg.newdocument, error: '', inf0: ''});
         }
     }
     
     setStatus(msg, iserr) {
         if (iserr) {
-            statusBar.setState({error: msg, info: ''});
+            this.statusBar.setState({error: msg, info: ''});
         } else {
-            statusBar.setState({info: msg, error: ''});
+            this.statusBar.setState({info: msg, error: ''});
         }
     }
 }

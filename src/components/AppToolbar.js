@@ -21,15 +21,16 @@ class AppToolbar extends BaseDesignComponent {
         this.alignBottom = this.alignBottom.bind(this);
         this.deleteReportObjects = this.deleteReportObjects.bind(this);
         this.saveReport = this.saveReport.bind(this);
-        this.enableSave = this.enableSave.bind(this);
+        this.initializeNewReport = this.initializeNewReport.bind(this);
         
         this.state = {
-            canSave: false
+            canSave: false,
+            canAddObject: false
         };
     }
     
     render() {
-        const {canSave} = this.state;
+        const {canSave, canAddObject} = this.state;
         const menu =  [
             {
                 text: config.textmsg.filemenuname,
@@ -50,14 +51,30 @@ class AppToolbar extends BaseDesignComponent {
             <Toolbar menu={menu} brand={orm.name} logo="logo.png"></Toolbar>
             <div className="buttonbar">
                 <button className="button" title='add new report' onClick={this.newReport}><img alt='new report' src='/images/newreport.png'/><span className="label">New Report</span></button>
-                <button className="button" title='add new report object' onClick={this.newReportObject}><img alt='new report' src='/images/newobject.png'/><span className="label">Add Object</span></button>
+                <button className="button" disable={!canAddObject} title='add new report object' onClick={this.newReportObject}>
+                    {canAddObject && <img alt='new report' src='/images/newobject.png'/>}
+                    {!canAddObject && <img alt='new report' src='/images/newobject-disabled.png'/>}
+                    <span className="label">Add Object</span>
+                </button>
                 <div className="aligntool">
-                    <button className="button" title='align selected objects left' onClick={this.alignLeft}><img alt='align left' src='/images/align-left.png'/></button>
-                    <button className="button" title='align selected objects top' onClick={this.alignTop}><img alt='align top' src='/images/align-top.png'/></button>
-                    <button className="button" title='align selected objects right' onClick={this.alignRight}><img alt='align right' src='/images/align-right.png'/></button>
-                    <button className="button" title='align selected objects bottom' onClick={this.alignBottom}><img alt='align right' src='/images/align-bottom.png'/></button>
+                    <button className="button" title='align selected objects left' disabled={!canSave} onClick={this.alignLeft}>
+                        {canSave && <img alt='align left' src='/images/align-left.png'/>} 
+                        {!canSave && <img alt='align left' src='/images/align-left-disabled.png'/>}
+                    </button>
+                    <button className="button" title='align selected objects top' disabled={!canSave} onClick={this.alignTop}>
+                        {canSave && <img alt='align top' src='/images/align-top.png'/>} 
+                        {!canSave && <img alt='align top' src='/images/align-top-disabled.png'/>}
+                    </button>
+                    <button className="button" title='align selected objects right' disabled={!canSave} onClick={this.alignRight}>
+                        {canSave && <img alt='align right' src='/images/align-right.png'/>} 
+                        {!canSave && <img alt='align right' src='/images/align-right-disabled.png'/>}
+                    </button>
+                    <button className="button" title='align selected objects bottom' disabled={!canSave} onClick={this.alignBottom}>
+                        {canSave && <img alt='align bottom' src='/images/align-bottom.png'/>} 
+                        {!canSave && <img alt='align bottom' src='/images/align-bottom-disabled.png'/>}
+                    </button>
                 </div>
-                <button className="button" title='delete selected report object report' onClick={this.deleteReportObjects}>
+                <button className="button" title='delete selected report object report' disabled={!canSave} onClick={this.deleteReportObjects}>
                     {canSave && <img alt='delete report objects' src='/images/delete.png'/>} 
                     {!canSave && <img alt='delete report objects' src='/images/delete-disabled.png'/>}
                 <span className="label">Delete Objects</span></button>
@@ -65,7 +82,6 @@ class AppToolbar extends BaseDesignComponent {
                     {canSave && <img alt='save report' src='/images/save.png'/>} 
                     {!canSave && <img alt='save report' src='/images/save-disabled.png'/>}
                 <span className="label">Save Report</span></button>
-                
             </div>
         </div>;
     }
@@ -73,7 +89,7 @@ class AppToolbar extends BaseDesignComponent {
     newReport() {
         let rc = {left: 200, top: 75, width: 400, height: 425};
         let mc = getModalContainer(rc);
-        ReactDOM.render(<PreferencesPanel newDocument={true} onOk={this.enableSave}/>, mc);
+        ReactDOM.render(<PreferencesPanel newDocument={true} onOk={this.initializeNewReport}/>, mc);
     }
 
     newReportObject() {
@@ -95,8 +111,9 @@ class AppToolbar extends BaseDesignComponent {
     deleteReportObjects() {
     }
 
-    enableSave() {
-        this.setState({canSave: true});
+    initializeNewReport() {
+        clearDocumentDesignData();
+        this.setState({canSave: true, canAddObject: true});
     }
     
     saveReport() {

@@ -1,7 +1,7 @@
 import config from '../config/appconfig.json';
 
 document.designData = {
-    currentDocument: ''
+    currentReport: ''
 };
 
 var popupMenuClick = function(e) { 
@@ -12,13 +12,16 @@ var popupMenuClick = function(e) {
         clearContextMenu();
     }
 };
+
 var ppi;
+
 export function clearDocumentDesignData() {
-    document.designData = {
-        documentWidth: '',
-        documentHeight: '',
-        currentDocument: ''    
-    };
+    for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
+        document.designData[config.defaultPreferenceNames[i]] = '';
+    }
+    
+    document.designData.currentReport = '';
+    document.designData.reportObjects = '';
 }
     
 export function getFieldType(dbType) {
