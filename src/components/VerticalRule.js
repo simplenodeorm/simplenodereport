@@ -43,20 +43,23 @@ class VerticalRule extends React.Component {
         super(props);
         this.onAfterChange = this.onAfterChange.bind(this);
         this.state = {
-            top: '0px'
+            top: '0px',
+            height: document.designData.documentHeight
         };
     }
     
     componentWillReceiveProps(nextProps) {
-        this.setState({ top: nextProps.top });
+        this.setState({top: nextProps.top, height: nextProps.height});
     }
     
     render() {
+        const {top, height} = this.state;
+    
         return <div className="verticalRule" >
             <div className="slider">
                 <Slider 
                     handle={handle}
-                    min={-document.designData.documentHeight}
+                    min={-height}
                     defaultValue={0}
                     inverted={true}
                     max={0}
@@ -75,7 +78,7 @@ class VerticalRule extends React.Component {
                     }}
                     railStyle={{ marginLeft: -3, backgroundColor: 'steelBlue', width: 3.5, height: 150}}/>
             </div>
-            <svg width="33" height={document.designData.documentHeight + getPixelsPerInch()}>{loop(this.getLines())}</svg>
+            <svg width="33" height={height + getPixelsPerInch()}>{loop(this.getLines())}</svg>
         </div>;
     }
     
@@ -85,11 +88,18 @@ class VerticalRule extends React.Component {
 
     getLines() {
         let retval = [];
-        const {top} = this.state;
+        const {top, height} = this.state;
+
         let eigthInch = getPixelsPerInch()/8;
-        let y = Math.round(Number(top.replace('px', '').replace('-', '')));
+        let y;
+        if (top === 0) {
+            y = 0;
+        } else {
+            y = Math.round(Number(top.replace('px', '').replace('-', '')));
+        }
+        
         let start = Math.round((y/eigthInch)) + 1;
-        let cy = (document.designData.documentHeight/eigthInch);
+        let cy = (height/eigthInch);
         let vp = (window.innerHeight/config.zoomFactor);
         let ypos = eigthInch + 4
         for (let i = start; (((i-start)*eigthInch) < vp) && (i <= cy); i++) {

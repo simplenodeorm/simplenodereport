@@ -38,7 +38,7 @@ class PreferencesPanel extends ModalDialog {
         this.setFont = this.setFont.bind(this);
         this.setFontSize = this.setFontSize.bind(this);
         this.setDocumentSize = this.setDocumentSize.bind(this);
-        this.setDocumentName = this.setDocumentName.bind(this);
+        this.setReportName = this.setReportName.bind(this);
         this.setQuery = this.setQuery.bind(this);
         this.allowCharacter = this.allowCharacter.bind(this);
         
@@ -54,19 +54,13 @@ class PreferencesPanel extends ModalDialog {
             }
 
         }
-
-        if (this.props.newDocument) {
-            document.designData.document = new Object();
-            document.designData.document.settings = this.settings;
-        }
-        
     }
 
     getContent() {
         return <div className="preferencesPanel">
             <table>
-                {this.props.newDocument && <tr><th>{config.textmsg.documentnamelabel}</th><td><input className="nameInput" type="text" size="20" onBlue={this.setDocumentName} defaultValue={document.designData.document.documentName} /></td></tr> }
-                {this.props.newDocument && <tr><th>{config.textmsg.backingquery}</th><td><QuerySelector setQuery="{this.setQuery}"/></td></tr> }
+                {this.props.newDocument && <tr><th>{config.textmsg.documentnamelabel}</th><td><input className="nameInput" type="text" size="20" onBlue={this.setReportName} defaultValue={this.settings.reportName} /></td></tr> }
+                {this.props.newDocument && <tr><th>{config.textmsg.backingquery}</th><td><QuerySelector setQuery={this.setQuery}/></td></tr> }
             
                 <tr><th>{config.textmsg.leftmargin}</th><td><NumericInput maxLength='4' onBlur={this.setLeftMargin} allowCharacter={this.allowCharacter}  defaultValue={this.settings.marginLeft}/></td></tr>
                 <tr><th>{config.textmsg.topmargin}</th><td><NumericInput maxLength='4' onBlur={this.setTopMargin} allowCharacter={this.allowCharacter}  defaultValue={this.settings.marginTop}/></td></tr>
@@ -88,10 +82,12 @@ class PreferencesPanel extends ModalDialog {
         </div>;
     }
 
-    setDocumentName(e) {
+    setReportName(e) {
+        this.settings.reportName = e.target.value;
     }
     
     setQuery(e) {
+        this.settings.queryDocumentId = e.target.options[e.target.selectedIndex].value;
     }
     
     setLeftMargin(e) {
@@ -136,12 +132,6 @@ class PreferencesPanel extends ModalDialog {
             }
         }
         
-        if (retval && this.props.newDocument) {
-            if (!document.designData.document.settings.documentName
-               || !document.designData.document.settings.backingQuery) {
-               retval = false;
-            }
-        }
         return retval;
     }
     
@@ -154,11 +144,7 @@ class PreferencesPanel extends ModalDialog {
     }
     
     getResult() {
-        if (this.props.newDocument) {
-            return document.designData.document;
-        } else {
-            return this.settings;
-        }
+        return this.settings;
     }
     
     allowCharacter(charCode) {
@@ -168,12 +154,6 @@ class PreferencesPanel extends ModalDialog {
             return false;
         }
     }
-
-    onCancel() {
-        document.designData.document = '';
-        super.onCancel();
-    }
-
 }
 
 export {PreferencesPanel};

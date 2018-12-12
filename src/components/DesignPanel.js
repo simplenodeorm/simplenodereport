@@ -32,30 +32,37 @@ class DesignPanel extends BaseDesignComponent {
         
         this.state = {
             left: 0,
-            top: 0
+            top: 0,
+            height: document.designData.documentHeight,
+            width: document.designData.documentWidth,
+            margins: document.designData.margins
         };
         
     }
     
+    componentWillReceiveProps(nextProps) {
+        this.setState({left: nextProps.left, top: nextProps.top, margins: nextProps.margins});
+    }
+
     render() {
-        const {left, top} = this.state;
-        
+        const {left, top, margins, height, width} = this.state;
+
         const designStyle = {
             left: left,
             top: top,
-            height: (document.designData.documentHeight + 'px'),
-            width: (document.designData.documentWidth + 'px')
+            height: (height + 'px'),
+            width: (width + 'px')
         };
         
         return  <div className="designContainer"> 
-            <HorizontalRule left={left} horizontalPositionChange={this.horizontalPositionChange}/>
+            <HorizontalRule left={left} width={width} horizontalPositionChange={this.horizontalPositionChange}/>
             <div className="designPanel">
                 <div ref={(dw) => {this.dw = dw}} className="documentWrapper" style={designStyle}>
                     <SplitPane 
                         split="horizontal" 
                         minSize={0} 
                         onDragFinished={this.onFooterSize}
-                        defaultSize={document.designData.documentHeight - document.designData.footerHeight}>
+                        defaultSize={height - document.designData.footerHeight}>
                         <SplitPane 
                             split="horizontal" 
                             minSize={0} 
@@ -64,58 +71,77 @@ class DesignPanel extends BaseDesignComponent {
                             <HeaderPanel 
                                 ref={(hp) => {this.header = hp}} 
                                 margins={document.designData.margins} 
+                                width={width}
                                 height={document.designData.headerHeight}
                                 setStatus={this.props.setStatus}/>
                             <BodyPanel 
                                 ref={(bp) => {this.body = bp}} 
                                 margins={document.designData.margins} 
-                                height={document.designData.documentHeight - (document.designData.headerHeight + document.designData.footerHeight)}
+                                width={width}
+                                height={height - (document.designData.headerHeight + document.designData.footerHeight)}
                                 setStatus={this.props.setStatus}/>
                         </SplitPane> 
                         <FooterPanel 
                             ref={(fp) => {this.footer = fp}} 
                             margins={document.designData.margins} 
+                            width={width}
                             height={document.designData.footerHeight}
                             setStatus={this.props.setStatus}/>
                     </SplitPane>
                 </div>
             </div>
-            <VerticalRule top={top} verticalPositionChange={this.verticalPositionChange} />
+            <VerticalRule top={top} height={height} verticalPositionChange={this.verticalPositionChange} />
         </div>
     }
     
     onHeaderSize(sz) {
         if (sz && this.header) {
+            const {height} = this.state;
             document.designData.headerHeight = sz;
             this.header.setState({height: sz});
-            this.body.setState({height: document.designData.documentHeight - (document.designData.headerHeight + document.designData.footerHeight)});
+            this.body.setState({height: height - (document.designData.headerHeight + document.designData.footerHeight)});
         }
     }
     
     onFooterSize(sz) {
         if (sz) {
-            document.designData.footerHeight = (document.designData.documentHeight - sz);
-            this.body.setState({height: document.designData.documentHeight - (document.designData.headerHeight + document.designData.footerHeight)});
+            const {height} = this.state;
+            document.designData.footerHeight = (height - sz);
+            this.body.setState({height: height - (document.designData.headerHeight + document.designData.footerHeight)});
             this.footer.setState({height: document.designData.footerHeight});
         }
     }
 
     horizontalPositionChange(value) {
         if (this.dw) {
+            const {height} = this.state;
             this.setState({left: (-value) + 'px', top: this.dw.style.top});
-            this.header.setState({height: document.designData.headerHeight});
-            this.body.setState({height: document.designData.documentHeight - (document.designData.headerHeight + document.designData.footerHeight)});
+            this.header.setState({height: height});
+            this.body.setState({height: height - (document.designData.headerHeight + document.designData.footerHeight)});
             this.footer.setState({height: document.designData.footerHeight});
         }
     }
   
     verticalPositionChange(value) {
         if (this.dw) {
+            const {height} = this.state;
             this.setState({left: this.dw.style.left, top: (-value) + 'px'});
             this.header.setState({height: document.designData.headerHeight});
-            this.body.setState({height: document.designData.documentHeight - (document.designData.headerHeight + document.designData.footerHeight)});
+            this.body.setState({height: height - (document.designData.headerHeight + document.designData.footerHeight)});
             this.footer.setState({height: document.designData.footerHeight});
         }
+    }
+    
+    refreshLayout() {
+        let layout = {
+            left: 0,
+            top: 0, 
+            height: document.designData.documentHeight,
+            width: document.designData.documentWidth,
+            margins: document.designData.margins
+        };
+        
+        this.setState(layout);
     }
 }
 

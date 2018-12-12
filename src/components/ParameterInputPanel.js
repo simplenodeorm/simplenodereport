@@ -45,7 +45,7 @@ class ParameterInputPanel extends ModalDialog {
         };
         
         return <div className="parameterInputPanel">
-            <div   className="inputEntryList">
+            <div className="inputEntryList">
                 <table>{inputLoop(document.designData.whereComparisons)}</table>
             </div>
         </div>;

@@ -7,6 +7,8 @@ import {BaseDesignComponent} from './BaseDesignComponent';
 import {PreferencesPanel} from './PreferencesPanel';
 import {clearDocumentDesignData} from './helpers';
 import {getModalContainer} from './helpers';
+import {getDocumentDimensions} from './helpers';
+import {getPixelsPerInch} from './helpers.js';
 
 class AppToolbar extends BaseDesignComponent {
     constructor(props) {
@@ -50,10 +52,13 @@ class AppToolbar extends BaseDesignComponent {
         return <div>
             <Toolbar menu={menu} brand={orm.name} logo="logo.png"></Toolbar>
             <div className="buttonbar">
-                <button className="button" title='add new report' onClick={this.newReport}><img alt='new report' src='/images/newreport.png'/><span className="label">New Report</span></button>
+                <button className="button" title='add new report' onClick={this.newReport}>
+                    <img alt='new report' src='/images/newreport.png'/>
+                    <span className="label">New Report</span>
+                </button>
                 <button className="button" disable={!canAddObject} title='add new report object' onClick={this.newReportObject}>
-                    {canAddObject && <img alt='new report' src='/images/newobject.png'/>}
-                    {!canAddObject && <img alt='new report' src='/images/newobject-disabled.png'/>}
+                    {canAddObject && <img alt='new report object' src='/images/newobject.png'/>}
+                    {!canAddObject && <img alt='new report object' src='/images/newobject-disabled.png'/>}
                     <span className="label">Add Object</span>
                 </button>
                 <div className="aligntool">
@@ -77,11 +82,13 @@ class AppToolbar extends BaseDesignComponent {
                 <button className="button" title='delete selected report object report' disabled={!canSave} onClick={this.deleteReportObjects}>
                     {canSave && <img alt='delete report objects' src='/images/delete.png'/>} 
                     {!canSave && <img alt='delete report objects' src='/images/delete-disabled.png'/>}
-                <span className="label">Delete Objects</span></button>
+                    <span className="label">Delete Objects</span>
+                </button>
                 <button className="button" title='save report' disabled={!canSave} onClick={this.saveReport}>
                     {canSave && <img alt='save report' src='/images/save.png'/>} 
                     {!canSave && <img alt='save report' src='/images/save-disabled.png'/>}
-                <span className="label">Save Report</span></button>
+                    <span className="label">Save Report</span>
+                </button>
             </div>
         </div>;
     }
@@ -111,9 +118,23 @@ class AppToolbar extends BaseDesignComponent {
     deleteReportObjects() {
     }
 
-    initializeNewReport() {
+    initializeNewReport(settings) {
         clearDocumentDesignData();
+        
+        for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
+            document.designData[config.defaultPreferenceNames[i]] = settings[config.defaultPreferenceNames[i]];
+        }
+        
+        let dim = getDocumentDimensions(settings.documentSize);
+        let ppi = getPixelsPerInch();
+        document.designData.documentWidth = dim[0] * ppi;
+        document.designData.documentHeight = dim[1] * ppi;
+        document.designData.headerHeight = ppi;
+        document.designData.footerHeight = ppi;
+        document.designData.margins = [ppi * settings.marginLeft, ppi * settings.marginTop, ppi * settings.marginRight, ppi * settings.marginBottom];
+
         this.setState({canSave: true, canAddObject: true});
+        this.props.getDesignPanel().refreshLayout();
     }
     
     saveReport() {

@@ -38,17 +38,24 @@ class HorizontalRule extends React.Component {
         super(props);
         this.onAfterChange = this.onAfterChange.bind(this);
         this.state = {
-            left: '0px'
-        }
+            left: '0px',
+            width: document.designData.documentWidth
+        };
     }
     
+    componentWillReceiveProps(nextProps) {
+        this.setState({left: nextProps.left, width: nextProps.width});
+    }
+
     render() {
+        const {width} = this.state;
+    
         return <div className="horizontalRule">
             <div className="slider">
                 <Slider
                     defaultValue={0}
                     handle={handle}
-                    max={document.designData.documentWidth}
+                    max={width}
                     trackStyle={{ marginLeft: 0, backgroundColor: 'steelBlue', height: 3 }}
                     onAfterChange={this.onAfterChange}
                         handleStyle={{
@@ -62,12 +69,8 @@ class HorizontalRule extends React.Component {
                     }}
                 railStyle={{ backgroundColor: 'steelBlue', height: 3 }}/>
             </div>
-            <svg height="30" width={document.designData.documentWidth + getPixelsPerInch()}>{loop(this.getLines())}</svg>
+            <svg height="30" width={width + getPixelsPerInch()}>{loop(this.getLines())}</svg>
         </div>;
-    }
-    
-    componentWillReceiveProps(nextProps) {
-        this.setState({ left: nextProps.left });
     }
     
     onAfterChange(value) {
@@ -76,12 +79,17 @@ class HorizontalRule extends React.Component {
     
     getLines() {
         let retval = [];
-        const {left} = this.state;
+        const {left, width} = this.state;
+        let x;
+        if (left === 0) {
+            x = 0;
+        } else {
+            x = Math.round(Number(left.replace('px', '').replace('-', '')));
+        }
         
-        let x = Math.round(Number(left.replace('px', '').replace('-', '')));
         let eigthInch = getPixelsPerInch()/8;
         let start = Math.round((x/eigthInch)) + 1;
-        let cx = (document.designData.documentWidth/eigthInch);
+        let cx = (width/eigthInch);
         let xpos = eigthInch;
         let vp = (window.innerWidth/config.zoomFactor);
         for (let i = start; (((i-start)*eigthInch) < vp) && (i <= cx); i++) {

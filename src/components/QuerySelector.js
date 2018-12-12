@@ -12,7 +12,6 @@ const loop = (data) => {
 class QuerySelector extends React.Component {
     constructor(props) {
         super(props);
-        this.setBackingQuery = this.setBackingQuery.bind(this);
         
         this.state = {
             queryDocuments: ''
@@ -28,15 +27,11 @@ class QuerySelector extends React.Component {
         };
         
         return <div>
-            <select style={myStyle} onChange={this.setBackingQuery}>
+            <select style={myStyle} onChange={this.props.setQuery}>
                 <option></option>
                 {queryDocuments && loop(queryDocuments)}
             </select>
         </div>
-    }
-    
-    setBackingQuery(e) {
-        
     }
     
     loadAvailableQueryDocuments() {
