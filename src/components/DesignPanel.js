@@ -70,20 +70,20 @@ class DesignPanel extends BaseDesignComponent {
                             defaultSize={document.designData.headerHeight}>
                             <HeaderPanel 
                                 ref={(hp) => {this.header = hp}} 
-                                margins={document.designData.margins} 
+                                margins={margins} 
                                 width={width}
                                 height={document.designData.headerHeight}
                                 setStatus={this.props.setStatus}/>
                             <BodyPanel 
                                 ref={(bp) => {this.body = bp}} 
-                                margins={document.designData.margins} 
+                                margins={margins} 
                                 width={width}
                                 height={height - (document.designData.headerHeight + document.designData.footerHeight)}
                                 setStatus={this.props.setStatus}/>
                         </SplitPane> 
                         <FooterPanel 
                             ref={(fp) => {this.footer = fp}} 
-                            margins={document.designData.margins} 
+                            margins={margins} 
                             width={width}
                             height={document.designData.footerHeight}
                             setStatus={this.props.setStatus}/>

@@ -129,8 +129,18 @@ class AppToolbar extends BaseDesignComponent {
         let ppi = getPixelsPerInch();
         document.designData.documentWidth = dim[0] * ppi;
         document.designData.documentHeight = dim[1] * ppi;
-        document.designData.headerHeight = ppi;
-        document.designData.footerHeight = ppi;
+        if (dim[0] < 5) {
+            document.designData.headerHeight = ppi/2;
+        } else {
+            document.designData.headerHeight = ppi;
+        }
+        
+        if (dim[1] < 5) {
+            document.designData.footerHeight = ppi/2;
+        } else {
+            document.designData.footerHeight = ppi;
+        }
+        
         document.designData.margins = [ppi * settings.marginLeft, ppi * settings.marginTop, ppi * settings.marginRight, ppi * settings.marginBottom];
 
         this.setState({canSave: true, canAddObject: true});
