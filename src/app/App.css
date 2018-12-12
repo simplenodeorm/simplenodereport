@@ -29,6 +29,7 @@
     --input-background:linear-gradient(top, #d6d7d7, #dee0e0);
     --sidebar-hover-text-color: khaki;
     --rule-background-color: lightGray;
+    --default-input-height: 20px;
   }
 
 html {
@@ -99,7 +100,7 @@ select {
     box-shadow: 0 1px #fff;
     box-sizing: border-box;
     color: #696969;
-    height: 25px;
+    height: var(--default-input-height);
     margin: 10px 0 0 10px;
     padding-left: 5px;
     transition: box-shadow 0.3s;
@@ -113,7 +114,7 @@ input[type="password"], input[type="text"] {
     box-shadow: 0 1px #fff;
     box-sizing: border-box;
     color: #696969;
-    height: 25px;
+    height: var(--default-input-height);
     margin: 10px 0 0 10px;
     padding-left: 5px;
     transition: box-shadow 0.3s;
@@ -384,7 +385,7 @@ input[type="submit"] {
     background: #eceeee;
     border: 1px solid #42464b;
     border-radius: 10px;
-    height: 240px;
+    height: 225px;
     margin: 15% 30%;
     width: 375px;
 }
@@ -453,6 +454,17 @@ input[type="checkbox"] {
     margin-left: 2px;
     font-size: var(--default-font-size);
 }
+
+.selectQueryButton {
+    cursor: pointer;
+    vertical-align: middle;
+    padding-left: 7px;
+    paddingRight: 0;
+    margin: 0;
+    border: none;
+    background: none;
+}
+
 
 .helpButton {
     cursor: pointer;
@@ -677,12 +689,17 @@ input[type="checkbox"] {
 .preferencesPanel {
 }
 
+.preferencesPanel td {
+    margin:0;
+    padding: 0;
+}
+
 .preferencesPanel table {
     padding-left:20px;
 }
 
-.preferencesPanel input {
-    width:60px;
+.preferencesPanel nameInput {
+    width:70px;
 }
 
 .preferencesPanel select {

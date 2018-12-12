@@ -4,8 +4,10 @@ import config from '../config/appconfig.json';
 import defaults from '../config/defaults.json';
 import {ModalDialog} from './ModalDialog';
 import {NumericInput} from './NumericInput';
+import {QuerySelector} from './QuerySelector';
 
-const preferenceNames = ['marginLeft', 'marginTop', 'marginRight', 'marginBottom', 'fontSize', 'documentSize'];
+const preferenceNames = ['marginLeft', 'marginTop', 'marginRight', 'marginBottom', 'fontFamily', 'font', 'fontSize', 'documentSize'];
+
 const documentSizeLoop = (docSize, data) => {
     return data.map((item) => {
         if (docSize === item) {
@@ -16,86 +18,142 @@ const documentSizeLoop = (docSize, data) => {
     });
 };
 
+const fontLoop = (font, data) => {
+    return data.map((item) => {
+        if (font === item) {
+            return <option value={item} selected>{item}</option>;
+        } else {
+            return <option value={item}>{item}</option>;
+        }
+    });
+};
+
 class PreferencesPanel extends ModalDialog {
     constructor(props) {
         super(props);
-        
+            
         this.setLeftMargin = this.setLeftMargin.bind(this);
         this.setTopMargin = this.setTopMargin.bind(this);
         this.setRightMargin = this.setRightMargin.bind(this);
         this.setBottomMargin = this.setBottomMargin.bind(this);
+        this.setFontFamily = this.setFontFamily.bind(this);
+        this.setFont = this.setFont.bind(this);
         this.setFontSize = this.setFontSize.bind(this);
         this.setDocumentSize = this.setDocumentSize.bind(this);
+        this.setDocumentName = this.setDocumentName.bind(this);
+        this.setQuery = this.setQuery.bind(this);
         this.allowCharacter = this.allowCharacter.bind(this);
         
-         this.myPreferences = JSON.parse(localStorage.getItem('preferences'));
+         this.settings = JSON.parse(localStorage.getItem('preferences'));
         
-        if (!this.myPreferences || !this.myPreferences.documentSize) {                        
-            this.myPreferences = defaults;
+        if (!this.settings || !this.settings.documentSize) {                        
+            this.settings = defaults;
         }
 
+        if (this.props.newDocument) {
+            document.designData.document = new Object();
+            document.designData.document.settings = this.settings;
+        }
+        
     }
 
     getContent() {
         return <div className="preferencesPanel">
             <table>
-            <tr><th>{config.textmsg.leftmargin}</th><td><NumericInput maxLength='4' onBlur={this.setLeftMargin} allowCharacter={this.allowCharacter}  defaultValue={this.myPreferences.marginLeft}/></td></tr>
-                <tr><th>{config.textmsg.topmargin}</th><td><NumericInput maxLength='4' onBlur={this.setTopMargin} allowCharacter={this.allowCharacter}  defaultValue={this.myPreferences.marginTop}/></td></tr>
-                <tr><th>{config.textmsg.rightmargin}</th><td><NumericInput maxLength='4' onBlur={this.setRightMargin} allowCharacter={this.allowCharacter}  defaultValue={this.myPreferences.marginRight}/></td></tr>
-                <tr><th>{config.textmsg.bottommargin}</th><td><NumericInput maxLength='4' onBlur={this.setBottomMargin} allowCharacter={this.allowCharacter}  defaultValue={this.myPreferences.marginBottom}/></td></tr>
-                <tr><th>{config.textmsg.fontsize}</th><td><NumericInput maxLength='2' onBlur={this.setFontSize} defaultValue={this.myPreferences.fontSize}/></td></tr>
+                {this.props.newDocument && <tr><th>{config.textmsg.documentnamelabel}</th><td><input className="nameInput" type="text" size="20" onBlue={this.setDocumentName} defaultValue={document.designData.document.documentName} /></td></tr> }
+                {this.props.newDocument && <tr><th>{config.textmsg.backingquery}</th><td><QuerySelector setQuery="{this.setQuery}"/></td></tr> }
+            
+                <tr><th>{config.textmsg.leftmargin}</th><td><NumericInput maxLength='4' onBlur={this.setLeftMargin} allowCharacter={this.allowCharacter}  defaultValue={this.settings.marginLeft}/></td></tr>
+                <tr><th>{config.textmsg.topmargin}</th><td><NumericInput maxLength='4' onBlur={this.setTopMargin} allowCharacter={this.allowCharacter}  defaultValue={this.settings.marginTop}/></td></tr>
+                <tr><th>{config.textmsg.rightmargin}</th><td><NumericInput maxLength='4' onBlur={this.setRightMargin} allowCharacter={this.allowCharacter}  defaultValue={this.settings.marginRight}/></td></tr>
+                <tr><th>{config.textmsg.bottommargin}</th><td><NumericInput maxLength='4' onBlur={this.setBottomMargin} allowCharacter={this.allowCharacter}  defaultValue={this.settings.marginBottom}/></td></tr>
+                <tr><th>{config.textmsg.fontfamily}</th><td><input type="text" className="nameInput" size='20' onBlur={this.setFontFamily} defaultValue={this.settings.fontFamily}/></td></tr>
+                <tr><th>{config.textmsg.font}</th><td>
+                    <select onChange={this.setFont}>
+                    {fontLoop(this.settings.font, config.fonts)}
+                    </select>
+                    </td></tr>
+                <tr><th>{config.textmsg.fontsize}</th><td><NumericInput maxLength='2' onBlur={this.setFontSize} defaultValue={this.settings.fontSize}/></td></tr>
                 <tr><th>{config.textmsg.documentsize}</th><td>
                     <select onChange={this.setDocumentSize}>
-                    {documentSizeLoop(this.myPreferences.documentSize, config.documentSizeNames)}
+                    {documentSizeLoop(this.settings.documentSize, config.documentSizeNames)}
                     </select>
                     </td></tr>
             </table>
         </div>;
     }
 
+    setDocumentName(e) {
+    }
+    
+    setQuery(e) {
+    }
+    
     setLeftMargin(e) {
-        this.myPreferences.marginLeft = e.target.value;
+        this.settings.marginLeft = e.target.value;
     }
     
     setTopMargin(e) {
-        this.myPreferences.marginTop = e.target.value;
+        this.settings.marginTop = e.target.value;
     }
         
     setRightMargin(e) {
-        this.myPreferences.marginRight = e.target.value;
+        this.settings.marginRight = e.target.value;
     }
     
     setBottomMargin(e) {
-        this.myPreferences.marginBottom = e.target.value;
+        this.settings.marginBottom = e.target.value;
     }
     
+    setFontFamily(e) {
+        this.settings.fontFamily = e.target.value;
+    }
+    
+    setFont(e) {
+        this.settings.font = e.target.options[e.target.selectedIndex].value;
+    }
+
     setFontSize(e) {
-        this.myPreferences.fontSize = e.target.value;
+        this.settings.fontSize = e.target.value;
     }
     
     setDocumentSize(e) {
-        this.myPreferences.documentSize = e.target.options[e.target.selectedIndex].value;
+        this.settings.documentSize = e.target.options[e.target.selectedIndex].value;
     }
 
     isComplete() {
         let retval = true;
     
         for (let i = 0; i < preferenceNames.length; ++i) {
-            if (!this.myPreferences[preferenceNames[i]]) {
+            if (!this.settings[preferenceNames[i]]) {
                 retval = false;
                 break;
             }
         }
         
+        if (retval && this.props.newDocument) {
+            if (!document.designData.document.settings.documentName
+               || !document.designData.document.settings.backingQuery) {
+               retval = false;
+            }
+        }
         return retval;
     }
     
     getTitle() {
-        return config.textmsg.defaultsettings;
+        if (this.props.newDocument) {
+            return config.textmsg.adddocument;
+        } else {
+            return config.textmsg.defaultsettings;
+        }
     }
     
     getResult() {
-        return this.myPreferences;
+        if (this.props.newDocument) {
+            return document.designData.document;
+        } else {
+            return this.settings;
+        }
     }
     
     allowCharacter(charCode) {
@@ -104,6 +162,11 @@ class PreferencesPanel extends ModalDialog {
         } else {
             return false;
         }
+    }
+
+    onCancel() {
+        document.designData.document = '';
+        super.onCancel();
     }
 
 }

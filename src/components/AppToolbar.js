@@ -21,9 +21,15 @@ class AppToolbar extends BaseDesignComponent {
         this.alignBottom = this.alignBottom.bind(this);
         this.deleteReportObjects = this.deleteReportObjects.bind(this);
         this.saveReport = this.saveReport.bind(this);
+        this.enableSave = this.enableSave.bind(this);
+        
+        this.state = {
+            canSave: false
+        };
     }
     
     render() {
+        const {canSave} = this.state;
         const menu =  [
             {
                 text: config.textmsg.filemenuname,
@@ -52,15 +58,16 @@ class AppToolbar extends BaseDesignComponent {
                     <button className="button" title='align selected objects bottom' onClick={this.alignBottom}><img alt='align right' src='/images/align-bottom.png'/></button>
                 </div>
                 <button className="button" title='delete selected report object report' onClick={this.deleteReportObjects}><img alt='delete report objects' src='/images/delete.png'/><span className="label">Delete Objects</span></button>
-                <button className="button" title='save report' onClick={this.saveReport}><img alt='save report' src='/images/save.png'/><span className="label">Save Report</span></button>
+                <button className="button" title='save report' enabled={canSave} onClick={this.saveReport}><img alt='save report' src='/images/save.png'/><span className="label">Save Report</span></button>
                 
             </div>
         </div>;
     }
 
     newReport() {
-        alert('add new report');
-        this.props.setCurrentDocument();
+        let rc = {left: 200, top: 75, width: 400, height: 425};
+        let mc = getModalContainer(rc);
+        ReactDOM.render(<PreferencesPanel newDocument={true} onOk={this.enableSave}/>, mc);
     }
 
     newReportObject() {
@@ -82,11 +89,15 @@ class AppToolbar extends BaseDesignComponent {
     deleteReportObjects() {
     }
 
+    enableSave() {
+        this.setState({canSave: true});
+    }
+    
     saveReport() {
     }
     
     preferences() {
-        let rc = {left: 200, top: 75, width: 300, height: 350};
+        let rc = {left: 200, top: 75, width: 400, height: 375};
         let mc = getModalContainer(rc);
         ReactDOM.render(<PreferencesPanel onOk={this.savePreferences}/>, mc);
     }

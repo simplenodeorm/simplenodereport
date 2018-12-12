@@ -7,7 +7,10 @@ class NumericInput extends React.Component {
     }
     
     render() {
-        return <input type='text' maxlength={this.props.maxLength} 
+        let myStyle = {
+            width: '60px'
+        }
+        return <input style={myStyle} type='text' maxlength={this.props.maxLength} 
             onKeyDown={this.onKeyDown} onBlur={this.props.onBlur} 
             defaultValue={this.props.defaultValue}/>;
     }
