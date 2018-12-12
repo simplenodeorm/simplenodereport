@@ -23,7 +23,15 @@ class HomePage extends React.Component {
         
         if (!myPreferences || !myPreferences.documentSize) {                        
             myPreferences = defaults;
+        } else {
+            for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
+                if (!myPreferences[config.defaultPreferenceNames[i]]) {
+                    myPreferences[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
+                }
+            }
         }
+
+
 
         // set document default
         if (!document.designData.documentHeight) {
@@ -33,6 +41,9 @@ class HomePage extends React.Component {
             document.designData.margins = [ppi * myPreferences.marginLeft, ppi * myPreferences.marginTop, ppi * myPreferences.marginRight, ppi * myPreferences.marginBottom];
             document.designData.footerHeight = ppi;
             document.designData.headerHeight = ppi;
+            document.designData.font = myPreferences.font;
+            document.designData.fontSize = myPreferences.fontSize;
+            document.designData.fontFamily = myPreferences.fontFamily;
         }
     }
 

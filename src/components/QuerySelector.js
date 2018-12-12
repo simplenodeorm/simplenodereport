@@ -4,9 +4,8 @@ import axios from 'axios';
 
 const loop = (data) => {
     return data.map((item) => {
-        let key = item.key + ':' + item.documentName;
-        let val = item.group + ':' + item.documentName.replace('.json', '');
-        return <option value={key}>{val}</option>;
+        let docid = item.key + ':' + item.documentName;
+        return <option value={docid}>{docid.replace(/_/g, ' ').replace('.json', '')}</option>;
     });
 };
 

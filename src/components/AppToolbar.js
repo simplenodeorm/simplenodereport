@@ -57,8 +57,14 @@ class AppToolbar extends BaseDesignComponent {
                     <button className="button" title='align selected objects right' onClick={this.alignRight}><img alt='align right' src='/images/align-right.png'/></button>
                     <button className="button" title='align selected objects bottom' onClick={this.alignBottom}><img alt='align right' src='/images/align-bottom.png'/></button>
                 </div>
-                <button className="button" title='delete selected report object report' onClick={this.deleteReportObjects}><img alt='delete report objects' src='/images/delete.png'/><span className="label">Delete Objects</span></button>
-                <button className="button" title='save report' enabled={canSave} onClick={this.saveReport}><img alt='save report' src='/images/save.png'/><span className="label">Save Report</span></button>
+                <button className="button" title='delete selected report object report' onClick={this.deleteReportObjects}>
+                    {canSave && <img alt='delete report objects' src='/images/delete.png'/>} 
+                    {!canSave && <img alt='delete report objects' src='/images/delete-disabled.png'/>}
+                <span className="label">Delete Objects</span></button>
+                <button className="button" title='save report' disabled={!canSave} onClick={this.saveReport}>
+                    {canSave && <img alt='save report' src='/images/save.png'/>} 
+                    {!canSave && <img alt='save report' src='/images/save-disabled.png'/>}
+                <span className="label">Save Report</span></button>
                 
             </div>
         </div>;

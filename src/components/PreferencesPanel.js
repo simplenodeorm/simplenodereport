@@ -6,8 +6,6 @@ import {ModalDialog} from './ModalDialog';
 import {NumericInput} from './NumericInput';
 import {QuerySelector} from './QuerySelector';
 
-const preferenceNames = ['marginLeft', 'marginTop', 'marginRight', 'marginBottom', 'fontFamily', 'font', 'fontSize', 'documentSize'];
-
 const documentSizeLoop = (docSize, data) => {
     return data.map((item) => {
         if (docSize === item) {
@@ -48,6 +46,13 @@ class PreferencesPanel extends ModalDialog {
         
         if (!this.settings || !this.settings.documentSize) {                        
             this.settings = defaults;
+        } else {
+            for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
+                if (!this.settings[config.defaultPreferenceNames[i]]) {
+                    this.settings[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
+                }
+            }
+
         }
 
         if (this.props.newDocument) {
@@ -124,8 +129,8 @@ class PreferencesPanel extends ModalDialog {
     isComplete() {
         let retval = true;
     
-        for (let i = 0; i < preferenceNames.length; ++i) {
-            if (!this.settings[preferenceNames[i]]) {
+        for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
+            if (!this.settings[config.defaultPreferenceNames[i]]) {
                 retval = false;
                 break;
             }
