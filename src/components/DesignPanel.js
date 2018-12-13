@@ -33,9 +33,9 @@ class DesignPanel extends BaseDesignComponent {
         this.state = {
             left: 0,
             top: 0,
-            height: document.designData.documentHeight,
-            width: document.designData.documentWidth,
-            margins: document.designData.margins
+            height: document.designData.currentReport.documentHeight,
+            width: document.designData.currentReport.documentWidth,
+            margins: document.designData.currentReport.margins
         };
         
     }
@@ -62,30 +62,30 @@ class DesignPanel extends BaseDesignComponent {
                         split="horizontal" 
                         minSize={0} 
                         onDragFinished={this.onFooterSize}
-                        defaultSize={height - document.designData.footerHeight}>
+                        defaultSize={height - document.designData.currentReport.footerHeight}>
                         <SplitPane 
                             split="horizontal" 
                             minSize={0} 
                             onDragFinished={this.onHeaderSize}
-                            defaultSize={document.designData.headerHeight}>
+                            defaultSize={document.designData.currentReport.headerHeight}>
                             <HeaderPanel 
                                 ref={(hp) => {this.header = hp}} 
                                 margins={margins} 
                                 width={width}
-                                height={document.designData.headerHeight}
+                                height={document.designData.currentReport.headerHeight}
                                 setStatus={this.props.setStatus}/>
                             <BodyPanel 
                                 ref={(bp) => {this.body = bp}} 
                                 margins={margins} 
                                 width={width}
-                                height={height - (document.designData.headerHeight + document.designData.footerHeight)}
+                                height={height - (document.designData.currentReport.headerHeight + document.designData.currentReport.footerHeight)}
                                 setStatus={this.props.setStatus}/>
                         </SplitPane> 
                         <FooterPanel 
                             ref={(fp) => {this.footer = fp}} 
                             margins={margins} 
                             width={width}
-                            height={document.designData.footerHeight}
+                            height={document.designData.currentReport.footerHeight}
                             setStatus={this.props.setStatus}/>
                     </SplitPane>
                 </div>
@@ -97,18 +97,18 @@ class DesignPanel extends BaseDesignComponent {
     onHeaderSize(sz) {
         if (sz && this.header) {
             const {height} = this.state;
-            document.designData.headerHeight = sz;
+            document.designData.currentReport.headerHeight = sz;
             this.header.setState({height: sz});
-            this.body.setState({height: height - (document.designData.headerHeight + document.designData.footerHeight)});
+            this.body.setState({height: height - (document.designData.currentReport.headerHeight + document.designData.currentReport.footerHeight)});
         }
     }
     
     onFooterSize(sz) {
         if (sz) {
             const {height} = this.state;
-            document.designData.footerHeight = (height - sz);
-            this.body.setState({height: height - (document.designData.headerHeight + document.designData.footerHeight)});
-            this.footer.setState({height: document.designData.footerHeight});
+            document.designData.currentReport.footerHeight = (height - sz);
+            this.body.setState({height: height - (document.designData.currentReport.headerHeight + document.designData.currentReport.footerHeight)});
+            this.footer.setState({height: document.designData.currentReport.footerHeight});
         }
     }
 
@@ -117,8 +117,8 @@ class DesignPanel extends BaseDesignComponent {
             const {height} = this.state;
             this.setState({left: (-value) + 'px', top: this.dw.style.top});
             this.header.setState({height: height});
-            this.body.setState({height: height - (document.designData.headerHeight + document.designData.footerHeight)});
-            this.footer.setState({height: document.designData.footerHeight});
+            this.body.setState({height: height - (document.designData.currentReport.headerHeight + document.designData.currentReport.footerHeight)});
+            this.footer.setState({height: document.designData.currentReport.footerHeight});
         }
     }
   
@@ -126,9 +126,9 @@ class DesignPanel extends BaseDesignComponent {
         if (this.dw) {
             const {height} = this.state;
             this.setState({left: this.dw.style.left, top: (-value) + 'px'});
-            this.header.setState({height: document.designData.headerHeight});
-            this.body.setState({height: height - (document.designData.headerHeight + document.designData.footerHeight)});
-            this.footer.setState({height: document.designData.footerHeight});
+            this.header.setState({height: document.designData.currentReport.headerHeight});
+            this.body.setState({height: height - (document.designData.currentReport.headerHeight + document.designData.currentReport.footerHeight)});
+            this.footer.setState({height: document.designData.currentReport.footerHeight});
         }
     }
     
@@ -136,9 +136,9 @@ class DesignPanel extends BaseDesignComponent {
         let layout = {
             left: 0,
             top: 0, 
-            height: document.designData.documentHeight,
-            width: document.designData.documentWidth,
-            margins: document.designData.margins
+            height: document.designData.currentReport.documentHeight,
+            width: document.designData.currentReport.documentWidth,
+            margins: document.designData.currentReport.margins
         };
         
         this.setState(layout);

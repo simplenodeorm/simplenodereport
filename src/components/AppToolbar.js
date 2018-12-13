@@ -122,29 +122,33 @@ class AppToolbar extends BaseDesignComponent {
         clearDocumentDesignData();
         
         for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
-            document.designData[config.defaultPreferenceNames[i]] = settings[config.defaultPreferenceNames[i]];
+            document.designData.currentReport[config.defaultPreferenceNames[i]] = settings[config.defaultPreferenceNames[i]];
         }
         
         let dim = getDocumentDimensions(settings.documentSize);
         let ppi = getPixelsPerInch();
-        document.designData.documentWidth = dim[0] * ppi;
-        document.designData.documentHeight = dim[1] * ppi;
-        if (dim[0] < 5) {
-            document.designData.headerHeight = ppi/2;
+        document.designData.currentReport.documentWidth = dim[0] * ppi;
+        document.designData.currentReport.documentHeight = dim[1] * ppi;
+        if (dim[0] < 2) {
+            document.designData.currentReport.headerHeight = ppi/4;
+        } else if (dim[0] < 5) {
+            document.designData.currentReport.headerHeight = ppi/2;
         } else {
-            document.designData.headerHeight = ppi;
+            document.designData.currentReport.headerHeight = ppi;
         }
         
-        if (dim[1] < 5) {
-            document.designData.footerHeight = ppi/2;
+        if (dim[1] < 2) {
+            document.designData.currentReport.footerHeight = ppi/4;
+        } else if (dim[1] < 5) {
+            document.designData.currentReport.footerHeight = ppi/2;
         } else {
-            document.designData.footerHeight = ppi;
+            document.designData.currentReport.footerHeight = ppi;
         }
         
-        document.designData.margins = [ppi * settings.marginLeft, ppi * settings.marginTop, ppi * settings.marginRight, ppi * settings.marginBottom];
-
+        document.designData.currentReport.margins = [ppi * settings.marginLeft, ppi * settings.marginTop, ppi * settings.marginRight, ppi * settings.marginBottom];
         this.setState({canSave: true, canAddObject: true});
         this.props.getDesignPanel().refreshLayout();
+        this.props.getStatusBar().setState({currentReport: document.designData.currentReport});
     }
     
     saveReport() {

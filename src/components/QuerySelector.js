@@ -5,7 +5,11 @@ import axios from 'axios';
 const loop = (data) => {
     return data.map((item) => {
         let docid = item.key + ':' + item.documentName;
-        return <option value={docid}>{docid.replace(/_/g, ' ').replace('.json', '')}</option>;
+        if (document.designData.currentReport && (document.designData.currentReport.queryDocumentId === docid)) {
+            return <option value={docid} selected>{docid.replace(/_/g, ' ').replace('.json', '')}</option>;
+        } else {
+            return <option value={docid}>{docid.replace(/_/g, ' ').replace('.json', '')}</option>;
+        }
     });
 };
 

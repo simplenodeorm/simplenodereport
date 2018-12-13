@@ -29,18 +29,20 @@ class HomePage extends React.Component {
         }
 
         // set document default
-        if (!document.designData.documentHeight) {
+        if (!document.designData.currentReport.reportName) {
             let dim = getDocumentDimensions(myPreferences.documentSize);
-            document.designData.documentWidth = (ppi * dim[0]);
-            document.designData.documentHeight = (ppi * dim[1]);
-            document.designData.margins = [ppi * myPreferences.marginLeft, ppi * myPreferences.marginTop, ppi * myPreferences.marginRight, ppi * myPreferences.marginBottom];
-            document.designData.footerHeight = ppi;
-            document.designData.headerHeight = ppi;
-            document.designData.font = myPreferences.font;
-            document.designData.fontSize = myPreferences.fontSize;
-            document.designData.fontFamily = myPreferences.fontFamily;
+            document.designData.currentReport = new Object();
+            document.designData.currentReport.documentWidth = (ppi * dim[0]);
+            document.designData.currentReport.documentHeight = (ppi * dim[1]);
+            document.designData.currentReport.margins = [ppi * myPreferences.marginLeft, ppi * myPreferences.marginTop, ppi * myPreferences.marginRight, ppi * myPreferences.marginBottom];
+            document.designData.currentReport.footerHeight = ppi;
+            document.designData.currentReport.headerHeight = ppi;
+            document.designData.currentReport.font = myPreferences.font;
+            document.designData.currentReport.fontSize = myPreferences.fontSize;
+            document.designData.currentReport.fontFamily = myPreferences.fontFamily;
+            document.designData.currentReport.reportName = myPreferences.reportName;
         }
-    
+        
         this.getDesignPanel = this.getDesignPanel.bind(this);
         this.setDesignPanel = this.setDesignPanel.bind(this);
         this.getDocumentTree = this.getDocumentTree.bind(this);

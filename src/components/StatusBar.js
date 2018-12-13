@@ -7,16 +7,16 @@ class StatusBar extends React.Component {
         super(props);
         
         this.state = {
-            currentDocument: config.textmsg.newdocument,
+            currentReport: document.designData.currentReport,
             error: '',
             info: ''
         };
     }
     
     render() {
-        const {error, info, currentDocument} = this.state;
+        const {error, info, currentReport} = this.state;
         return <div className="statusBar">
-            <span className="currentDocument">Document: {currentDocument}</span>
+            <span className="currentDocument">Report: {currentReport.reportName}, Size: {currentReport.documentSize} </span>
             {error && <span className="errorMessage">{error}</span>}
             {info && <span className="infoMessage">{info}</span>}
             </div>;

@@ -14,12 +14,11 @@ class FooterPanel extends BaseDesignComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({height: nextProps.height, margins: nextProps.margins});
+        this.setState({height: nextProps.height, width: nextProps.width, margins: nextProps.margins});
     }
     
     render() {
         const {height, margins, width} = this.state;
-
         return <div className="designChildContainer">
             <svg width={width} height={height}>
                 <line x1={margins[0]} y1="0" x2={margins[0]} y2={height - margins[3]} stroke="cyan" stroke-width="0.75"/>

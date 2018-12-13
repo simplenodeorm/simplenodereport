@@ -39,7 +39,7 @@ class HorizontalRule extends React.Component {
         this.onAfterChange = this.onAfterChange.bind(this);
         this.state = {
             left: '0px',
-            width: document.designData.documentWidth
+            width: document.designData.currentReport.documentWidth
         };
     }
     

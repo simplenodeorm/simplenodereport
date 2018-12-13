@@ -44,7 +44,7 @@ class VerticalRule extends React.Component {
         this.onAfterChange = this.onAfterChange.bind(this);
         this.state = {
             top: '0px',
-            height: document.designData.documentHeight
+            height: document.designData.currentReport.documentHeight
         };
     }
     

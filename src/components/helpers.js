@@ -1,7 +1,7 @@
 import config from '../config/appconfig.json';
 
 document.designData = {
-    currentReport: ''
+    currentReport: new Object()
 };
 
 var popupMenuClick = function(e) { 
@@ -20,8 +20,8 @@ export function clearDocumentDesignData() {
         document.designData[config.defaultPreferenceNames[i]] = '';
     }
     
-    document.designData.currentReport = '';
-    document.designData.reportObjects = '';
+    document.designData.currentReport = new Object();
+    document.designData.reportObjects = [];
 }
     
 export function getFieldType(dbType) {

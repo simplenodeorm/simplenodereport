@@ -41,25 +41,19 @@ class PreferencesPanel extends ModalDialog {
         this.setReportName = this.setReportName.bind(this);
         this.setQuery = this.setQuery.bind(this);
         this.allowCharacter = this.allowCharacter.bind(this);
-        
-         this.settings = JSON.parse(localStorage.getItem('preferences'));
-        
-        if (!this.settings || !this.settings.documentSize) {                        
-            this.settings = defaults;
-        } else {
-            for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
-                if (!this.settings[config.defaultPreferenceNames[i]]) {
-                    this.settings[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
-                }
+        this.settings = JSON.parse(JSON.stringify(document.designData.currentReport));
+        for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
+            if (!this.settings[config.defaultPreferenceNames[i]]) {
+                this.settings[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
             }
-
         }
     }
 
     getContent() {
+        const curobj = this;
         return <div className="preferencesPanel">
             <table>
-                {this.props.newDocument && <tr><th>{config.textmsg.documentnamelabel}</th><td><input className="nameInput" type="text" size="20" onBlue={this.setReportName} defaultValue={this.settings.reportName} /></td></tr> }
+                {this.props.newDocument && <tr><th>{config.textmsg.documentnamelabel}</th><td><input className="nameInput" type="text" size="20" onBlur={this.setReportName} defaultValue={this.settings.reportName} /></td></tr> }
                 {this.props.newDocument && <tr><th>{config.textmsg.backingquery}</th><td><QuerySelector setQuery={this.setQuery}/></td></tr> }
             
                 <tr><th>{config.textmsg.leftmargin}</th><td><NumericInput maxLength='4' onBlur={this.setLeftMargin} allowCharacter={this.allowCharacter}  defaultValue={this.settings.marginLeft}/></td></tr>
