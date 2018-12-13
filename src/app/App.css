@@ -30,6 +30,8 @@
     --sidebar-hover-text-color: khaki;
     --rule-background-color: lightGray;
     --default-input-height: 22px;
+    --status-bar-height: 18px;
+    --wait-message-height: 28px;
   }
 
 html {
@@ -555,6 +557,7 @@ input[type="checkbox"] {
     border: 1px solid #42464b;
     border-radius: 5px;
     font-weight:550;
+    height: var(--wait-message-height);
     color: var(--wait-message-font-color);
     white-space: nowrap;
     z-index: 1;
@@ -576,6 +579,7 @@ input[type="checkbox"] {
     z-index: 100; 
     bottom: 0; 
     left: 0;
+    height: var(--status-bar-height);
     width: 100%;
     padding-left: 5px;
     white-space: nowrap;
