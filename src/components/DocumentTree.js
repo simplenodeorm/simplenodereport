@@ -92,7 +92,7 @@ class DocumentTree extends BaseDesignComponent {
         if (info.node.props.isLeaf) {
             this.state.selectedDocument = info.node.props.eventKey;
             const cm = getContextMenu(info);
-            ReactDOM.render(<ul><li><a href="#" onClick={tree.editDocument}>Edit Document</a></li><li><a href="#" onClick={tree.deleteDocument}>Delete Document</a></li></ul>, cm);
+            ReactDOM.render(<ul><li><button onClick={tree.editDocument}>Edit Document</button></li><li><button onClick={tree.deleteDocument}>Delete Document</button></li></ul>, cm);
         } 
     }
     
@@ -122,6 +122,7 @@ class DocumentTree extends BaseDesignComponent {
         const curcomp = this;
         let {selectedDocument} = this.state;
         let pos = selectedDocument.indexOf('.');
+
         let response = window.confirm('Delete document ' + selectedDocument.substring(pos+1).replace('_', ' ').replace('.json', '') + '?');
         if (response) {
             const orm = JSON.parse(localStorage.getItem('orm'));
@@ -142,9 +143,8 @@ class DocumentTree extends BaseDesignComponent {
                     curcomp.props.setStatus(err.toString(), true);
                 });
         }
-        this.state.selectedDocument = '';
-        
-        clearContextMenu();
+       clearContextMenu();
+       curcomp.setState({selectedDocument: ''});
     }
     
     loadDocumentGroups() {

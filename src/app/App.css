@@ -82,17 +82,23 @@ body {
 }
 
 
-.popupMenu>ul li a {
+.popupMenu>ul li button {
     display: block;
     padding: 3px 3px;
-    color: var(--text-hover); 
+    color: var(--text-color-toolbar);
     font-size: 80%;
+    width:100%;
+    background-color: var(--popup-background);
     text-decoration: none;
+    text-align: left;
+    font-weight: 500;
     text-shadow: 0 1px 0 #000;
+    border: none;
 }
 
-.popupMenu>ul li a:hover {
+.popupMenu>ul li button:hover {
     background-color: black;
+    color: var(--text-hover);
 }
 
 select {
