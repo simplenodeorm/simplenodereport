@@ -49,6 +49,7 @@ class HomePage extends React.Component {
         this.setDocumentTree = this.setDocumentTree.bind(this);
         this.getStatusBar = this.getStatusBar.bind(this);
         this.setStatusBar = this.setStatusBar.bind(this);
+        this.setStatus = this.setStatus.bind(this);
         this.reloadDocuments = this.reloadDocuments.bind(this);
         this.setCurrentDocument = this.setCurrentDocument.bind(this);
     }
@@ -62,6 +63,7 @@ class HomePage extends React.Component {
                     getDocumentTree={curobj.getDocumentTree}  
                     getDesignPanel={curobj.getDesignPanel}  
                     getStatusBar={curobj.getStatusBar}  
+                    setStatus={curobj.setStatus}
                     reloadDocuments={curobj.reloadDocuments}
                     setCurrentDocument={this.setCurrentDocument}/>
                 <br />
@@ -106,7 +108,7 @@ class HomePage extends React.Component {
     }
                     
     reloadDocuments() {
-        this.toolBar.getDocumentTree().loadDocuments();
+        this.documentTree.loadDocuments();
     }
 
     setCurrentDocument(docname) {
