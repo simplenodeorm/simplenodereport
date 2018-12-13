@@ -62,6 +62,7 @@ class HomePage extends React.Component {
                     getDocumentTree={curobj.getDocumentTree}  
                     getDesignPanel={curobj.getDesignPanel}  
                     getStatusBar={curobj.getStatusBar}  
+                    reloadDocuments={curobj.reloadDocuments}
                     setCurrentDocument={this.setCurrentDocument}/>
                 <br />
                 <SplitPane 

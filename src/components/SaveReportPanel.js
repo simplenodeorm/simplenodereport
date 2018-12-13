@@ -131,7 +131,7 @@ class SaveReportPanel extends ModalDialog {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/design/report/groups', config)
+        axios.get(orm.url + '/report/document/groups', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({groups: response.data});

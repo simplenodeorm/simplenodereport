@@ -46,6 +46,16 @@ class BaseDesignComponent extends React.Component {
     clearWaitMessage() {
         removeWaitMessage();
     }
+    
+    getReportDocument(params) {
+        return {
+            authenticator: params.authenticator,
+            reportName: document.designData.currentReport.reportName,
+            group: params.group,
+            document: document.designData.currentReport
+        };
+    }
+
 }
 
 export {BaseDesignComponent};

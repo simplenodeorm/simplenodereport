@@ -25,6 +25,7 @@ class AppToolbar extends BaseDesignComponent {
         this.alignBottom = this.alignBottom.bind(this);
         this.deleteReportObjects = this.deleteReportObjects.bind(this);
         this.onSave = this.onSave.bind(this);
+        this.saveReport = this.saveReport.bind(this);
         this.initializeNewReport = this.initializeNewReport.bind(this);
         
         this.state = {
@@ -160,17 +161,17 @@ class AppToolbar extends BaseDesignComponent {
         ReactDOM.render(<SaveReportPanel onOk={this.saveReport}/>, mc);
     }
     
-    saveDocument(params) {
-        this.showWaitMessage('Saving document...');
+    saveReport(params) {
+        this.showWaitMessage('Saving report...');
         const curcomp = this;
         const orm = JSON.parse(localStorage.getItem('orm'));
         const config = {
             headers: {'Authorization': orm.authString }
         };
-        axios.post(orm.url + '/design/savequery', this.getQueryDocument(params), config)
+        axios.post(orm.url + '/report/save', this.getReportDocument(params), config)
             .then((response) => {
                 if (response.status === 200) {
-                    curcomp.props.setStatus('document saved', false);
+                    curcomp.props.setStatus('report saved', false);
                     curcomp.clearWaitMessage();
                     curcomp.props.reloadDocuments();
                 } else {
