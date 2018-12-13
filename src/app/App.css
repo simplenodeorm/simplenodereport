@@ -539,7 +539,7 @@ input[type="checkbox"] {
     padding-top: 10px
 }
 
-.saveDocumentPanel {
+.saveReportPanel {
     padding: 5px;
 }
 
@@ -547,7 +547,7 @@ input[type="checkbox"] {
     border: var(--default-border-color) 2px solid;
     background-color: var(--default-bkcolor);
     overflow:auto;
-    height: 150px;
+    height: 225px;
 }
 
 .waitMessage {

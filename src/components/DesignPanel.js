@@ -4,7 +4,6 @@ import '../app/App.css';
 import SplitPane from 'react-split-pane';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {ParameterInputPanel} from './ParameterInputPanel';
-import {SaveDocumentPanel} from './SaveDocumentPanel';
 import {HeaderPanel} from './HeaderPanel';
 import {BodyPanel} from './BodyPanel';
 import {FooterPanel} from './FooterPanel';

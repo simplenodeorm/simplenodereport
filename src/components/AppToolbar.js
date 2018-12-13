@@ -5,10 +5,12 @@ import '../app/App.css';
 import config from '../config/appconfig';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {PreferencesPanel} from './PreferencesPanel';
+import {SaveReportPanel} from './SaveReportPanel';
 import {clearDocumentDesignData} from './helpers';
 import {getModalContainer} from './helpers';
 import {getDocumentDimensions} from './helpers';
 import {getPixelsPerInch} from './helpers.js';
+import axios from 'axios';
 
 class AppToolbar extends BaseDesignComponent {
     constructor(props) {
@@ -22,7 +24,7 @@ class AppToolbar extends BaseDesignComponent {
         this.alignRight = this.alignRight.bind(this);
         this.alignBottom = this.alignBottom.bind(this);
         this.deleteReportObjects = this.deleteReportObjects.bind(this);
-        this.saveReport = this.saveReport.bind(this);
+        this.onSave = this.onSave.bind(this);
         this.initializeNewReport = this.initializeNewReport.bind(this);
         
         this.state = {
@@ -84,7 +86,7 @@ class AppToolbar extends BaseDesignComponent {
                     {!canSave && <img alt='delete report objects' src='/images/delete-disabled.png'/>}
                     <span className="label">Delete Objects</span>
                 </button>
-                <button className="button" title='save report' disabled={!canSave} onClick={this.saveReport}>
+                <button className="button" title='save report' disabled={!canSave} onClick={this.onSave}>
                     {canSave && <img alt='save report' src='/images/save.png'/>} 
                     {!canSave && <img alt='save report' src='/images/save-disabled.png'/>}
                     <span className="label">Save Report</span>
@@ -151,9 +153,38 @@ class AppToolbar extends BaseDesignComponent {
         this.props.getStatusBar().setState({currentReport: document.designData.currentReport});
     }
     
-    saveReport() {
+    
+    onSave() {
+        let rc = {left: 200, top: 50, width: 500, height: 425};
+        let mc = getModalContainer(rc);
+        ReactDOM.render(<SaveReportPanel onOk={this.saveReport}/>, mc);
     }
     
+    saveDocument(params) {
+        this.showWaitMessage('Saving document...');
+        const curcomp = this;
+        const orm = JSON.parse(localStorage.getItem('orm'));
+        const config = {
+            headers: {'Authorization': orm.authString }
+        };
+        axios.post(orm.url + '/design/savequery', this.getQueryDocument(params), config)
+            .then((response) => {
+                if (response.status === 200) {
+                    curcomp.props.setStatus('document saved', false);
+                    curcomp.clearWaitMessage();
+                    curcomp.props.reloadDocuments();
+                } else {
+                    curcomp.clearWaitMessage();
+                    curcomp.props.setStatus(response.statusText, true);
+                }
+                
+            })
+            .catch((err) => {
+                curcomp.props.setStatus('' + err, true);
+                curcomp.clearWaitMessage();
+            });     
+    }
+
     preferences() {
         let rc = {left: 200, top: 75, width: 400, height: 375};
         let mc = getModalContainer(rc);
