@@ -150,8 +150,7 @@ class AppToolbar extends BaseDesignComponent {
         
         document.designData.currentReport.margins = [ppi * settings.marginLeft, ppi * settings.marginTop, ppi * settings.marginRight, ppi * settings.marginBottom];
         this.setState({canSave: true, canAddObject: true});
-        this.props.getDesignPanel().refreshLayout();
-        this.props.getStatusBar().setState({currentReport: document.designData.currentReport});
+        this.props.refreshLayout();
     }
     
     

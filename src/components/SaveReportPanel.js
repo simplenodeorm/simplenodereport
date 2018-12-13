@@ -15,6 +15,11 @@ class SaveReportPanel extends ModalDialog {
         this.onAuthenticatorChange = this.onAuthenticatorChange.bind(this);
         
         this.authenticator = document.designData.currentReport.authenticator;
+        
+        if (!this.authenticator) {
+            this.authenticator = 'DeafultAuthorizer'
+        }
+        
         this.selectedGroup = document.designData.currentReport.group;
         
         this.state = {
@@ -36,9 +41,13 @@ class SaveReportPanel extends ModalDialog {
             this.loadAuthorizers();
         }
         
-        const authorizerLoop = (data) => {
+        const authorizerLoop = (auth, data) => {
             return data.map((authorizer) => {
-                return <option value={authorizer}>{authorizer}</option>;
+                if (auth === authorizer) {
+                    return <option value={authorizer} selected>{authorizer}</option>;
+                } else {
+                    return <option value={authorizer}>{authorizer}</option>;
+                }
             });
         };
 
@@ -53,7 +62,7 @@ class SaveReportPanel extends ModalDialog {
                         <td className="inputLabel">{config.textmsg.authenticatorlabel}</td>
                         <td>
                             <select onChange={this.onAuthenticatorChange}>
-                                {authorizers && authorizerLoop(authorizers) } 
+                                {authorizers && authorizerLoop(this.authenticator, authorizers) } 
                             </select>
                         </td>
                     </tr>

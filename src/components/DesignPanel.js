@@ -141,6 +141,8 @@ class DesignPanel extends BaseDesignComponent {
         };
         
         this.setState(layout);
+        this.props.setCurrentReport(document.designData.currentReport);
+
     }
 }
 

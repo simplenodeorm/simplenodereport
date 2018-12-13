@@ -24,6 +24,8 @@ class DocumentTree extends BaseDesignComponent {
         this.onRightClick = this.onRightClick.bind(this);
         this.editDocument = this.editDocument.bind(this);
         this.deleteDocument = this.deleteDocument.bind(this);
+        this.loadDocuments = this.loadDocuments.bind(this);
+        this.setCurrentReport = this.setCurrentReport.bind(this);
     }
     
     getIcon(props) {
@@ -103,10 +105,10 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/report/loadreport/' + selectedDocument, config)
+        axios.get(orm.url + '/report/load/' + selectedDocument, config)
             .then((response) => {
                 if (response.status === 200) {
-                    curcomp.loadDocumentData(response.data)
+                    curcomp.loadDocumentData(response.data);
                 } else {
                     curcomp.props.setStatus(response.statusText, true);
                 }
@@ -117,11 +119,11 @@ class DocumentTree extends BaseDesignComponent {
     }
 
     deleteDocument() {
+        const curcomp = this;
         let {selectedDocument} = this.state;
         let pos = selectedDocument.indexOf('.');
         let response = window.confirm('Delete document ' + selectedDocument.substring(pos+1).replace('_', ' ').replace('.json', '') + '?');
         if (response) {
-            const curcomp = this;
             const orm = JSON.parse(localStorage.getItem('orm'));
             const config = {
                 headers: {'Authorization': orm.authString}
@@ -191,9 +193,9 @@ class DocumentTree extends BaseDesignComponent {
     loadDocumentData(doc) {
     }
 
-    setCurrentDocument(doc, data) {
+    setCurrentReport(doc, data) {
         this.clearWaitMessage();
-        this.props.setCurrentDocument(doc.documentName);
+        this.props.setCurrentReport(doc.documentName);
     }
     
 }
