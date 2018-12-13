@@ -259,7 +259,7 @@ input[type="submit"] {
 .buttonbar .aligntool {
     display: inline;
     vertical-align: top;
-    margin-left: 50px;
+    margin-left: 25px;
     white-space: nowrap;
 }
 

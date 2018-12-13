@@ -27,6 +27,11 @@ class AppToolbar extends BaseDesignComponent {
         this.onSave = this.onSave.bind(this);
         this.saveReport = this.saveReport.bind(this);
         this.initializeNewReport = this.initializeNewReport.bind(this);
+
+        this.alignTextLeft = this.alignTextLeft.bind(this);
+        this.alignTextMiddle = this.alignTextMiddle.bind(this);
+        this.alignTextRight = this.alignTextRight.bind(this);
+
         
         this.state = {
             canSave: false,
@@ -64,6 +69,20 @@ class AppToolbar extends BaseDesignComponent {
                     {!canAddObject && <img alt='new report object' src='/images/newobject-disabled.png'/>}
                     <span className="label">Add Object</span>
                 </button>
+                <div className="aligntool">
+                    <button className="button" title='align text left' disabled={!canSave} onClick={this.textAlignLeft}>
+                        {canSave && <img alt='align text left' src='/images/align-text-left.png'/>} 
+                        {!canSave && <img alt='align text left' src='/images/align-text-left-disabled.png'/>}
+                    </button>
+                    <button className="button" title='align text middle' disabled={!canSave} onClick={this.textAlignMiddle}>
+                        {canSave && <img alt='align text middle' src='/images/align-text-middle.png'/>} 
+                        {!canSave && <img alt='align text middle' src='/images/align-text-middle-disabled.png'/>}
+                    </button>
+                    <button className="button" title='align text right' disabled={!canSave} onClick={this.textAlignRight}>
+                        {canSave && <img alt='align text right' src='/images/align-text-right.png'/>} 
+                        {!canSave && <img alt='align text right' src='/images/align-text-right-disabled.png'/>}
+                    </button>
+                </div>
                 <div className="aligntool">
                     <button className="button" title='align selected objects left' disabled={!canSave} onClick={this.alignLeft}>
                         {canSave && <img alt='align left' src='/images/align-left.png'/>} 
@@ -117,6 +136,17 @@ class AppToolbar extends BaseDesignComponent {
 
     alignBottom() {
     }
+    
+
+    alignTextLeft() {
+    }
+
+    alignTextMiddle() {
+    }
+    
+    alignTextRight() {
+    }
+    
     
     deleteReportObjects() {
     }
