@@ -50,7 +50,7 @@ class BaseDesignComponent extends React.Component {
     getReportDocument(params) {
         return {
             authenticator: params.authenticator,
-            reportName: document.designData.currentReport.reportName,
+            reportName: document.designData.currentReport.reportName.replace(/ /g, '_'),
             group: params.group,
             document: document.designData.currentReport
         };
