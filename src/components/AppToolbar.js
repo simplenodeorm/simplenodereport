@@ -156,7 +156,7 @@ class AppToolbar extends BaseDesignComponent {
     
     
     onSave() {
-        let rc = {left: 200, top: 50, width: 500, height: 425};
+        let rc = {left: 200, top: 50, width: 450, height: 425};
         let mc = getModalContainer(rc);
         ReactDOM.render(<SaveReportPanel onOk={this.saveReport}/>, mc);
     }
