@@ -1,21 +1,11 @@
 import React from 'react';
 import "../app/App.css";
-import {BaseDesignComponent} from './BaseDesignComponent';
 import {DesignCanvas} from './DesignCanvas';
+import {ReportSection} from './ReportSection';
 
-class BodyPanel extends BaseDesignComponent {
+class BodyPanel extends ReportSection {
     constructor(props) {
         super(props);
-        this.state = {
-            error: '',
-            height: this.props.height,
-            width: this.props.width,
-            margins: this.props.margins
-        };
-    }
-    
-    componentWillReceiveProps(nextProps) {
-        this.setState({height: nextProps.height, margins: nextProps.margins, width: nextProps.width});
     }
     
     render() {
@@ -23,7 +13,13 @@ class BodyPanel extends BaseDesignComponent {
 
         return <div className="designChildContainer">
             {document.designData.currentReport.documentSize &&
-            <DesignCanvas location="body" height={height} width={width - (margins[0] + margins[2])} marginLeft={margins[0]} marginTop={margins[0]}/>}
+            <DesignCanvas 
+                location="body" 
+                showPopup={this.showPopup} 
+                height={height} 
+                width={width - (margins[0] + margins[2])} 
+                marginLeft={margins[0]} 
+                marginTop={margins[0]}/>}
             <svg y="20" height={height} width={width} className="marginLines">
                 <line x1={margins[0]} y1="2" x2={margins[0]} y2={height} stroke="cyan" stroke-width="0.75"/>
                 <text x={margins[0] + 10} y="30" font-size="16" fill="lightGray">Body</text>
