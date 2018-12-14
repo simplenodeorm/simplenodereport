@@ -1,6 +1,7 @@
 import React from 'react';
 import "../app/App.css";
 import {BaseDesignComponent} from './BaseDesignComponent';
+import {DesignCanvas} from './DesignCanvas';
 
 class FooterPanel extends BaseDesignComponent {
     constructor(props) {
@@ -20,6 +21,7 @@ class FooterPanel extends BaseDesignComponent {
     render() {
         const {height, margins, width} = this.state;
         return <div className="designChildContainer">
+            <DesignCanvas height={height - margins[3]} width={width - (margins[0] + margins[2])} marginLeft={margins[0]} marginTop={0}/>
             <svg width={width} height={height}>
                 <line x1={margins[0]} y1="0" x2={margins[0]} y2={height - margins[3]} stroke="cyan" stroke-width="0.75"/>
                 <line x1={margins[0]} y1={height - margins[3]} x2={width - margins[2]} y2={height-margins[3]} stroke="cyan" stroke-width="0.75"/>
