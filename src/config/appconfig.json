@@ -1,7 +1,9 @@
 {
     "textmsg": {
         "logintitletext": "Simple Node Report",
-        "adddocument": "Add Document",
+        "addreport": "Add Report",
+        "loaddocument": "Load Report",
+        "deletedocument": "Delete Report",
         "setupmenuname": "Setup",
         "filemenuname": "File",
         "newmenuname": "New",
