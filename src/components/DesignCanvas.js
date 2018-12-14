@@ -1,4 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+import {clearContextMenu} from './helpers';
+import {getContextMenu} from './helpers';
+import config from '../config/appconfig.json';
 import "../app/App.css";
 
 class DesignCanvas extends React.Component {
@@ -13,8 +17,25 @@ class DesignCanvas extends React.Component {
             margins: this.props.margins
         };
         
-        this.onClick = this.onClick.bind(this);
+        this.addObject = this.addObject.bind(this);
     }
+
+    componentDidMount () {
+        const me = this;
+        const canvas = this.myCanvas;
+        
+        this.contextMenu = function(e) { 
+            if (e.target === canvas) { 
+                e.preventDefault();
+                const cm = getContextMenu({event: e});
+                ReactDOM.render(<ul><li><button onClick={me.addObject}>{config.textmsg.addobject}</button></li></ul>, cm);
+                return false;
+            }
+        };
+            
+        document.addEventListener('contextmenu', this.contextMenu);
+    }
+
 
     componentWillReceiveProps(nextProps) {
         this.setState({height: nextProps.height, width: nextProps.width, margins: nextProps.margins});
@@ -31,10 +52,12 @@ class DesignCanvas extends React.Component {
             background: 'transparent',
             position: 'absolute'
         };
-        return <canvas onClick={this.onClick} ref={(cnv) => {this.myCanvas = cnv;}} style={myStyle}></canvas>
+        return <canvas ref={(c) => {this.myCanvas = c;}} style={myStyle}></canvas>
     }
     
-    onClick(e) {
+    addObject() {
+        alert('------------->');
+        clearContextMenu();
     }
 }
 
