@@ -28,5 +28,6 @@
     "zoomFactor": 1.25,
     "documentSizeNames": ["LETTER", "LEGAL", "4A0", "2A0", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10"],
     "fonts": ["Arial", "Helvetica", "Times New Roman", "Times", "Courier New", "Courier", "Verdana", "Georgia", "Palatino", "Garamond", "Bookman", "Comic Sans MS", "Trebuchet MS", "Arial Black", "Impact"],
-    "defaultPreferenceNames": ["marginLeft", "marginTop", "marginRight", "marginBottom", "fontFamily", "font", "fontSize", "documentSize", "reportName", "queryDocumentId"]
+    "defaultPreferenceNames": ["marginLeft", "marginTop", "marginRight", "marginBottom", "fontFamily", "font", "fontSize", "documentSize", "reportName", "queryDocumentId"],
+    "reportObjectTypes": ["text", "dbdata", "link", "image", "shape", "graph"]
 }

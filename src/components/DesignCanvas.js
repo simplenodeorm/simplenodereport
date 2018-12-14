@@ -20,7 +20,7 @@ class DesignCanvas extends React.Component {
         this.contextMenu = function(e) { 
             if (e.target === canvas) { 
                 e.preventDefault();
-                curobj.props.showPopup(e);
+                curobj.props.showPopup(e, curobj.props.location);
                 return false;
             }
         };

@@ -23,13 +23,45 @@ class ReportSection extends BaseDesignComponent {
         this.setState({height: nextProps.height, width: nextProps.width, margins: nextProps.margins});
     }
 
-    showPopup(e) {
+    showPopup(e, objid) {
         const cm = getContextMenu({event: e});
-        ReactDOM.render(<ul><li><button onClick={this.addObject}>{config.textmsg.addobject}</button></li></ul>, cm);
+        if (this.isReportSection(objid)) {
+            ReactDOM.render(<ul><li><button onClick={this.addObject}>{config.textmsg.addobject}</button></li></ul>, cm);
+        } else {
+            let obj = this.getReportObject(objid);
+            
+            if (obj) {
+                ReactDOM.render(this.getReportObjectPopupContent(obj), cm);
+            }
+        }
     }
     
     addObject(e) {
         clearContextMenu();
+    }
+    
+    getReportObjectPopupContent(obj) {
+        alert('----------->in getReportObjectPopupContent');
+        
+    }
+    
+    isReportSection(id) {
+        return ((id === 'header') || (id === 'body') || (id === 'footer'));
+    }
+    
+    getReportObject(objid) {
+        let retval;
+        
+        if (document.designData.reportObjects) {
+            for (let i = 0; i < document.designData.reportObjects.length; ++i) {
+                if (document.designData.reportObjects[i].id == objid) {
+                    retval = document.designData.reportObjects[i];
+                    break;
+                }
+            }
+        }
+        
+        return retval;
     }
 }
 

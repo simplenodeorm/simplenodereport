@@ -13,13 +13,14 @@ class BodyPanel extends ReportSection {
 
         return <div className="designChildContainer">
             {document.designData.currentReport.documentSize &&
-            <DesignCanvas 
-                location="body" 
-                showPopup={this.showPopup} 
-                height={height} 
-                width={width - (margins[0] + margins[2])} 
-                marginLeft={margins[0]} 
-                marginTop={margins[0]}/>}
+                <DesignCanvas 
+                    location="body" 
+                    showPopup={this.showPopup} 
+                    height={height} 
+                    width={width - (margins[0] + margins[2])} 
+                    marginLeft={margins[0]} 
+                    marginTop={margins[0]}/>
+            }
             <svg y="20" height={height} width={width} className="marginLines">
                 <line x1={margins[0]} y1="2" x2={margins[0]} y2={height} stroke="cyan" stroke-width="0.75"/>
                 <text x={margins[0] + 10} y="30" font-size="16" fill="lightGray">Body</text>
