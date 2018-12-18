@@ -5,9 +5,10 @@ document.designData = {
 };
 
 var popupMenuClick = function(e) { 
-    let rect = e.target.getBoundingClientRect();
-    let x = e.clientX - rect.left; 
-    let y = e.clientY - rect.top; 
+    let cm = document.getElementById('ctxmenu');
+    let rect = cm.getBoundingClientRect();
+    let x = e.clientX; // - rect.left; 
+    let y = e.clientY; // - rect.top; 
     if ((x < 0) || (y < 0) || (x >= rect.right) || (y >= rect.top)) {
         clearContextMenu();
     }

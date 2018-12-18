@@ -5,6 +5,12 @@ import {clearContextMenu} from './helpers';
 import {getContextMenu} from './helpers';
 import config from '../config/appconfig.json';
 
+const reportSectionLoop = (obj, data) => {
+    return data.map((item) => {
+        return <li><button onClick={obj.addObject} value={item}>add {item}</button></li>
+    });
+};
+
 class ReportSection extends BaseDesignComponent {
     constructor(props) {
         super(props);
@@ -12,7 +18,8 @@ class ReportSection extends BaseDesignComponent {
             error: '',
             height: this.props.height,
             width: this.props.width,
-            margins: this.props.margins
+            margins: this.props.margins,
+            itemsSelected: false
         };
         
         this.addObject = this.addObject.bind(this);
@@ -20,13 +27,15 @@ class ReportSection extends BaseDesignComponent {
     }
 
     componentWillReceiveProps(nextProps) {
-        this.setState({height: nextProps.height, width: nextProps.width, margins: nextProps.margins});
+        this.setState({height: nextProps.height, width: nextProps.width, margins: nextProps.margins, itemsSelected: nextProps.itemsSelected});
     }
 
     showPopup(e, objid) {
+        const {itemsSelected} = this.state;
         const cm = getContextMenu({event: e});
         if (this.isReportSection(objid)) {
-            ReactDOM.render(<ul><li><button onClick={this.addObject}>{config.textmsg.addobject}</button></li></ul>, cm);
+            ReactDOM.render(<ul>{reportSectionLoop(this, config.reportObjectTypes, itemsSelected)} 
+                {itemsSelected && <li><button onClick={this.deleteSelectedObjects}>{config.textmsg.deleteselectedobjects}</button></li>}</ul>, cm);
         } else {
             let obj = this.getReportObject(objid);
             
@@ -40,8 +49,11 @@ class ReportSection extends BaseDesignComponent {
         clearContextMenu();
     }
     
+    deleteSelectedItems(e) {
+        clearContextMenu();
+    }
+
     getReportObjectPopupContent(obj) {
-        alert('----------->in getReportObjectPopupContent');
         
     }
     
