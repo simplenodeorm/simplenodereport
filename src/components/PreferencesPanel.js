@@ -131,7 +131,7 @@ class PreferencesPanel extends ModalDialog {
     
     getTitle() {
         if (this.props.newDocument) {
-            return config.textmsg.adddocument;
+            return config.textmsg.addreport;
         } else {
             return config.textmsg.defaultsettings;
         }

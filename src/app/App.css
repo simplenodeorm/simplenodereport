@@ -727,3 +727,10 @@ input[type="checkbox"] {
     padding-right: 0;
     padding-top: 10px
 }
+
+.lasso {
+    background: transparent;
+    border: solid 1px red;
+    position:relative;
+    display: 'none';
+}

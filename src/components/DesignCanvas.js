@@ -1,5 +1,6 @@
 import React from 'react';
 import "../app/App.css";
+import {LassoSelect} from './LassoSelect';
 
 class DesignCanvas extends React.Component {
     constructor(props) {
@@ -9,8 +10,13 @@ class DesignCanvas extends React.Component {
             marginLeft: this.props.marginLeft,
             marginTop: this.props.marginTop,
             height: this.props.height,
-            width: this.props.width,
+            width: this.props.width
         };
+        
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onDragOver = this.onDragOver.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
     }
 
     componentDidMount () {
@@ -27,8 +33,7 @@ class DesignCanvas extends React.Component {
             
         document.addEventListener('contextmenu', this.contextMenu);
     }
-
-
+    
     componentWillReceiveProps(nextProps) {
         this.setState({
             height: nextProps.height,
@@ -38,9 +43,9 @@ class DesignCanvas extends React.Component {
     }
     
     render() {
-        const {height, width, marginLeft, marginTop} = this.state;
+        const {height, width, marginLeft, marginTop, lassoRect, lassoDisplay} = this.state;
         
-        const myStyle = {
+        const canvasStyle = {
             height: (height-1) + 'px',
             width: width + 'px',
             marginLeft: (marginLeft-1) + 'px',
@@ -48,7 +53,52 @@ class DesignCanvas extends React.Component {
             background: 'transparent',
             position: 'absolute'
         };
-        return <canvas ref={(c) => {this.myCanvas = c;}} style={myStyle}></canvas>
+        
+        return <div ref={(c) => {this.myCanvas = c;}}
+            draggable={true}
+            style={canvasStyle}
+            onDragStart={this.onDragStart}
+            onDragOver={this.onDragOver}
+            onDragEnd={this.onDragEnd}
+            onDrop={this.onDrop}>
+                {lassoRect && <LassoSelect rect={lassoRect} display={lassoDisplay}/>}
+            </div>
+    }
+    
+    
+    onDragStart(info) {
+        this.startDragPoint = [info.clientX,info.clientY]; 
+        info.dataTransfer.setData('text/plain', JSON.stringify(this.startDragPoint)); 
+ 
+    }
+    
+    onDragOver(info) {
+        info.stopPropagation();
+        info.preventDefault();
+        
+        if (this.startDragPoint) {
+            
+            let crect = this.myCanvas.getBoundingClientRect();
+            
+            let rc = {
+                left: this.startDragPoint[0] - crect.left,
+                top: this.startDragPoint[1] - crect.top,
+                width: (info.clientX - this.startDragPoint[0]),
+                height: (info.clientY - this.startDragPoint[1])
+            };
+
+            this.setState({lassoRect: rc, lassoDisplay: 'block'});
+        }
+    }
+
+    onDrop(info) {
+        info.stopPropagation();
+        info.preventDefault();
+    }
+    
+    onDragEnd(info) {
+        this.startDragPoint = '';
+        this.setState({lassoRect: {left: -100, top: -100, width: 0, height: 0}, lassoDisplay: 'none'});
     }
 }
 
