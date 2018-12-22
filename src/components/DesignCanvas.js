@@ -81,10 +81,10 @@ class DesignCanvas extends React.Component {
             let crect = this.myCanvas.getBoundingClientRect();
             
             let rc = {
-                left: this.startDragPoint[0] - crect.left,
-                top: this.startDragPoint[1] - crect.top,
-                width: (info.clientX - this.startDragPoint[0]),
-                height: (info.clientY - this.startDragPoint[1])
+                left: Math.min(this.startDragPoint[0], info.clientX) - crect.left,
+                top: Math.min(this.startDragPoint[1], info.clientY) - crect.top,
+                width: Math.abs(info.clientX - this.startDragPoint[0]),
+                height: Math.abs(info.clientY - this.startDragPoint[1])
             };
 
             this.setState({lassoRect: rc, lassoDisplay: 'block'});
