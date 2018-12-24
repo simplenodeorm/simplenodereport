@@ -8,18 +8,19 @@
   "author": "Rob Tucker <rbtucker16@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0",
-    "react-scripts": "1.1.5",
-    "react-router-dom": "^4.3.1",
-    "react-router": "^4.3.1",
-    "base-64": "^0.1.0",
     "axios": "^0.18.0",
-    "react-datepicker": "^1.7.0",
-    "react-tabs": "^2.3.0",
+    "base-64": "^0.1.0",
+    "moment": "^2.23.0",
+    "rc-slider": "^8.6.4",
     "rc-tree": "^1.14.6",
-    "react-split-pane": "^0.1.84"
-
+    "react": "^16.5.0",
+    "react-datepicker": "^1.7.0",
+    "react-dom": "^16.5.0",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "1.1.5",
+    "react-split-pane": "^0.1.84",
+    "react-tabs": "^2.3.0"
   },
   "bugs": {
     "url": "https://github.com/rbtucker/simplenodereport/issues"

@@ -18,8 +18,11 @@ class ModalDialog extends BaseDesignComponent {
     componentDidMount () {
         const me = this;
         this.clickFunction = function(e) { 
-            if (me.isModalClick(e.target)) { 
-                me.onClick(e);
+            if (me.isModalClick(e.target)) {
+                if (me.onClick) {
+                    me.onClick(e);
+                }
+
             } else {
                 e.stopImmediatePropagation(); 
             }
