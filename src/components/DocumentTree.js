@@ -52,7 +52,7 @@ class DocumentTree extends BaseDesignComponent {
                   treeData={treeData}></Tree></div>;
 
         } else {
-            return <div className="treeContainer"></div>;
+            return <div className="treeContainer"/>;
         }
     }
     

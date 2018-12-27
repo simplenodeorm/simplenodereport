@@ -32,7 +32,7 @@ class QuerySelector extends React.Component {
         
         return <div>
             <select style={myStyle} onChange={this.props.setQuery}>
-                <option></option>
+                <option/>
                 {queryDocuments && loop(queryDocuments)}
             </select>
         </div>

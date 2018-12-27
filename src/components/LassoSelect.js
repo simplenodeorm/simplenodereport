@@ -33,7 +33,7 @@ class LassoSelect extends React.Component {
             display: display
         };
         
-        return <div style={myStyle} className="lasso"></div>;              
+        return <div style={myStyle} className="lasso"/>;
     }
 }
 

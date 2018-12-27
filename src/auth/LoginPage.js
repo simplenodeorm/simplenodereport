@@ -98,7 +98,7 @@ class LoginPage extends BaseDesignComponent {
                         </div>
                         <div>
                             <label>Target ORM</label>
-                            <select name="orm" onChange={this.handleChange}><option></option>{options}</select>
+                            <select name="orm" onChange={this.handleChange}><option/>{options}</select>
 
                             {submitted && !orm &&
                                 <div className="errorMessage">*Target ORM is required</div>

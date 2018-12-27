@@ -78,11 +78,7 @@ class ParameterInputPanel extends ModalDialog {
     
     allowCharacter(charCode, indx) {
         // allow commas on in
-        if ((this.comparisonOperators[indx] === 'in') && (charCode === 188)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (this.comparisonOperators[indx] === 'in') && (charCode === 188);
     }
     
     getResult() {
