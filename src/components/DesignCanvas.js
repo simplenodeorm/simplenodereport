@@ -58,7 +58,7 @@ class DesignCanvas extends React.Component {
             position: 'absolute'
         };
         
-        return <div ref={(c) => {this.myCanvas = c;}}
+        return <div className="designCanvas" ref={(c) => {this.myCanvas = c;}}
             draggable={true}
             style={canvasStyle}
             onDragStart={this.onDragStart}
