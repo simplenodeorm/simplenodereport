@@ -4,10 +4,6 @@ import {DesignCanvas} from './DesignCanvas';
 import {ReportSection} from './ReportSection';
 
 class BodyPanel extends ReportSection {
-    constructor(props) {
-        super(props);
-    }
-    
     render() {
         const {height, margins, width} = this.state;
 

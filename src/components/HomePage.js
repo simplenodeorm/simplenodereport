@@ -101,7 +101,7 @@ class HomePage extends React.Component {
         }
 
         let dim = getDocumentDimensions(myPreferences.documentSize);
-        document.designData.currentReport = new Object();
+        document.designData.currentReport = {};
         document.designData.currentReport.documentWidth = (ppi * dim[0]);
         document.designData.currentReport.documentHeight = (ppi * dim[1]);
         document.designData.currentReport.margins = [ppi * myPreferences.marginLeft, ppi * myPreferences.marginTop, ppi * myPreferences.marginRight, ppi * myPreferences.marginBottom];

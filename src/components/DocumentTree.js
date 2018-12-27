@@ -8,7 +8,6 @@ import {BaseDesignComponent} from './BaseDesignComponent';
 import axios from 'axios';
 import {clearContextMenu} from './helpers';
 import {getContextMenu} from './helpers';
-import {updateState} from './HomePage';
 const rdimage = <img alt="report document" src="/images/report-document.png"/>;
 const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 

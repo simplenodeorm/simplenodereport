@@ -1,5 +1,5 @@
 import React from 'react';
-import Slider, { Range } from 'rc-slider';
+import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import {getPixelsPerInch} from './helpers.js';
 import config from '../config/appconfig.json';

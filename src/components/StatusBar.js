@@ -1,6 +1,5 @@
 import React from 'react';
 import "../app/App.css";
-import config from '../config/appconfig.json';
 import {getDocumentDimensions} from './helpers.js';
 
 class StatusBar extends React.Component {

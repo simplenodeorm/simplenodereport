@@ -4,7 +4,6 @@ import {ModalDialog} from './ModalDialog';
 import Tree from 'rc-tree';
 import './defaultTree.css';
 import "../app/App.css";
-import {defaultSaveSettings} from './helpers';
 import axios from 'axios';
 
 const rfimage = <img alt="query folder" src="/images/report-folder.png"/>;
@@ -96,8 +95,7 @@ class SaveReportPanel extends ModalDialog {
     }
         
     isComplete() {
-        let retval = (this.selectedGroup && this.authenticator);
-        return retval;
+        return (this.selectedGroup && this.authenticator);
     }
     
     getError() { 

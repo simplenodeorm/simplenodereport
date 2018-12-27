@@ -50,7 +50,6 @@ class PreferencesPanel extends ModalDialog {
     }
 
     getContent() {
-        const curobj = this;
         return <div className="preferencesPanel">
             <table>
                 {this.props.newDocument && <tr><th>{config.textmsg.documentnamelabel}</th><td><input className="nameInput" type="text" size="20" onBlur={this.setReportName} defaultValue={this.settings.reportName} /></td></tr> }
@@ -142,11 +141,7 @@ class PreferencesPanel extends ModalDialog {
     }
     
     allowCharacter(charCode) {
-        if (charCode === 190) {
-            return true;
-        } else {
-            return false;
-        }
+        return charCode === 190;
     }
 }
 

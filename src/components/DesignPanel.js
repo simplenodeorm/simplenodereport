@@ -1,21 +1,12 @@
-import React, { PureComponent } from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import '../app/App.css';
 import SplitPane from 'react-split-pane';
 import {BaseDesignComponent} from './BaseDesignComponent';
-import {ParameterInputPanel} from './ParameterInputPanel';
 import {HeaderPanel} from './HeaderPanel';
 import {BodyPanel} from './BodyPanel';
 import {FooterPanel} from './FooterPanel';
-import config from '../config/appconfig.json';
-import defaults from '../config/defaults.json';
-import axios from 'axios';
-import {clearDocumentDesignData} from './helpers';
-import {getDocumentDimensions} from './helpers';
-import {getModalContainer} from './helpers';
 import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
-import {getPixelsPerInch} from './helpers.js';
 
 class DesignPanel extends BaseDesignComponent {
     constructor(props) {

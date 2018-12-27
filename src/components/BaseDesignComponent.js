@@ -5,10 +5,6 @@ import {getWaitMessage} from './helpers';
 import {removeWaitMessage} from './helpers';
 
 class BaseDesignComponent extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     inputParametersRequired() {
         let retval;
 

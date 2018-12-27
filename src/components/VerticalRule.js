@@ -53,7 +53,7 @@ class VerticalRule extends React.Component {
     }
     
     render() {
-        const {top, height} = this.state;
+        const {height} = this.state;
     
         return <div className="verticalRule" >
             <div className="slider">
@@ -101,7 +101,7 @@ class VerticalRule extends React.Component {
         let start = Math.round((y/eigthInch)) + 1;
         let cy = (height/eigthInch);
         let vp = (window.innerHeight/config.zoomFactor);
-        let ypos = eigthInch + 4
+        let ypos = eigthInch + 4;
         for (let i = start; (((i-start)*eigthInch) < vp) && (i <= cy); i++) {
             switch(i%8) {
                 case 0:

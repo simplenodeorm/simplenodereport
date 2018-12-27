@@ -6,11 +6,8 @@ import LoginPage from '../auth/LoginPage';
 import './App.css';
 
 class App extends React.Component  {
-    constructor(props) {
-        super(props);
-    }
-    
-    onUnload(event) { 
+
+    onUnload(event) {
         localStorage.removeItem('orm');
     }
 

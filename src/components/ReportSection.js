@@ -66,7 +66,7 @@ class ReportSection extends BaseDesignComponent {
         
         if (document.designData.reportObjects) {
             for (let i = 0; i < document.designData.reportObjects.length; ++i) {
-                if (document.designData.reportObjects[i].id == objid) {
+                if (document.designData.reportObjects[i].id === objid) {
                     retval = document.designData.reportObjects[i];
                     break;
                 }
