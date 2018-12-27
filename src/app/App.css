@@ -41,7 +41,7 @@ html {
 
 body {
     background-color: var(--bar-color);
-    font-weight: var(--font-weight));
+    font-weight: var(--font-weight);
     float:left;
     text-align: left;
     font-size:var(--default-font-size);
@@ -563,7 +563,7 @@ input[type="checkbox"] {
     background: #eceeee;
     border: 1px solid #42464b;
     border-radius: 5px;
-    font-weight:550;
+    font-weight:600;
     height: var(--wait-message-height);
     color: var(--wait-message-font-color);
     white-space: nowrap;
@@ -731,6 +731,6 @@ input[type="checkbox"] {
 .lasso {
     background: transparent;
     border: solid 1px red;
-    position:relative;
-    display: 'none';
+    position: relative;
+    display: none;
 }

@@ -178,7 +178,7 @@ export function clearSelectedText() {
         }
     } 
         
-     catch (err) {};    
+     catch (err) {}
 }
 
 export function getPixelsPerInch() {

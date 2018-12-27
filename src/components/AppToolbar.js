@@ -59,7 +59,7 @@ class AppToolbar extends BaseDesignComponent {
         ];
         const orm = JSON.parse(localStorage.getItem('orm'));
         return <div>
-            <Toolbar menu={menu} brand={orm.name} logo="logo.png"></Toolbar>
+            <Toolbar menu={menu} brand={orm.name} logo="logo.png"/>
             <div className="buttonbar">
                 <button className="button" title='add new report' onClick={this.newReport}>
                     <img alt='new report' src='/images/newreport.png'/>
