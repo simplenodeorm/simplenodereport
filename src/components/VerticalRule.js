@@ -29,9 +29,9 @@ const loop = (data) => {
     return data.map((item) => {
         return data.map((item) => {
         if (item[0] === 15) {
-            return <svg><line x1={18} y1={item[1]} x2={item[2]} y2={item[3]} stroke="black" strokeWidth="0.75"/><text x={8} y={item[1]+3} fontSize="10" fill="crimson">{item[4]}</text></svg>
+            return <svg><line x1={18} y1={item[1]} x2={item[2]} y2={item[3]} stroke="black" strokeWidth="1" shapeRendering="crispEdges"/><text x={8} y={item[1]+3} fontSize="10" fill="crimson">{item[4]}</text></svg>
         } else {
-            return <line x1={item[0]} y1={item[1]} x2={item[2]} y2={item[3]} stroke="black" strokeWidth="0.75"/>;
+            return <line x1={item[0]} y1={item[1]} x2={item[2]} y2={item[3]} stroke="black" strokeWidth="1" shapeRendering="crispEdges"/>;
         }
     });
 

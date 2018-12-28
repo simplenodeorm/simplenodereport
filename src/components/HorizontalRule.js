@@ -9,9 +9,9 @@ import '../app/App.css'
 const loop = (data) => {
     return data.map((item) => {
         if (item[1] === 5) {
-            return <svg><line x1={item[0] + 30} y1={11} x2={item[2] + 30} y2={item[3]} stroke="black"/><text x={item[0] + 27} y="10" fontSize="10" fill="crimson">{item[4]}</text></svg>
+            return <svg><line x1={item[0] + 30} y1={11} x2={item[2] + 30} y2={item[3]} stroke="black" strokeWidth="1" shapeRendering="crispEdges"/><text x={item[0] + 27} y="10" fontSize="10" fill="crimson">{item[4]}</text></svg>
         } else {
-            return <line x1={item[0] + 30} y1={item[1]} x2={item[2] + 30} y2={item[3]} stroke="black"/>;
+            return <line x1={item[0] + 30} y1={item[1]} x2={item[2] + 30} y2={item[3]} stroke="black" strokeWidth="1" shapeRendering="crispEdges"/>;
         }
     });
 };
