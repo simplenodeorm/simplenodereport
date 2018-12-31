@@ -1,6 +1,8 @@
 {
     "textmsg": {
         "logintitletext": "Simple Node Report",
+        "selectdata": "Select Data",
+        "displayformat": "Display Format",
         "addreport": "Add Report",
         "addobject": "Add Report Object",
         "loaddocument": "Load Report",
@@ -23,7 +25,8 @@
         "backingquery": "Backing Query:",
         "fontfamily": "Font Family:",
         "font": "Font:",
-        "deleteselectedobjects": "delete selected objects"
+        "deleteselectedobjects": "delete selected objects",
+        "dbdatagridsetuptitle": "DB Data Grid Setup"
     },
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,

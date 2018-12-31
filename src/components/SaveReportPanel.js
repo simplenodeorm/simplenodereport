@@ -16,7 +16,7 @@ class SaveReportPanel extends ModalDialog {
         this.authenticator = document.designData.currentReport.authenticator;
         
         if (!this.authenticator) {
-            this.authenticator = 'DeafultAuthorizer'
+            this.authenticator = config.defaultReportAuthenticator;
         }
         
         this.selectedGroup = document.designData.currentReport.group;

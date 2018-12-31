@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BaseDesignComponent} from './BaseDesignComponent';
-import {clearContextMenu} from './helpers';
-import {getContextMenu} from './helpers';
+import {clearContextMenu, getModalContainer, getContextMenu} from './helpers';
 import config from '../config/appconfig.json';
+import {DBDataGridSetupPanel} from './DBDataGridSetupPanel';
 
 const reportSectionLoop = (obj, data) => {
     return data.map((item) => {
@@ -47,6 +47,8 @@ class ReportSection extends BaseDesignComponent {
     
     addObject(e) {
         clearContextMenu();
+
+        this.showSetupPanel(e.target.value);
     }
     
     deleteSelectedItems(e) {
@@ -74,6 +76,18 @@ class ReportSection extends BaseDesignComponent {
         }
         
         return retval;
+    }
+
+    showSetupPanel(type) {
+        let rc;
+        let mc;
+        switch(type) {
+            case 'dbdata':
+                rc = {left: 200, top: 75, width: 600, height: 425};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<DBDataGridSetupPanel/>, mc);
+                break;
+        }
     }
 }
 
