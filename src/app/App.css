@@ -790,3 +790,27 @@ input[type="checkbox"] {
     display: block;
 }
 
+
+.moveButton {
+    cursor: pointer;
+    vertical-align: bottom;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.columnSelectLine {
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--default-border-color);
+    padding-bottom: 2px;
+}
+
+.tabContainer {
+    position: absolute;
+    box-sizing:border-box;
+    background: var(--default-bkcolor);
+    overflow: auto;
+    height: 85%;
+    width: 95%;
+}
