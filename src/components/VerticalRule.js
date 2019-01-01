@@ -100,9 +100,8 @@ class VerticalRule extends React.Component {
         
         let start = Math.round((y/eigthInch)) + 1;
         let cy = (height/eigthInch);
-        let vp = (window.innerHeight/config.zoomFactor);
         let ypos = eigthInch + 4;
-        for (let i = start; (((i-start)*eigthInch) < vp) && (i <= cy); i++) {
+        for (let i = start; (((i-start)*eigthInch) < window.innerHeight) && (i <= cy); i++) {
             switch(i%8) {
                 case 0:
                     retval.push([15, ypos, 31, ypos, i/8]);

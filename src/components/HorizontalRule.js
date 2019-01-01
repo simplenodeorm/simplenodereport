@@ -91,8 +91,7 @@ class HorizontalRule extends React.Component {
         let start = Math.round((x/eigthInch)) + 1;
         let cx = (width/eigthInch);
         let xpos = eigthInch;
-        let vp = (window.innerWidth/config.zoomFactor);
-        for (let i = start; (((i-start)*eigthInch) < vp) && (i <= cx); i++) {
+        for (let i = start; (((i-start)*eigthInch) < window.innerWidth) && (i <= cx); i++) {
             switch(i%8) {
                 case 0:
                     retval.push([xpos, 5, xpos, 20, i/8]);
