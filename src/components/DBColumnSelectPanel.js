@@ -4,26 +4,41 @@ import {ColumnSelectLine} from './ColumnSelectLine';
 import axios from "axios";
 import "../app/App.css";
 import config from '../config/appconfig.json';
+import {getUniqueKey} from './helpers';
 
 class DBColumnSelectPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
-        this.loadAvailableQueryColumns();
-        this.state = {
-            move: false
-        };
+        if (!document.designData.availableColumns) {
+            this.loadAvailableQueryColumns();
+            this.state = {
+                move: false,
+                dataLoaded: false
+            };
+        } else {
+            this.state = {
+                move: false,
+                dataLoaded: true
+            };
 
+        }
         this.onMove = this.onMove.bind(this);
     }
 
     render() {
-        let loop = (data) => {
-            return data.map((node, i) => {
-                return <ColumnSelectLine key={node.key} index={i} nodeCount={this.getNodeCount} onMove={this.onMove}/>;
-            });};
+        const {dataLoaded} = this.state;
+
+        if (dataLoaded) {
+            let loop = (data) => {
+                return data.map((node, i) => {
+                    return <ColumnSelectLine key={node.key} index={i} nodeCount={this.getNodeCount} onMove={this.onMove}/>;
+                });};
 
 
-        return (<div className="tabContainer">{loop(document.designData.availableColumns)}</div>);
+            return <div className="tabContainer">{loop(document.designData.availableColumns)}</div>;
+        } else {
+            return <div className="tabContainer"/>;
+        }
     }
 
     onMove(index, inc) {
@@ -56,8 +71,12 @@ class DBColumnSelectPanel extends BaseDesignComponent {
         axios.get(orm.url + '/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId.replace(':','.'), config)
             .then((response) => {
                 if (response.status === 200) {
-                    document.designData.availableColumns = response;
+                    document.designData.availableColumns = response.data;
+                    for (let i = 0; i < document.designData.availableColumns.length; ++i) {
+                        document.designData.availableColumns[i].key = getUniqueKey();
+                    }
                     curcomp.clearWaitMessage();
+                    curcomp.setState({dataLoaded: true});
                 } else {
                     curcomp.clearWaitMessage();
                     curcomp.props.setStatus(response.statusText, true);
