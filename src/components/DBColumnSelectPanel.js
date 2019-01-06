@@ -1,51 +1,46 @@
 import React from 'react';
-import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {BaseDesignComponent} from './BaseDesignComponent';
-import config from '../config/appconfig.json';
-import "../app/App.css";
+import {ColumnSelectLine} from './ColumnSelectLine';
 import axios from "axios";
+import "../app/App.css";
+import config from '../config/appconfig.json';
 
 class DBColumnSelectPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
         this.loadAvailableQueryColumns();
         this.state = {
-            move: false,
-            redraw: false
+            move: false
         };
 
         this.onMove = this.onMove.bind(this);
     }
 
     render() {
-        this.loadSelectedNodesIfRequired();
-
-        this.state.move = false;
-        this.state.redraw = false;
-
         let loop = (data) => {
             return data.map((node, i) => {
                 return <ColumnSelectLine key={node.key} index={i} nodeCount={this.getNodeCount} onMove={this.onMove}/>;
             });};
 
-        return (<div className="tabContainer">{loop(document.designData.selnodes)}</div>);
+
+        return (<div className="tabContainer">{loop(document.designData.availableColumns)}</div>);
     }
 
     onMove(index, inc) {
-        let tmp = document.designData.selnodes[index];
+        let tmp = document.designData.availableColumns[index];
         if (inc < 0) {
-            document.designData.selnodes[index] = document.designData.selnodes[index-1];
-            document.designData.selnodes[index-1] = tmp;
+            document.designData.availableColumns[index] = document.designData.availableColumns[index-1];
+            document.designData.availableColumns[index-1] = tmp;
         } else {
-            document.designData.selnodes[index] = document.designData.selnodes[index+1];
-            document.designData.selnodes[index+1] = tmp;
+            document.designData.availableColumns[index] = document.designData.availableColumns[index+1];
+            document.designData.availableColumns[index+1] = tmp;
         }
 
         this.setState({move: true});
     }
 
     getNodeCount() {
-        return document.designData.selnodes.length;
+        return document.designData.availableColumns.length;
     }
 
 
@@ -57,7 +52,8 @@ class DBColumnSelectPanel extends BaseDesignComponent {
         const config = {
             headers: {'Authorization': orm.authString }
         };
-        axios.get(orm.url + '/report/querycolumns', document.designData.currentReport.queryDocumentId, config)
+
+        axios.get(orm.url + '/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId.replace(':','.'), config)
             .then((response) => {
                 if (response.status === 200) {
                     document.designData.availableColumns = response;
