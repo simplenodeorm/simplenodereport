@@ -418,6 +418,7 @@ input[type="submit"] {
 }
 
 input[type="checkbox"] {
+    display: inline;
     width: 12px;
     height: 12px;
     vertical-align: middle;
@@ -812,5 +813,5 @@ input[type="checkbox"] {
     background: var(--default-bkcolor);
     overflow: auto;
     height: 85%;
-    width: 95%;
+    width: 98%;
 }

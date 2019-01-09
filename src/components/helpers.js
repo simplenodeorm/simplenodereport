@@ -255,3 +255,8 @@ export function getDocumentDimensions(type) {
     
     return retval;
 }
+
+export function isNumeric(type) {
+    let dbtype = getFieldType(type);
+    return ((dbtype === 'float') || (dbtype === 'number'));
+}

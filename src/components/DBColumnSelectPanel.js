@@ -60,7 +60,6 @@ class DBColumnSelectPanel extends BaseDesignComponent {
 
 
     loadAvailableQueryColumns() {
-
         this.showWaitMessage('Loading available columns...');
         const curcomp = this;
         const orm = JSON.parse(localStorage.getItem('orm'));
