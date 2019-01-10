@@ -5,8 +5,11 @@
     --main-color-high:#222;
     --text-color-toolbar:#cccccc;
     --text-hover: #fff;
-    --popup-background:#59595c;
-    --popup-hover:#414142;
+    --popup-background: white;
+    --popup-border-color: darkGray;
+    --popup-text-color: black;
+    --popup-hover-background: slateGray;
+    --popup-hover-text-color: white;
     --font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
     --small-font-size:8pt;
     --default-font-size:10pt;
@@ -51,22 +54,14 @@ body {
 
 .popupMenu {
     position: relative;
-    background-color: var(--bar-color); 
-    color: var(--text-hover); 
-    padding:1px; 
-    border:none; 
+    background-color: var(--popup-background);
+    padding:1px;
     cursor:pointer;
-    font-family:'lucida sans unicode',sans-serif; font-size:1em;
-    -webkit-transition: all .4s ease-in-out;
-    transition: all .4s ease-in-out;
+    border: 1px solid var(--popup-border-color);
+    font-size:var(--default-font-size);
     white-space: nowrap;
 }
 
-.popupMenu:hover {
-    -moz-box-shadow:0 0 5px #999; 
-    -webkit-box-shadow:0 0 5px #999; 
-    box-shadow:0 0 5px #999
-}
 
 .popupMenu>ul { 
     margin: 0;
@@ -75,30 +70,25 @@ body {
 
 .popupMenu>ul li { 
     list-style-type: none;
-    background-image: -moz-linear-gradient(top, #535357, #3c3c3f);
-    background-image: -ms-linear-gradient(top, #535357, #3c3c3f);
-    background-image: -webkit-linear-gradient(top, #535357, #3c3c3f);
-    background-image: linear-gradient(to top, #535357, #3c3c3f);
 }
 
 
 .popupMenu>ul li button {
     display: block;
     padding: 3px 3px;
-    color: var(--text-color-toolbar);
+    color: var(--popup-text-color);
     font-size: 80%;
     width:100%;
     background-color: var(--popup-background);
     text-decoration: none;
     text-align: left;
     font-weight: 500;
-    text-shadow: 0 1px 0 #000;
     border: none;
 }
 
 .popupMenu>ul li button:hover {
-    background-color: black;
-    color: var(--text-hover);
+    background-color: var(--popup-hover-background);
+    color: var(--popup-hover-text-color);
 }
 
 select {
