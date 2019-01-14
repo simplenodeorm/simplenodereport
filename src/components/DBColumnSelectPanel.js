@@ -3,7 +3,6 @@ import {BaseDesignComponent} from './BaseDesignComponent';
 import {ColumnSelectLine} from './ColumnSelectLine';
 import axios from "axios";
 import "../app/App.css";
-import config from '../config/appconfig.json';
 import {getUniqueKey} from './helpers';
 
 class DBColumnSelectPanel extends BaseDesignComponent {

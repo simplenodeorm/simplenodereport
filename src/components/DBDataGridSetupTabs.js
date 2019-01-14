@@ -2,6 +2,7 @@ import React from 'react';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {DBColumnSelectPanel} from './DBColumnSelectPanel';
+import {DBDataGridDisplayFormatPanel} from './DBDataGridDisplayFormatPanel';
 import config from '../config/appconfig.json';
 import "../app/App.css";
 
@@ -23,7 +24,7 @@ class DBDataGridSetupTabs extends BaseDesignComponent {
                         <DBColumnSelectPanel/>
                     </TabPanel>
                     <TabPanel>
-                        <div>222</div>
+                        <DBDataGridDisplayFormatPanel/>
                     </TabPanel>
                 </Tabs>
             </div>;

@@ -1,7 +1,10 @@
 :root {
     --bar-color:#202020;
     --default-bkcolor: white;
-    --main-color:-moz-linear-gradient(top, slateGray, black), -webkit-linear-gradient(slateGray, black), linear-gradient(to bottom, slateGray, black); 
+    --default-text-color: black;
+    --default-font-size:10pt;
+    --default-font-weight:100;
+    --main-color:-moz-linear-gradient(top, slateGray, black), -webkit-linear-gradient(slateGray, black), linear-gradient(to bottom, slateGray, black);
     --main-color-high:#222;
     --text-color-toolbar:#cccccc;
     --text-hover: #fff;
@@ -10,12 +13,10 @@
     --popup-text-color: black;
     --popup-hover-background: slateGray;
     --popup-hover-text-color: white;
-    --font-family:"HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+    --font-family: Arial, Helvetica, sans-serif;
     --small-font-size:8pt;
-    --default-font-size:10pt;
     --med-font-size:12pt;
     --large-font-size:14pt;
-    --font-weight:300;
     --strong-font-weight:700;
     --submit-bkcolor: #37a69b;
     --header-background: -moz-linear-gradient(top, lightGray, silver), -webkit-linear-gradient(lightGray, silver), linear-gradient(to bottom, lightGray, silver);
@@ -44,7 +45,8 @@ html {
 
 body {
     background-color: var(--bar-color);
-    font-weight: var(--font-weight);
+    font-weight: var(--default-font-weight);
+    color: var(--default-text-color);
     float:left;
     text-align: left;
     font-size:var(--default-font-size);
@@ -97,10 +99,9 @@ select {
     border-radius: 4px;
     box-shadow: 0 1px #fff;
     box-sizing: border-box;
-    color: #696969;
+    color: var(--default-text-color);
     height: var(--default-input-height);
-    margin: 10px 0 0 10px;
-    padding-left: 5px;
+    margin: 5px 0 0 10px;
     transition: box-shadow 0.3s;
     width: 240px;
 }
@@ -111,9 +112,9 @@ input[type="password"], input[type="text"] {
     border-radius: 4px;
     box-shadow: 0 1px #fff;
     box-sizing: border-box;
-    color: #696969;
+    color: var(--default-text-color);
     height: var(--default-input-height);
-    margin: 10px 0 0 10px;
+    margin: 5px 0 0 10px;
     padding-left: 5px;
     transition: box-shadow 0.3s;
     width: 240px;
@@ -804,4 +805,21 @@ input[type="checkbox"] {
     overflow: auto;
     height: 85%;
     width: 98%;
+}
+
+.fontSelect {
+    padding: 0;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+.fontSelect th {
+    text-align: right;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.fontSelect select {
+    width: auto;
+    margin-left: 3px;
 }

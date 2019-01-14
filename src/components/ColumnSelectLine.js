@@ -36,8 +36,6 @@ class ColumnSelectLine extends React.Component {
                     &nbsp;{ isNumeric(document.designData.availableColumns[this.props.index].type) && <Checkbox label="Display Total" handleCheckboxChange={this.setDisplayTotal}/> }
                 </span>
             </div>
-
-
         </div>;
     }
 
