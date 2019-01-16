@@ -83,7 +83,7 @@ class ReportSection extends BaseDesignComponent {
         let mc;
         switch(type) {
             case 'dbdata':
-                rc = {left: 175, top: 50, width: 600, height: 425};
+                rc = {left: 175, top: 50, width: 600, height: 350};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<DBDataGridSetupPanel/>, mc);
                 break;

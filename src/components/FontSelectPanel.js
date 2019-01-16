@@ -35,9 +35,11 @@ class FontSelectPanel extends React.Component {
             fontWeight: fontWeight,
             fontSize: Math.round((fontSize * config.zoomFactor)) + 'px',
             border: "solid gray 1px",
-            height: "40px",
+            height: "50px",
+            width: "200px",
             verticalAlign: "middle",
-            textAlign: "center"
+            textAlign: "center",
+            overflow:"hidden"
 
         };
 
@@ -68,7 +70,7 @@ class FontSelectPanel extends React.Component {
 
     setItalic(italic) {
         this.setState({italic: italic});
-        this.props.setFontSetting('italic', italic);
+        this.props.setFontSettings('italic', italic);
     }
 
     setUnderlined(underlined) {
