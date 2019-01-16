@@ -3,9 +3,8 @@ import {BaseDesignComponent} from './BaseDesignComponent';
 import {FontSelectPanel} from './FontSelectPanel';
 import config from '../config/appconfig.json';
 import "../app/App.css";
-import {Checkbox} from "./Checkbox";
 
-class DBDataGridDisplayFormatPanel extends BaseDesignComponent {
+class DBDataGridDisplayFontPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
 
@@ -16,15 +15,15 @@ class DBDataGridDisplayFormatPanel extends BaseDesignComponent {
                 headerFontSettings: {
                     font: 'Arial',
                     fontSize: 12,
+                    fontColor: 'black',
                     fontWeight: 900
                 },
                 dataFontSettings: {
                     font: 'Arial',
                     fontSize: 12,
+                    fontColor: 'black',
                     fontWeight: 100
                 },
-                showGrid: true,
-                fillReportSection: true
 
             };
         }
@@ -33,8 +32,6 @@ class DBDataGridDisplayFormatPanel extends BaseDesignComponent {
         this.getHeaderFontSettings = this.getHeaderFontSettings.bind(this);
         this.setDataFontSettings = this.setDataFontSettings.bind(this);
         this.setHeaderFontSettings = this.setHeaderFontSettings.bind(this);
-        this.setShowGridLines = this.setShowGridLines.bind(this);
-        this.setFillReportSection = this.setFillReportSection.bind(this);
     }
 
 
@@ -47,15 +44,7 @@ class DBDataGridDisplayFormatPanel extends BaseDesignComponent {
             <FontSelectPanel
                 label={config.textmsg.datafontlabel}
                 getFontSettings={this.getDataFontSettings}
-                setFontSettings={this.setDataFontSettings}/>
-            <hr />
-            <Checkbox label={config.textmsg.showgridlines}
-                handleCheckboxChange={this.setShowGridLines}
-                isChecked={this.gridObject.showGrid}/>
-            <br />
-            <Checkbox label={config.textmsg.fillreportsection}
-                handleCheckboxChange={this.setFillReportSection}
-                      isChecked={this.gridObject.fillReportSection}/></div>
+                setFontSettings={this.setDataFontSettings}/></div>
     }
 
     getHeaderFontSettings() {
@@ -73,15 +62,6 @@ class DBDataGridDisplayFormatPanel extends BaseDesignComponent {
     setDataFontSettings(name, value) {
         this.gridObject.dataFontSettings[name] = value;
     }
-
-    setShowGridLines(show) {
-        this.gridObject.showGrid = show;
-    }
-
-    setFillReportSection(fill) {
-        this.gridObject.fillReportSection = fill;
-    }
-
 }
 
-export {DBDataGridDisplayFormatPanel};
+export {DBDataGridDisplayFontPanel};
