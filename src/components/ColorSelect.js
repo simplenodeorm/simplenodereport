@@ -3,17 +3,12 @@ import "../app/App.css";
 
 const loop = (data, cur) => {
     return data.map((info) => {
-        const myStyle = {
-            background: '"' + info + '"',
-            width: "30px"
+        let myStyle = {
+            backgroundColor: info
         }
-
-        if (cur && (info === cur)) {
-            return <option value={info} style={myStyle} selected></option>;
-        } else {
-            return <option value={info} style={myStyle}></option>;
-        }
-    });};
+        return <div className="color" style={myStyle}></div>
+    });
+};
 
 
 class ColorSelect extends React.Component {
@@ -22,7 +17,10 @@ class ColorSelect extends React.Component {
     }
     
     render() {
-        return <select onChange={this.props.setColor}>{loop(this.props.colors, this.props.currentColor)}</select>;
+        return <div className="combobox dropdown">
+            <div tabIndex="-1" className="downarrow"></div>
+            <div className="colorlist">{loop(this.props.colors, this.props.currentColor)}</div>
+        </div>
     }
 }
 
