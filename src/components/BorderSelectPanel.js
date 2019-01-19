@@ -48,12 +48,20 @@ class BorderSelectPanel extends React.Component {
             <tr><td style={{textDecoration: "underline"}} colspan="2">{this.props.label}</td></tr>
             <tr><th>{config.textmsg.borderstylelabel}</th><td><select onChange={this.setBorderStyle}>{loop(config.borderStyles, borderStyle)}</select></td></tr>
             <tr><th>{config.textmsg.borderwidthlabel}</th><td><SizeSelect sizes={config.borderWidths} setSize={this.setBorderWidth} currentSize={borderWidth}/></td></tr>
-            <tr><th>{config.textmsg.colorlabel}</th><td><ColorSelect colors={config.borderColors} setColor={this.setBorderColor} currentColor={borderColor}/></td></tr>
-            <tr><td></td><td>
-                <Checkbox label={config.textmsg.left} handleCheckboxChange={this.setLeft} isChecked={left}/>&nbsp;
-                <Checkbox label={config.textmsg.top} handleCheckboxChange={this.setTop} isChecked={top}/>
-                <Checkbox label={config.textmsg.right} handleCheckboxChange={this.setRight} isChecked={right}/>
-                <Checkbox label={config.textmsg.bottom} handleCheckboxChange={this.setBottom} isChecked={bottom}/></td></tr>
+            <tr><th>{config.textmsg.bordercolorlabel}</th><td><ColorSelect colors={config.borderColors} setColor={this.setBorderColor} currentColor={borderColor}/></td></tr>
+            <tr>
+                <td></td>
+                <td>
+                    <Checkbox label={config.textmsg.left} handleCheckboxChange={this.setLeft} isChecked={left}/>&nbsp;
+                    <Checkbox label={config.textmsg.top} handleCheckboxChange={this.setTop} isChecked={top}/>
+                </td>
+            </tr>
+            <tr><td></td>
+                <td>
+                    <Checkbox label={config.textmsg.right} handleCheckboxChange={this.setRight} isChecked={right}/>&nbsp;
+                    <Checkbox label={config.textmsg.bottom} handleCheckboxChange={this.setBottom} isChecked={bottom}/>
+                </td>
+            </tr>
             <tr><td colspan="2"><div style={exampleStyle}>example text</div></td></tr>
             </table></div>
     }
@@ -88,9 +96,8 @@ class BorderSelectPanel extends React.Component {
         this.props.setBorderSettings('borderWidth', e.target.options[e.target.selectedIndex].value);
     }
 
-    setBorderColor(e) {
-        this.setState({borderColor: e.target.options[e.target.selectedIndex].value});
-        this.props.setBorderSettings('borderColor', e.target.options[e.target.selectedIndex].value);
+    setBorderColor(color) {
+        this.props.setBorderSettings('borderColor', color);
     }
 }
 

@@ -16,12 +16,14 @@ class DBDataGridDisplayFontPanel extends BaseDesignComponent {
                     font: 'Arial',
                     fontSize: 12,
                     fontColor: 'black',
+                    backgroundColor: 'white',
                     fontWeight: 900
                 },
                 dataFontSettings: {
                     font: 'Arial',
                     fontSize: 12,
                     fontColor: 'black',
+                    backgroundColor: 'white',
                     fontWeight: 100
                 },
 

@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import {getPixelsPerInch} from './helpers.js';
-import config from '../config/appconfig.json';
 import 'rc-slider/assets/index.css';
 import '../app/App.css'
 
@@ -38,7 +37,7 @@ class HorizontalRule extends React.Component {
         super(props);
         this.onAfterChange = this.onAfterChange.bind(this);
         this.state = {
-            left: '0px',
+            left: '0',
             width: document.designData.currentReport.documentWidth
         };
     }
@@ -81,6 +80,7 @@ class HorizontalRule extends React.Component {
         let retval = [];
         const {left, width} = this.state;
         let x;
+
         if (left === 0) {
             x = 0;
         } else {

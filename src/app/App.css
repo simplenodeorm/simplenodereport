@@ -824,128 +824,38 @@ input[type="checkbox"] {
     margin-left: 3px;
 }
 
-.combobox {
-    background: var(--input-background);
+
+.colorPicker {
+    width: 40px;
     border: 1px solid #a1a3a3;
     border-radius: 4px;
     box-shadow: 0 1px #fff;
     box-sizing: border-box;
-    color: var(--default-text-color);
+    text-align: right;
+    margin: 3px 0 3px 3px;
+    vertical-align: middle;
     height: var(--default-input-height);
-    margin: 5px 0 0 10px;
-    padding-left: 5px;
-    transition: box-shadow 0.3s;
-    width: 50px;
 }
 
-.dropdown, .combobox {
-    position: relative;
-    display: inline-block;
+.colorPicker img {
+    vertical-align: middle;
 }
 
-.combobox > .downarrow, .dropdown > .downarrow {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 1.25em;
-
-    cursor: default;
-
-    border-width: 0px;          /* disable by default */
-    border-style: inherit; /* copy parent border */
-    border-color: inherit; /* copy parent border */
-}
-
-.combobox:not(.dropdown) > .downarrow {
-    border-left-width: 1px;
-}
-
-.combobox > input {
-    border: 0
-}
-.dropdown > *:last-child,
-.combobox > *:last-child {
-    display: block;
-    opacity: 0;
-    pointer-events: none;
-
-    transition: 0.4s; /* fade out */
-    position: absolute;
-    left: 0;
-    top: 100%;
-    border: 1px solid #888;
-    background-color: #fff;
-    box-shadow: 1px 2px 4px 1px #666;
-    box-shadow: 1px 2px 4px 1px #4448;
-    z-index: 9999;
-    min-width: 100%;
-    box-sizing: border-box;
-}
-
-.dropdown:focus > *:last-child,
-.dropdown > *:focus ~ *:last-child,
-.combobox > .downarrow:focus ~ *:last-child,
-.combobox > .sticky:last-child:hover,
-.dropdown > .sticky:last-child:hover,
-.combobox > .less-sticky:last-child:hover,
-.dropdown > .less-sticky:last-child:hover,
-.combobox > *:last-child:focus:not(.less-sticky),
-.dropdown > *:last-child:focus:not(.less-sticky) {
-    display: block;
-    opacity: 1;
-    transition: 0.15s;
-    pointer-events: auto;
-}
-
-.combobox > *:last-child:focus-within:not(.less-sticky),
-.dropdown > *:last-child:focus-within:not(.less-sticky) {
-    display: block;
-    opacity: 1;
-    transition: 0.15s;
-    pointer-events: auto;
-}
-
-.dropdown:not(.sticky) > *:not(:last-child):focus,
-.downarrow:focus, .dropdown:focus {
-    pointer-events: none; /* Causes second click to close */
-}
-.downarrow:focus {
-    outline: 2px solid #8BF; /* Edge/IE can't do outline transparency */
-    outline: 2px solid #48F8;
-}
-
-*, *:before, *:after {
-    box-sizing: border-box;
-}
-.combobox > *:first-child {
-    display: inline-block;
-    width: 100%;
-    box-sizing: border-box; /* so 100% includes border & padding */
-}
-.combobox > *:not(:last-child):focus {
-    outline: 2px solid #48F8;
-}
-.combobox {
-    margin: 5px;
-}
-
-.combobox .color {
+.colorPicker .color {
     width: 40px;
     height: 15px;
-    display: inline-block;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: block;
 }
 
 .color:hover {
-    outline: 2px solid #888; /* Edge/IE can't do outline transparency */
-    outline: 3px solid #4448;
+    border: 1px dashed black;
 }
 
 .colorlist {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
     height: 100px;
     overflow:auto;
+    position: sticky;
 }
