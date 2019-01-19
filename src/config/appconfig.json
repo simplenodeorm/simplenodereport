@@ -47,7 +47,8 @@
         "headerborderlabel": "Header Border:",
         "databorderlabel": "Data Border:",
         "font": "Font",
-        "border": "Border"
+        "border": "Border",
+        "examplelabel": "Example:"
     },
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,

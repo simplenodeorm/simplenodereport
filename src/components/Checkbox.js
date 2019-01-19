@@ -3,7 +3,7 @@ import React from 'react';
 
 class Checkbox extends React.Component {
     state = {
-        isChecked: false,
+        isChecked: this.props.isChecked,
     }
 
     toggleCheckboxChange = () => {

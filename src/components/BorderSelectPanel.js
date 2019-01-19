@@ -32,16 +32,36 @@ class BorderSelectPanel extends React.Component {
     render() {
         const {borderStyle, borderWidth, borderColor, left, top, right, bottom} = this.state;
 
-        let exampleStyle = {
-            borderStyle: borderStyle,
-            borderWidth: borderWidth,
-            borderColor: borderColor,
-            left: left,
-            top: top,
-            right: right,
-            bottom: bottom
-        };
 
+        let exampleStyle;
+
+        if (left || right || top || bottom) {
+            exampleStyle = {
+                height: '20px',
+                marginLeft: '2px',
+                marginTop: '3px'
+            };
+
+            if (left) {
+                exampleStyle.borderLeft = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
+            }
+
+            if (top) {
+                exampleStyle.borderTop = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
+            }
+
+            if (right) {
+                exampleStyle.borderRight = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
+            }
+
+            if (bottom) {
+                exampleStyle.borderBottom = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
+            }
+        } else {
+            exampleStyle = {
+                border: 'none'
+            };
+        }
 
 
         return <div className="fontSelect"><table cellspacing="0" cellpadding="0">
@@ -62,7 +82,7 @@ class BorderSelectPanel extends React.Component {
                     <Checkbox label={config.textmsg.bottom} handleCheckboxChange={this.setBottom} isChecked={bottom}/>
                 </td>
             </tr>
-            <tr><td colspan="2"><div style={exampleStyle}>example text</div></td></tr>
+            <tr><th>{config.textmsg.examplelabel}</th><td><div style={exampleStyle}/></td></tr>
             </table></div>
     }
 
@@ -97,6 +117,7 @@ class BorderSelectPanel extends React.Component {
     }
 
     setBorderColor(color) {
+        this.setState({borderColor: color});
         this.props.setBorderSettings('borderColor', color);
     }
 }
