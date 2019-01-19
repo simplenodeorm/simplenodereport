@@ -117,7 +117,7 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     newReport() {
-        let rc = {left: 200, top: 75, width: 400, height: 425};
+        let rc = {left: 200, top: 75, width: 400, height: 400};
         let mc = getModalContainer(rc);
         ReactDOM.render(<PreferencesPanel newDocument={true} onOk={this.initializeNewReport}/>, mc);
     }
