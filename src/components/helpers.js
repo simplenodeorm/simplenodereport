@@ -77,8 +77,16 @@ export function getContextMenu(info) {
     document.body.appendChild(retval);
     document.addEventListener('click', popupMenuClick, true);
     retval.style.position = 'absolute';
-    retval.style.top = info.event.pageY + 'px';
-    retval.style.left = info.event.pageX + 'px';
+    let yOffset = 0;
+    let xOffset = 0;
+    if (info.yOffset) {
+        yOffset = info.yOffset;
+    }
+    if (info.xOffset) {
+        xOffset = info.xOffset;
+    }
+    retval.style.top = info.event.pageY + yOffset + 'px';
+    retval.style.left = info.event.pageX + xOffset + 'px';
     retval.style.visibility = 'visible';
     return retval;
 }

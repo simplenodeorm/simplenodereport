@@ -48,7 +48,11 @@
         "databorderlabel": "Data Border:",
         "font": "Font",
         "border": "Border",
-        "examplelabel": "Example:"
+        "examplelabel": "Example:",
+        "targetlocationlabel": "Target Location:",
+        "header": "header",
+        "body": "body",
+        "footer": "footer"
     },
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,

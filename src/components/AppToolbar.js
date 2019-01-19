@@ -6,17 +6,23 @@ import config from '../config/appconfig';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {PreferencesPanel} from './PreferencesPanel';
 import {SaveReportPanel} from './SaveReportPanel';
-import {clearDocumentDesignData} from './helpers';
+import {clearContextMenu, clearDocumentDesignData, getContextMenu} from './helpers';
 import {getModalContainer} from './helpers';
 import {getDocumentDimensions} from './helpers';
 import {getPixelsPerInch} from './helpers.js';
 import axios from 'axios';
+import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
+
+const reportObjectLoop = (obj, data) => {
+    return data.map((item) => {
+        return <li><button onClick={obj.addReportObject} value={item}>add {item}</button></li>
+    });
+};
 
 class AppToolbar extends BaseDesignComponent {
     constructor(props) {
         super(props);
         this.newReport = this.newReport.bind(this);
-        this.newReportObject = this.newReportObject.bind(this);
         this.preferences = this.preferences.bind(this);
         this.savePreferences = this.savePreferences.bind(this);
         this.alignLeft = this.alignLeft.bind(this);
@@ -27,7 +33,8 @@ class AppToolbar extends BaseDesignComponent {
         this.onSave = this.onSave.bind(this);
         this.saveReport = this.saveReport.bind(this);
         this.initializeNewReport = this.initializeNewReport.bind(this);
-
+        this.addReportObject = this.addReportObject.bind(this);
+        this.showReportObjectPopup = this.showReportObjectPopup.bind(this);
         this.alignTextLeft = this.alignTextLeft.bind(this);
         this.alignTextMiddle = this.alignTextMiddle.bind(this);
         this.alignTextRight = this.alignTextRight.bind(this);
@@ -65,7 +72,7 @@ class AppToolbar extends BaseDesignComponent {
                     <img alt='new report' src='/images/newreport.png'/>
                     <span className="label">New Report</span>
                 </button>
-                <button className="button" disable={!canAddObject} title='add new report object' onClick={this.newReportObject}>
+                <button className="button" disable={!canAddObject} title='add new report object' onClick={this.showReportObjectPopup}>
                     {canAddObject && <img alt='new report object' src='/images/newobject.png'/>}
                     {!canAddObject && <img alt='new report object' src='/images/newobject-disabled.png'/>}
                     <span className="label">Add Object</span>
@@ -122,10 +129,6 @@ class AppToolbar extends BaseDesignComponent {
         ReactDOM.render(<PreferencesPanel newDocument={true} onOk={this.initializeNewReport}/>, mc);
     }
 
-    newReportObject() {
-        alert('add new report object');
-    }
-    
     alignLeft() {
     }
     
@@ -225,6 +228,58 @@ class AppToolbar extends BaseDesignComponent {
     savePreferences(results) {
         localStorage.setItem('preferences', JSON.stringify(results));
     }
+
+    showReportObjectPopup(e) {
+        const {itemsSelected} = this.state;
+        const cm = getContextMenu({event: e, yOffset: 20});
+        ReactDOM.render(<ul>{reportObjectLoop(this, config.reportObjectTypes, itemsSelected)}
+            {itemsSelected && <li><button onClick={this.deleteSelectedObjects}>{config.textmsg.deleteselectedobjects}</button></li>}</ul>, cm);
+    }
+
+    addReportObject(e) {
+        clearContextMenu();
+        this.showReportObjectSetupPanel(e.target.value);
+    }
+
+    deleteSelectedItems(e) {
+        clearContextMenu();
+    }
+
+    getReportObjectPopupContent(obj) {
+
+    }
+
+    isReportSection(id) {
+        return ((id === 'header') || (id === 'body') || (id === 'footer'));
+    }
+
+    getReportObject(objid) {
+        let retval;
+
+        if (document.designData.reportObjects) {
+            for (let i = 0; i < document.designData.reportObjects.length; ++i) {
+                if (document.designData.reportObjects[i].id === objid) {
+                    retval = document.designData.reportObjects[i];
+                    break;
+                }
+            }
+        }
+
+        return retval;
+    }
+
+    showReportObjectSetupPanel(type) {
+        let rc;
+        let mc;
+        switch(type) {
+            case 'dbdata':
+                rc = {left: 175, top: 50, width: 600, height: 375};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<DBDataGridSetupPanel/>, mc);
+                break;
+        }
+    }
+
 }
 
 export {AppToolbar};

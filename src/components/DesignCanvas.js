@@ -31,7 +31,6 @@ class DesignCanvas extends React.Component {
             }
         };
             
-        document.addEventListener('contextmenu', this.contextMenu);
         this.dragImg = new Image(0,0);
         // transparent image
         this.dragImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
