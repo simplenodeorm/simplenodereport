@@ -384,7 +384,7 @@ input[type="submit"] {
     width: 375px;
 }
 
-.login h2 {
+.login h3 {
     background: var(--header-background);
     border-bottom: 2px solid #a6abaf;
     border-radius: 10px 10px 0 0;
@@ -393,7 +393,7 @@ input[type="submit"] {
     display: block;
     padding-top: 2px;
     margin: 0;
-    height: 30px;
+    height: 24px;
     text-align: center;
 }
 
@@ -486,7 +486,7 @@ input[type="checkbox"] {
     display: block;
     padding-top: 2px;
     margin: 0;
-    height: 25px;
+    height: 24px;
     width: 100%;
     text-align: center;
 }
