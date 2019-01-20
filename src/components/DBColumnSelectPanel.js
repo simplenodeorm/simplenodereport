@@ -8,7 +8,7 @@ import {getUniqueKey, isNumeric} from './helpers';
 class DBColumnSelectPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
-        if (!document.designData.availableColumns) {
+        if (!this.props.reportObject.reportColumns) {
             this.loadAvailableQueryColumns();
             this.state = {
                 move: false,
@@ -22,6 +22,7 @@ class DBColumnSelectPanel extends BaseDesignComponent {
 
         }
         this.onMove = this.onMove.bind(this);
+        this.getNodeCount = this.getNodeCount.bind(this);
     }
 
     render() {
@@ -30,31 +31,31 @@ class DBColumnSelectPanel extends BaseDesignComponent {
         if (dataLoaded) {
             let loop = (data) => {
                 return data.map((node, i) => {
-                    return <ColumnSelectLine key={node.key} index={i} nodeCount={this.getNodeCount} onMove={this.onMove}/>;
+                    return <ColumnSelectLine key={node.key} reportColumns={this.props.reportObject.reportColumns} index={i} nodeCount={this.getNodeCount} onMove={this.onMove}/>;
                 });};
 
 
-            return <div className="tabContainer">{loop(document.designData.availableColumns)}</div>;
+            return <div className="tabContainer">{loop(this.props.reportObject.reportColumns)}</div>;
         } else {
             return <div className="tabContainer"/>;
         }
     }
 
     onMove(index, inc) {
-        let tmp = document.designData.availableColumns[index];
+        let tmp = this.props.reportObject.reportColumns[index];
         if (inc < 0) {
-            document.designData.availableColumns[index] = document.designData.availableColumns[index-1];
-            document.designData.availableColumns[index-1] = tmp;
+            this.props.reportObject.reportColumns[index] = this.props.reportObject.reportColumns[index-1];
+            this.props.reportObject.reportColumns[index-1] = tmp;
         } else {
-            document.designData.availableColumns[index] = document.designData.availableColumns[index+1];
-            document.designData.availableColumns[index+1] = tmp;
+            this.props.reportObject.reportColumns[index] = this.props.reportObject.reportColumns[index+1];
+            this.props.reportObject.reportColumns[index+1] = tmp;
         }
 
         this.setState({move: true});
     }
 
     getNodeCount() {
-        return document.designData.availableColumns.length;
+        return this.props.reportObject.reportColumns.length;
     }
 
 
@@ -69,17 +70,17 @@ class DBColumnSelectPanel extends BaseDesignComponent {
         axios.get(orm.url + '/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId.replace(':','.'), config)
             .then((response) => {
                 if (response.status === 200) {
-                    document.designData.availableColumns = response.data;
-                    for (let i = 0; i < document.designData.availableColumns.length; ++i) {
-                        document.designData.availableColumns[i].key = getUniqueKey();
-                        document.designData.availableColumns[i].displayResult = true;
-                        document.designData.availableColumns[i].displayHeader = true;
-                        document.designData.availableColumns[i].displayTotal = false;
+                    curcomp.props.reportObject.reportColumns = response.data;
+                    for (let i = 0; i < curcomp.props.reportObject.reportColumns.length; ++i) {
+                        curcomp.props.reportObject.reportColumns[i].key = getUniqueKey();
+                        curcomp.props.reportObject.reportColumns[i].displayResult = true;
+                        curcomp.props.reportObject.reportColumns[i].displayHeader = true;
+                        curcomp.props.reportObject.reportColumns[i].displayTotal = false;
 
-                        if (isNumeric(document.designData.availableColumns[i].type)) {
-                            document.designData.availableColumns[i].textAlign = 'right';
+                        if (isNumeric(curcomp.props.reportObject.reportColumns[i].type)) {
+                            curcomp.props.reportObject.reportColumns[i].textAlign = 'right';
                         } else {
-                            document.designData.availableColumns[i].textAlign = 'left';
+                            curcomp.props.reportObject.reportColumns[i].textAlign = 'left';
                         }
                     }
                     curcomp.clearWaitMessage();
@@ -96,7 +97,6 @@ class DBColumnSelectPanel extends BaseDesignComponent {
             });
 
     }
-
 }
 
 export {DBColumnSelectPanel};

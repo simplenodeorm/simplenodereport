@@ -11,10 +11,10 @@ class ColumnSelectLine extends React.Component {
 
         this.state = {
             moved: false,
-            displayResult: document.designData.availableColumns[this.props.index].displayResult,
-            displayHeader: document.designData.availableColumns[this.props.index].displayHeader,
-            displayTotal: document.designData.availableColumns[this.props.index].displayTotal,
-            textAlign: document.designData.availableColumns[this.props.index].textAlign
+            displayResult: this.props.reportColumns[this.props.index].displayResult,
+            displayHeader: this.props.reportColumns[this.props.index].displayHeader,
+            displayTotal: this.props.reportColumns[this.props.index].displayTotal,
+            textAlign: this.props.reportColumns[this.props.index].textAlign
         };
 
         this.onMoveUp = this.onMoveUp.bind(this);
@@ -26,18 +26,18 @@ class ColumnSelectLine extends React.Component {
     }
 
     render() {
-        const {moved, displayResult, displayHeader, displayTotal, textAlign} = this.state;
+        const {displayResult, displayHeader, displayTotal, textAlign} = this.state;
         return <div className="columnSelectLine">
             <div className="lineStyle1">
-                { (this.props.index > 0) ? <MoveButton type='up' index={this.props.index} onMove={this.onMoveUp} /> : <img src="/images/blank.png"/> }
-                <span className="label">{this.props.index + 1}.&nbsp;</span>{document.designData.availableColumns[this.props.index].path.replace(/\./g, '->')}</div>
+                { (this.props.index > 0) ? <MoveButton type='up' index={this.props.index} onMove={this.onMoveUp} /> : <img alt="" src="/images/blank.png"/> }
+                <span className="label">{this.props.index + 1}.&nbsp;</span>{this.props.reportColumns[this.props.index].path.replace(/\./g, '->')}</div>
             <div className="lineStyle1">
-                { (this.props.index < (this.props.nodeCount() - 1)) ? <MoveButton type='down' index={this.props.index} onMove={this.onMoveDown} /> : <img src="/images/blank.png"/> }
+                { (this.props.index < (this.props.nodeCount() - 1)) ? <MoveButton type='down' index={this.props.index} onMove={this.onMoveDown} /> : <img alt="" src="/images/blank.png"/> }
                 <span>
                     <TextAlignSelect setTextAlign={this.setTextAlign} textAlign={textAlign}/>
                     <Checkbox label="Display Result" handleCheckboxChange={this.setDisplayResult} isChecked={displayResult}/>
                     &nbsp;<Checkbox label="Display Header" handleCheckboxChange={this.setDisplayHeader} isChecked={displayHeader}/>
-                    &nbsp;{ isNumeric(document.designData.availableColumns[this.props.index].type) && <Checkbox label="Display Total" handleCheckboxChange={this.setDisplayTotal} isChecked={displayTotal}/> }
+                    &nbsp;{ isNumeric(this.props.reportColumns[this.props.index].type) && <Checkbox label="Display Total" handleCheckboxChange={this.setDisplayTotal} isChecked={displayTotal}/> }
                 </span>
             </div>
         </div>;
@@ -52,19 +52,19 @@ class ColumnSelectLine extends React.Component {
     }
 
     setDisplayResult(display) {
-        document.designData.availableColumns[this.props.index].displayResult = display;
+        this.props.reportColumns[this.props.index].displayResult = display;
     }
 
     setDisplayHeader(display) {
-        document.designData.availableColumns[this.props.index].displayHeader = display;
+        this.props.reportColumns[this.props.index].displayHeader = display;
     }
 
     setDisplayTotal(display) {
-        document.designData.availableColumns[this.props.index].displayTotal = display;
+        this.props.reportColumns[this.props.index].displayTotal = display;
     }
 
     setTextAlign(textAlign) {
-        document.designData.availableColumns[this.props.index].textAlign = textAlign;
+        this.props.reportColumns[this.props.index].textAlign = textAlign;
     }
 }
 

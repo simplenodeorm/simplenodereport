@@ -11,9 +11,14 @@ class DBDataGridSetupPanel extends ModalDialog {
     }
 
     getContent() {
-        return <DBDataGridSetupTabs/>
+        return <DBDataGridSetupTabs
+            reportObject={this.props.reportObject}
+            ref={(tabs) => {this.tabs = tabs}}/>
     }
-    
+
+    getResult() {
+        return this.props.reportObject;
+    };
 
     getTitle() {
         return config.textmsg.dbdatagridsetuptitle;
@@ -26,11 +31,6 @@ class DBDataGridSetupPanel extends ModalDialog {
     getError() { 
         this.state.error = false;
         return 'Please select a folder and complete all required entries';
-    }
-
-    getResult() {
-        return { 
-        };
     }
 }
 

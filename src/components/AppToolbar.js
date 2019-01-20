@@ -239,15 +239,11 @@ class AppToolbar extends BaseDesignComponent {
         this.showReportObjectSetupPanel(e.target.value);
     }
 
-    deleteSelectedItems(e) {
+    deleteSelectedItems() {
         clearContextMenu();
     }
 
-    getReportObjectPopupContent(obj) {
-
-    }
-
-    getReportObject(objid) {
+     getReportObject(objid) {
         let retval;
 
         if (document.designData.reportObjects) {
@@ -262,14 +258,22 @@ class AppToolbar extends BaseDesignComponent {
         return retval;
     }
 
-    showReportObjectSetupPanel(type) {
+    showReportObjectSetupPanel(type, reportObject) {
         let rc;
         let mc;
+        if (!reportObject) {
+            reportObject = {
+                objectType: type
+            };
+        } else {
+            reportObject = JSON.parse(JSON.stringify(reportObject));
+        }
+
         switch(type) {
             case 'dbdata':
                 rc = {left: 175, top: 50, width: 600, height: 375};
                 mc = getModalContainer(rc);
-                ReactDOM.render(<DBDataGridSetupPanel/>, mc);
+                ReactDOM.render(<DBDataGridSetupPanel reportObject={reportObject}/>, mc);
                 break;
         }
     }

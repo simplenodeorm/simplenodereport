@@ -7,26 +7,25 @@ import "../app/App.css";
 class DBDataGridDisplayFontPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
+        this.reportObject = this.props.reportObject;
 
-        if (this.props.gridObject) {
-            this.gridObject = JSON.parse(JSON.stringify(this.props.gridObject));
-        } else {
-            this.gridObject = {
-                headerFontSettings: {
-                    font: 'Arial',
-                    fontSize: 12,
-                    fontColor: 'black',
-                    backgroundColor: 'white',
-                    fontWeight: 900
-                },
-                dataFontSettings: {
-                    font: 'Arial',
-                    fontSize: 12,
-                    fontColor: 'black',
-                    backgroundColor: 'white',
-                    fontWeight: 100
-                },
+        if (!this.reportObject.headerFontSettings) {
+            this.reportObject.headerFontSettings = {
+                font: 'Arial',
+                fontSize: 12,
+                fontColor: 'black',
+                backgroundColor: 'white',
+                fontWeight: 900
+            };
+        }
 
+        if (!this.reportObject.dataFontSettings) {
+            this.reportObject.dataFontSettings = {
+                font: 'Arial',
+                fontSize: 12,
+                fontColor: 'black',
+                backgroundColor: 'white',
+                fontWeight: 100
             };
         }
 
@@ -50,19 +49,19 @@ class DBDataGridDisplayFontPanel extends BaseDesignComponent {
     }
 
     getHeaderFontSettings() {
-        return this.gridObject.headerFontSettings;
+        return this.reportObject.headerFontSettings;
     }
 
     setHeaderFontSettings(name, value) {
-        this.gridObject.headerFontSettings[name] = value;
+        this.reportObject.headerFontSettings[name] = value;
     }
 
     getDataFontSettings() {
-        return this.gridObject.dataFontSettings;
+        return this.reportObject.dataFontSettings;
     }
 
     setDataFontSettings(name, value) {
-        this.gridObject.dataFontSettings[name] = value;
+        this.reportObject.dataFontSettings[name] = value;
     }
 }
 

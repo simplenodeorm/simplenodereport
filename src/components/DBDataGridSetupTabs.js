@@ -11,12 +11,11 @@ import "../app/App.css";
 class DBDataGridSetupTabs extends BaseDesignComponent {
     constructor(props) {
         super(props);
-        this.setReportSection = this.setReportSection.bind(this);
     }
 
     render() {
         return <div className="tabSetContainer">
-            <ReportSectionSelect setReportSection={this.setReportSection} />
+            <ReportSectionSelect reportObject={this.props.reportObject} />
             <Tabs>
                 <TabList>
                     <Tab>{config.textmsg.selectdata}</Tab>
@@ -24,20 +23,16 @@ class DBDataGridSetupTabs extends BaseDesignComponent {
                     <Tab>{config.textmsg.border}</Tab>
                 </TabList>
                 <TabPanel>
-                    <DBColumnSelectPanel/>
+                    <DBColumnSelectPanel reportObject={this.props.reportObject} ref={(colsel) => {this.columnSelectPanel = colsel}}/>
                 </TabPanel>
                 <TabPanel>
-                    <DBDataGridDisplayFontPanel/>
+                    <DBDataGridDisplayFontPanel reportObject={this.props.reportObject} ref={(fp) => {this.fontPanel = fp}}/>
                 </TabPanel>
                 <TabPanel>
-                    <DBDataGridDisplayBorderPanel/>
+                    <DBDataGridDisplayBorderPanel reportObject={this.props.reportObject} ref={(bp) => {this.borderPanel = bp}}/>
                 </TabPanel>
             </Tabs>
         </div>;
-    }
-
-    setReportSection(reportSection) {
-        this.reportSection = reportSection;
     }
 }
 

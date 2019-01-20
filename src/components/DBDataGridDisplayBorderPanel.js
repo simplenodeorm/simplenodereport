@@ -7,30 +7,30 @@ import "../app/App.css";
 class DBDataGridDisplayBorderPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
+        this.reportObject = this.props.reportObject;
 
-        if (this.props.gridObject) {
-            this.gridObject = JSON.parse(JSON.stringify(this.props.gridObject));
-        } else {
-            this.gridObject = {
-                headerBorderSettings: {
-                    borderStyle: 'none',
-                    borderWidth: 1,
-                    borderColor: 'darkGray',
-                    left: true,
-                    top: true,
-                    right: true,
-                    bottom: true
-                },
-                dataBorderSettings: {
-                    borderStyle: 'none',
-                    borderWidth: 1,
-                    borderColor: 'darkGray',
-                    left: true,
-                    top: true,
-                    right: true,
-                    bottom: true
-               }
+        if (!this.reportObject.headerBorderSettings) {
+            this.reportObject.headerBorderSettings = {
+                borderStyle: 'none',
+                borderWidth: 1,
+                borderColor: 'darkGray',
+                left: true,
+                top: true,
+                right: true,
+                bottom: true
             };
+        }
+
+        if (!this.reportObject.dataBorderSettings) {
+            this.reportObject.dataBorderSettings = {
+                borderStyle: 'none',
+                borderWidth: 1,
+                borderColor: 'darkGray',
+                left: true,
+                top: true,
+                right: true,
+                bottom: true
+           };
         }
 
         this.getDataBorderSettings = this.getDataBorderSettings.bind(this);
@@ -53,19 +53,19 @@ class DBDataGridDisplayBorderPanel extends BaseDesignComponent {
     }
 
    getHeaderBorderSettings() {
-        return this.gridObject.headerBorderSettings;
+        return this.reportObject.headerBorderSettings;
     }
 
     setHeaderBorderSettings(name, value) {
-        this.gridObject.headerBorderSettings[name] = value;
+        this.reportObject.headerBorderSettings[name] = value;
     }
 
     getDataBorderSettings() {
-        return this.gridObject.dataBorderSettings;
+        return this.reportObject.dataBorderSettings;
     }
 
     setDataBorderSettings(name, value) {
-        this.gridObject.dataBorderSettings[name] = value;
+        this.reportObject.dataBorderSettings[name] = value;
     }
 }
 
