@@ -862,4 +862,18 @@ input[type="checkbox"] {
 
 .locationSelect {
     margin: 5px;
+    display: inline-block;
+}
+
+.locationSelect select {
+    width: 100px;
+}
+
+.textAlignSelect {
+    margin: 5px;
+    display: inline-block;
+}
+
+.textAlignSelect select {
+    width: 100px;
 }

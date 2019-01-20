@@ -3,6 +3,7 @@ import "../app/App.css";
 import {MoveButton} from './MoveButton';
 import {Checkbox} from './Checkbox';
 import {isNumeric} from './helpers';
+import {TextAlignSelect} from './TextAlignSelect';
 
 class ColumnSelectLine extends React.Component {
     constructor(props) {
@@ -20,6 +21,7 @@ class ColumnSelectLine extends React.Component {
         this.setDisplayResult = this.setDisplayResult.bind(this);
         this.setDisplayHeader = this.setDisplayHeader.bind(this);
         this.setDisplayTotal = this.setDisplayTotal.bind(this);
+        this.setTextAlign = this.setTextAlign.bind(this);
     }
 
     render() {
@@ -31,6 +33,7 @@ class ColumnSelectLine extends React.Component {
             <div className="lineStyle1">
                 { (this.props.index < (this.props.nodeCount() - 1)) ? <MoveButton type='down' index={this.props.index} onMove={this.onMoveDown} /> : <img src="/images/blank.png"/> }
                 <span>
+                    <TextAlignSelect setTextAlign={this.setTextAlign}/>
                     <Checkbox label="Display Result" handleCheckboxChange={this.setDisplayResult}/>
                     &nbsp;<Checkbox label="Display Header" handleCheckboxChange={this.setDisplayHeader}/>
                     &nbsp;{ isNumeric(document.designData.availableColumns[this.props.index].type) && <Checkbox label="Display Total" handleCheckboxChange={this.setDisplayTotal}/> }
@@ -54,6 +57,10 @@ class ColumnSelectLine extends React.Component {
 
     }
     setDisplayTotal(display) {
+
+    }
+
+    setTextAlign(textAlign) {
 
     }
 }

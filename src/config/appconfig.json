@@ -52,7 +52,11 @@
         "targetlocationlabel": "Target Location:",
         "header": "header",
         "body": "body",
-        "footer": "footer"
+        "footer": "footer",
+        "left": "left",
+        "center": "center",
+        "right": "right",
+        "textalignlabel": "Text Align:"
     },
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,
