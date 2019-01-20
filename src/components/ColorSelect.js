@@ -33,7 +33,7 @@ class ColorSelect extends React.Component {
         };
 
         return <div style={myStyle} className="colorPicker">
-            <img alt="display color list" src="images/pie-chart.png" onClick={this.setDisplayList}/>
+            <img alt="display color list" src="/images/pie-chart.png" onClick={this.setDisplayList}/>
             {displayList &&  <div className="colorlist">{loop(this.props.colors)}</div>}
         </div>
     }

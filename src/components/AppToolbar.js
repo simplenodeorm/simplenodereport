@@ -230,10 +230,8 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     showReportObjectPopup(e) {
-        const {itemsSelected} = this.state;
         const cm = getContextMenu({event: e, yOffset: 20});
-        ReactDOM.render(<ul>{reportObjectLoop(this, config.reportObjectTypes, itemsSelected)}
-            {itemsSelected && <li><button onClick={this.deleteSelectedObjects}>{config.textmsg.deleteselectedobjects}</button></li>}</ul>, cm);
+        ReactDOM.render(<ul>{reportObjectLoop(this, config.reportObjectTypes)}</ul>, cm);
     }
 
     addReportObject(e) {
@@ -247,10 +245,6 @@ class AppToolbar extends BaseDesignComponent {
 
     getReportObjectPopupContent(obj) {
 
-    }
-
-    isReportSection(id) {
-        return ((id === 'header') || (id === 'body') || (id === 'footer'));
     }
 
     getReportObject(objid) {
