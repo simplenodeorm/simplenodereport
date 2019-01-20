@@ -855,7 +855,7 @@ input[type="checkbox"] {
 }
 
 .colorlist {
-    height: 100px;
+    height: 75px;
     overflow:auto;
     position: sticky;
 }
