@@ -243,20 +243,6 @@ class AppToolbar extends BaseDesignComponent {
         clearContextMenu();
     }
 
-     getReportObject(objid) {
-        let retval;
-
-        if (document.designData.reportObjects) {
-            for (let i = 0; i < document.designData.reportObjects.length; ++i) {
-                if (document.designData.reportObjects[i].id === objid) {
-                    retval = document.designData.reportObjects[i];
-                    break;
-                }
-            }
-        }
-
-        return retval;
-    }
 
     showReportObjectSetupPanel(type, reportObject) {
         let rc;
@@ -273,11 +259,28 @@ class AppToolbar extends BaseDesignComponent {
             case 'dbdata':
                 rc = {left: 175, top: 50, width: 600, height: 375};
                 mc = getModalContainer(rc);
-                ReactDOM.render(<DBDataGridSetupPanel reportObject={reportObject}/>, mc);
+                ReactDOM.render(<DBDataGridSetupPanel onOk={this.saveReportObject} reportObject={reportObject}/>, mc);
                 break;
         }
     }
 
+    saveReportObject(reportObject) {
+        if (!reportObject.id) {
+            if (!document.designData.currentReport.reportObjects) {
+                document.designData.currentReport.reportObjects = []
+            }
+
+            reportObject.id = document.designData.currentReport.reportObjects.length;
+            document.designData.currentReport.reportObjects.push(reportObject);
+        } else {
+            for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
+                if (document.designData.currentReport.reportObjects[i].id === reportObject.id) {
+                    document.designData.currentReport.reportObjects[i] = reportObject;
+                    break;
+                }
+            }
+        }
+    }
 }
 
 export {AppToolbar};
