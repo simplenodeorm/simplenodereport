@@ -870,10 +870,11 @@ input[type="checkbox"] {
 }
 
 .textAlignSelect {
-    margin: 5px;
+    margin: 0 10px 2px 0;
     display: inline-block;
 }
 
 .textAlignSelect select {
-    width: 100px;
+    margin-left: 2px;
+    width: 75px;
 }
