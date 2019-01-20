@@ -40,6 +40,7 @@ class FontSelectPanel extends React.Component {
             border: "solid gray 1px",
             height: "50px",
             width: "200px",
+            marginLeft: '20px',
             verticalAlign: "middle",
             textAlign: "center",
             overflow:"hidden"
