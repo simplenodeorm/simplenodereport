@@ -2,22 +2,27 @@ import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig.json';
 
+const loop = (data, ta) => {
+    return data.map((info) => {
+        if (ta === info) {
+            return <option value={info} selected>{config.textmsg[info]}</option>;
+        } else {
+            return <option value={info}>{config.textmsg[info]}</option>;
+        }
+    });
+};
+
 class TextAlignSelect extends React.Component{
     constructor(props) {
         super(props);
         this.setTextAlign = this.setTextAlign.bind(this);
     }
     
-    setLocation(textAlign) {
-        this.setState({textAlign: textAlign});
-    }
-
     render() {
+        const alignments = ["left", "center", "right"];
         return <div className="textAlignSelect">{config.textmsg.textalignlabel}
             <select onChange={this.setTextAlign}>
-                <option value="left">{config.textmsg.left}</option>
-                <option value="center">{config.textmsg.center}</option>
-                <option value="right">{config.textmsg.right}</option>
+                {loop(alignments, this.props.textAlign)}
             </select>
         </div>;
     }

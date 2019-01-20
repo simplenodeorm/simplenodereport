@@ -3,7 +3,7 @@ import {BaseDesignComponent} from './BaseDesignComponent';
 import {ColumnSelectLine} from './ColumnSelectLine';
 import axios from "axios";
 import "../app/App.css";
-import {getUniqueKey} from './helpers';
+import {getUniqueKey, isNumeric} from './helpers';
 
 class DBColumnSelectPanel extends BaseDesignComponent {
     constructor(props) {
@@ -72,6 +72,15 @@ class DBColumnSelectPanel extends BaseDesignComponent {
                     document.designData.availableColumns = response.data;
                     for (let i = 0; i < document.designData.availableColumns.length; ++i) {
                         document.designData.availableColumns[i].key = getUniqueKey();
+                        document.designData.availableColumns[i].displayResult = true;
+                        document.designData.availableColumns[i].displayHeader = true;
+                        document.designData.availableColumns[i].displayTotal = false;
+
+                        if (isNumeric(document.designData.availableColumns[i].type)) {
+                            document.designData.availableColumns[i].textAlign = 'right';
+                        } else {
+                            document.designData.availableColumns[i].textAlign = 'left';
+                        }
                     }
                     curcomp.clearWaitMessage();
                     curcomp.setState({dataLoaded: true});
