@@ -18,6 +18,10 @@ class ReportSectionSelect extends React.Component{
     constructor(props) {
         super(props);
         this.setReportSection = this.setReportSection.bind(this);
+
+        if (!this.props.reportObject.reportSection) {
+            this.props.reportObject.reportSection = 'header';
+        }
     }
     
     render() {

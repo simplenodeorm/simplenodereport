@@ -15,6 +15,7 @@ class DesignPanel extends BaseDesignComponent {
         this.verticalPositionChange = this.verticalPositionChange.bind(this);
         this.onHeaderSize = this.onHeaderSize.bind(this);
         this.onFooterSize = this.onFooterSize.bind(this);
+        this.getSectionRect = this.getSectionRect.bind(this);
         this.header = '';
         this.body = '';
         this.footer = '';
@@ -134,6 +135,33 @@ class DesignPanel extends BaseDesignComponent {
         this.setState(layout);
         this.props.setCurrentReport(document.designData.currentReport);
 
+    }
+
+    getSectionRect(section) {
+        let retval = {};
+        const {margins, width} = this.state;
+        switch(section) {
+            case 'header':
+                retval.top = margins[1];
+                retval.left = margins[0];
+                retval.width = width-(margins[0] + margins[2]);
+                retval.height = document.designData.currentReport.headerHeight - margins[1];
+                break;
+            case 'body':
+                retval.top = 0;
+                retval.left = margins[0];
+                retval.width = width-(margins[0] + margins[2]);
+                retval.height = document.designData.currentReport.headerHeight;
+                break;
+            case 'footer':
+                retval.top = 0;
+                retval.left = margins[0];
+                retval.width = width-(margins[0] + margins[2]);
+                retval.height = document.designData.currentReport.headerHeight - margins[3];
+                break;
+        }
+
+        return retval;
     }
 }
 

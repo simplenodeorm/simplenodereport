@@ -38,7 +38,8 @@ class AppToolbar extends BaseDesignComponent {
         this.alignTextLeft = this.alignTextLeft.bind(this);
         this.alignTextMiddle = this.alignTextMiddle.bind(this);
         this.alignTextRight = this.alignTextRight.bind(this);
-
+        this.saveReportObject = this.saveReportObject.bind(this);
+        this.setDefaultReportObjectSize = this.setDefaultReportObjectSize.bind(this);
         
         this.state = {
             canSave: false,
@@ -267,8 +268,10 @@ class AppToolbar extends BaseDesignComponent {
     saveReportObject(reportObject) {
         if (!reportObject.id) {
             if (!document.designData.currentReport.reportObjects) {
-                document.designData.currentReport.reportObjects = []
+                document.designData.currentReport.reportObjects = [];
             }
+
+            this.setDefaultReportObjectSize(reportObject);
 
             reportObject.id = document.designData.currentReport.reportObjects.length;
             document.designData.currentReport.reportObjects.push(reportObject);
@@ -279,6 +282,32 @@ class AppToolbar extends BaseDesignComponent {
                     break;
                 }
             }
+        }
+    }
+
+    setDefaultReportObjectSize(reportObject) {
+        let dp = this.props.getDesignPanel();
+        switch(reportObject.objectType) {
+            case 'dbdata':
+                let colcnt = 0;
+
+                for (let i = 0; i < reportObject.reportColumns.length; ++i) {
+                    if (reportObject.reportColumns[i].displayResult
+                        || reportObject.reportColumns[i].displayHeader) {
+                        colcnt++;
+                    }
+                }
+
+                reportObject.rect = dp.getSectionRect(reportObject.reportSection);
+                let colwidth = (reportObject.rect.width / colcnt).toFixed(2);
+                for (let i = 0; i < reportObject.reportColumns.length; ++i) {
+                    if (reportObject.reportColumns[i].displayResult
+                        || reportObject.reportColumns[i].displayHeader) {
+                        reportObject.reportColumns[i].width = colwidth;
+                    }
+                }
+
+                break;
         }
     }
 }

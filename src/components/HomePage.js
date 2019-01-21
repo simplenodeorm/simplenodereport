@@ -25,6 +25,7 @@ class HomePage extends React.Component {
         this.reloadDocuments = this.reloadDocuments.bind(this);
         this.setCurrentReport = this.setCurrentReport.bind(this);
         this.refreshLayout = this.refreshLayout.bind(this);
+        this.getDesignPanel = this.getDesignPanel.bind(this);
         this.setDesignPanel = this.setDesignPanel.bind(this);
         this.setStatusBar = this.setStatusBar.bind(this);
     }
@@ -62,6 +63,7 @@ class HomePage extends React.Component {
                 <AppToolbar 
                     setStatus={curobj.setStatus}
                     reloadDocuments={curobj.reloadDocuments}
+                    getDesignPanel={curobj.getDesignPanel}
                     refreshLayout={curobj.refreshLayout}/>
                 <br />
                 <SplitPane 
@@ -82,7 +84,11 @@ class HomePage extends React.Component {
     setDesignPanel(dp) {
         this.designPanel = dp;
     }
-    
+
+    getDesignPanel() {
+        return this.designPanel;
+    }
+
     refreshLayout() {
         return this.designPanel.refreshLayout();
     }
