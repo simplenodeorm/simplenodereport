@@ -306,7 +306,6 @@ class AppToolbar extends BaseDesignComponent {
                         reportObject.reportColumns[i].width = colwidth;
                     }
                 }
-
                 break;
         }
     }
