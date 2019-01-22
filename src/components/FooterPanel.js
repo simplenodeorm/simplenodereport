@@ -8,10 +8,10 @@ class FooterPanel extends ReportSection {
         const {height, margins, width} = this.state;
         return <div className="designChildContainer">
             {document.designData.currentReport.documentSize &&
-                <DesignCanvas 
-                    location="footer" 
-                    showPopup={this.showPopup} 
-                    height={height - margins[3]} 
+                <DesignCanvas
+                    ref={(dc) => {this.setDesignCanvas(dc)}}
+                    location="footer"
+                    height={height - margins[3]}
                     width={width - (margins[0] + margins[2])} 
                     marginLeft={margins[0]} marginTop={0}/> 
             }

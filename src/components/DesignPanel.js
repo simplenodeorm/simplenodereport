@@ -7,6 +7,8 @@ import {BodyPanel} from './BodyPanel';
 import {FooterPanel} from './FooterPanel';
 import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
+import ReactDOM from 'react-dom';
+import {ReportObject} from './ReportObject';
 
 class DesignPanel extends BaseDesignComponent {
     constructor(props) {
@@ -15,7 +17,11 @@ class DesignPanel extends BaseDesignComponent {
         this.verticalPositionChange = this.verticalPositionChange.bind(this);
         this.onHeaderSize = this.onHeaderSize.bind(this);
         this.onFooterSize = this.onFooterSize.bind(this);
-        this.getSectionRect = this.getSectionRect.bind(this);
+        this.getReportSection = this.getReportSection.bind(this);
+        this.getReportSectionDesignCanvas = this.getReportSectionDesignCanvas.bind(this);
+        this.addReportObject = this.addReportObject.bind(this);
+        this.updateReportObject = this.updateReportObject.bind(this);
+
         this.header = '';
         this.body = '';
         this.footer = '';
@@ -137,31 +143,33 @@ class DesignPanel extends BaseDesignComponent {
 
     }
 
-    getSectionRect(section) {
-        let retval = {};
-        const {margins, width} = this.state;
-        switch(section) {
+    getReportSection(sectionName) {
+        let retval;
+        switch(sectionName) {
             case 'header':
-                retval.top = margins[1];
-                retval.left = margins[0];
-                retval.width = width-(margins[0] + margins[2]);
-                retval.height = document.designData.currentReport.headerHeight - margins[1];
+                retval = this.header;
                 break;
             case 'body':
-                retval.top = 0;
-                retval.left = margins[0];
-                retval.width = width-(margins[0] + margins[2]);
-                retval.height = document.designData.currentReport.headerHeight;
+                retval = this.body;
                 break;
             case 'footer':
-                retval.top = 0;
-                retval.left = margins[0];
-                retval.width = width-(margins[0] + margins[2]);
-                retval.height = document.designData.currentReport.headerHeight - margins[3];
+                retval = this.footer;
                 break;
         }
-
         return retval;
+    }
+
+    getReportSectionDesignCanvas(sectionName) {
+         return this.getReportSection(sectionName).getDesignCanvas();
+    }
+
+    addReportObject(reportObjectConfig) {
+        ReactDOM.render(<ReportObject config={reportObjectConfig} />,
+            ReactDOM.findDOMNode(this.getReportSection(reportObjectConfig.reportSection)));
+    }
+
+    updateReportObject(reportObject) {
+
     }
 }
 

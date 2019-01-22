@@ -9,12 +9,13 @@ class HeaderPanel extends ReportSection {
 
         return <div className="designChildContainer">
             {document.designData.currentReport.documentSize &&
-                <DesignCanvas 
+                <DesignCanvas
+                    ref={(dc) => {this.setDesignCanvas(dc)}}
                     location="header" 
-                    showPopup={this.showPopup} 
-                    height={height - margins[1]} 
+                    height={height - margins[1]}
                     width={width - (margins[0] + margins[2])} 
-                    marginLeft={margins[0]} marginTop={margins[1]}/>
+                    marginLeft={margins[0]}
+                    marginTop={margins[1]}/>
             }
             <svg width={width} height={height}>
                 <line x1={margins[0]} y1={margins[1]} x2={margins[0]} y2={height} stroke="cyan" strokeWidth="0.75"/>

@@ -17,6 +17,7 @@ class DesignCanvas extends React.Component {
         this.onDragOver = this.onDragOver.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
+        this.getRect = this.getRect.bind(this);
     }
 
     componentDidMount () {
@@ -103,6 +104,16 @@ class DesignCanvas extends React.Component {
     onDragEnd(info) {
         this.startDragPoint = '';
         this.setState({lassoRect: {left: -100, top: -100, width: 0, height: 0}, lassoDisplay: 'none'});
+    }
+
+    getRect() {
+        const {height, width, marginLeft, marginTop} = this.state;
+        return {
+            left: marginLeft,
+            top: marginTop,
+            width: width,
+            height: height
+        };
     }
 }
 

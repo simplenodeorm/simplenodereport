@@ -266,6 +266,7 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     saveReportObject(reportObject) {
+        let dp = this.props.getDesignPanel();
         if (!reportObject.id) {
             if (!document.designData.currentReport.reportObjects) {
                 document.designData.currentReport.reportObjects = [];
@@ -275,10 +276,12 @@ class AppToolbar extends BaseDesignComponent {
 
             reportObject.id = document.designData.currentReport.reportObjects.length;
             document.designData.currentReport.reportObjects.push(reportObject);
+            dp.addReportObject(reportObject)
         } else {
             for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
                 if (document.designData.currentReport.reportObjects[i].id === reportObject.id) {
                     document.designData.currentReport.reportObjects[i] = reportObject;
+                    dp.updateReportObject(reportObject)
                     break;
                 }
             }
@@ -298,7 +301,7 @@ class AppToolbar extends BaseDesignComponent {
                     }
                 }
 
-                reportObject.rect = dp.getSectionRect(reportObject.reportSection);
+                reportObject.rect = dp.getReportSectionDesignCanvas(reportObject.reportSection).getRect();
                 let colwidth = (reportObject.rect.width / colcnt).toFixed(2);
                 for (let i = 0; i < reportObject.reportColumns.length; ++i) {
                     if (reportObject.reportColumns[i].displayResult

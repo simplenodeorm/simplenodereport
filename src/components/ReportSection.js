@@ -1,9 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {BaseDesignComponent} from './BaseDesignComponent';
-import {clearContextMenu, getModalContainer, getContextMenu} from './helpers';
-import config from '../config/appconfig.json';
-import {DBDataGridSetupPanel} from './DBDataGridSetupPanel';
 
 class ReportSection extends BaseDesignComponent {
     constructor(props) {
@@ -14,12 +10,22 @@ class ReportSection extends BaseDesignComponent {
             width: this.props.width,
             margins: this.props.margins,
         };
+        this.designCanvas;
+        this.getDesignCanvas = this.getDesignCanvas.bind(this)
+        this.setDesignCanvas = this.setDesignCanvas.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
         this.setState({height: nextProps.height, width: nextProps.width, margins: nextProps.margins});
     }
 
+    setDesignCanvas(designCanvas) {
+        this.designCanvas = designCanvas;
+    }
+
+    getDesignCanvas() {
+        return this.designCanvas;
+    }
 }
 
 export {ReportSection};

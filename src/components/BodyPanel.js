@@ -9,10 +9,10 @@ class BodyPanel extends ReportSection {
 
         return <div className="designChildContainer">
             {document.designData.currentReport.documentSize &&
-                <DesignCanvas 
-                    location="body" 
-                    showPopup={this.showPopup} 
-                    height={height} 
+                <DesignCanvas
+                    ref={(dc) => {this.setDesignCanvas(dc)}}
+                    location="body"
+                    height={height}
                     width={width - (margins[0] + margins[2])} 
                     marginLeft={margins[0]} 
                     marginTop={0}/>
