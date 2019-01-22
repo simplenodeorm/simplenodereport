@@ -7,7 +7,15 @@ class ReportObject extends React.Component {
     }
 
     render() {
-        return <div>xxxxxxxxxxxxxx</div>
+        switch(this.props.config.objectType) {
+            case 'dbdata':
+                return this.getDBDataContent();
+            break;
+        }
+    }
+
+    getDBDataContent() {
+        return <div>xxxxxxxxxxxxxxx</div>;
     }
 }
 
