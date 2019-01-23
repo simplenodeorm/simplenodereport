@@ -109,10 +109,10 @@ class DesignCanvas extends React.Component {
     getRect() {
         const {height, width, marginLeft, marginTop} = this.state;
         return {
-            left: marginLeft,
-            top: marginTop,
-            width: width,
-            height: height
+            left: marginLeft.toFixed(2),
+            top: marginTop.toFixed(2),
+            width: width.toFixed(2),
+            height: height.toFixed(2)
         };
     }
 }

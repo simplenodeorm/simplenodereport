@@ -8,6 +8,50 @@ class DBDataGridSetupPanel extends ModalDialog {
     constructor(props) {
         super(props);
 
+        if (!this.props.reportObject.headerFontSettings) {
+            this.props.reportObject.headerFontSettings = {
+                font: 'Arial',
+                fontSize: 12,
+                fontColor: 'black',
+                backgroundColor: 'white',
+                fontWeight: 900
+            };
+        }
+
+        if (!this.props.reportObject.dataFontSettings) {
+            this.props.reportObject.dataFontSettings = {
+                font: 'Arial',
+                fontSize: 12,
+                fontColor: 'black',
+                backgroundColor: 'white',
+                fontWeight: 100
+            };
+        }
+
+        if (!this.props.reportObject.headerBorderSettings) {
+            this.props.reportObject.headerBorderSettings = {
+                borderStyle: 'none',
+                borderWidth: 1,
+                borderColor: 'darkGray',
+                left: true,
+                top: true,
+                right: true,
+                bottom: true
+            };
+        }
+
+        if (!this.props.reportObject.dataBorderSettings) {
+            this.props.reportObject.dataBorderSettings = {
+                borderStyle: 'none',
+                borderWidth: 1,
+                borderColor: 'darkGray',
+                left: true,
+                top: true,
+                right: true,
+                bottom: true
+            };
+        }
+
     }
 
     getContent() {

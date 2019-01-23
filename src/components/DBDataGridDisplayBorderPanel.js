@@ -7,32 +7,6 @@ import "../app/App.css";
 class DBDataGridDisplayBorderPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
-        this.reportObject = this.props.reportObject;
-
-        if (!this.reportObject.headerBorderSettings) {
-            this.reportObject.headerBorderSettings = {
-                borderStyle: 'none',
-                borderWidth: 1,
-                borderColor: 'darkGray',
-                left: true,
-                top: true,
-                right: true,
-                bottom: true
-            };
-        }
-
-        if (!this.reportObject.dataBorderSettings) {
-            this.reportObject.dataBorderSettings = {
-                borderStyle: 'none',
-                borderWidth: 1,
-                borderColor: 'darkGray',
-                left: true,
-                top: true,
-                right: true,
-                bottom: true
-           };
-        }
-
         this.getDataBorderSettings = this.getDataBorderSettings.bind(this);
         this.getHeaderBorderSettings = this.getHeaderBorderSettings.bind(this);
         this.setDataBorderSettings = this.setDataBorderSettings.bind(this);
@@ -53,19 +27,19 @@ class DBDataGridDisplayBorderPanel extends BaseDesignComponent {
     }
 
    getHeaderBorderSettings() {
-        return this.reportObject.headerBorderSettings;
+        return this.props.reportObject.headerBorderSettings;
     }
 
     setHeaderBorderSettings(name, value) {
-        this.reportObject.headerBorderSettings[name] = value;
+        this.props.reportObject.headerBorderSettings[name] = value;
     }
 
     getDataBorderSettings() {
-        return this.reportObject.dataBorderSettings;
+        return this.props.reportObject.dataBorderSettings;
     }
 
     setDataBorderSettings(name, value) {
-        this.reportObject.dataBorderSettings[name] = value;
+        this.props.reportObject.dataBorderSettings[name] = value;
     }
 }
 

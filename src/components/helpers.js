@@ -208,6 +208,21 @@ export function getPixelsPerInch() {
     return ppi;
 }
 
+export function getFontHeight(fontName, fontSize) {
+    let fontStyle = '{font-family: ' + fontName + '; font-size: ' + fontSize + 'pt; left: -100px; top: -100px}';
+    let head = document.getElementsByTagName('head')[0];
+    let body = document.getElementsByTagName('body')[0];
+    let testElement = document.createElement('div');
+    testElement.setAttribute('id', 'font-test');
+    testElement.setAttribute('style', 'style')
+    testElement.innerHTML = 'XXXXXX';
+    body.appendChild(testElement);
+    let retval = document.getElementById('font-test').getBoundingClientRect().height;
+    body.removeChild(testElement)
+    return retval;
+}
+
+
 export function getDocumentDimensions(type) {
     let retval = [8.5, 11];
     switch(type.toUpperCase()) {

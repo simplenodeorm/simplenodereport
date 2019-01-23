@@ -301,6 +301,7 @@ class AppToolbar extends BaseDesignComponent {
                     }
                 }
 
+                reportObject.columnCount = colcnt;
                 reportObject.rect = dp.getReportSectionDesignCanvas(reportObject.reportSection).getRect();
                 let colwidth = (reportObject.rect.width / colcnt).toFixed(2);
                 for (let i = 0; i < reportObject.reportColumns.length; ++i) {

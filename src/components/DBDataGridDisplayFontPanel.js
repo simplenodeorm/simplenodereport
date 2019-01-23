@@ -7,27 +7,7 @@ import "../app/App.css";
 class DBDataGridDisplayFontPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
-        this.reportObject = this.props.reportObject;
 
-        if (!this.reportObject.headerFontSettings) {
-            this.reportObject.headerFontSettings = {
-                font: 'Arial',
-                fontSize: 12,
-                fontColor: 'black',
-                backgroundColor: 'white',
-                fontWeight: 900
-            };
-        }
-
-        if (!this.reportObject.dataFontSettings) {
-            this.reportObject.dataFontSettings = {
-                font: 'Arial',
-                fontSize: 12,
-                fontColor: 'black',
-                backgroundColor: 'white',
-                fontWeight: 100
-            };
-        }
 
         this.getDataFontSettings = this.getDataFontSettings.bind(this);
         this.getHeaderFontSettings = this.getHeaderFontSettings.bind(this);
@@ -49,19 +29,19 @@ class DBDataGridDisplayFontPanel extends BaseDesignComponent {
     }
 
     getHeaderFontSettings() {
-        return this.reportObject.headerFontSettings;
+        return this.props.reportObject.headerFontSettings;
     }
 
     setHeaderFontSettings(name, value) {
-        this.reportObject.headerFontSettings[name] = value;
+        this.props.reportObject.headerFontSettings[name] = value;
     }
 
     getDataFontSettings() {
-        return this.reportObject.dataFontSettings;
+        return this.props.reportObject.dataFontSettings;
     }
 
     setDataFontSettings(name, value) {
-        this.reportObject.dataFontSettings[name] = value;
+        this.props.reportObject.dataFontSettings[name] = value;
     }
 }
 
