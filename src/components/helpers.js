@@ -283,3 +283,17 @@ export function isNumeric(type) {
     let dbtype = getFieldType(type);
     return ((dbtype === 'float') || (dbtype === 'number'));
 }
+
+export function getReportColumn(key) {
+    let retval;
+
+    for (let i = 0; i < document.designData.currentReport.reportColumns.length; ++i) {
+        if (key === document.designData.currentReport.reportColumns[i].key) {
+            retval = document.designData.currentReport.reportColumns[i];
+            break;
+        }
+    }
+
+    return retval;
+
+}

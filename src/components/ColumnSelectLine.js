@@ -4,6 +4,7 @@ import {MoveButton} from './MoveButton';
 import {Checkbox} from './Checkbox';
 import {TextAlignSelect} from './TextAlignSelect';
 import config from '../config/appconfig.json';
+import {getReportColumn} from './helpers';
 
 class ColumnSelectLine extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class ColumnSelectLine extends React.Component {
 
     render() {
         const {displayResult, displayTotal, textAlign} = this.state;
-        let columnData = this.getColumnData(this.props.reportColumns[this.props.index].key);
+        let columnData = getReportColumn(this.props.reportColumns[this.props.index].key);
 
         return <div className="columnSelectLine">
             <div className="lineStyle1">
@@ -63,16 +64,6 @@ class ColumnSelectLine extends React.Component {
     }
 
     getColumnData(key) {
-        let retval;
-
-        for (let i = 0; i < document.designData.currentReport.reportColumns.length; ++i) {
-            if (key === document.designData.currentReport.reportColumns[i].key) {
-                retval = document.designData.currentReport.reportColumns[i];
-                break;
-            }
-        }
-
-        return retval;
     }
 }
 
