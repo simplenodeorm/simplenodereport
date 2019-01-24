@@ -54,8 +54,6 @@ class DesignCanvas extends React.Component {
             width: width + 'px',
             marginLeft: (marginLeft-1) + 'px',
             marginTop: (marginTop-1) + 'px',
-            background: 'transparent',
-            position: 'absolute'
         };
         
         return <div className="designCanvas" ref={(c) => {this.myCanvas = c;}}
@@ -65,7 +63,7 @@ class DesignCanvas extends React.Component {
             onDragOver={this.onDragOver}
             onDragEnd={this.onDragEnd}
             onDrop={this.onDrop}>
-                {lassoRect && <LassoSelect rect={lassoRect} display={lassoDisplay}/>}
+            {lassoRect && <LassoSelect rect={lassoRect} display={lassoDisplay}/>}
             </div>
     }
     
@@ -106,11 +104,11 @@ class DesignCanvas extends React.Component {
         this.setState({lassoRect: {left: -100, top: -100, width: 0, height: 0}, lassoDisplay: 'none'});
     }
 
-    getRect() {
-        const {height, width, marginLeft, marginTop} = this.state;
+    getRect(offset) {
+        const {height, width} = this.state;
         return {
-            left: marginLeft.toFixed(2),
-            top: marginTop.toFixed(2),
+            left: 0,
+            top: 0,
             width: width.toFixed(2),
             height: height.toFixed(2)
         };

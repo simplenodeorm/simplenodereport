@@ -33,18 +33,17 @@ class ReportObject extends React.Component {
             switch(this.props.config.objectType) {
                 case 'dbdata':
                     css = ' .' + retval
-                        + ' {position: relative; display: grid; left: '
+                        + ' {position: relative; border: solid 1px black; display: grid; left: '
                         + this.props.config.rect.left
                         + 'px; top: '
                         + this.props.config.rect.left
                         + 'px; width: '
                         + this.props.config.rect.width
                         + 'px; height: '
-                        + this.props.config.rect.width
+                        + this.props.config.rect.height
                         + 'px; grid-template-columns: ';
                     for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
-                        if (this.props.config.reportColumns[i].displayHeader ||
-                            this.props.config.reportColumns[i].displayResult) {
+                        if (this.props.config.reportColumns[i].displayResult) {
                             css += ((this.props.config.reportColumns[i].width/config.zoomFactor) + 'px');
                         }
                     }

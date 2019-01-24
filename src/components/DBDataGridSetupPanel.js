@@ -3,6 +3,7 @@ import config from '../config/appconfig.json';
 import {ModalDialog} from './ModalDialog';
 import {DBDataGridSetupTabs} from './DBDataGridSetupTabs';
 import "../app/App.css";
+import defaults from '../config/defaults.json';
 
 class DBDataGridSetupPanel extends ModalDialog {
     constructor(props) {
@@ -10,8 +11,8 @@ class DBDataGridSetupPanel extends ModalDialog {
 
         if (!this.props.reportObject.headerFontSettings) {
             this.props.reportObject.headerFontSettings = {
-                font: 'Arial',
-                fontSize: 12,
+                font: defaults.font,
+                fontSize: defaults.fontSize,
                 fontColor: 'black',
                 backgroundColor: 'white',
                 fontWeight: 900
@@ -20,8 +21,8 @@ class DBDataGridSetupPanel extends ModalDialog {
 
         if (!this.props.reportObject.dataFontSettings) {
             this.props.reportObject.dataFontSettings = {
-                font: 'Arial',
-                fontSize: 12,
+                font: defaults.font,
+                fontSize: defaults.fontSize,
                 fontColor: 'black',
                 backgroundColor: 'white',
                 fontWeight: 100

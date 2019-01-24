@@ -70,19 +70,24 @@ class DBColumnSelectPanel extends BaseDesignComponent {
         axios.get(orm.url + '/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId.replace(':','.'), config)
             .then((response) => {
                 if (response.status === 200) {
-                    curcomp.props.reportObject.reportColumns = response.data;
-                    for (let i = 0; i < curcomp.props.reportObject.reportColumns.length; ++i) {
-                        curcomp.props.reportObject.reportColumns[i].key = getUniqueKey();
-                        curcomp.props.reportObject.reportColumns[i].displayResult = true;
-                        curcomp.props.reportObject.reportColumns[i].displayHeader = true;
-                        curcomp.props.reportObject.reportColumns[i].displayTotal = false;
-
-                        if (isNumeric(curcomp.props.reportObject.reportColumns[i].type)) {
-                            curcomp.props.reportObject.reportColumns[i].textAlign = 'right';
-                        } else {
-                            curcomp.props.reportObject.reportColumns[i].textAlign = 'left';
+                    document.designData.currentReport.reportColumns = response.data;
+                    curcomp.props.reportObject.reportColumns = [];
+                    for (let i = 0; i < document.designData.currentReport.reportColumns.length; ++i) {
+                        document.designData.currentReport.reportColumns[i].key = getUniqueKey();
+                        document.designData.currentReport.reportColumns[i].isNumeric = isNumeric(document.designData.currentReport.reportColumns[i].type);
+                        let ta = 'left';
+                        if (document.designData.currentReport.reportColumns[i].isNumeric) {
+                            ta = 'right';
                         }
+
+                        this.props.reportObject.reportColumns.push({
+                            key: document.designData.currentReport.reportColumns[i].key,
+                            textAlign: ta,
+                            displayResult: true,
+                            displayTotal : false
+                        });
                     }
+
                     curcomp.clearWaitMessage();
                     curcomp.setState({dataLoaded: true});
                 } else {

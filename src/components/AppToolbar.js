@@ -295,18 +295,21 @@ class AppToolbar extends BaseDesignComponent {
                 let colcnt = 0;
 
                 for (let i = 0; i < reportObject.reportColumns.length; ++i) {
-                    if (reportObject.reportColumns[i].displayResult
-                        || reportObject.reportColumns[i].displayHeader) {
+                    if (reportObject.reportColumns[i].displayResult) {
                         colcnt++;
                     }
                 }
 
                 reportObject.columnCount = colcnt;
                 reportObject.rect = dp.getReportSectionDesignCanvas(reportObject.reportSection).getRect();
+                reportObject.rect.top += 3;
+                reportObject.rect.left += 3
+                reportObject.rect.height -= 10;
+                reportObject.rect.width -= 6;
+
                 let colwidth = (reportObject.rect.width / colcnt).toFixed(2);
                 for (let i = 0; i < reportObject.reportColumns.length; ++i) {
-                    if (reportObject.reportColumns[i].displayResult
-                        || reportObject.reportColumns[i].displayHeader) {
+                    if (reportObject.reportColumns[i].displayResult) {
                         reportObject.reportColumns[i].width = colwidth;
                     }
                 }

@@ -56,7 +56,9 @@
         "left": "left",
         "center": "center",
         "right": "right",
-        "textalignlabel": "Text Align:"
+        "textalignlabel": "Text Align:",
+        "displayresult": "Display Result",
+        "displaytotal": "Display Total"
     },
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,

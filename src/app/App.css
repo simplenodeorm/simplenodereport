@@ -710,6 +710,7 @@ input[type="checkbox"] {
     background: transparent;
     border: solid 1px red;
     position: relative;
+    z-index: 10;
     display: none;
 }
 
@@ -877,4 +878,10 @@ input[type="checkbox"] {
 .textAlignSelect select {
     margin-left: 2px;
     width: 75px;
+}
+
+.designCanvas {
+    background: transparent;
+    position: absolute;
+    z-index: 1;
 }

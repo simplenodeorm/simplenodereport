@@ -165,7 +165,7 @@ class DesignPanel extends BaseDesignComponent {
 
     addReportObject(reportObjectConfig) {
         ReactDOM.render(<ReportObject config={reportObjectConfig} />,
-            ReactDOM.findDOMNode(this.getReportSection(reportObjectConfig.reportSection)));
+            ReactDOM.findDOMNode(this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas()));
     }
 
     updateReportObject(reportObject) {
