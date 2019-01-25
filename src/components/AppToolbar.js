@@ -158,7 +158,7 @@ class AppToolbar extends BaseDesignComponent {
 
     initializeNewReport(settings) {
         clearDocumentDesignData();
-        
+        document.designData.reportName = settings.reportName;
         for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
             document.designData.currentReport[config.defaultPreferenceNames[i]] = settings[config.defaultPreferenceNames[i]];
         }

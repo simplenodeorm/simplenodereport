@@ -13,8 +13,8 @@ class BodyPanel extends ReportSection {
                     ref={(dc) => {this.setDesignCanvas(dc)}}
                     location="body"
                     height={height}
-                    width={width - (margins[0] + margins[2])} 
-                    marginLeft={margins[0]} 
+                    width={width - (margins[0] + margins[2])}
+                    marginLeft={margins[0]}
                     marginTop={0}/>
             }
 

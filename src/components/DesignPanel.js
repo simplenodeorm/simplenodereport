@@ -8,7 +8,7 @@ import {FooterPanel} from './FooterPanel';
 import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
 import ReactDOM from 'react-dom';
-import {ReportObject} from './ReportObject';
+import {DBDataReportObject} from './DBDataReportObject';
 
 class DesignPanel extends BaseDesignComponent {
     constructor(props) {
@@ -164,8 +164,13 @@ class DesignPanel extends BaseDesignComponent {
     }
 
     addReportObject(reportObjectConfig) {
-        ReactDOM.render(<ReportObject config={reportObjectConfig} />,
-            ReactDOM.findDOMNode(this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas()));
+        switch (reportObjectConfig.objectType) {
+            case 'dbdata':
+                ReactDOM.render(<DBDataReportObject config={reportObjectConfig}/>,
+                    ReactDOM.findDOMNode(this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas()));
+                break;
+
+        }
     }
 
     updateReportObject(reportObject) {
