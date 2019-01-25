@@ -5,8 +5,8 @@ import {getFontHeight, getReportColumn} from './helpers';
 import {ReportObject} from './ReportObject';
 
 const headerLoop = (data) => {
-    return data.map((cinfo) => {
-        return <th>{cinfo.name}</th>;
+    return data.map((cinfo, i) => {
+        return <th><div>{cinfo.name}</div></th>;
     });
 };
 
@@ -55,6 +55,8 @@ class DBDataReportObject extends ReportObject {
             cssClassName: this.getCssClassName(),
             numRows: numRows,
             columns: columns,
+            headerHeight: headerHeight,
+            dataRowHeight: dataRowHeight,
             data: data,
             objectColumns: objectColumns
 
@@ -87,7 +89,7 @@ class DBDataReportObject extends ReportObject {
             + ' table { border-spacing: 0; border-collapse: collapse; }'));
 
         css = '.' + objectData.cssClassName
-            + ' th {margin: 0; padding: 0; font-family:'
+            + ' th {margin: 0; padding: 0; overflow:hidden; font-family:'
             + this.props.config.headerFontSettings.font
             + '; font-size: '
             + this.props.config.headerFontSettings.fontSize
@@ -95,22 +97,23 @@ class DBDataReportObject extends ReportObject {
             + this.props.config.headerFontSettings.fontWeight
             + '; color: '
             + this.props.config.headerFontSettings.fontColor
-            + '; background-color: '
+            + '; height: '
+            + objectData.headerHeight
+            + 'px; background-color: '
             + this.props.config.headerFontSettings.backgroundColor
             + '; text-align: center;} ';
         style.appendChild(document.createTextNode(css));
 
         for (let i = 0; i < objectData.objectColumns.length; ++i) {
-            css = '.' + objectData.cssClassName + ' th:nth-child('
+            css = 'div.' + objectData.cssClassName + ' th div:nth-child('
                 + (i+1)
                 + ') { width: '
-                + (Math.round(objectData.objectColumns[i].width/config.zoomFactor) + 'px;')
+                + (Math.round(objectData.objectColumns[i].width) + 'px;')
                 + '} ';
             style.appendChild(document.createTextNode(css));
         }
 
-        css = '.' + objectData.cssClassName + ' td {'
-            + 'font-family: '
+        css = '.' + objectData.cssClassName + ' td {overflow: hidden; font-family: '
             + this.props.config.dataFontSettings.font
             + '; font-size: '
             + this.props.config.dataFontSettings.fontSize
@@ -118,7 +121,9 @@ class DBDataReportObject extends ReportObject {
             + this.props.config.dataFontSettings.fontWeight
             + '; color: '
             + this.props.config.dataFontSettings.fontColor
-            + '; background-color: '
+            + '; height: '
+            + objectData.dataRowHeight
+            + 'px; background-color: '
             + this.props.config.dataFontSettings.backgroundColor
             + ';} ';
         style.appendChild(document.createTextNode(css));
