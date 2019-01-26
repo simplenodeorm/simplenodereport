@@ -72,7 +72,7 @@ class DBDataReportObject extends ReportObject {
     loadCss(objectData) {
         let style = document.getElementsByTagName('style')[0];
         let css = '.' + objectData.cssClassName
-            + ' {position: relative; overflow-x: hidden; overflow-y: auto; left: '
+            + ' {position: relative; overflow: hidden; left: '
             + this.props.config.rect.left
             + 'px; top: '
             + this.props.config.rect.left
@@ -90,7 +90,7 @@ class DBDataReportObject extends ReportObject {
         style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' th {margin: 0; padding: 0;}'));
 
         css = '.' + objectData.cssClassName
-            + ' th div {margin: 0; padding: 0; overflow:hidden; font-family:'
+            + ' th div {margin: 0; padding: 0; font-family:'
             + this.props.config.headerFontSettings.font
             + '; font-size: '
             + this.props.config.headerFontSettings.fontSize
@@ -102,7 +102,31 @@ class DBDataReportObject extends ReportObject {
             + objectData.headerHeight
             + 'px; background-color: '
             + this.props.config.headerFontSettings.backgroundColor
-            + '; text-align: center;} ';
+            + '; text-align: center; }';
+
+        css = '.' + objectData.cssClassName + ' th {overflow: hidden; ';
+
+        if (this.hasBorder(this.props.config.headerBorderSettings)) {
+            if (this.hasFullBorder(this.props.config.headerBorderSettings)) {
+                css += this.buildBorderCss('border', this.props.config.headerBorderSettings);
+            } else {
+                if (this.props.config.headerBorderSettings.left) {
+                    css += this.buildBorderCss('border-left', this.props.config.headerBorderSettings);
+                }
+                if (this.props.config.headerBorderSettings.top) {
+                    css += this.buildBorderCss('border-top', this.props.config.headerBorderSettings);
+                }
+                if (this.props.config.headerBorderSettings.right) {
+                    css += this.buildBorderCss('border-right', this.props.config.headerBorderSettings);
+                }
+                if (this.props.config.headerBorderSettings.bottom) {
+                    css += this.buildBorderCss('border-bottom', this.props.config.headerBorderSettings);
+                }
+            }
+        }
+        css += '} ';
+
+
         style.appendChild(document.createTextNode(css));
 
         for (let i = 0; i < objectData.objectColumns.length; ++i) {
@@ -115,7 +139,7 @@ class DBDataReportObject extends ReportObject {
         }
 
         style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' td {margin: 0; padding: 0;}'));
-        css = '.' + objectData.cssClassName + ' td div {overflow: hidden; font-family: '
+        css = '.' + objectData.cssClassName + ' td div {font-family: '
             + this.props.config.dataFontSettings.font
             + '; font-size: '
             + this.props.config.dataFontSettings.fontSize
@@ -128,6 +152,26 @@ class DBDataReportObject extends ReportObject {
             + 'px; background-color: '
             + this.props.config.dataFontSettings.backgroundColor
             + ';} ';
+        css = '.' + objectData.cssClassName + ' td {overflow: hidden; ';
+        if (this.hasBorder(this.props.config.dataBorderSettings)) {
+            if (this.hasFullBorder(this.props.config.headerBorderSettings)) {
+                css += this.buildBorderCss('border', this.props.config.dataBorderSettings);
+            } else {
+                if (this.props.config.dataBorderSettings.left) {
+                    css += this.buildBorderCss('border-left', this.props.config.dataBorderSettings);
+                }
+                if (this.props.config.dataBorderSettings.top) {
+                    css += this.buildBorderCss('border-top', this.props.config.dataBorderSettings);
+                }
+                if (this.props.config.dataBorderSettings.right) {
+                    css += this.buildBorderCss('border-right', this.props.config.dataBorderSettings);
+                }
+                if (this.props.config.dataBorderSettings.bottom) {
+                    css += this.buildBorderCss('border-bottom', this.props.config.dataBorderSettings);
+                }
+            }
+        }
+        css += '} ';
         style.appendChild(document.createTextNode(css));
 
     }

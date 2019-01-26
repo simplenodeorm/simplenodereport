@@ -73,7 +73,7 @@ class AppToolbar extends BaseDesignComponent {
                     <img alt='new report' src='/images/newreport.png'/>
                     <span className="label">New Report</span>
                 </button>
-                <button className="button" disable={!canAddObject} title='add new report object' onClick={this.showReportObjectPopup}>
+                <button className="button" disabled={!canAddObject} title='add new report object' onClick={this.showReportObjectPopup}>
                     {canAddObject && <img alt='new report object' src='/images/newobject.png'/>}
                     {!canAddObject && <img alt='new report object' src='/images/newobject-disabled.png'/>}
                     <span className="label">Add Object</span>

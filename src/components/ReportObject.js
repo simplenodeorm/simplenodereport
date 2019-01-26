@@ -22,6 +22,23 @@ class ReportObject extends React.Component {
         return config.textmsg[nm];
     }
 
+    hasBorder(settings) {
+        return (settings.borderStyle !== 'none');
+    }
+
+    hasFullBorder(settings) {
+        return (settings.left && settings.top && settings.right && settings.bottom);
+    }
+
+    buildBorderCss(prefix, settings) {
+        return prefix + ': '
+            + settings.borderStyle
+            + ' '
+            + settings.borderWidth
+            + 'px '
+            + settings.borderColor + ';';
+    }
+
     getObjectData() {
     }
 
