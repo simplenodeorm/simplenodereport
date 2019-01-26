@@ -80,7 +80,7 @@ class DBColumnSelectPanel extends BaseDesignComponent {
                             ta = 'right';
                         }
 
-                        this.props.reportObject.reportColumns.push({
+                        curcomp.props.reportObject.reportColumns.push({
                             key: document.designData.currentReport.reportColumns[i].key,
                             textAlign: ta,
                             displayResult: true,

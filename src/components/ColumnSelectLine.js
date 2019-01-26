@@ -62,9 +62,6 @@ class ColumnSelectLine extends React.Component {
     setTextAlign(textAlign) {
         this.props.reportColumns[this.props.index].textAlign = textAlign;
     }
-
-    getColumnData(key) {
-    }
 }
 
 export {ColumnSelectLine};

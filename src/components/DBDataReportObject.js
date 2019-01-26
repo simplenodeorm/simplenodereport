@@ -4,7 +4,7 @@ import {getFontHeight, getReportColumn} from './helpers';
 import {ReportObject} from './ReportObject';
 
 const headerLoop = (data) => {
-    return data.map((cinfo, i) => {
+    return data.map((cinfo) => {
         return <th><div>{cinfo.name}</div></th>;
     });
 };
@@ -34,7 +34,7 @@ class DBDataReportObject extends ReportObject {
         let objectColumns = [];
         for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
             if (this.props.config.reportColumns[i].displayResult) {
-                columns.push(getReportColumn(this.props.config.reportColumns[i].key))
+                columns.push(getReportColumn(this.props.config.reportColumns[i].key));
                 objectColumns.push(this.props.config.reportColumns[i]);
             }
         }
@@ -103,6 +103,7 @@ class DBDataReportObject extends ReportObject {
             + 'px; background-color: '
             + this.props.config.headerFontSettings.backgroundColor
             + '; text-align: center; }';
+        style.appendChild(document.createTextNode(css));
 
         css = '.' + objectData.cssClassName + ' th {overflow: hidden; ';
 
@@ -152,6 +153,17 @@ class DBDataReportObject extends ReportObject {
             + 'px; background-color: '
             + this.props.config.dataFontSettings.backgroundColor
             + ';} ';
+        style.appendChild(document.createTextNode(css));
+
+        for (let i = 0; i < objectData.objectColumns.length; ++i) {
+            css = 'div.' + objectData.cssClassName + ' tr td:nth-child('
+                + (i+1)
+                + ') { text-align: '
+                + objectData.objectColumns[i].textAlign
+                + ';} ';
+            style.appendChild(document.createTextNode(css));
+        }
+
         css = '.' + objectData.cssClassName + ' td {overflow: hidden; ';
         if (this.hasBorder(this.props.config.dataBorderSettings)) {
             if (this.hasFullBorder(this.props.config.headerBorderSettings)) {

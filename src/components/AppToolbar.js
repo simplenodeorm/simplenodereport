@@ -56,7 +56,7 @@ class AppToolbar extends BaseDesignComponent {
                 items: [
                 {
                     text: config.textmsg.newmenuname,
-                    callback: this.newDocument
+                    callback: this.newReport
                 },
                 {
                     text: config.textmsg.preferencesmenuname,
@@ -225,7 +225,11 @@ class AppToolbar extends BaseDesignComponent {
         let mc = getModalContainer(rc);
         ReactDOM.render(<PreferencesPanel onOk={this.savePreferences}/>, mc);
     }
-    
+
+    newDocument() {
+
+    }
+
     savePreferences(results) {
         localStorage.setItem('preferences', JSON.stringify(results));
     }
@@ -281,7 +285,7 @@ class AppToolbar extends BaseDesignComponent {
             for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
                 if (document.designData.currentReport.reportObjects[i].id === reportObject.id) {
                     document.designData.currentReport.reportObjects[i] = reportObject;
-                    dp.updateReportObject(reportObject)
+                    dp.updateReportObject(reportObject);
                     break;
                 }
             }
@@ -303,7 +307,7 @@ class AppToolbar extends BaseDesignComponent {
                 reportObject.columnCount = colcnt;
                 reportObject.rect = dp.getReportSectionDesignCanvas(reportObject.reportSection).getRect();
                 reportObject.rect.top += 3;
-                reportObject.rect.left += 3
+                reportObject.rect.left += 3;
                 reportObject.rect.height -= 10;
                 reportObject.rect.width -= 6;
 

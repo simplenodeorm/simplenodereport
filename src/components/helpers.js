@@ -22,7 +22,6 @@ export function clearDocumentDesignData() {
     }
     
     document.designData.currentReport = {};
-    document.designData.reportObjects = [];
 }
     
 export function getFieldType(dbType) {
@@ -213,11 +212,11 @@ export function getFontHeight(fontName, fontSize) {
     let body = document.getElementsByTagName('body')[0];
     let testElement = document.createElement('div');
     testElement.setAttribute('id', 'font-test');
-    testElement.setAttribute('style', fontStyle)
+    testElement.setAttribute('style', fontStyle);
     testElement.innerHTML = 'XXXXXX';
     body.appendChild(testElement);
     let retval = document.getElementById('font-test').getBoundingClientRect().height;
-    body.removeChild(testElement)
+    body.removeChild(testElement);
     return Math.round(retval/config.zoomFactor);
 }
 

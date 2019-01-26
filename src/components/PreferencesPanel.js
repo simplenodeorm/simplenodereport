@@ -120,10 +120,11 @@ class PreferencesPanel extends ModalDialog {
     
         for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
             if (!this.settings[config.defaultPreferenceNames[i]]) {
-                if (!this.props.newDocument
-                    || (config.defaultPreferenceNames[i] !== "queryDocumentId")) {
-                    retval = false;
-                    break;
+                if (config.defaultPreferenceNames[i] !== "queryDocumentId") {
+                    if (this.props.newDocument) {
+                        retval = false;
+                        break;
+                    }
                 }
             }
         }

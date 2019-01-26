@@ -21,12 +21,14 @@ class DesignPanel extends BaseDesignComponent {
         this.getReportSectionDesignCanvas = this.getReportSectionDesignCanvas.bind(this);
         this.addReportObject = this.addReportObject.bind(this);
         this.updateReportObject = this.updateReportObject.bind(this);
+        this.refreshLayout = this.refreshLayout.bind(this);
 
         this.header = '';
         this.body = '';
         this.footer = '';
         this.dw = '';
-        
+        this.reportObjects = [];
+
         this.state = {
             left: 0,
             top: 0,
@@ -34,7 +36,6 @@ class DesignPanel extends BaseDesignComponent {
             width: document.designData.currentReport.documentWidth,
             margins: document.designData.currentReport.margins
         };
-        
     }
     
     componentWillReceiveProps(nextProps) {
@@ -55,13 +56,13 @@ class DesignPanel extends BaseDesignComponent {
             <HorizontalRule left={left} width={width} horizontalPositionChange={this.horizontalPositionChange}/>
             <div className="designPanel">
                 <div ref={(dw) => {this.dw = dw}} className="documentWrapper" style={designStyle}>
-                    <SplitPane 
-                        split="horizontal" 
+                    <SplitPane
+                        split="horizontal"
                         minSize={0} 
                         onDragFinished={this.onFooterSize}
                         defaultSize={height - document.designData.currentReport.footerHeight}>
-                        <SplitPane 
-                            split="horizontal" 
+                        <SplitPane
+                            split="horizontal"
                             minSize={0} 
                             onDragFinished={this.onHeaderSize}
                             defaultSize={document.designData.currentReport.headerHeight}>
@@ -137,7 +138,11 @@ class DesignPanel extends BaseDesignComponent {
             width: document.designData.currentReport.documentWidth,
             margins: document.designData.currentReport.margins
         };
-        
+
+        for (let i = 0; i < this.reportObjects.length; i++) {
+            ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this.reportObjects[i]).parentNode);
+        }
+        this.reportObjects = [];
         this.setState(layout);
         this.props.setCurrentReport(document.designData.currentReport);
 
@@ -164,12 +169,17 @@ class DesignPanel extends BaseDesignComponent {
     }
 
     addReportObject(reportObjectConfig) {
+        let comp;
         switch (reportObjectConfig.objectType) {
             case 'dbdata':
-                ReactDOM.render(<DBDataReportObject config={reportObjectConfig}/>,
+                comp = ReactDOM.render(<DBDataReportObject config={reportObjectConfig}/>,
                     ReactDOM.findDOMNode(this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas()));
                 break;
 
+        }
+
+        if (comp) {
+            this.reportObjects.push(comp);
         }
     }
 
