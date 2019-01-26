@@ -143,6 +143,7 @@ class DesignPanel extends BaseDesignComponent {
             ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this.reportObjects[i]).parentNode);
         }
         this.reportObjects = [];
+        document.designData.currentReport.reportObjects = [];
         this.setState(layout);
         this.props.setCurrentReport(document.designData.currentReport);
 

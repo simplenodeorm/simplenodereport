@@ -4,10 +4,10 @@ import React from 'react';
 class Checkbox extends React.Component {
     state = {
         isChecked: this.props.isChecked,
-    }
+    };
 
     toggleCheckboxChange = () => {
-        const { handleCheckboxChange, label } = this.props;
+        const { handleCheckboxChange } = this.props;
 
         this.setState(({ isChecked }) => (
             {
@@ -17,6 +17,10 @@ class Checkbox extends React.Component {
 
         const { isChecked } = this.state;
         handleCheckboxChange(!isChecked);
+    };
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({isChecked: nextProps.isChecked});
     }
 
     render() {

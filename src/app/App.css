@@ -79,12 +79,10 @@ body {
     display: block;
     padding: 3px 3px;
     color: var(--popup-text-color);
-    font-size: 80%;
     width:100%;
     background-color: var(--popup-background);
     text-decoration: none;
     text-align: left;
-    font-weight: 500;
     border: none;
 }
 
@@ -491,9 +489,8 @@ input[type="checkbox"] {
     text-align: center;
 }
 
-.modalContainer .buttonPanel {
+.buttonPanel {
     position: absolute;
-    bottom: 10px;
     border-top: 2px solid #a6abaf;
     left: 5px;
     right: 5px;
@@ -501,12 +498,12 @@ input[type="checkbox"] {
     white-space: nowrap;
 }
 
-.modalContainer .buttonPanel .button {
+ .button {
     background-color: var(--modal-button-color);
-    border-radius: 200px; 
-    text-transform: uppercase;
-    color: white;
-    height:25px;
+    border-radius: 200px;
+    color: var(--default-bkcolor);
+    font-size: var(--default-font-size);
+    height:24px;
     margin-top: 5px;
     margin-left: 5px;
     margin-right: 5px;

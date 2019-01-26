@@ -262,7 +262,7 @@ class AppToolbar extends BaseDesignComponent {
 
         switch(type) {
             case 'dbdata':
-                rc = {left: 175, top: 50, width: 600, height: 375};
+                rc = {left: 175, top: 50, width: 600, height: 400};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<DBDataGridSetupPanel onOk={this.saveReportObject} reportObject={reportObject}/>, mc);
                 break;

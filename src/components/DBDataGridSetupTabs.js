@@ -11,28 +11,49 @@ import "../app/App.css";
 class DBDataGridSetupTabs extends BaseDesignComponent {
     constructor(props) {
         super(props);
+        this.onDisplayAll = this.onDisplayAll.bind(this);
+        this.onClearAll = this.onClearAll.bind(this);
     }
 
     render() {
         return <div className="tabSetContainer">
-            <ReportSectionSelect reportObject={this.props.reportObject} />
-            <Tabs>
-                <TabList>
-                    <Tab>{config.textmsg.selectdata}</Tab>
-                    <Tab>{config.textmsg.font}</Tab>
-                    <Tab>{config.textmsg.border}</Tab>
-                </TabList>
-                <TabPanel>
-                    <DBColumnSelectPanel reportObject={this.props.reportObject} ref={(colsel) => {this.columnSelectPanel = colsel}}/>
-                </TabPanel>
-                <TabPanel>
-                    <DBDataGridDisplayFontPanel reportObject={this.props.reportObject} ref={(fp) => {this.fontPanel = fp}}/>
-                </TabPanel>
-                <TabPanel>
-                    <DBDataGridDisplayBorderPanel reportObject={this.props.reportObject} ref={(bp) => {this.borderPanel = bp}}/>
-                </TabPanel>
-            </Tabs>
-        </div>;
+                <div>
+                    <ReportSectionSelect reportObject={this.props.reportObject} />
+                    <button className="button" onClick={this.onDisplayAll}>{config.textmsg.displayall}</button>
+                    <button className="button" onClick={this.onClearAll}>{config.textmsg.clearall}</button>
+                </div>
+                <Tabs>
+                    <TabList>
+                        <Tab>{config.textmsg.selectdata}</Tab>
+                        <Tab>{config.textmsg.font}</Tab>
+                        <Tab>{config.textmsg.border}</Tab>
+                    </TabList>
+                    <TabPanel>
+                        <DBColumnSelectPanel reportObject={this.props.reportObject} ref={(colsel) => {this.columnSelectPanel = colsel}}/>
+                    </TabPanel>
+                    <TabPanel>
+                        <DBDataGridDisplayFontPanel reportObject={this.props.reportObject} ref={(fp) => {this.fontPanel = fp}}/>
+                    </TabPanel>
+                    <TabPanel>
+                        <DBDataGridDisplayBorderPanel reportObject={this.props.reportObject} ref={(bp) => {this.borderPanel = bp}}/>
+                    </TabPanel>
+                </Tabs>
+            </div>;
+    }
+
+    onDisplayAll() {
+        for (let i = 0; i < this.props.reportObject.reportColumns.length; ++i) {
+            this.props.reportObject.reportColumns[i].displayResult = true;
+        }
+        this.columnSelectPanel.setState({updateLines: true});
+    }
+
+    onClearAll() {
+        for (let i = 0; i < this.props.reportObject.reportColumns.length; ++i) {
+            this.props.reportObject.reportColumns[i].displayResult = false;
+            this.props.reportObject.reportColumns[i].displayTotal = false;
+        }
+        this.columnSelectPanel.setState({updateLines: true});
     }
 }
 

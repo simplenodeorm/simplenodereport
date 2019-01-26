@@ -24,6 +24,13 @@ class ColumnSelectLine extends React.Component {
         this.setTextAlign = this.setTextAlign.bind(this);
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            displayResult: nextProps.reportColumns[this.props.index].displayResult,
+            displayTotal: nextProps.reportColumns[this.props.index].displayTotal,
+            textAlign: nextProps.reportColumns[this.props.index].textAlign});
+    }
+
     render() {
         const {displayResult, displayTotal, textAlign} = this.state;
         let columnData = getReportColumn(this.props.reportColumns[this.props.index].key);

@@ -70,12 +70,21 @@ class DBDataGridSetupPanel extends ModalDialog {
     }
         
     isComplete() {
-        return true;
+        let retval = false;
+
+        for (let i = 0; i < this.props.reportObject.reportColumns.length; ++i) {
+            if (this.props.reportObject.reportColumns[i].displayResult) {
+                retval = true;
+                break;
+            }
+        }
+
+        return retval;
     }
     
     getError() { 
         this.state.error = false;
-        return 'Please select a folder and complete all required entries';
+        return 'Please select at list one display column';
     }
 }
 

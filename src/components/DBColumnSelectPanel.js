@@ -5,6 +5,7 @@ import axios from "axios";
 import "../app/App.css";
 import {getUniqueKey, isNumeric} from './helpers';
 
+
 class DBColumnSelectPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
@@ -21,21 +22,28 @@ class DBColumnSelectPanel extends BaseDesignComponent {
             };
 
         }
+
+        this.columnSelects = [];
+
         this.onMove = this.onMove.bind(this);
         this.getNodeCount = this.getNodeCount.bind(this);
     }
 
     render() {
         const {dataLoaded} = this.state;
-
         if (dataLoaded) {
             let loop = (data) => {
                 return data.map((node, i) => {
-                    return <ColumnSelectLine key={node.key} reportColumns={this.props.reportObject.reportColumns} index={i} nodeCount={this.getNodeCount} onMove={this.onMove}/>;
+                    return  <ColumnSelectLine
+                        reportColumns={this.props.reportObject.reportColumns}
+                        index={i}
+                        nodeCount={this.getNodeCount}
+                        onMove={this.onMove}/>;
+
                 });};
 
 
-            return <div className="tabContainer">{loop(this.props.reportObject.reportColumns)}</div>;
+            return <div style={{height: "75%"}} className="tabContainer">{loop(this.props.reportObject.reportColumns, this.columnSelects)}</div>;
         } else {
             return <div className="tabContainer"/>;
         }

@@ -2,6 +2,7 @@ import React from 'react';
 import "../app/App.css";
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {clearModalContainer} from './helpers';
+import config from '../config/appconfig.json';
 
 class ModalDialog extends BaseDesignComponent {
     constructor(props) {
@@ -55,8 +56,9 @@ class ModalDialog extends BaseDesignComponent {
         return <div><h3>{this.getTitle()}</h3>
             {error && <div className="errorDisplay">{this.getError()}</div>}
             {this.getContent()}
-            <div className="buttonPanel">
-                <button className="button" onClick={this.onOk}>Ok</button><button className="button" onClick={this.onCancel}>Cancel</button>
+            <div style={{bottom: "10px"}} className="buttonPanel">
+                <button className="button" onClick={this.onOk}>{config.textmsg.ok}</button>
+                <button className="button" onClick={this.onCancel}>{config.textmsg.cancel}</button>
             </div>
             {this.resetError()}
         </div>;

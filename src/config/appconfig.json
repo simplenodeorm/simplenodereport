@@ -35,9 +35,7 @@
         "datafontlabel": "Data Font:",
         "showgridlines": "Show grid lines",
         "fillreportsection": "Fill remaining report section with grid",
-        "left": "Left",
         "top": "Top",
-        "right": "Right",
         "bottom": "Bottom",
         "borderstylelabel": "Style:",
         "borderwidthlabel": "Width:",
@@ -58,7 +56,11 @@
         "right": "right",
         "textalignlabel": "Text Align:",
         "displayresult": "Display Result",
-        "displaytotal": "Display Total"
+        "displaytotal": "Display Total",
+        "displayall": "Display All",
+        "clearall": "Clear All",
+        "ok": "Ok",
+        "cancel": "Cancel"
     },
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,
