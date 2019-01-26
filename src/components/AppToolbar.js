@@ -275,7 +275,6 @@ class AppToolbar extends BaseDesignComponent {
             if (!document.designData.currentReport.reportObjects) {
                 document.designData.currentReport.reportObjects = [];
             }
-
             this.setDefaultReportObjectSize(reportObject);
 
             reportObject.id = document.designData.currentReport.reportObjects.length;

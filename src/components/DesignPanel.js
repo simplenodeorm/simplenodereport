@@ -130,7 +130,27 @@ class DesignPanel extends BaseDesignComponent {
         }
     }
     
-    refreshLayout() {
+    refreshLayout(doc) {
+        for (let i = 0; i < this.reportObjects.length; i++) {
+            ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this.reportObjects[i]).parentNode);
+        }
+
+        this.reportObjects = [];
+        document.designData.currentReport.reportObjects = [];
+
+        if (doc) {
+            document.designData.reportName = doc.document.reportName;
+            document.designData.currentReport = doc.document;
+            for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
+                this.getReportSection(document.designData.currentReport.reportObjects[i].reportSection).setState({error:''});
+                this.addReportObject(document.designData.currentReport.reportObjects[i]);
+            }
+
+
+        }
+
+        this.props.setCurrentReport(document.designData.currentReport);
+
         let layout = {
             left: 0,
             top: 0, 
@@ -139,13 +159,7 @@ class DesignPanel extends BaseDesignComponent {
             margins: document.designData.currentReport.margins
         };
 
-        for (let i = 0; i < this.reportObjects.length; i++) {
-            ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this.reportObjects[i]).parentNode);
-        }
-        this.reportObjects = [];
-        document.designData.currentReport.reportObjects = [];
         this.setState(layout);
-        this.props.setCurrentReport(document.designData.currentReport);
 
     }
 

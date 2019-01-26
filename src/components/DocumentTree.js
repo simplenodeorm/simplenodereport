@@ -22,7 +22,7 @@ class DocumentTree extends BaseDesignComponent {
 
         this.loadDocumentGroups();
         this.onRightClick = this.onRightClick.bind(this);
-        this.editDocument = this.editDocument.bind(this);
+        this.loadDocument = this.loadDocument.bind(this);
         this.deleteDocument = this.deleteDocument.bind(this);
         this.loadDocuments = this.loadDocuments.bind(this);
         this.setCurrentReport = this.setCurrentReport.bind(this);
@@ -49,7 +49,7 @@ class DocumentTree extends BaseDesignComponent {
                   showIcon={true}
                   icon={this.getIcon}
                   defaultExpandAll={true}
-                  treeData={treeData}></Tree></div>;
+                  treeData={treeData}/></div>;
 
         } else {
             return <div className="treeContainer"/>;
@@ -92,11 +92,11 @@ class DocumentTree extends BaseDesignComponent {
         if (info.node.props.isLeaf) {
             this.state.selectedDocument = info.node.props.eventKey;
             const cm = getContextMenu(info);
-            ReactDOM.render(<ul><li><button onClick={tree.editDocument}>{config.textmsg.loaddocument}</button></li><li><button onClick={tree.deleteDocument}>{config.textmsg.deletedocument}</button></li></ul>, cm);
+            ReactDOM.render(<ul><li><button onClick={tree.loadDocument}>{config.textmsg.loaddocument}</button></li><li><button onClick={tree.deleteDocument}>{config.textmsg.deletedocument}</button></li></ul>, cm);
         } 
     }
     
-    editDocument() {
+    loadDocument() {
         const curcomp = this;
         clearContextMenu();
         let {selectedDocument} = this.state;
@@ -191,9 +191,10 @@ class DocumentTree extends BaseDesignComponent {
     }
     
     loadDocumentData(doc) {
+        this.props.getDesignPanel().refreshLayout(doc);
     }
 
-    setCurrentReport(doc, data) {
+    setCurrentReport(doc) {
         this.clearWaitMessage();
         this.props.setCurrentReport(doc.documentName);
     }

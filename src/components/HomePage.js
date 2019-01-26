@@ -72,7 +72,8 @@ class HomePage extends React.Component {
                     defaultSize={150}>
                     <DocumentTree ref={(dt) => {curobj.documentTree = dt;}} 
                         setStatus={curobj.setStatus} 
-                        setCurrentReport={curobj.setCurrentReport} />
+                        setCurrentReport={curobj.setCurrentReport}
+                        getDesignPanel={this.getDesignPanel} />
                     <DesignPanel ref={(dp) => {curobj.setDesignPanel(dp);}} 
                         setCurrentReport={curobj.setCurrentReport}/>
                 </SplitPane>
