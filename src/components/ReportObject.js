@@ -1,5 +1,7 @@
 import React from 'react';
 import "../app/App.css";
+import config from '../config/appconfig';
+
 
 class ReportObject extends React.Component {
     constructor(props) {
@@ -10,6 +12,14 @@ class ReportObject extends React.Component {
         let objectData = this.getObjectData();
         this.loadCss(objectData);
         return <div className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
+    }
+
+    getConfigValue(nm) {
+        return config[nm];
+    }
+
+    getConfigText(nm) {
+        return config.textmsg[nm];
     }
 
     getObjectData() {

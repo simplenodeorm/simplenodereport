@@ -18,7 +18,8 @@ class NumericInput extends React.Component {
     onKeyDown(e) {
         let charCode = (e.which) ? e.which : e.keyCode;
         
-        if (!this.props.allowCharacter(charCode, this.props.index)) {
+        if (!this.props.allowCharacter
+            || !this.props.allowCharacter(charCode, this.props.index)) {
             if ((charCode > 31) && (charCode < 48 || charCode > 57)) {
                 e.preventDefault();
             }

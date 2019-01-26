@@ -42,6 +42,8 @@ class VerticalRule extends React.Component {
     constructor(props) {
         super(props);
         this.onAfterChange = this.onAfterChange.bind(this);
+        this.onWheel = this.onWheel.bind(this);
+
         this.state = {
             top: '0px',
             height: document.designData.currentReport.documentHeight
@@ -53,11 +55,11 @@ class VerticalRule extends React.Component {
     }
     
     render() {
-        const {height} = this.state;
+        const {curvalue, height} = this.state;
     
         return <div className="verticalRule" >
-            <div className="slider">
-                <Slider 
+            <div className="slider" onWheel={this.onWheel}>
+                <Slider ref={(s) => {this.slider = s}}
                     handle={handle}
                     min={-height}
                     defaultValue={0}
@@ -81,7 +83,16 @@ class VerticalRule extends React.Component {
             <svg width="33" height={height + getPixelsPerInch()}>{loop(this.getLines())}</svg>
         </div>;
     }
-    
+
+    onWheel(e) {
+        let newval = this.slider.getValue() - (e.deltaY * 5);
+
+        if ((newval <= 0) && (newval >= this.slider.getLowerBound())) {
+            this.slider.onChange({value: newval});
+            this.onAfterChange(this.slider.getValue());
+        }
+    }
+
     onAfterChange(value) {
         this.props.verticalPositionChange(-value);
     }

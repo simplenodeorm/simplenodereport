@@ -36,6 +36,7 @@ class HorizontalRule extends React.Component {
     constructor(props) {
         super(props);
         this.onAfterChange = this.onAfterChange.bind(this);
+        this.onWheel = this.onWheel.bind(this);
         this.state = {
             left: '0',
             width: document.designData.currentReport.documentWidth
@@ -50,8 +51,8 @@ class HorizontalRule extends React.Component {
         const {width} = this.state;
     
         return <div className="horizontalRule">
-            <div className="slider">
-                <Slider
+            <div className="slider" onWheel={this.onWheel} >
+                <Slider ref={(s) => {this.slider = s}}
                     defaultValue={0}
                     handle={handle}
                     max={width}
@@ -75,7 +76,16 @@ class HorizontalRule extends React.Component {
     onAfterChange(value) {
         this.props.horizontalPositionChange(value);
     }
-    
+
+    onWheel(e) {
+        const {width} = this.state;
+        let newval = this.slider.getValue() + (e.deltaY * 5);
+        if ((newval >= 0) && (newval <= width)) {
+            this.slider.onChange({value: newval});
+            this.onAfterChange(this.slider.getValue());
+        }
+    }
+
     getLines() {
         let retval = [];
         const {left, width} = this.state;

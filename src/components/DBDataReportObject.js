@@ -1,6 +1,5 @@
 import React from 'react';
 import "../app/App.css";
-import config from '../config/appconfig';
 import {getFontHeight, getReportColumn} from './helpers';
 import {ReportObject} from './ReportObject';
 
@@ -18,7 +17,7 @@ const rowLoop = (data) => {
 
 const columnLoop = (row) => {
     return row.map((col) => {
-        return <td>{col}</td>;
+        return <td><div>{col}</div></td>;
     });
 };
 
@@ -28,8 +27,8 @@ class DBDataReportObject extends ReportObject {
     }
 
     getObjectData() {
-        let headerHeight = getFontHeight(this.props.config.headerFontSettings.fontName, this.props.config.headerFontSettings.fontSize);
-        let dataRowHeight = getFontHeight(this.props.config.dataFontSettings.fontName, this.props.config.dataFontSettings.fontSize);
+        let headerHeight = getFontHeight(this.props.config.headerFontSettings.font, this.props.config.headerFontSettings.fontSize) + this.getConfigValue('tablecellpadding');
+        let dataRowHeight = getFontHeight(this.props.config.dataFontSettings.font, this.props.config.dataFontSettings.fontSize) + this.getConfigValue('tablecellpadding');
         let numRows = ((this.props.config.rect.height - headerHeight)/ dataRowHeight);
         let columns = [];
         let objectColumns = [];
@@ -88,8 +87,10 @@ class DBDataReportObject extends ReportObject {
             + objectData.cssClassName
             + ' table { border-spacing: 0; border-collapse: collapse; }'));
 
+        style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' th {margin: 0; padding: 0;}'));
+
         css = '.' + objectData.cssClassName
-            + ' th {margin: 0; padding: 0; overflow:hidden; font-family:'
+            + ' th div {margin: 0; padding: 0; overflow:hidden; font-family:'
             + this.props.config.headerFontSettings.font
             + '; font-size: '
             + this.props.config.headerFontSettings.fontSize
@@ -113,7 +114,8 @@ class DBDataReportObject extends ReportObject {
             style.appendChild(document.createTextNode(css));
         }
 
-        css = '.' + objectData.cssClassName + ' td {overflow: hidden; font-family: '
+        style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' td {margin: 0; padding: 0;}'));
+        css = '.' + objectData.cssClassName + ' td div {overflow: hidden; font-family: '
             + this.props.config.dataFontSettings.font
             + '; font-size: '
             + this.props.config.dataFontSettings.fontSize
