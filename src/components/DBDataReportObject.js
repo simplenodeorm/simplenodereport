@@ -28,9 +28,6 @@ class DBDataReportObject extends ReportObject {
     }
 
     getObjectData() {
-        let headerHeight = getFontHeight(this.props.config.headerFontSettings.font, this.props.config.headerFontSettings.fontSize) + this.getConfigValue('tablecellpadding');
-        let dataRowHeight = getFontHeight(this.props.config.dataFontSettings.font, this.props.config.dataFontSettings.fontSize) + this.getConfigValue('tablecellpadding');
-        let numRows = ((this.props.config.rect.height - headerHeight)/ dataRowHeight);
         let columns = [];
         let objectColumns = [];
         for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
@@ -40,6 +37,12 @@ class DBDataReportObject extends ReportObject {
             }
         }
 
+        let headerHeight = this.getHeaderHeight(columns, objectColumns) +
+            this.getConfigValue('defaulttablecellpadding');
+        let dataRowHeight = getFontHeight(this.props.config.dataFontSettings.font,
+            this.props.config.dataFontSettings.fontSize) +
+            this.getConfigValue('defaulttablecellpadding');
+        let numRows = Math.floor(((this.props.config.rect.height - headerHeight)/ dataRowHeight));
 
         let data = [];
 
@@ -68,6 +71,22 @@ class DBDataReportObject extends ReportObject {
             <thead><tr>{ headerLoop(objectData.columns) }</tr></thead>
             <tbody>{ rowLoop(objectData.data) }</tbody>
         </table>;
+    }
+
+    getHeaderHeight(columns, objectColumns) {
+        let retval = 0;
+
+        for (let i = 0; i < columns.length; ++i) {
+            let fh = getFontHeight(this.props.config.headerFontSettings.font,
+                this.props.config.headerFontSettings.fontSize,
+                objectColumns[i].width, columns[i].name);
+                + this.getConfigValue('defaulttablecellpadding');
+            if (Math.max(fh, retval) > retval)  {
+                retval = fh;
+            }
+        }
+
+        return retval;
     }
 
     loadCss(objectData) {

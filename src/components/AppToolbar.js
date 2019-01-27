@@ -310,7 +310,7 @@ class AppToolbar extends BaseDesignComponent {
                 reportObject.rect.height -= 10;
                 reportObject.rect.width -= 6;
 
-                let colwidth = (reportObject.rect.width / colcnt).toFixed(2);
+                let colwidth = Math.floor(reportObject.rect.width / colcnt);
                 for (let i = 0; i < reportObject.reportColumns.length; ++i) {
                     if (reportObject.reportColumns[i].displayResult) {
                         reportObject.reportColumns[i].width = colwidth;

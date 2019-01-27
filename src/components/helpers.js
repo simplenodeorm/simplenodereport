@@ -207,17 +207,29 @@ export function getPixelsPerInch() {
     return ppi;
 }
 
-export function getFontHeight(fontName, fontSize) {
-    let fontStyle = '{font-family: ' + fontName + '; font-size: ' + fontSize + 'pt; left: -100px; top: -100px}';
+export function getFontHeight(fontName, fontSize, width, text) {
+    if (!width) {
+        width = '100';
+    }
+
+    let fontStyle = '{font-family: ' + fontName + '; font-size: ' + fontSize
+        + 'pt; width: '+ Math.floor(width) + 'px; left: -100px; top: -100px}';
     let body = document.getElementsByTagName('body')[0];
     let testElement = document.createElement('div');
     testElement.setAttribute('id', 'font-test');
     testElement.setAttribute('style', fontStyle);
-    testElement.innerHTML = 'XXXXXX';
+
+    if (text) {
+        testElement.innerHTML = text;
+    } else {
+        testElement.innerHTML = 'XXXXX'
+    }
+
     body.appendChild(testElement);
     let retval = document.getElementById('font-test').getBoundingClientRect().height;
     body.removeChild(testElement);
-    return Math.round(retval/config.zoomFactor);
+
+    return Math.ceil(retval/config.zoomFactor);
 }
 
 

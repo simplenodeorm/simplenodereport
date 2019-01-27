@@ -53,7 +53,8 @@ class DBDataGridSetupTabs extends BaseDesignComponent {
             this.props.reportObject.reportColumns[i].displayResult = false;
             this.props.reportObject.reportColumns[i].displayTotal = false;
         }
-        this.columnSelectPanel.setState({updateLines: true});
+
+        this.columnSelectPanel.setState({dataLoaded: true});
     }
 }
 
