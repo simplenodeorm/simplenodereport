@@ -2,10 +2,11 @@ import React from 'react';
 import "../app/App.css";
 import {getFontHeight, getReportColumn} from './helpers';
 import {ReportObject} from './ReportObject';
+import {TableHeader} from './TableHeader';
 
 const headerLoop = (data) => {
     return data.map((cinfo) => {
-        return <th><div>{cinfo.name}</div></th>;
+        return <th><TableHeader text={cinfo.name}/></th>;
     });
 };
 
