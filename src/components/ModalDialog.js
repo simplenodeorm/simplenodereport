@@ -14,6 +14,10 @@ class ModalDialog extends BaseDesignComponent {
 
         this.onOk = this.onOk.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onDragOver = this.onDragOver.bind(this);
+        this.onDrop = this.onDrop.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
     }
     
     componentDidMount () {
@@ -53,7 +57,12 @@ class ModalDialog extends BaseDesignComponent {
     
     render() {
         const {error} = this.state;
-        return <div><h3>{this.getTitle()}</h3>
+        return <div draggable={true}
+                onDragStart={this.onDragStart}
+                onDragOver={this.onDragOver}
+                onDragEnd={this.onDragEnd}
+                onDrop={this.onDrop}>
+           <h3>{this.getTitle()}</h3>
             {error && <div className="errorDisplay">{this.getError()}</div>}
             {this.getContent()}
             <div style={{bottom: "10px"}} className="buttonPanel">
@@ -71,6 +80,22 @@ class ModalDialog extends BaseDesignComponent {
     getError() { return 'Please complete all required entries';}
     getContent() {
         return<h2>modal dialog</h2>;
+    }
+    onDragStart(info) {
+        info.dataTransfer.setDragImage(this.dragImg, 0, 0);
+        info.dataTransfer.setData('text/plain', JSON.stringify([info.clientX,info.clientY]));
+    }
+    
+    onDragOver(info) {
+    
+    }
+    
+    onDrop(info) {
+    
+    }
+    
+    onDragEnd(info) {
+    
     }
 }
 

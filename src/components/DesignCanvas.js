@@ -31,10 +31,6 @@ class DesignCanvas extends React.Component {
                 return false;
             }
         };
-            
-        this.dragImg = new Image(0,0);
-        // transparent image
-        this.dragImg.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
     }
     
     componentWillReceiveProps(nextProps) {
@@ -70,7 +66,9 @@ class DesignCanvas extends React.Component {
     
     onDragStart(info) {
         this.startDragPoint = [info.clientX,info.clientY];
-        info.dataTransfer.setDragImage(this.dragImg, 0, 0);
+        let img = document.createElement('img')
+        img.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
+        info.dataTransfer.setDragImage(img, 0, 0);
         info.dataTransfer.setData('text/plain', JSON.stringify(this.startDragPoint)); 
  
     }
