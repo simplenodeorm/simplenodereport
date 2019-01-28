@@ -226,10 +226,6 @@ class AppToolbar extends BaseDesignComponent {
         ReactDOM.render(<PreferencesPanel onOk={this.savePreferences}/>, mc);
     }
 
-    newDocument() {
-
-    }
-
     savePreferences(results) {
         localStorage.setItem('preferences', JSON.stringify(results));
     }
@@ -247,7 +243,6 @@ class AppToolbar extends BaseDesignComponent {
     deleteSelectedItems() {
         clearContextMenu();
     }
-
 
     showReportObjectSetupPanel(type, reportObject) {
         let rc;
@@ -305,12 +300,13 @@ class AppToolbar extends BaseDesignComponent {
 
                 reportObject.columnCount = colcnt;
                 reportObject.rect = dp.getReportSectionDesignCanvas(reportObject.reportSection).getRect();
-                reportObject.rect.top += 3;
-                reportObject.rect.left += 3;
+                reportObject.rect.top += 5;
+                reportObject.rect.left += 5;
                 reportObject.rect.height -= 10;
-                reportObject.rect.width -= 6;
+                reportObject.rect.width -= 10;
 
-                let colwidth = Math.floor(reportObject.rect.width / colcnt);
+                let colwidth = Math.floor((reportObject.rect.width - 3 )/ colcnt);
+ 
                 for (let i = 0; i < reportObject.reportColumns.length; ++i) {
                     if (reportObject.reportColumns[i].displayResult) {
                         reportObject.reportColumns[i].width = colwidth;

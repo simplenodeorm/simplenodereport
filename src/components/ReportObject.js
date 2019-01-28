@@ -11,7 +11,7 @@ class ReportObject extends React.Component {
     render() {
         let objectData = this.getObjectData();
         this.loadCss(objectData);
-        return <div className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
+        return <div onMouseMove={this.onMouseMove} className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
     }
 
     getConfigValue(nm) {
@@ -20,6 +20,10 @@ class ReportObject extends React.Component {
 
     getConfigText(nm) {
         return config.textmsg[nm];
+    }
+
+    getHoverCss(prefix) {
+        return prefix + ':hover { border: var(--active-report-object-border); }';
     }
 
     hasBorder(settings) {
@@ -51,6 +55,17 @@ class ReportObject extends React.Component {
 
     getCssClassName() {
         return (document.designData.reportName.replace(/ /g, '-') + '-' + this.props.config.objectType + '-' + this.props.config.id);
+    }
+    
+    onMouseMove(info) {
+        let rc = info.target.getBoundingClientRect();
+        if (((info.clientX - rc.left) < 3) || ((rc.width - (info.clientX - rc.left)) < 3)) {
+            info.target.style.cursor = 'ew-resize';
+        } else if ((((rc.top + rc.height) - info.clientY) < 3) || ((info.clientY -rc.top) < 3)) {
+            info.target.style.cursor = 'ns-resize';
+        } else {
+            info.target.style.cursor = '';
+        }
     }
 }
 

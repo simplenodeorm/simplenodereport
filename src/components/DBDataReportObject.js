@@ -42,6 +42,7 @@ class DBDataReportObject extends ReportObject {
         let dataRowHeight = getFontHeight(this.props.config.dataFontSettings.font,
             this.props.config.dataFontSettings.fontSize) +
             this.getConfigValue('defaulttablecellpadding');
+
         let numRows = Math.floor(((this.props.config.rect.height - headerHeight)/ dataRowHeight));
 
         let data = [];
@@ -97,12 +98,15 @@ class DBDataReportObject extends ReportObject {
             + 'px; top: '
             + this.props.config.rect.left
             + 'px; width: '
-            + (this.props.config.rect.width )
+            + (this.props.config.rect.width)
             + 'px; height: '
             + this.props.config.rect.height
             + 'px;} ';
         style.appendChild(document.createTextNode(css));
-
+    
+    
+        style.appendChild(document.createTextNode(this.getHoverCss('.'+ objectData.cssClassName)));
+   
         style.appendChild(document.createTextNode('.'
             + objectData.cssClassName
             + ' table { border-spacing: 0; border-collapse: collapse; }'));
@@ -147,9 +151,10 @@ class DBDataReportObject extends ReportObject {
         }
         css += '} ';
 
-
         style.appendChild(document.createTextNode(css));
-
+        style.appendChild(document.createTextNode(this.getHoverCss('.' + objectData.cssClassName + ' th div')));
+    
+    
         for (let i = 0; i < objectData.objectColumns.length; ++i) {
             css = 'div.' + objectData.cssClassName + ' th div:nth-child('
                 + (i+1)
@@ -158,7 +163,8 @@ class DBDataReportObject extends ReportObject {
                 + '} ';
             style.appendChild(document.createTextNode(css));
         }
-
+    
+    
         style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' td {margin: 0; padding: 0;}'));
         css = '.' + objectData.cssClassName + ' td div {font-family: '
             + this.props.config.dataFontSettings.font

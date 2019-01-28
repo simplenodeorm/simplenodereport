@@ -36,6 +36,7 @@
     --default-input-height: 22px;
     --status-bar-height: 18px;
     --wait-message-height: 30px;
+    --active-report-object-border: dotted crimson 1px;
   }
 
 html {
@@ -882,3 +883,4 @@ input[type="checkbox"] {
     position: absolute;
     z-index: 1;
 }
+

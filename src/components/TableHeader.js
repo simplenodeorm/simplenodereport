@@ -7,7 +7,7 @@ class TableHeader extends React.Component {
     }
 
     render() {
-        return <div onMouseMove={this.onMouseMove}>{this.props.text}</div>
+        return <div className="tableHeader" onMouseMove={this.onMouseMove}>{this.props.text}</div>
     }
 
     onMouseMove(info) {
