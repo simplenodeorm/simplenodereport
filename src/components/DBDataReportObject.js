@@ -28,8 +28,10 @@ class DBDataReportObject extends ReportObject {
     }
 
     getObjectData() {
+        const {height} = this.state;
         let columns = [];
         let objectColumns = [];
+        
         for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
             if (this.props.config.reportColumns[i].displayResult) {
                 columns.push(getReportColumn(this.props.config.reportColumns[i].key));
@@ -43,7 +45,7 @@ class DBDataReportObject extends ReportObject {
             this.props.config.dataFontSettings.fontSize) +
             this.getConfigValue('defaulttablecellpadding');
 
-        let numRows = Math.floor(((this.props.config.rect.height - headerHeight)/ dataRowHeight));
+        let numRows = Math.floor(((height - headerHeight)/ dataRowHeight));
 
         let data = [];
 
@@ -92,21 +94,12 @@ class DBDataReportObject extends ReportObject {
 
     loadCss(objectData) {
         let style = document.getElementsByTagName('style')[0];
+    
         let css = '.' + objectData.cssClassName
-            + ' {position: relative; overflow: hidden; left: '
-            + this.props.config.rect.left
-            + 'px; top: '
-            + this.props.config.rect.left
-            + 'px; width: '
-            + (this.props.config.rect.width)
-            + 'px; height: '
-            + this.props.config.rect.height
-            + 'px;} ';
+            + ' {position: relative; overflow: hidden; }';
+    
         style.appendChild(document.createTextNode(css));
-    
-    
-        style.appendChild(document.createTextNode(this.getHoverCss('.'+ objectData.cssClassName)));
-   
+        
         style.appendChild(document.createTextNode('.'
             + objectData.cssClassName
             + ' table { border-spacing: 0; border-collapse: collapse; }'));
@@ -152,7 +145,6 @@ class DBDataReportObject extends ReportObject {
         css += '} ';
 
         style.appendChild(document.createTextNode(css));
-        style.appendChild(document.createTextNode(this.getHoverCss('.' + objectData.cssClassName + ' th div')));
     
     
         for (let i = 0; i < objectData.objectColumns.length; ++i) {

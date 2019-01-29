@@ -15,7 +15,7 @@ import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
 
 const reportObjectLoop = (obj, data) => {
     return data.map((item) => {
-        return <li><button onClick={obj.addReportObject} value={item}>add {item}</button></li>
+        return <li><button onClick={obj.addReportObject} value={item}>{item}</button></li>
     });
 };
 
@@ -274,7 +274,7 @@ class AppToolbar extends BaseDesignComponent {
 
             reportObject.id = document.designData.currentReport.reportObjects.length;
             document.designData.currentReport.reportObjects.push(reportObject);
-            dp.addReportObject(reportObject)
+            dp.addReportObject(reportObject);
         } else {
             for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
                 if (document.designData.currentReport.reportObjects[i].id === reportObject.id) {

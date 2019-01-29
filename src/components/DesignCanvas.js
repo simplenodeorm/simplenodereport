@@ -1,6 +1,5 @@
 import React from 'react';
 import "../app/App.css";
-import {LassoSelect} from './LassoSelect';
 
 class DesignCanvas extends React.Component {
     constructor(props) {
@@ -13,10 +12,6 @@ class DesignCanvas extends React.Component {
             width: this.props.width
         };
         
-        this.onDragStart = this.onDragStart.bind(this);
-        this.onDragOver = this.onDragOver.bind(this);
-        this.onDrop = this.onDrop.bind(this);
-        this.onDragEnd = this.onDragEnd.bind(this);
         this.getRect = this.getRect.bind(this);
     }
 
@@ -43,7 +38,7 @@ class DesignCanvas extends React.Component {
     }
     
     render() {
-        const {height, width, marginLeft, marginTop, lassoRect, lassoDisplay} = this.state;
+        const {height, width, marginLeft, marginTop} = this.state;
         
         const canvasStyle = {
             height: (height-1) + 'px',
@@ -52,57 +47,12 @@ class DesignCanvas extends React.Component {
             marginTop: (marginTop-1) + 'px',
         };
         
-        return <div className="designCanvas" ref={(c) => {this.myCanvas = c;}}
-            draggable={true}
-            style={canvasStyle}
-            onDragStart={this.onDragStart}
-            onDragOver={this.onDragOver}
-            onDragEnd={this.onDragEnd}
-            onDrop={this.onDrop}>
-            {lassoRect && <LassoSelect rect={lassoRect} display={lassoDisplay}/>}
-            </div>
+        return <div className="designCanvas"
+            ref={(c) => {this.myCanvas = c;}}
+            style={canvasStyle}/>
     }
     
-    
-    onDragStart(info) {
-        this.startDragPoint = [info.clientX,info.clientY];
-        let img = document.createElement('img')
-        img.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
-        info.dataTransfer.setDragImage(img, 0, 0);
-        info.dataTransfer.setData('text/plain', JSON.stringify(this.startDragPoint)); 
- 
-    }
-    
-    onDragOver(info) {
-        info.stopPropagation();
-        info.preventDefault();
-        
-        if (this.startDragPoint) {
-            
-            let crect = this.myCanvas.getBoundingClientRect();
-            
-            let rc = {
-                left: Math.min(this.startDragPoint[0], info.clientX) - crect.left,
-                top: Math.min(this.startDragPoint[1], info.clientY) - crect.top,
-                width: Math.abs(info.clientX - this.startDragPoint[0]),
-                height: Math.abs(info.clientY - this.startDragPoint[1])
-            };
-
-            this.setState({lassoRect: rc, lassoDisplay: 'block'});
-        }
-    }
-
-    onDrop(info) {
-        info.stopPropagation();
-        info.preventDefault();
-    }
-    
-    onDragEnd(info) {
-        this.startDragPoint = '';
-        this.setState({lassoRect: {left: -100, top: -100, width: 0, height: 0}, lassoDisplay: 'none'});
-    }
-
-    getRect(offset) {
+    getRect() {
         const {height, width} = this.state;
         return {
             left: 0,

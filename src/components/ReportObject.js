@@ -1,17 +1,38 @@
 import React from 'react';
 import "../app/App.css";
+import {getUniqueKey} from './helpers';
 import config from '../config/appconfig';
-
 
 class ReportObject extends React.Component {
     constructor(props) {
         super(props);
+        
+        this.state = {
+            key: getUniqueKey(),
+            left: this.props.config.rect.left,
+            top: this.props.config.rect.top,
+            width: this.props.config.rect.width,
+            height: this.props.config.rect.height
+        };
+        
+        this.onLayoutChange = this.onLayoutChange.bind(this);
+        this.getObjectData = this.getObjectData.bind(this);
     }
 
     render() {
-        let objectData = this.getObjectData();
+        const {left, top, width, height, key} = this.state;
+        const objectData = this.getObjectData();
         this.loadCss(objectData);
-        return <div onMouseMove={this.onMouseMove} className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
+        const myStyle = {
+            left: left + 'px',
+            top: top + 'px',
+            width: width + 'px',
+            height: height + 'px'
+        };
+        return <div
+                key={key}
+                style={myStyle}
+                className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
     }
 
     getConfigValue(nm) {
@@ -20,10 +41,6 @@ class ReportObject extends React.Component {
 
     getConfigText(nm) {
         return config.textmsg[nm];
-    }
-
-    getHoverCss(prefix) {
-        return prefix + ':hover { border: var(--active-report-object-border); }';
     }
 
     hasBorder(settings) {
@@ -57,15 +74,8 @@ class ReportObject extends React.Component {
         return (document.designData.reportName.replace(/ /g, '-') + '-' + this.props.config.objectType + '-' + this.props.config.id);
     }
     
-    onMouseMove(info) {
-        let rc = info.target.getBoundingClientRect();
-        if (((info.clientX - rc.left) < 3) || ((rc.width - (info.clientX - rc.left)) < 3)) {
-            info.target.style.cursor = 'ew-resize';
-        } else if ((((rc.top + rc.height) - info.clientY) < 3) || ((info.clientY -rc.top) < 3)) {
-            info.target.style.cursor = 'ns-resize';
-        } else {
-            info.target.style.cursor = '';
-        }
+    onLayoutChange(info) {
+        this.setState({left: info.left, top: info.top, width: info.width, height: info.height});
     }
 }
 
