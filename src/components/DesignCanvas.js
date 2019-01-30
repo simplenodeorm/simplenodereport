@@ -57,8 +57,8 @@ class DesignCanvas extends React.Component {
         return {
             left: 0,
             top: 0,
-            width: width.toFixed(2),
-            height: height.toFixed(2)
+            width: Math.round(width),
+            height: Math.round(height)
         };
     }
 }

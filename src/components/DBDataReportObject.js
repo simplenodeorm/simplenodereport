@@ -102,7 +102,7 @@ class DBDataReportObject extends ReportObject {
         
         style.appendChild(document.createTextNode('.'
             + objectData.cssClassName
-            + ' table { border-spacing: 0; border-collapse: collapse; }'));
+            + ' table { border-spacing: 0; border-collapse: collapse; width: 98%; height:98%;}'));
 
         style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' th {margin: 0; padding: 0;}'));
 

@@ -308,6 +308,10 @@ export function getReportColumn(key) {
 
 }
 
+export function isResizeCursor(cursor) {
+    return cursor.includes('-resize');
+}
+
 export function getResizeCursor(clientRect, mouseX, mouseY) {
     let retval = '';
     

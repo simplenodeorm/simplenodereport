@@ -1,6 +1,6 @@
 import React from 'react';
 import "../app/App.css";
-import {getUniqueKey,getResizeCursor} from './helpers';
+import {getUniqueKey,isResizeCursor,getResizeCursor} from './helpers';
 import config from '../config/appconfig';
 import ReactDOM from "react-dom";
 
@@ -15,17 +15,19 @@ class ReportObject extends React.Component {
             width: this.props.config.rect.width,
             height: this.props.config.rect.height
         };
-        
+        this.mouseDown = false;
         this.onLayoutChange = this.onLayoutChange.bind(this);
         this.getObjectData = this.getObjectData.bind(this);
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
+        this.onMouseDown = this.onMouseDown.bind(this);
     }
     
     render() {
         const {left, top, width, height, key} = this.state;
         const objectData = this.getObjectData();
         this.loadCss(objectData);
+        
         const myStyle = {
             left: left + 'px',
             top: top + 'px',
@@ -37,33 +39,54 @@ class ReportObject extends React.Component {
             style={myStyle}
             onMouseOver={this.onMouseOver}
             onMouseUp={this.onMouseUp}
+            onMouseDown={this.onMouseDown}
              className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
     }
     
     onMouseOver(info) {
-        info.target.style.cursor = getResizeCursor(ReactDOM.findDOMNode(this).getBoundingClientRect(), info.clientX, info.clientY);
+        if (!this.mouseDown) {
+            let e = ReactDOM.findDOMNode(this);
+            e.style.cursor = getResizeCursor(e.getBoundingClientRect(), info.clientX, info.clientY);
+        }
     }
     
+    onMouseDown(info) {
+        if (info.button === 0) {
+            let e = ReactDOM.findDOMNode(this);
+            if (isResizeCursor(e.style.cursor)) {
+                this.mouseDown = true;
+                info.preventDefault();
+            }
+        }
+    }
+
     onMouseUp(info) {
-        if (info.target.style.cursor) {
-            let rc = ReactDOM.findDOMNode(this).getBoundingClientRect();
-           
-            switch(info.target.style.cursor) {
-                case 'e-resize':
-                    this.onLayoutChange({left: info.clientX})
-                    break;
+        this.mouseDown = false;
+        let e = ReactDOM.findDOMNode(this);
+        if (isResizeCursor(e.style.cursor)) {
+            const {left, top, width, height} = this.state;
+            let rc = e.getBoundingClientRect();
+            let newLeft = info.clientX - rc.left;
+            let newTop = info.clientY - rc.top;
+            let newWidth = rc.width - newLeft;
+            let newHeight = rc.height - newTop;
+    
+            switch (e.style.cursor) {
                 case 'w-resize':
-                    this.onLayoutChange({width: info.clientX - rc.left})
+                    this.onLayoutChange({left: newLeft, top: top, width:newWidth, height:height});
+                    break;
+                case 'e-resize':
+                    this.onLayoutChange({left: left, top: top, width: newWidth, height: height});
                     break;
                 case 'n-resize':
-                    this.onLayoutChange({top: info.clientY})
+                    this.onLayoutChange({left: left, top: newTop, width: width, height: newHeight});
                     break;
                 case 's-resize':
-                    this.onLayoutChange({height: info.clientY - rc.top})
+                    this.onLayoutChange({left: left, top: top, width: width, height: newHeight});
                     break;
             }
-            info.target.style.cursor = '';
         }
+        info.target.style.cursor = '';
     }
     
     getConfigValue(nm) {
