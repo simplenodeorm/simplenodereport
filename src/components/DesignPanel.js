@@ -187,8 +187,9 @@ class DesignPanel extends BaseDesignComponent {
         let comp;
         switch (reportObjectConfig.objectType) {
             case 'dbdata':
-                comp = ReactDOM.render(<DBDataReportObject config={reportObjectConfig}/>,
-                    ReactDOM.findDOMNode(this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas()));
+                let dc = this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas();
+                comp = ReactDOM.render(<DBDataReportObject canvas={dc} config={reportObjectConfig}/>,
+                    ReactDOM.findDOMNode(dc));
                 break;
 
         }

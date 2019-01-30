@@ -307,3 +307,19 @@ export function getReportColumn(key) {
     return retval;
 
 }
+
+export function getResizeCursor(clientRect, mouseX, mouseY) {
+    let retval = '';
+    
+    if (Math.abs(clientRect.left-mouseX) < 3) {
+        retval = 'w-resize';
+    } else if (Math.abs(clientRect.right - mouseX) < 3) {
+        retval = 'e-resize';
+    } else if (Math.abs(clientRect.top - mouseY) < 3) {
+        retval = 'n-resize';
+    } else if (Math.abs(clientRect.bottom - mouseY) < 3) {
+        retval = 's-resize';
+    }
+    
+    return retval;
+}
