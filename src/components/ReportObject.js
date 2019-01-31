@@ -33,8 +33,14 @@ class ReportObject extends React.Component {
             left: left + 'px',
             top: top + 'px',
             width: width + 'px',
-            height: height + 'px'
+            height: height + 'px',
+            
         };
+    
+        if (objectData.selected) {
+            myStyle.border = config.selectedObjectBorder;
+        }
+
         return <div
             key={key}
             style={myStyle}
@@ -183,7 +189,7 @@ class ReportObject extends React.Component {
             + ' {position: relative; overflow: hidden; }'));
     
         style.appendChild(document.createTextNode('div.'
-            + className + ':hover { border: dotted 1px crimson}'));
+            + className + ':hover { border: ' + config.activeObjectBorder + ';}'));
     
     }
 }

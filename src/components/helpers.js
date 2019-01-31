@@ -372,9 +372,8 @@ export function setDefaultReportObjectSize(designPanel, reportObject) {
             reportObject.rect.top += 3;
             reportObject.rect.left += 3;
             reportObject.rect.height -= 6;
-            
-            let twidth = Math.round(reportObject.rect.width * 0.98) - 3;
-            let colwidth = Math.floor(twidth / colcnt);
+            reportObject.rect.width -= 6;
+            let colwidth = Math.floor(reportObject.rect.width / colcnt);
             
             for (let i = 0; i < reportObject.reportColumns.length; ++i) {
                 if (reportObject.reportColumns[i].displayResult) {
