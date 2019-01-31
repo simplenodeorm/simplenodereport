@@ -1,8 +1,10 @@
 import React from 'react';
 import "../app/App.css";
-import {getUniqueKey,isResizeCursor,getResizeCursor} from './helpers';
+import {getUniqueKey,isResizeCursor,isMoveCursor,getMoveResizeCursor,isPointInRect} from './helpers';
 import config from '../config/appconfig';
 import ReactDOM from "react-dom";
+
+
 
 class ReportObject extends React.Component {
     constructor(props) {
@@ -15,7 +17,6 @@ class ReportObject extends React.Component {
             width: this.props.config.rect.width,
             height: this.props.config.rect.height
         };
-        this.mouseDown = false;
         this.onLayoutChange = this.onLayoutChange.bind(this);
         this.getObjectData = this.getObjectData.bind(this);
         this.onMouseOver = this.onMouseOver.bind(this);
@@ -40,53 +41,78 @@ class ReportObject extends React.Component {
             onMouseOver={this.onMouseOver}
             onMouseUp={this.onMouseUp}
             onMouseDown={this.onMouseDown}
-             className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
+            className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
     }
     
     onMouseOver(info) {
-        if (!this.mouseDown) {
-            let e = ReactDOM.findDOMNode(this);
-            e.style.cursor = getResizeCursor(e.getBoundingClientRect(), info.clientX, info.clientY);
+       if (!this.startInfo) {
+            let rc = ReactDOM.findDOMNode(this).getBoundingClientRect();
+            if (isPointInRect(info.clientX, info.clientY, rc)) {
+                document.body.style.cursor = getMoveResizeCursor(rc, info.clientX, info.clientY);
+            } else {
+                document.body.style.cursor = '';
+            }
+        } else {
+            document.body.style.cursor = this.startInfo.cursor;
         }
     }
     
     onMouseDown(info) {
         if (info.button === 0) {
-            let e = ReactDOM.findDOMNode(this);
-            if (isResizeCursor(e.style.cursor)) {
-                this.mouseDown = true;
-                info.preventDefault();
+           if (isResizeCursor(document.body.style.cursor) || isMoveCursor(document.body.style.cursor)) {
+               document.addEventListener ('mouseup', this.onMouseUp, true);
+               document.addEventListener ('mouseover', this.onMouseOver, true);
+               this.startInfo = { x: info.screenX, y: info.screenY, cursor: document.body.style.cursor};
+               info.preventDefault();
             }
         }
     }
 
     onMouseUp(info) {
-        this.mouseDown = false;
-        let e = ReactDOM.findDOMNode(this);
-        if (isResizeCursor(e.style.cursor)) {
+        if (this.startInfo) {
+            document.removeEventListener('mouseup', this.onMouseUp, true);
+            document.removeEventListener('mouseover', this.onMouseOver, true);
             const {left, top, width, height} = this.state;
-            let rc = e.getBoundingClientRect();
-            let newLeft = info.clientX - rc.left;
-            let newTop = info.clientY - rc.top;
-            let newWidth = rc.width - newLeft;
-            let newHeight = rc.height - newTop;
-    
-            switch (e.style.cursor) {
-                case 'w-resize':
-                    this.onLayoutChange({left: newLeft, top: top, width:newWidth, height:height});
-                    break;
-                case 'e-resize':
-                    this.onLayoutChange({left: left, top: top, width: newWidth, height: height});
-                    break;
-                case 'n-resize':
-                    this.onLayoutChange({left: left, top: newTop, width: width, height: newHeight});
-                    break;
-                case 's-resize':
-                    this.onLayoutChange({left: left, top: top, width: width, height: newHeight});
-                    break;
+            let newLeft = left + (info.screenX - this.startInfo.x);
+            let newTop = top + (info.screenY - this.startInfo.y);
+            if (isResizeCursor(document.body.style.cursor)) {
+               switch (document.body.style.cursor) {
+                    case 'w-resize':
+                        this.onLayoutChange({left: newLeft, top: top, width: width - newLeft, height: height});
+                        break;
+                    case 'e-resize':
+                        this.onLayoutChange({
+                            left: left,
+                            top: top,
+                            width: width + (info.screenX - this.startInfo.x),
+                            height: height
+                        });
+                        break;
+                    case 'n-resize':
+                        this.onLayoutChange({left: left, top: newTop, width: width, height: height - newTop});
+                        break;
+                    case 's-resize':
+                        this.onLayoutChange({
+                            left: left,
+                            top: top,
+                            width: width,
+                            height: height + (info.screenY - this.startInfo.y)
+                        });
+                        break;
+                }
+            } else if (isMoveCursor(document.body.style.cursor)) {
+                this.onLayoutChange({
+                    left: newLeft,
+                    top: newTop,
+                    width: width,
+                    height: height
+                });
             }
+    
+            info.preventDefault();
+            document.body.style.cursor = '';
+            this.startInfo = '';
         }
-        info.target.style.cursor = '';
     }
     
     getConfigValue(nm) {
@@ -129,7 +155,27 @@ class ReportObject extends React.Component {
     }
     
     onLayoutChange(info) {
-        this.setState(info);
+        let newLeft = Math.max(3, info.left);
+        let newTop = Math.max(3, info.top)
+        let newWidth = info.width;
+        let newHeight = info.height;
+    
+        if (this.props.boundingRect.width < (newLeft + newWidth)) {
+            newWidth -= ((newLeft + newWidth) - this.props.boundingRect.width);
+        }
+    
+        if (this.props.boundingRect.height < (newTop + newHeight)) {
+            newHeight -= ((newTop + newHeight) - this.props.boundingRect.height);
+        }
+    
+        let rc = {
+            left: newLeft,
+            top:  newTop,
+            width: newWidth,
+            height: newHeight
+        };
+        
+        this.setState(rc);
     }
 }
 

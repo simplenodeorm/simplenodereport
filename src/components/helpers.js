@@ -309,10 +309,14 @@ export function getReportColumn(key) {
 }
 
 export function isResizeCursor(cursor) {
-    return cursor.includes('-resize');
+    return cursor && cursor.includes('-resize');
 }
 
-export function getResizeCursor(clientRect, mouseX, mouseY) {
+export function isMoveCursor(cursor) {
+    return (cursor && (cursor === 'move'));
+}
+
+export function getMoveResizeCursor(clientRect, mouseX, mouseY) {
     let retval = '';
     
     if (Math.abs(clientRect.left-mouseX) < 3) {
@@ -323,7 +327,66 @@ export function getResizeCursor(clientRect, mouseX, mouseY) {
         retval = 'n-resize';
     } else if (Math.abs(clientRect.bottom - mouseY) < 3) {
         retval = 's-resize';
+    } else if (Math.abs(mouseY - clientRect.top) < 20) {
+        return 'move';
     }
     
     return retval;
+}
+
+export function saveReportObject(designPanel, reportObject) {
+    if (!reportObject.id) {
+        if (!document.designData.currentReport.reportObjects) {
+            document.designData.currentReport.reportObjects = [];
+        }
+        
+        setDefaultReportObjectSize(designPanel, reportObject);
+        
+        reportObject.id = document.designData.currentReport.reportObjects.length;
+        document.designData.currentReport.reportObjects.push(reportObject);
+        designPanel.addReportObject(reportObject);
+    } else {
+        for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
+            if (document.designData.currentReport.reportObjects[i].id === reportObject.id) {
+                document.designData.currentReport.reportObjects[i] = reportObject;
+                designPanel.updateReportObject(reportObject);
+                break;
+            }
+        }
+    }
+}
+
+export function setDefaultReportObjectSize(designPanel, reportObject) {
+    switch (reportObject.objectType) {
+        case 'dbdata':
+            let colcnt = 0;
+            
+            for (let i = 0; i < reportObject.reportColumns.length; ++i) {
+                if (reportObject.reportColumns[i].displayResult) {
+                    colcnt++;
+                }
+            }
+            
+            reportObject.columnCount = colcnt;
+            reportObject.rect = designPanel.getReportSectionDesignCanvas(reportObject.reportSection).getRect();
+            reportObject.rect.top += 3;
+            reportObject.rect.left += 3;
+            reportObject.rect.height -= 6;
+            
+            let twidth = Math.round(reportObject.rect.width * 0.98) - 3;
+            let colwidth = Math.floor(twidth / colcnt);
+            
+            for (let i = 0; i < reportObject.reportColumns.length; ++i) {
+                if (reportObject.reportColumns[i].displayResult) {
+                    reportObject.reportColumns[i].width = colwidth;
+                }
+            }
+            break;
+    }
+}
+
+
+export function isPointInRect(x, y, rc) {
+    return ((x > rc.left && (x < (rc.left + rc.width))
+        && (y > rc.top) && ( y < (rc.top + rc.height))));
 }

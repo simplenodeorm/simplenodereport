@@ -6,7 +6,7 @@ import config from '../config/appconfig';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {PreferencesPanel} from './PreferencesPanel';
 import {SaveReportPanel} from './SaveReportPanel';
-import {clearContextMenu, clearDocumentDesignData, getContextMenu} from './helpers';
+import {clearContextMenu, clearDocumentDesignData, getContextMenu, saveReportObject} from './helpers';
 import {getModalContainer} from './helpers';
 import {getDocumentDimensions} from './helpers';
 import {getPixelsPerInch} from './helpers.js';
@@ -39,7 +39,6 @@ class AppToolbar extends BaseDesignComponent {
         this.alignTextMiddle = this.alignTextMiddle.bind(this);
         this.alignTextRight = this.alignTextRight.bind(this);
         this.saveReportObject = this.saveReportObject.bind(this);
-        this.setDefaultReportObjectSize = this.setDefaultReportObjectSize.bind(this);
         
         this.state = {
             canSave: false,
@@ -265,55 +264,7 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     saveReportObject(reportObject) {
-        let dp = this.props.getDesignPanel();
-        if (!reportObject.id) {
-            if (!document.designData.currentReport.reportObjects) {
-                document.designData.currentReport.reportObjects = [];
-            }
-            this.setDefaultReportObjectSize(reportObject);
-
-            reportObject.id = document.designData.currentReport.reportObjects.length;
-            document.designData.currentReport.reportObjects.push(reportObject);
-            dp.addReportObject(reportObject);
-        } else {
-            for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
-                if (document.designData.currentReport.reportObjects[i].id === reportObject.id) {
-                    document.designData.currentReport.reportObjects[i] = reportObject;
-                    dp.updateReportObject(reportObject);
-                    break;
-                }
-            }
-        }
-    }
-
-    setDefaultReportObjectSize(reportObject) {
-        let dp = this.props.getDesignPanel();
-        switch(reportObject.objectType) {
-            case 'dbdata':
-                let colcnt = 0;
-
-                for (let i = 0; i < reportObject.reportColumns.length; ++i) {
-                    if (reportObject.reportColumns[i].displayResult) {
-                        colcnt++;
-                    }
-                }
-
-                reportObject.columnCount = colcnt;
-                reportObject.rect = dp.getReportSectionDesignCanvas(reportObject.reportSection).getRect();
-                reportObject.rect.top += 3;
-                reportObject.rect.left += 3;
-                reportObject.rect.height -= 6;
-                
-                let twidth = Math.round(reportObject.rect.width * 0.98) - 3;
-                let colwidth = Math.floor(twidth/colcnt);
- 
-                for (let i = 0; i < reportObject.reportColumns.length; ++i) {
-                    if (reportObject.reportColumns[i].displayResult) {
-                        reportObject.reportColumns[i].width = colwidth;
-                    }
-                }
-                break;
-        }
+        saveReportObject(this.props.getDesignPanel(), reportObject);
     }
 }
 

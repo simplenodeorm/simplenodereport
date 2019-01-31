@@ -884,3 +884,11 @@ input[type="checkbox"] {
     z-index: 1;
 }
 
+.reportObject {
+    border: none;
+}
+
+.reportObject:hover {
+    border: solid 1px crimson;
+}
+
