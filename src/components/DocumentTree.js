@@ -192,6 +192,7 @@ class DocumentTree extends BaseDesignComponent {
     
     loadDocumentData(doc) {
         this.props.getDesignPanel().refreshLayout(doc);
+        this.props.getToolbar().setState({canSave: true});
     }
 
     setCurrentReport(doc) {

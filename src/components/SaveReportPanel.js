@@ -12,6 +12,7 @@ class SaveReportPanel extends ModalDialog {
         super(props);
         this.onSelect = this.onSelect.bind(this);
         this.onAuthenticatorChange = this.onAuthenticatorChange.bind(this);
+        this.onReportName = this.onReportName.bind(this);
         
         this.authenticator = document.designData.currentReport.authenticator;
         
@@ -55,7 +56,9 @@ class SaveReportPanel extends ModalDialog {
                 <table>
                     <tr>
                         <td className="inputLabel">{config.textmsg.documentnamelabel}</td>
-                        <td><input type="text" defaultValue={document.designData.currentReport.reportName.replace(/_/g, ' ')} readonly={true}/></td>
+                        <td><input type="text"
+                            defaultValue={document.designData.currentReport.reportName.replace(/_/g, ' ')}
+                            onChange={this.onReportName} /></td>
                     </tr>
                     <tr>
                         <td className="inputLabel">{config.textmsg.authenticatorlabel}</td>
@@ -90,6 +93,10 @@ class SaveReportPanel extends ModalDialog {
         this.authenticator = e.target.value;
     }
     
+    onReportName(e) {
+        this.reportName = e.target.value;
+    }
+    
     getTitle() {
         return config.textmsg.savedocumenttitle;
     }
@@ -106,7 +113,8 @@ class SaveReportPanel extends ModalDialog {
     getResult() {
         return { 
             group: this.selectedGroup, 
-            authenticator: this.authenticator
+            authenticator: this.authenticator,
+            reportName: this.reportName
         };
     }
     

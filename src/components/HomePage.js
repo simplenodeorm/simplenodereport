@@ -26,7 +26,7 @@ class HomePage extends React.Component {
         this.setCurrentReport = this.setCurrentReport.bind(this);
         this.refreshLayout = this.refreshLayout.bind(this);
         this.getDesignPanel = this.getDesignPanel.bind(this);
-        this.setDesignPanel = this.setDesignPanel.bind(this);
+        this.getToolbar = this.getToolbar.bind(this);
         this.setStatusBar = this.setStatusBar.bind(this);
     }
 
@@ -60,7 +60,8 @@ class HomePage extends React.Component {
         const curobj = this;
     
         return <div><div>
-                <AppToolbar 
+                <AppToolbar
+                    ref={(tb) => {curobj.toolbar = tb;}}
                     setStatus={curobj.setStatus}
                     reloadDocuments={curobj.reloadDocuments}
                     getDesignPanel={curobj.getDesignPanel}
@@ -70,7 +71,8 @@ class HomePage extends React.Component {
                     split="vertical" 
                     minSize={0} 
                     defaultSize={150}>
-                    <DocumentTree ref={(dt) => {curobj.documentTree = dt;}} 
+                    <DocumentTree ref={(dt) => {curobj.documentTree = dt;}}
+                        getToolbar={curobj.getToolbar}
                         setStatus={curobj.setStatus} 
                         setCurrentReport={curobj.setCurrentReport}
                         getDesignPanel={this.getDesignPanel} />
@@ -88,6 +90,10 @@ class HomePage extends React.Component {
 
     getDesignPanel() {
         return this.designPanel;
+    }
+    
+    getToolbar() {
+         return this.toolbar;
     }
 
     refreshLayout() {
