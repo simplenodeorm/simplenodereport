@@ -397,7 +397,9 @@ export function isPointInRect(x, y, rc) {
 
 function unmountComponent(comp) {
     if (comp) {
-        ReactDOM.unmountComponentAtNode(comp)
+        try {
+            ReactDOM.unmountComponentAtNode(comp);
+        } catch(e) {};
         comp = '';
     }
 }
