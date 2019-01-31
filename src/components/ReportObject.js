@@ -177,6 +177,15 @@ class ReportObject extends React.Component {
         
         this.setState(rc);
     }
+    
+    addBaseReportObjectCss(style, className) {
+        style.appendChild(document.createTextNode('.' + className
+            + ' {position: relative; overflow: hidden; }'));
+    
+        style.appendChild(document.createTextNode('div.'
+            + className + ':hover { border: dotted 1px crimson}'));
+    
+    }
 }
 
     

@@ -95,21 +95,13 @@ class DBDataReportObject extends ReportObject {
     loadCss(objectData) {
         let style = document.getElementsByTagName('style')[0];
     
-        let css = '.' + objectData.cssClassName
-            + ' {position: relative; overflow: hidden; }';
-    
-        style.appendChild(document.createTextNode(css));
-    
-        style.appendChild(document.createTextNode('div.'
-            + objectData.cssClassName + ':hover { border: dotted 1px crimson}'));
-    
+        this.addBaseReportObjectCss(style, objectData.cssClassName);
+        
         style.appendChild(document.createTextNode('.'
             + objectData.cssClassName
             + ' table { border-spacing: 0; border-collapse: collapse; width: 98%; height:98%;}'));
     
-        css = '.' + objectData.cssClassName
-    
-        css = '.' + objectData.cssClassName
+        let css = '.' + objectData.cssClassName
             + ' th div {margin: 0; padding: 0; font-family:'
             + this.props.config.headerFontSettings.font
             + '; font-size: '

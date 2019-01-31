@@ -313,7 +313,7 @@ export function isResizeCursor(cursor) {
 }
 
 export function isMoveCursor(cursor) {
-    return (cursor && (cursor === 'move'));
+    return (cursor && (cursor === 'crosshair'));
 }
 
 export function getMoveResizeCursor(clientRect, mouseX, mouseY) {
@@ -328,7 +328,7 @@ export function getMoveResizeCursor(clientRect, mouseX, mouseY) {
     } else if (Math.abs(clientRect.bottom - mouseY) < 3) {
         retval = 's-resize';
     } else if (Math.abs(mouseY - clientRect.top) < 20) {
-        return 'move';
+        return 'crosshair';
     }
     
     return retval;
