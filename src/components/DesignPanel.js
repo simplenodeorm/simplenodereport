@@ -43,7 +43,7 @@ class DesignPanel extends BaseDesignComponent {
     }
 
     render() {
-        const {left, top, margins, height, width} = this.state;
+        const {left, top, margins, height, width, redraw} = this.state;
 
         const designStyle = {
             left: left,

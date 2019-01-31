@@ -22,6 +22,7 @@ class ReportObject extends React.Component {
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
     
     render() {
@@ -37,7 +38,7 @@ class ReportObject extends React.Component {
             
         };
     
-        if (objectData.selected) {
+        if (this.props.config.selected) {
             myStyle.border = config.selectedObjectBorder;
         }
 
@@ -47,7 +48,18 @@ class ReportObject extends React.Component {
             onMouseOver={this.onMouseOver}
             onMouseUp={this.onMouseUp}
             onMouseDown={this.onMouseDown}
+            onClick={this.onClick}
             className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
+    }
+    
+    onClick(info) {
+        if (info.ctrlKey) {
+            this.props.config.selected = !this.props.config.selected;
+            this.setState(this.state);
+            info.preventDefault();
+        } else {
+        
+        }
     }
     
     onMouseOver(info) {
@@ -181,6 +193,7 @@ class ReportObject extends React.Component {
             height: newHeight
         };
         
+        this.props.config.rect = rc;
         this.setState(rc);
     }
     
