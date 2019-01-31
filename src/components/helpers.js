@@ -1,10 +1,12 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
 import config from '../config/appconfig.json';
 
 document.designData = {
     currentReport: {}
 };
 
-var popupMenuClick = function(e) { 
+var popupMenuClick = function(e) {
     let cm = document.getElementById('ctxmenu');
     let rect = cm.getBoundingClientRect();
     let x = e.clientX; // - rect.left; 
@@ -65,6 +67,7 @@ export function clearContextMenu() {
     if (cm) {
         document.removeEventListener('click', popupMenuClick, true);
         document.body.removeChild(cm);
+        unmountComponent(document.designData.currentContextMenu);
     }
 }
 
@@ -109,6 +112,7 @@ export function clearModalContainer(mc) {
     if (mcdom) {
         document.removeEventListener('click', mc.clickFunction, true);
         document.body.removeChild(mcdom);
+        unmountComponent(document.designData.currentModalContainer)
     }
 }
 
@@ -132,6 +136,7 @@ export function removeWaitMessage() {
     if (e) {
         document.removeEventListener('click', e.waitMessageClick, true);
         document.body.removeChild(e);
+        unmountComponent(document.designData.currentWaitMessage);
     }
 }
 
@@ -388,4 +393,11 @@ export function setDefaultReportObjectSize(designPanel, reportObject) {
 export function isPointInRect(x, y, rc) {
     return ((x > rc.left && (x < (rc.left + rc.width))
         && (y > rc.top) && ( y < (rc.top + rc.height))));
+}
+
+function unmountComponent(comp) {
+    if (comp) {
+        ReactDOM.unmountComponentAtNode(comp)
+        comp = '';
+    }
 }
