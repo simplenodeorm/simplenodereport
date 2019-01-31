@@ -1,10 +1,8 @@
 import React from 'react';
+import ReactDOM from "react-dom";
 import "../app/App.css";
 import {getUniqueKey,isResizeCursor,isMoveCursor,getMoveResizeCursor,isPointInRect} from './helpers';
 import config from '../config/appconfig';
-import ReactDOM from "react-dom";
-
-
 
 class ReportObject extends React.Component {
     constructor(props) {
