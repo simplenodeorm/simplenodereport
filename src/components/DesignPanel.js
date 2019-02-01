@@ -22,6 +22,7 @@ class DesignPanel extends BaseDesignComponent {
         this.addReportObject = this.addReportObject.bind(this);
         this.updateReportObject = this.updateReportObject.bind(this);
         this.refreshLayout = this.refreshLayout.bind(this);
+        this.onObjectSelect = this.onObjectSelect.bind(this);
 
         this.header = '';
         this.body = '';
@@ -43,7 +44,7 @@ class DesignPanel extends BaseDesignComponent {
     }
 
     render() {
-        const {left, top, margins, height, width, redraw} = this.state;
+        const {left, top, margins, height, width} = this.state;
 
         const designStyle = {
             left: left,
@@ -188,7 +189,10 @@ class DesignPanel extends BaseDesignComponent {
         switch (reportObjectConfig.objectType) {
             case 'dbdata':
                 let dc = this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas();
-                comp = ReactDOM.render(<DBDataReportObject boundingRect={dc.getRect()} config={reportObjectConfig}/>,
+                comp = ReactDOM.render(<DBDataReportObject
+                        onObjectSelect={this.onObjectSelect}
+                        boundingRect={dc.getRect()}
+                        config={reportObjectConfig}/>,
                     ReactDOM.findDOMNode(dc));
                 break;
 
@@ -199,6 +203,11 @@ class DesignPanel extends BaseDesignComponent {
         }
     }
 
+    onObjectSelect(selected) {
+        this.props.getToolbar().onReportObjectSelect(selected);
+    }
+    
+    
     updateReportObject(reportObject) {
 
     }

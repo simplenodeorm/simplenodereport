@@ -21,6 +21,7 @@ class ReportObject extends React.Component {
         this.onMouseUp = this.onMouseUp.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onClick = this.onClick.bind(this);
+        this.selected = false;
     }
     
     render() {
@@ -52,7 +53,8 @@ class ReportObject extends React.Component {
     
     onClick(info) {
         if (info.ctrlKey) {
-            this.props.config.selected = !this.props.config.selected;
+            this.selected = this.props.config.selected = !this.props.config.selected;
+            this.props.onObjectSelect(this.props.config.selected);
             this.setState(this.state);
             info.preventDefault();
         } else {

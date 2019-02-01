@@ -39,6 +39,9 @@ class AppToolbar extends BaseDesignComponent {
         this.alignTextMiddle = this.alignTextMiddle.bind(this);
         this.alignTextRight = this.alignTextRight.bind(this);
         this.saveReportObject = this.saveReportObject.bind(this);
+        this.onReportObjectSelect = this.onReportObjectSelect.bind(this);
+        
+        this.selectedReportObjectCounter = 0;
         
         this.state = {
             canSave: false,
@@ -154,6 +157,29 @@ class AppToolbar extends BaseDesignComponent {
     
     
     deleteReportObjects() {
+        if (window.confirm(config.textmsg.deleteconfirmprompt)) {
+            let selobjs = [];
+            let nonselobjs = [];
+            let dp = this.props.getDesignPanel();
+            for (let i = 0; i < dp.reportObjects.length; ++i) {
+                if (dp.reportObjects[i].selected) {
+                    selobjs.push(dp.reportObjects[i]);
+                } else {
+                    nonselobjs.push(dp.reportObjects[i]);
+                }
+            }
+        
+            for (let i = 0; i < selobjs.length; ++i) {
+                let e = ReactDOM.findDOMNode(selobjs[i]);
+                ReactDOM.unmountComponentAtNode(e);
+                e.parentNode.removeChild(e);
+            }
+            
+            dp.reportObjects = nonselobjs;
+            this.selectedReportObjectCounter = 0;
+            this.setState({itemsSelected: false});
+            
+        }
     }
 
     initializeNewReport(settings) {
@@ -246,6 +272,24 @@ class AppToolbar extends BaseDesignComponent {
         clearContextMenu();
     }
 
+    onReportObjectSelect(selected) {
+        let saveCount = this.selectedReportObjectCounter;
+        
+        if (selected) {
+            this.selectedReportObjectCounter++;
+        } else {
+            this.selectedReportObjectCounter--;
+            this.selectedReportObjectCounter = Math.max(0, this.selectedReportObjectCounter);
+        }
+        
+        
+        if ((saveCount > 0) && (this.selectedReportObjectCounter === 0)) {
+            this.setState({itemsSelected: false})
+        } else if ((saveCount === 0) && (this.selectedReportObjectCounter > 0)) {
+            this.setState({itemsSelected: true})
+        }
+    }
+    
     showReportObjectSetupPanel(type, reportObject) {
         let rc;
         let mc;
