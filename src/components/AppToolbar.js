@@ -6,7 +6,7 @@ import config from '../config/appconfig';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {PreferencesPanel} from './PreferencesPanel';
 import {SaveReportPanel} from './SaveReportPanel';
-import {clearContextMenu, clearDocumentDesignData, getContextMenu, saveReportObject} from './helpers';
+import {clearContextMenu, clearDocumentDesignData, getContextMenu, saveReportObject,unmountComponents} from './helpers';
 import {getModalContainer} from './helpers';
 import {getDocumentDimensions} from './helpers';
 import {getPixelsPerInch} from './helpers.js';
@@ -169,16 +169,11 @@ class AppToolbar extends BaseDesignComponent {
                 }
             }
         
-            for (let i = 0; i < selobjs.length; ++i) {
-                let e = ReactDOM.findDOMNode(selobjs[i]);
-                ReactDOM.unmountComponentAtNode(e);
-                e.parentNode.removeChild(e);
-            }
+            unmountComponents(selobjs);
             
-            dp.reportObjects = nonselobjs;
+            dp.setReportObjects(nonselobjs);
             this.selectedReportObjectCounter = 0;
             this.setState({itemsSelected: false});
-            
         }
     }
 

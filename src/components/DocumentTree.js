@@ -98,14 +98,13 @@ class DocumentTree extends BaseDesignComponent {
     
     loadDocument() {
         const curcomp = this;
-        clearContextMenu();
         let {selectedDocument} = this.state;
         const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
+        const axiosConfig = {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/report/load/' + selectedDocument, config)
+        axios.get(orm.url + '/report/load/' + selectedDocument, axiosConfig)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.loadDocumentData(response.data);

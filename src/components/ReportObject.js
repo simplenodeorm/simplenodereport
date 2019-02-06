@@ -28,16 +28,16 @@ class ReportObject extends React.Component {
         const {left, top, width, height, key} = this.state;
         const objectData = this.getObjectData();
         this.loadCss(objectData);
+        const content = this.getContent(objectData);
         
         const myStyle = {
             left: left + 'px',
             top: top + 'px',
             width: width + 'px',
             height: height + 'px',
-            
         };
     
-        if (this.props.config.selected) {
+        if (this.selected) {
             myStyle.border = config.selectedObjectBorder;
         }
 
@@ -48,13 +48,18 @@ class ReportObject extends React.Component {
             onMouseUp={this.onMouseUp}
             onMouseDown={this.onMouseDown}
             onClick={this.onClick}
-            className={objectData.cssClassName}>{this.getContent(objectData)}</div>;
+            className={objectData.cssClassName}>{content}</div>;
+    }
+    
+    componentWillUnmount() {
+        document.removeEventListener ('mouseup', this.onMouseUp, true);
+        document.removeEventListener ('mouseover', this.onMouseOver, true);
     }
     
     onClick(info) {
         if (info.ctrlKey) {
-            this.selected = this.props.config.selected = !this.props.config.selected;
-            this.props.onObjectSelect(this.props.config.selected);
+            this.selected = !this.selected;
+            this.props.onObjectSelect(this.selected);
             this.setState(this.state);
             info.preventDefault();
         } else {
@@ -174,7 +179,7 @@ class ReportObject extends React.Component {
     
     onLayoutChange(info) {
         let newLeft = Math.max(3, info.left);
-        let newTop = Math.max(3, info.top)
+        let newTop = Math.max(3, info.top);
         let newWidth = info.width;
         let newHeight = info.height;
     

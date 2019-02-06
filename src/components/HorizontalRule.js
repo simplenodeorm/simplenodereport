@@ -41,6 +41,7 @@ class HorizontalRule extends React.Component {
             left: '0',
             width: document.designData.currentReport.documentWidth
         };
+        this.lastTime = 0;
     }
     
     componentWillReceiveProps(nextProps) {
@@ -79,11 +80,17 @@ class HorizontalRule extends React.Component {
 
     onWheel(e) {
         const {width} = this.state;
-        let newval = this.slider.getValue() + (e.deltaY * 5);
-        if ((newval >= 0) && (newval <= width)) {
-            this.slider.onChange({value: newval});
-            this.onAfterChange(this.slider.getValue());
+        let ctime = new Date().getMilliseconds();
+        if ((ctime - this.lastWheelTime) > 100) {
+            this.lastTime = ctime;
+    
+            let newval = this.slider.getValue() + (e.deltaY * 5);
+            if ((newval >= 0) && (newval <= width)) {
+                this.slider.onChange({value: newval});
+                this.onAfterChange(this.slider.getValue());
+            }
         }
+        
     }
 
     getLines() {

@@ -65,9 +65,14 @@ export function clearContextMenu() {
     let cm = document.getElementById('ctxmenu');
     
     if (cm) {
-        document.removeEventListener('click', popupMenuClick, true);
-        document.body.removeChild(cm);
-        unmountComponent(document.designData.currentContextMenu);
+        try {
+            if (document.designData.currentContextMenu) {
+                ReactDOM.unmountComponentAtNode(document.designData.currentContextMenu);
+                document.designData.currentContextMenu = '';
+            }
+            document.body.removeChild(cm);
+            document.removeEventListener('click', popupMenuClick, true);
+        } catch (ex) {}
     }
 }
 
@@ -107,12 +112,16 @@ export function getModalContainer(rc) {
     return retval;
 }
 
-export function clearModalContainer(mc) {
+export function clearModalContainer() {
     const mcdom = document.getElementById('modalcontainer');
     if (mcdom) {
-        document.removeEventListener('click', mc.clickFunction, true);
-        document.body.removeChild(mcdom);
-        unmountComponent(document.designData.currentModalContainer)
+        try {
+            if (document.designData.currentModalContainer) {
+                ReactDOM.unmountComponentAtNode(document.designData.currentModalContainer);
+                document.designData.currentModalContainer = '';
+            }
+            document.body.removeChild(mcdom);
+        } catch (ex) {}
     }
 }
 
@@ -134,9 +143,13 @@ export function getWaitMessage() {
 export function removeWaitMessage() {
     let e = document.getElementById('waitmsg');
     if (e) {
-        document.removeEventListener('click', e.waitMessageClick, true);
-        document.body.removeChild(e);
-        unmountComponent(document.designData.currentWaitMessage);
+        try {
+            if (document.designData.currentWaitMessage) {
+                ReactDOM.unmountComponentAtNode(document.designData.currentWaitMessage);
+                document.designData.currentWaitMessage = '';
+            }
+            document.body.removeChild(e);
+        } catch (ex) {}
     }
 }
 
@@ -395,11 +408,19 @@ export function isPointInRect(x, y, rc) {
         && (y > rc.top) && ( y < (rc.top + rc.height))));
 }
 
-function unmountComponent(comp) {
-    if (comp) {
-        try {
-            ReactDOM.unmountComponentAtNode(comp);
-        } catch(e) {};
-        comp = '';
+export function unmountComponents(components) {
+    if (components) {
+        for (let i = 0; i < components.length; ++i) {
+            if (components[i]) {
+                try {
+                    let e = ReactDOM.findDOMNode(components[i]);
+                    ReactDOM.unmountComponentAtNode(e);
+                    if (e.parentNode) {
+                        e.parentNode.removeChild(e);
+                    }
+                } catch (e) {
+                }
+            }
+        }
     }
 }

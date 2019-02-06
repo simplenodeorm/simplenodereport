@@ -2,7 +2,6 @@ import React from 'react';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import {getPixelsPerInch} from './helpers.js';
-import config from '../config/appconfig.json';
 
 import 'rc-slider/assets/index.css';
 import '../app/App.css'
@@ -26,7 +25,7 @@ const handle = (props) => {
 
 
 const loop = (data) => {
-    return data.map((item) => {
+    return data.map(() => {
         return data.map((item) => {
         if (item[0] === 15) {
             return <svg><line x1={18} y1={item[1]} x2={item[2]} y2={item[3]} stroke="black" strokeWidth="1" shapeRendering="crispEdges"/><text x={8} y={item[1]+3} fontSize="10" fill="crimson">{item[4]}</text></svg>
@@ -43,7 +42,7 @@ class VerticalRule extends React.Component {
         super(props);
         this.onAfterChange = this.onAfterChange.bind(this);
         this.onWheel = this.onWheel.bind(this);
-
+        this.lastWheelTime = 0;
         this.state = {
             top: '0px',
             height: document.designData.currentReport.documentHeight
@@ -55,7 +54,7 @@ class VerticalRule extends React.Component {
     }
     
     render() {
-        const {curvalue, height} = this.state;
+        const {height} = this.state;
     
         return <div className="verticalRule" >
             <div className="slider" onWheel={this.onWheel}>
@@ -85,11 +84,15 @@ class VerticalRule extends React.Component {
     }
 
     onWheel(e) {
-        let newval = this.slider.getValue() - (e.deltaY * 5);
-
-        if ((newval <= 0) && (newval >= this.slider.getLowerBound())) {
-            this.slider.onChange({value: newval});
-            this.onAfterChange(this.slider.getValue());
+        let ctime = new Date().getMilliseconds();
+        if ((ctime - this.lastWheelTime) > 100) {
+            this.lastTime = ctime;
+            let newval = this.slider.getValue() - (e.deltaY * 10);
+    
+            if ((newval <= 0) && (newval >= this.slider.getLowerBound())) {
+                this.slider.onChange({value: newval});
+                this.onAfterChange(this.slider.getValue());
+            }
         }
     }
 

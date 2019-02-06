@@ -16,6 +16,10 @@ class ModalDialog extends BaseDesignComponent {
         this.onCancel = this.onCancel.bind(this);
     }
     
+    componentWillUnmount() {
+        document.removeEventListener('click', this.clickFunction, true);
+    }
+
     componentDidMount () {
         const me = this;
         this.clickFunction = function(e) { 

@@ -9,6 +9,7 @@ import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
 import ReactDOM from 'react-dom';
 import {DBDataReportObject} from './DBDataReportObject';
+import {unmountComponents} from './helpers';
 
 class DesignPanel extends BaseDesignComponent {
     constructor(props) {
@@ -23,7 +24,9 @@ class DesignPanel extends BaseDesignComponent {
         this.updateReportObject = this.updateReportObject.bind(this);
         this.refreshLayout = this.refreshLayout.bind(this);
         this.onObjectSelect = this.onObjectSelect.bind(this);
-
+        this.setReportObjects = this.setReportObjects.bind(this);
+        this.onWheel = this.onWheel.bind(this);
+        
         this.header = '';
         this.body = '';
         this.footer = '';
@@ -52,8 +55,8 @@ class DesignPanel extends BaseDesignComponent {
             height: (height + 'px'),
             width: (width + 'px')
         };
-        
-        return  <div className="designContainer"> 
+    
+        return  <div onWheel={this.onWheel} className="designContainer">
             <HorizontalRule left={left} width={width} horizontalPositionChange={this.horizontalPositionChange}/>
             <div className="designPanel">
                 <div ref={(dw) => {this.dw = dw}} className="documentWrapper" style={designStyle}>
@@ -89,10 +92,18 @@ class DesignPanel extends BaseDesignComponent {
                     </SplitPane>
                 </div>
             </div>
-            <VerticalRule top={top} height={height} verticalPositionChange={this.verticalPositionChange} />
+            <VerticalRule
+                ref={(vr) => {this.verticalRule = vr}}
+                top={top}
+                height={height}
+                verticalPositionChange={this.verticalPositionChange} />
         </div>
     }
-    
+    onWheel(e) {
+        if (this.verticalRule) {
+            this.verticalRule.onWheel(e);
+        }
+    }
     onHeaderSize(sz) {
         if (sz && this.header) {
             const {height} = this.state;
@@ -131,10 +142,12 @@ class DesignPanel extends BaseDesignComponent {
         }
     }
     
+    setReportObjects(objects) {
+        this.reportObjects = objects;
+    }
+    
     refreshLayout(doc) {
-        for (let i = 0; i < this.reportObjects.length; i++) {
-            ReactDOM.unmountComponentAtNode(ReactDOM.findDOMNode(this.reportObjects[i]).parentNode);
-        }
+        unmountComponents(this.reportObjects);
 
         this.reportObjects = [];
         document.designData.currentReport.reportObjects = [];
@@ -146,8 +159,6 @@ class DesignPanel extends BaseDesignComponent {
                 this.getReportSection(document.designData.currentReport.reportObjects[i].reportSection).setState({error:''});
                 this.addReportObject(document.designData.currentReport.reportObjects[i]);
             }
-
-
         }
 
         this.props.setCurrentReport(document.designData.currentReport);
@@ -161,7 +172,6 @@ class DesignPanel extends BaseDesignComponent {
         };
 
         this.setState(layout);
-
     }
 
     getReportSection(sectionName) {

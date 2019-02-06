@@ -21,7 +21,7 @@ class SaveReportPanel extends ModalDialog {
         }
         
         this.selectedGroup = document.designData.currentReport.group;
-        
+        this.reportName = document.designData.currentReport.reportName.replace(/_/g, ' ');
         this.state = {
             authorizers: '',
             groups: ''
@@ -30,7 +30,7 @@ class SaveReportPanel extends ModalDialog {
         this.loadDocumentGroups();
     }
 
-    getIcon(props) {
+    getIcon() {
         return rfimage;
     }
     
@@ -80,7 +80,7 @@ class SaveReportPanel extends ModalDialog {
                       showIcon={true}
                       defaultExpandAll={true}
                       defaultSelectedKeys={this.selectedGroup}
-                      treeData={groups}></Tree> }
+                      treeData={groups}/> }
                 </div>
         </div>;
     }
