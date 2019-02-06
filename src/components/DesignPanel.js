@@ -147,8 +147,6 @@ class DesignPanel extends BaseDesignComponent {
     }
     
     refreshLayout(doc) {
-        unmountComponents(this.reportObjects);
-
         this.reportObjects = [];
         document.designData.currentReport.reportObjects = [];
 
