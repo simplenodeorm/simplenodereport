@@ -6,8 +6,7 @@ import config from '../config/appconfig.json';
 import './defaultTree.css';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import axios from 'axios';
-import {clearContextMenu} from './helpers';
-import {getContextMenu} from './helpers';
+import {clearContextMenu,getContextMenu,removeWaitMessage} from './helpers';
 const rdimage = <img alt="report document" src="/images/report-document.png"/>;
 const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 
@@ -92,11 +91,12 @@ class DocumentTree extends BaseDesignComponent {
         if (info.node.props.isLeaf) {
             this.state.selectedDocument = info.node.props.eventKey;
             const cm = getContextMenu(info);
-            document.designData.currentContextMenu = ReactDOM.render(<ul><li><button onClick={tree.loadDocument}>{config.textmsg.loaddocument}</button></li><li><button onClick={tree.deleteDocument}>{config.textmsg.deletedocument}</button></li></ul>, cm);
+            ReactDOM.render(<ul><li><button onClick={tree.loadDocument}>{config.textmsg.loaddocument}</button></li><li><button onClick={tree.deleteDocument}>{config.textmsg.deletedocument}</button></li></ul>, cm);
         } 
     }
     
     loadDocument() {
+        clearContextMenu();
         const curcomp = this;
         let {selectedDocument} = this.state;
         const orm = JSON.parse(localStorage.getItem('orm'));
@@ -118,6 +118,7 @@ class DocumentTree extends BaseDesignComponent {
     }
 
     deleteDocument() {
+        clearContextMenu();
         const curcomp = this;
         let {selectedDocument} = this.state;
         let pos = selectedDocument.indexOf('.');
@@ -195,7 +196,7 @@ class DocumentTree extends BaseDesignComponent {
     }
 
     setCurrentReport(doc) {
-        this.clearWaitMessage();
+        removeWaitMessage();
         this.props.setCurrentReport(doc.documentName);
     }
     

@@ -4,7 +4,7 @@ import config from '../config/appconfig.json';
 import base64 from 'base-64';
 import axios from 'axios';
 import {BaseDesignComponent} from '../components/BaseDesignComponent';
-
+import {removeWaitMessage} from '../components/helpers';
 import { withRouter } from 'react-router';
 
 import '../app/App.css';
@@ -132,7 +132,7 @@ class LoginPage extends BaseDesignComponent {
                     if (response.status === 200) {
                         localStorage.setItem('orm', JSON.stringify(orm));
                         curcomp.props.history.push('/');
-                        curcomp.clearWaitMessage();
+                        removeWaitMessage();
                     } else {
                         curcomp.setState({error: response.statusText, loading: false, submitted: false});
                     }

@@ -6,13 +6,10 @@ document.designData = {
     currentReport: {}
 };
 
-var popupMenuClick = function(e) {
+const popupMenuClick = function(e) {
     let cm = document.getElementById('ctxmenu');
-    let rect = cm.getBoundingClientRect();
-    let x = e.clientX; // - rect.left; 
-    let y = e.clientY; // - rect.top; 
-    if ((x < 0) || (y < 0) || (x >= rect.right) || (y >= rect.top)) {
-        clearContextMenu();
+    if (!isPointInRect(e.pageX, e.pageY, cm.getBoundingClientRect())) {
+       clearContextMenu();
     }
 };
 
@@ -65,14 +62,9 @@ export function clearContextMenu() {
     let cm = document.getElementById('ctxmenu');
     
     if (cm) {
-        try {
-            if (document.designData.currentContextMenu) {
-                ReactDOM.unmountComponentAtNode(document.designData.currentContextMenu);
-                document.designData.currentContextMenu = '';
-            }
-            document.body.removeChild(cm);
-            document.removeEventListener('click', popupMenuClick, true);
-        } catch (ex) {}
+        ReactDOM.unmountComponentAtNode(cm);
+        cm.parentNode.removeChild(cm);
+        document.removeEventListener('click', popupMenuClick, true);
     }
 }
 
@@ -115,13 +107,10 @@ export function getModalContainer(rc) {
 export function clearModalContainer() {
     const mcdom = document.getElementById('modalcontainer');
     if (mcdom) {
-        try {
-            if (document.designData.currentModalContainer) {
-                ReactDOM.unmountComponentAtNode(document.designData.currentModalContainer);
-                document.designData.currentModalContainer = '';
-            }
-            document.body.removeChild(mcdom);
-        } catch (ex) {}
+        ReactDOM.unmountComponentAtNode(mcdom);
+        mcdom.parentNode.removeChild(mcdom);
+        document.removeEventListener('click', mcdom.clickFunction, true);
+    
     }
 }
 
@@ -141,15 +130,10 @@ export function getWaitMessage() {
 }
 
 export function removeWaitMessage() {
-    let e = document.getElementById('waitmsg');
-    if (e) {
-        try {
-            if (document.designData.currentWaitMessage) {
-                ReactDOM.unmountComponentAtNode(document.designData.currentWaitMessage);
-                document.designData.currentWaitMessage = '';
-            }
-            document.body.removeChild(e);
-        } catch (ex) {}
+    let wm = document.getElementById('waitmsg');
+    if (wm) {
+        ReactDOM.unmountComponentAtNode(wm);
+        wm.parentNode.removeChild(wm);
     }
 }
 

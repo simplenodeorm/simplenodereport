@@ -3,7 +3,7 @@ import {BaseDesignComponent} from './BaseDesignComponent';
 import {ColumnSelectLine} from './ColumnSelectLine';
 import axios from "axios";
 import "../app/App.css";
-import {getUniqueKey, isNumeric} from './helpers';
+import {getUniqueKey, isNumeric,removeWaitMessage} from './helpers';
 
 
 class DBColumnSelectPanel extends BaseDesignComponent {
@@ -95,18 +95,18 @@ class DBColumnSelectPanel extends BaseDesignComponent {
                             displayTotal : false
                         });
                     }
-
-                    curcomp.clearWaitMessage();
+    
+                    removeWaitMessage();
                     curcomp.setState({dataLoaded: true});
                 } else {
-                    curcomp.clearWaitMessage();
+                    removeWaitMessage();
                     curcomp.props.setStatus(response.statusText, true);
                 }
 
             })
             .catch((err) => {
                 curcomp.props.setStatus('' + err, true);
-                curcomp.clearWaitMessage();
+                removeWaitMessage();
             });
 
     }

@@ -6,12 +6,13 @@ import config from '../config/appconfig';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {PreferencesPanel} from './PreferencesPanel';
 import {SaveReportPanel} from './SaveReportPanel';
-import {clearContextMenu, clearDocumentDesignData, getContextMenu, saveReportObject,unmountComponents} from './helpers';
+import {clearContextMenu, clearDocumentDesignData, getContextMenu, saveReportObject,removeWaitMessage,unmountComponents} from './helpers';
 import {getModalContainer} from './helpers';
 import {getDocumentDimensions} from './helpers';
 import {getPixelsPerInch} from './helpers.js';
 import axios from 'axios';
 import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
+
 
 const reportObjectLoop = (obj, data) => {
     return data.map((item) => {
@@ -40,6 +41,7 @@ class AppToolbar extends BaseDesignComponent {
         this.alignTextRight = this.alignTextRight.bind(this);
         this.saveReportObject = this.saveReportObject.bind(this);
         this.onReportObjectSelect = this.onReportObjectSelect.bind(this);
+        this.showReportObjectPopup = this.showReportObjectPopup.bind(this);
         
         this.selectedReportObjectCounter = 0;
         
@@ -129,8 +131,7 @@ class AppToolbar extends BaseDesignComponent {
     newReport() {
         let rc = {left: 200, top: 75, width: 400, height: 400};
         let mc = getModalContainer(rc);
-        document.designData.currentModalCointainer
-            = ReactDOM.render(<PreferencesPanel newDocument={true} onOk={this.initializeNewReport}/>, mc);
+        ReactDOM.render(<PreferencesPanel newDocument={true} onOk={this.initializeNewReport}/>, mc);
     }
 
     alignLeft() {
@@ -213,8 +214,7 @@ class AppToolbar extends BaseDesignComponent {
     onSave() {
         let rc = {left: 200, top: 50, width: 450, height: 425};
         let mc = getModalContainer(rc);
-        document.designData.currentModalCointainer
-            = ReactDOM.render(<SaveReportPanel onOk={this.saveReport}/>, mc);
+        ReactDOM.render(<SaveReportPanel onOk={this.saveReport}/>, mc);
     }
     
     saveReport(params) {
@@ -228,25 +228,24 @@ class AppToolbar extends BaseDesignComponent {
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.props.setStatus('report saved', false);
-                    curcomp.clearWaitMessage();
+                    removeWaitMessage();
                     curcomp.props.reloadDocuments();
                 } else {
-                    curcomp.clearWaitMessage();
+                    removeWaitMessage();
                     curcomp.props.setStatus(response.statusText, true);
                 }
                 
             })
             .catch((err) => {
                 curcomp.props.setStatus('' + err, true);
-                curcomp.clearWaitMessage();
+                removeWaitMessage();
             });     
     }
 
     preferences() {
         let rc = {left: 200, top: 75, width: 400, height: 375};
         let mc = getModalContainer(rc);
-        document.designData.currentModalCointainer
-            = ReactDOM.render(<PreferencesPanel onOk={this.savePreferences}/>, mc);
+        ReactDOM.render(<PreferencesPanel onOk={this.savePreferences}/>, mc);
     }
 
     savePreferences(results) {
@@ -254,8 +253,9 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     showReportObjectPopup(e) {
-        const cm = getContextMenu({event: e, yOffset: 20});
-        document.designData.currentContextMenu = ReactDOM.render(<ul>{reportObjectLoop(this, config.reportObjectTypes)}</ul>, cm);
+        const curobj = this;
+        const cm = getContextMenu({target: curobj, event: e, yOffset: 20});
+        ReactDOM.render(<ul>{reportObjectLoop(curobj, config.reportObjectTypes)}</ul>, cm);
     }
 
     addReportObject(e) {
@@ -295,12 +295,12 @@ class AppToolbar extends BaseDesignComponent {
         } else {
             reportObject = JSON.parse(JSON.stringify(reportObject));
         }
-
+    
         switch(type) {
             case 'dbdata':
                 rc = {left: 175, top: 50, width: 600, height: 400};
                 mc = getModalContainer(rc);
-                document.designData.currentModalCointainer = ReactDOM.render(<DBDataGridSetupPanel onOk={this.saveReportObject} reportObject={reportObject}/>, mc);
+                ReactDOM.render(<DBDataGridSetupPanel onOk={this.saveReportObject} reportObject={reportObject}/>, mc);
                 break;
         }
     }
