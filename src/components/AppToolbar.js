@@ -263,10 +263,6 @@ class AppToolbar extends BaseDesignComponent {
         this.showReportObjectSetupPanel(e.target.value);
     }
 
-    deleteSelectedItems() {
-        clearContextMenu();
-    }
-
     onReportObjectSelect(selected) {
         let saveCount = this.selectedReportObjectCounter;
         

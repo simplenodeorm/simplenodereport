@@ -9,7 +9,7 @@ import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
 import ReactDOM from 'react-dom';
 import {DBDataReportObject} from './DBDataReportObject';
-import {unmountComponents} from './helpers';
+import {getUniqueKey} from './helpers';
 
 class DesignPanel extends BaseDesignComponent {
     constructor(props) {
@@ -194,10 +194,12 @@ class DesignPanel extends BaseDesignComponent {
 
     addReportObject(reportObjectConfig) {
         let comp;
+        let dc;
         switch (reportObjectConfig.objectType) {
             case 'dbdata':
-                let dc = this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas();
+                dc = this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas();
                 comp = ReactDOM.render(<DBDataReportObject
+                        key={getUniqueKey()}
                         onObjectSelect={this.onObjectSelect}
                         boundingRect={dc.getRect()}
                         config={reportObjectConfig}/>,
@@ -208,6 +210,9 @@ class DesignPanel extends BaseDesignComponent {
 
         if (comp) {
             this.reportObjects.push(comp);
+            if (dc) {
+                dc.setState(dc.state);
+            }
         }
     }
 
