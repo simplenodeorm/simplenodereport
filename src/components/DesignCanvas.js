@@ -1,6 +1,12 @@
 import React from 'react';
 import "../app/App.css";
 
+const loadChildren = (data) => {
+    return data.map((component) => {
+        return component;
+    });
+};
+
 class DesignCanvas extends React.Component {
     constructor(props) {
         super(props);
@@ -12,6 +18,7 @@ class DesignCanvas extends React.Component {
             width: this.props.width
         };
         
+        this.reportObjectComponents = [];
         this.getRect = this.getRect.bind(this);
     }
 
@@ -37,6 +44,10 @@ class DesignCanvas extends React.Component {
 
     }
     
+    getReportObjectComponents() {
+        return this.reportObjectComponents;
+    }
+    
     render() {
         const {height, width, marginLeft, marginTop} = this.state;
         
@@ -49,16 +60,18 @@ class DesignCanvas extends React.Component {
         
         return <div className="designCanvas"
             ref={(c) => {this.myCanvas = c;}}
-            style={canvasStyle}/>
+                    style={canvasStyle}>
+            {(this.reportObjectComponents.length > 0)
+                && loadChildren(this.reportObjectComponents)}</div>
     }
     
     getRect() {
-        const {height, width} = this.state;
+        const {hght, width} = this.state;
         return {
             left: 0,
             top: 0,
             width: Math.round(width),
-            height: Math.round(height)
+            height: Math.round(hght)
         };
     }
 }

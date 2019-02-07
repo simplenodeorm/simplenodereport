@@ -7,9 +7,7 @@ import {BodyPanel} from './BodyPanel';
 import {FooterPanel} from './FooterPanel';
 import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
-import ReactDOM from 'react-dom';
 import {DBDataReportObject} from './DBDataReportObject';
-import {getUniqueKey} from './helpers';
 
 class DesignPanel extends BaseDesignComponent {
     constructor(props) {
@@ -24,14 +22,12 @@ class DesignPanel extends BaseDesignComponent {
         this.updateReportObject = this.updateReportObject.bind(this);
         this.refreshLayout = this.refreshLayout.bind(this);
         this.onObjectSelect = this.onObjectSelect.bind(this);
-        this.setReportObjects = this.setReportObjects.bind(this);
         this.onWheel = this.onWheel.bind(this);
         
         this.header = '';
         this.body = '';
         this.footer = '';
         this.dw = '';
-        this.reportObjects = [];
 
         this.state = {
             left: 0,
@@ -142,12 +138,7 @@ class DesignPanel extends BaseDesignComponent {
         }
     }
     
-    setReportObjects(objects) {
-        this.reportObjects = objects;
-    }
-    
     refreshLayout(doc) {
-        this.reportObjects = [];
         document.designData.currentReport.reportObjects = [];
 
         if (doc) {
@@ -193,26 +184,21 @@ class DesignPanel extends BaseDesignComponent {
     }
 
     addReportObject(reportObjectConfig) {
-        let comp;
         let dc;
         switch (reportObjectConfig.objectType) {
             case 'dbdata':
                 dc = this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas();
-                comp = ReactDOM.render(<DBDataReportObject
-                        key={getUniqueKey()}
-                        onObjectSelect={this.onObjectSelect}
+                dc.getReportObjectComponents().push(<DBDataReportObject
+                    key={reportObjectConfig.id}
+                    onObjectSelect={this.onObjectSelect}
                         boundingRect={dc.getRect()}
-                        config={reportObjectConfig}/>,
-                    ReactDOM.findDOMNode(dc));
+                        config={reportObjectConfig}/>);
                 break;
 
         }
 
-        if (comp) {
-            this.reportObjects.push(comp);
-            if (dc) {
-                dc.setState(dc.state);
-            }
+        if (dc) {
+            dc.setState(dc.state);
         }
     }
 

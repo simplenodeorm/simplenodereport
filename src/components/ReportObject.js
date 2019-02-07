@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import "../app/App.css";
-import {getUniqueKey,isResizeCursor,isMoveCursor,getMoveResizeCursor,isPointInRect} from './helpers';
+import {isResizeCursor,isMoveCursor,getMoveResizeCursor,isPointInRect} from './helpers';
 import config from '../config/appconfig';
 
 class ReportObject extends React.Component {
@@ -9,7 +9,6 @@ class ReportObject extends React.Component {
         super(props);
         
         this.state = {
-            key: getUniqueKey(),
             left: this.props.config.rect.left,
             top: this.props.config.rect.top,
             width: this.props.config.rect.width,
@@ -25,7 +24,7 @@ class ReportObject extends React.Component {
     }
     
     render() {
-        const {left, top, width, height, key} = this.state;
+        const {left, top, width, height} = this.state;
         const objectData = this.getObjectData();
         this.loadCss(objectData);
         const content = this.getContent(objectData);
@@ -42,7 +41,6 @@ class ReportObject extends React.Component {
         }
 
         return <div
-            key={key}
             style={myStyle}
             onMouseOver={this.onMouseOver}
             onMouseUp={this.onMouseUp}
