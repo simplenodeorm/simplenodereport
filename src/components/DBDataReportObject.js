@@ -26,6 +26,7 @@ class DBDataReportObject extends ReportObject {
     constructor(props) {
         super(props);
         this.getObjectData = this.getObjectData.bind(this);
+        this.pageBreakController = false;
     }
 
     getObjectData() {
@@ -206,6 +207,13 @@ class DBDataReportObject extends ReportObject {
     
     getDefaultRect(){
         return {top: 20, left: 20, height: 200, width: 300};
+    }
+    
+    isPageBreakReqired() {
+        let retval = false;
+        if (this.pageBreakController) {
+        }
+        return retval;
     }
 }
 

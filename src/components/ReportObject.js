@@ -233,6 +233,10 @@ class ReportObject extends React.Component {
         this.props.config.selected = false;
         this.setState(this.state);
     }
+    
+    isPageBreakRequired() {
+        return false;
+    }
 }
 
     

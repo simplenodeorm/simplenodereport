@@ -61,7 +61,8 @@
         "clearall": "Clear All",
         "ok": "Ok",
         "cancel": "Cancel",
-        "deleteconfirmprompt": "Delete all selected report objects?"
+        "deleteconfirmprompt": "Delete all selected report objects?",
+        "pagebreakcontroller": "Page Breaker"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

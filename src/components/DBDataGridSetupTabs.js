@@ -5,6 +5,7 @@ import {DBColumnSelectPanel} from './DBColumnSelectPanel';
 import {DBDataGridDisplayFontPanel} from './DBDataGridDisplayFontPanel';
 import {DBDataGridDisplayBorderPanel} from './DBDataGridDisplayBorderPanel';
 import {ReportSectionSelect} from './ReportSectionSelect';
+import {Checkbox} from './Checkbox';
 import config from '../config/appconfig.json';
 import "../app/App.css";
 
@@ -13,6 +14,7 @@ class DBDataGridSetupTabs extends BaseDesignComponent {
         super(props);
         this.onDisplayAll = this.onDisplayAll.bind(this);
         this.onClearAll = this.onClearAll.bind(this);
+        this.onPageBreakController = this.onPageBreakController.bind(this);
     }
 
     render() {
@@ -21,6 +23,9 @@ class DBDataGridSetupTabs extends BaseDesignComponent {
                     <ReportSectionSelect reportObject={this.props.reportObject} />
                     <button className="button" onClick={this.onDisplayAll}>{config.textmsg.displayall}</button>
                     <button className="button" onClick={this.onClearAll}>{config.textmsg.clearall}</button>
+                    <Checkbox label={config.textmsg.pagebreakcontroller}
+                              handleCheckboxChange={this.onPageBreakController}
+                              isChecked={this.props.reportObject.pageBreakController}/>
                 </div>
                 <Tabs>
                     <TabList>
@@ -39,6 +44,10 @@ class DBDataGridSetupTabs extends BaseDesignComponent {
                     </TabPanel>
                 </Tabs>
             </div>;
+    }
+    
+    onPageBreakController(pageBreaker) {
+        this.props.reportObject.pageBreakController = pageBreaker;
     }
 
     onDisplayAll() {
