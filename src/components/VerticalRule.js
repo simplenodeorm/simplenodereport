@@ -42,7 +42,6 @@ class VerticalRule extends React.Component {
         super(props);
         this.onAfterChange = this.onAfterChange.bind(this);
         this.onWheel = this.onWheel.bind(this);
-        this.lastWheelTime = 0;
         this.state = {
             top: '0px',
             height: document.designData.currentReport.documentHeight
@@ -84,15 +83,11 @@ class VerticalRule extends React.Component {
     }
 
     onWheel(e) {
-        let ctime = new Date().getMilliseconds();
-        if ((ctime - this.lastWheelTime) > 100) {
-            this.lastTime = ctime;
-            let newval = this.slider.getValue() - (e.deltaY * 10);
-    
-            if ((newval <= 0) && (newval >= this.slider.getLowerBound())) {
-                this.slider.onChange({value: newval});
-                this.onAfterChange(this.slider.getValue());
-            }
+        let newval = this.slider.getValue() - (e.deltaY * 5);
+
+        if ((newval <= 0) && (newval >= this.slider.getLowerBound())) {
+            this.slider.onChange({value: newval});
+            this.onAfterChange(newval);
         }
     }
 

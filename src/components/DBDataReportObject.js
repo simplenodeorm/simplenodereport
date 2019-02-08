@@ -35,8 +35,11 @@ class DBDataReportObject extends ReportObject {
 
         for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
             if (this.props.config.reportColumns[i].displayResult) {
-                columns.push(getReportColumn(this.props.config.reportColumns[i].key));
-                objectColumns.push(this.props.config.reportColumns[i]);
+                let dbcol = getReportColumn(this.props.config.reportColumns[i].key);
+                if (dbcol) {
+                    columns.push(dbcol);
+                    objectColumns.push(this.props.config.reportColumns[i]);
+                }
             }
         }
     

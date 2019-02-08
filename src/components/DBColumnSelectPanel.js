@@ -9,13 +9,14 @@ import {getUniqueKey, isNumeric,removeWaitMessage} from './helpers';
 class DBColumnSelectPanel extends BaseDesignComponent {
     constructor(props) {
         super(props);
-        if (!this.props.reportObject.reportColumns) {
+        if (!document.designData.currentReport.reportColumns) {
             this.loadAvailableQueryColumns();
             this.state = {
                 move: false,
                 dataLoaded: false
             };
         } else {
+            this.populateReportObjectData();
             this.state = {
                 move: false,
                 dataLoaded: true
@@ -65,6 +66,22 @@ class DBColumnSelectPanel extends BaseDesignComponent {
     getNodeCount() {
         return this.props.reportObject.reportColumns.length;
     }
+    
+    populateReportObjectData() {
+        this.props.reportObject.reportColumns = [];
+        for (let i = 0; i < document.designData.currentReport.reportColumns.length; ++i) {
+            let ta = 'left';
+            if (document.designData.currentReport.reportColumns[i].isNumeric) {
+                ta = 'right';
+            }
+            this.props.reportObject.reportColumns.push({
+                key: document.designData.currentReport.reportColumns[i].key,
+                textAlign: ta,
+                displayResult: true,
+                displayTotal: false
+            });
+        }
+    }
 
 
     loadAvailableQueryColumns() {
@@ -79,23 +96,11 @@ class DBColumnSelectPanel extends BaseDesignComponent {
             .then((response) => {
                 if (response.status === 200) {
                     document.designData.currentReport.reportColumns = response.data;
-                    curcomp.props.reportObject.reportColumns = [];
                     for (let i = 0; i < document.designData.currentReport.reportColumns.length; ++i) {
                         document.designData.currentReport.reportColumns[i].key = getUniqueKey();
                         document.designData.currentReport.reportColumns[i].isNumeric = isNumeric(document.designData.currentReport.reportColumns[i].type);
-                        let ta = 'left';
-                        if (document.designData.currentReport.reportColumns[i].isNumeric) {
-                            ta = 'right';
-                        }
-
-                        curcomp.props.reportObject.reportColumns.push({
-                            key: document.designData.currentReport.reportColumns[i].key,
-                            textAlign: ta,
-                            displayResult: true,
-                            displayTotal : false
-                        });
                     }
-    
+                    curcomp.populateReportObjectData();
                     removeWaitMessage();
                     curcomp.setState({dataLoaded: true});
                 } else {
