@@ -25,30 +25,31 @@ const columnLoop = (row) => {
 class DBDataReportObject extends ReportObject {
     constructor(props) {
         super(props);
+        this.getObjectData = this.getObjectData.bind(this);
     }
 
     getObjectData() {
         const {height} = this.state;
         let columns = [];
         let objectColumns = [];
-        
+
         for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
             if (this.props.config.reportColumns[i].displayResult) {
                 columns.push(getReportColumn(this.props.config.reportColumns[i].key));
                 objectColumns.push(this.props.config.reportColumns[i]);
             }
         }
-
+    
         let headerHeight = this.getHeaderHeight(columns, objectColumns) +
             this.getConfigValue('defaulttablecellpadding');
         let dataRowHeight = getFontHeight(this.props.config.dataFontSettings.font,
             this.props.config.dataFontSettings.fontSize) +
             this.getConfigValue('defaulttablecellpadding');
-
-        let numRows = Math.floor(((height - headerHeight)/ dataRowHeight));
-
+    
+        let numRows = Math.floor(height / dataRowHeight);
+    
         let data = [];
-
+    
         for (let i = 0; i < numRows; ++i) {
             let row = [];
             for (let j = 0; j < columns.length; ++j) {
@@ -78,7 +79,6 @@ class DBDataReportObject extends ReportObject {
 
     getHeaderHeight(columns, objectColumns) {
         let retval = 0;
-
         for (let i = 0; i < columns.length; ++i) {
             let fh = getFontHeight(this.props.config.headerFontSettings.font,
                 this.props.config.headerFontSettings.fontSize,
@@ -199,6 +199,10 @@ class DBDataReportObject extends ReportObject {
         css += '} ';
         style.appendChild(document.createTextNode(css));
 
+    }
+    
+    getDefaultRect(){
+        return {top: 20, left: 20, height: 200, width: 300};
     }
 }
 

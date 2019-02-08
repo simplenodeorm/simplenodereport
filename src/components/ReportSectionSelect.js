@@ -2,8 +2,6 @@ import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig.json';
 
-const sections = ["header", "body", "footer"];
-
 const loop = (data, cur) => {
     return data.map((info) => {
         if (cur && (info === cur)) {
@@ -26,7 +24,7 @@ class ReportSectionSelect extends React.Component{
     
     render() {
         return <div className="locationSelect">{config.textmsg.targetlocationlabel}
-            <select onChange={this.setReportSection}>{loop(sections, this.props.reportObject.reportSection)}</select>
+            <select onChange={this.setReportSection}>{loop(config.pageSections, this.props.reportObject.reportSection)}</select>
         </div>;
     }
 

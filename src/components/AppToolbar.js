@@ -6,7 +6,13 @@ import config from '../config/appconfig';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {PreferencesPanel} from './PreferencesPanel';
 import {SaveReportPanel} from './SaveReportPanel';
-import {clearContextMenu, clearDocumentDesignData, getContextMenu, saveReportObject,removeWaitMessage,unmountComponents} from './helpers';
+import {
+    clearContextMenu,
+    clearDocumentDesignData,
+    copyObject,
+    getContextMenu,
+    saveReportObject,
+    removeWaitMessage} from './helpers';
 import {getModalContainer} from './helpers';
 import {getDocumentDimensions} from './helpers';
 import {getPixelsPerInch} from './helpers.js';
@@ -159,20 +165,7 @@ class AppToolbar extends BaseDesignComponent {
     
     deleteReportObjects() {
         if (window.confirm(config.textmsg.deleteconfirmprompt)) {
-            let selobjs = [];
-            let nonselobjs = [];
-            let dp = this.props.getDesignPanel();
-            for (let i = 0; i < dp.reportObjects.length; ++i) {
-                if (dp.reportObjects[i].selected) {
-                    selobjs.push(dp.reportObjects[i]);
-                } else {
-                    nonselobjs.push(dp.reportObjects[i]);
-                }
-            }
-        
-            unmountComponents(selobjs);
-            
-            dp.setReportObjects(nonselobjs);
+            this.props.getDesignPanel().removeSelectedReportObjects();
             this.selectedReportObjectCounter = 0;
             this.setState({itemsSelected: false});
         }
@@ -180,34 +173,50 @@ class AppToolbar extends BaseDesignComponent {
 
     initializeNewReport(settings) {
         clearDocumentDesignData();
-        document.designData.reportName = settings.reportName;
-        for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
-            document.designData.currentReport[config.defaultPreferenceNames[i]] = settings[config.defaultPreferenceNames[i]];
-        }
-        
         let dim = getDocumentDimensions(settings.documentSize);
         let ppi = getPixelsPerInch();
-        document.designData.currentReport.documentWidth = dim[0] * ppi;
-        document.designData.currentReport.documentHeight = dim[1] * ppi;
+    
+        let headerHeight;
+        let footerHeight;
+        
         if (dim[0] < 2) {
-            document.designData.currentReport.headerHeight = ppi/4;
+            headerHeight = ppi/4;
         } else if (dim[0] < 5) {
-            document.designData.currentReport.headerHeight = ppi/2;
+            headerHeight = ppi/2;
         } else {
-            document.designData.currentReport.headerHeight = ppi;
+            headerHeight = ppi;
         }
-        
+    
         if (dim[1] < 2) {
-            document.designData.currentReport.footerHeight = ppi/4;
+            footerHeight = ppi/4;
         } else if (dim[1] < 5) {
-            document.designData.currentReport.footerHeight = ppi/2;
+            footerHeight = ppi/2;
         } else {
-            document.designData.currentReport.footerHeight = ppi;
+            footerHeight = ppi;
+        }
+
+        let doc = {
+            document: {
+                reportName: settings.reportName,
+                documentWidth: dim[0] * ppi,
+                documentHeight: dim[1] * ppi,
+                headerHeight: headerHeight,
+                footerHeight: footerHeight,
+                margins: [
+                    ppi * settings.marginLeft,
+                    ppi * settings.marginTop,
+                    ppi * settings.marginRight,
+                    ppi * settings.marginBottom],
+                reportObjects: []
+            }
+        };
+
+        for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
+            doc.document[config.defaultPreferenceNames[i]] = settings[config.defaultPreferenceNames[i]];
         }
         
-        document.designData.currentReport.margins = [ppi * settings.marginLeft, ppi * settings.marginTop, ppi * settings.marginRight, ppi * settings.marginBottom];
         this.setState({canSave: true, canAddObject: true});
-        this.props.refreshLayout();
+        this.props.refreshLayout(doc);
     }
     
     
@@ -224,7 +233,25 @@ class AppToolbar extends BaseDesignComponent {
         const config = {
             headers: {'Authorization': orm.authString }
         };
-        axios.post(orm.url + '/report/save', this.getReportDocument(params), config)
+        
+        let doc = this.getReportDocument(params);
+        doc.document.ref = '';
+        let validObjects = [];
+        for(let i = 0; i < doc.document.reportObjects.length; ++i) {
+            if (!doc.document.reportObjects[i].removed) {
+                doc.document.reportObjects[i].selected = false;
+                validObjects.push(doc.document.reportObjects[i]);
+            }
+        }
+    
+        if (validObjects.length > 0) {
+            doc.document.reportObjects.length = 0;
+            for (let i = 0; i < validObjects.length; ++i) {
+                doc.document.reportObjects.push(validObjects[i]);
+            }
+        }
+    
+        axios.post(orm.url + '/report/save', doc, config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.props.setStatus('report saved', false);
@@ -286,17 +313,20 @@ class AppToolbar extends BaseDesignComponent {
         let mc;
         if (!reportObject) {
             reportObject = {
-                objectType: type
+                objectType: type,
+                rect: ''
             };
         } else {
-            reportObject = JSON.parse(JSON.stringify(reportObject));
+            reportObject = copyObject(reportObject);
         }
     
         switch(type) {
             case 'dbdata':
                 rc = {left: 175, top: 50, width: 600, height: 400};
                 mc = getModalContainer(rc);
-                ReactDOM.render(<DBDataGridSetupPanel onOk={this.saveReportObject} reportObject={reportObject}/>, mc);
+                ReactDOM.render(<DBDataGridSetupPanel
+                    onOk={this.saveReportObject}
+                    reportObject={reportObject}/>, mc);
                 break;
         }
     }

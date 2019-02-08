@@ -63,6 +63,7 @@
         "cancel": "Cancel",
         "deleteconfirmprompt": "Delete all selected report objects?"
     },
+    "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,
     "documentSizeNames": ["LETTER", "LEGAL", "4A0", "2A0", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10"],
@@ -78,5 +79,6 @@
     "reportObjectTypes": ["label", "dbdata", "dbcolumn", "link", "image", "shape", "graph"],
     "defaulttablecellpadding": 3,
     "selectedObjectBorder": "solid 1px red",
-    "activeObjectBorder": "dotted 1px red"
+    "activeObjectBorder": "dotted 1px red",
+    "defaultReportObjectRect": {"top":  20, "left":  20, "height":  30, "width":  100}
 }

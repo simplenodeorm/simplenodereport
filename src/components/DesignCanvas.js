@@ -48,6 +48,14 @@ class DesignCanvas extends React.Component {
         return this.reportObjectComponents;
     }
     
+    removeSelectedReportObjects() {
+        for (let i = 0; i < this.reportObjectComponents.length; ++i) {
+            if (this.reportObjectComponents[i].props.config.selected) {
+                this.reportObjectComponents[i].props.config.ref.remove();
+            }
+        }
+    }
+    
     render() {
         const {height, width, marginLeft, marginTop} = this.state;
         

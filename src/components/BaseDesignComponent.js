@@ -36,14 +36,13 @@ class BaseDesignComponent extends React.Component {
     
     showWaitMessage(msg) {
         removeWaitMessage();
-        ReactDOM.render(<div className="waitMessage"><img src="/images/spinner.gif"/><span>{msg}</span></div>, getWaitMessage());
+        ReactDOM.render(<div className="waitMessage"><img alt="spinner" src="/images/spinner.gif"/><span>{msg}</span></div>, getWaitMessage());
     }
 
     getReportDocument(params) {
         document.designData.currentReport.reportName = params.reportName.replace(/ /g, '_');
         return {
             authenticator: params.authenticator,
-            reportName: document.designData.currentReport.reportName,
             group: params.group,
             document: document.designData.currentReport
         };

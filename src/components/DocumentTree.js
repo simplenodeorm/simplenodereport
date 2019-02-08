@@ -6,7 +6,7 @@ import config from '../config/appconfig.json';
 import './defaultTree.css';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import axios from 'axios';
-import {clearContextMenu,getContextMenu,removeWaitMessage} from './helpers';
+import {clearContextMenu,copyObject,getContextMenu,removeWaitMessage} from './helpers';
 const rdimage = <img alt="report document" src="/images/report-document.png"/>;
 const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 
@@ -38,7 +38,7 @@ class DocumentTree extends BaseDesignComponent {
     render() {
         const {documents, groups} = this.state;
         if (groups) {
-            let treeData = JSON.parse(JSON.stringify(groups));
+            let treeData = copyObject(groups);
             this.traverseDocumentGroups(treeData,  documents);
             
             return <div className="treeContainer">

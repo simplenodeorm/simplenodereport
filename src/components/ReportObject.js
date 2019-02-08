@@ -8,45 +8,62 @@ class ReportObject extends React.Component {
     constructor(props) {
         super(props);
         
+        let rc = this.props.config.rect;
+        if (!rc || !this.props.config.rect.height) {
+            rc = this.getDefaultRect();
+        }
+        
         this.state = {
-            left: this.props.config.rect.left,
-            top: this.props.config.rect.top,
-            width: this.props.config.rect.width,
-            height: this.props.config.rect.height
+            left: rc.left,
+            top: rc.top,
+            width: rc.width,
+            height: rc.height
         };
+        
         this.onLayoutChange = this.onLayoutChange.bind(this);
-        this.getObjectData = this.getObjectData.bind(this);
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onClick = this.onClick.bind(this);
-        this.selected = false;
+        this.getObjectData = this.getObjectData.bind(this);
+        this.getContent = this.getContent.bind(this);
     }
     
     render() {
-        const {left, top, width, height} = this.state;
-        const objectData = this.getObjectData();
-        this.loadCss(objectData);
-        const content = this.getContent(objectData);
-        
-        const myStyle = {
-            left: left + 'px',
-            top: top + 'px',
-            width: width + 'px',
-            height: height + 'px',
-        };
+        if (this.props.config.removed) {
+            return <span/>
+        } else {
+            const {left, top, width, height} = this.state;
+            if (!this.objectData) {
+                this.objectData = this.getObjectData();
+            }
+            
+            this.loadCss(this.objectData);
+            
+            if (!this.content) {
+                this.content = this.getContent(this.objectData);
+            }
     
-        if (this.selected) {
-            myStyle.border = config.selectedObjectBorder;
+            const myStyle = {
+                left: left + 'px',
+                top: top + 'px',
+                width: width + 'px',
+                height: height + 'px',
+            };
+    
+            if (this.props.config.selected) {
+                myStyle.border = config.selectedObjectBorder;
+            }
+    
+            return <div
+                key={this.props.config.id}
+                style={myStyle}
+                onMouseOver={this.onMouseOver}
+                onMouseUp={this.onMouseUp}
+                onMouseDown={this.onMouseDown}
+                onClick={this.onClick}
+                className={this.objectData.cssClassName}>{this.content}</div>
         }
-
-        return <div
-            style={myStyle}
-            onMouseOver={this.onMouseOver}
-            onMouseUp={this.onMouseUp}
-            onMouseDown={this.onMouseDown}
-            onClick={this.onClick}
-            className={objectData.cssClassName}>{content}</div>;
     }
     
     componentWillUnmount() {
@@ -56,12 +73,10 @@ class ReportObject extends React.Component {
     
     onClick(info) {
         if (info.ctrlKey) {
-            this.selected = !this.selected;
-            this.props.onObjectSelect(this.selected);
+            this.props.config.selected = !this.props.config.selected;
+            this.props.onObjectSelect(this.props.config.selected);
             this.setState(this.state);
             info.preventDefault();
-        } else {
-        
         }
     }
     
@@ -130,9 +145,9 @@ class ReportObject extends React.Component {
                 });
             }
     
-            info.preventDefault();
             document.body.style.cursor = '';
             this.startInfo = '';
+            info.preventDefault();
         }
     }
     
@@ -172,7 +187,7 @@ class ReportObject extends React.Component {
     }
     
     getCssClassName() {
-        return (document.designData.reportName.replace(/ /g, '-') + '-' + this.props.config.objectType + '-' + this.props.config.id);
+        return (document.designData.currentReport.reportName.replace(/ /g, '-') + '-' + this.props.config.objectType + '-' + this.props.config.id);
     }
     
     onLayoutChange(info) {
@@ -207,6 +222,16 @@ class ReportObject extends React.Component {
         style.appendChild(document.createTextNode('div.'
             + className + ':hover { border: ' + config.activeObjectBorder + ';}'));
     
+    }
+    
+    getDefaultRect() {
+        return config.defaultReportObjectRect;
+    }
+    
+    remove() {
+        this.props.config.removed = true;
+        this.props.config.selected = false;
+        this.setState(this.state);
     }
 }
 

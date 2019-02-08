@@ -8,6 +8,7 @@ import {FooterPanel} from './FooterPanel';
 import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
 import {DBDataReportObject} from './DBDataReportObject';
+import config from '../config/appconfig';
 
 class DesignPanel extends BaseDesignComponent {
     constructor(props) {
@@ -58,30 +59,30 @@ class DesignPanel extends BaseDesignComponent {
                 <div ref={(dw) => {this.dw = dw}} className="documentWrapper" style={designStyle}>
                     <SplitPane
                         split="horizontal"
-                        minSize={0} 
+                        minSize={0}
                         onDragFinished={this.onFooterSize}
                         defaultSize={height - document.designData.currentReport.footerHeight}>
                         <SplitPane
                             split="horizontal"
-                            minSize={0} 
+                            minSize={0}
                             onDragFinished={this.onHeaderSize}
                             defaultSize={document.designData.currentReport.headerHeight}>
-                            <HeaderPanel 
-                                ref={(hp) => {this.header = hp}} 
-                                margins={margins} 
+                            <HeaderPanel
+                                ref={(hp) => {this.header = hp}}
+                                margins={margins}
                                 width={width}
                                 height={document.designData.currentReport.headerHeight}
                                 setStatus={this.props.setStatus}/>
-                            <BodyPanel 
-                                ref={(bp) => {this.body = bp}} 
-                                margins={margins} 
+                            <BodyPanel
+                                ref={(bp) => {this.body = bp}}
+                                margins={margins}
                                 width={width}
                                 height={height - (document.designData.currentReport.headerHeight + document.designData.currentReport.footerHeight)}
                                 setStatus={this.props.setStatus}/>
-                        </SplitPane> 
-                        <FooterPanel 
-                            ref={(fp) => {this.footer = fp}} 
-                            margins={margins} 
+                        </SplitPane>
+                        <FooterPanel
+                            ref={(fp) => {this.footer = fp}}
+                            margins={margins}
                             width={width}
                             height={document.designData.currentReport.footerHeight}
                             setStatus={this.props.setStatus}/>
@@ -139,11 +140,13 @@ class DesignPanel extends BaseDesignComponent {
     }
     
     refreshLayout(doc) {
-        document.designData.currentReport.reportObjects = [];
-
         if (doc) {
-            document.designData.reportName = doc.document.reportName;
+            if (!document.designData) {
+                document.designData = {};
+            }
+            
             document.designData.currentReport = doc.document;
+            document.designData.currentReport.reportName = doc.document.reportName;
             for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
                 this.getReportSection(document.designData.currentReport.reportObjects[i].reportSection).setState({error:''});
                 this.addReportObject(document.designData.currentReport.reportObjects[i]);
@@ -154,7 +157,7 @@ class DesignPanel extends BaseDesignComponent {
 
         let layout = {
             left: 0,
-            top: 0, 
+            top: 0,
             height: document.designData.currentReport.documentHeight,
             width: document.designData.currentReport.documentWidth,
             margins: document.designData.currentReport.margins
@@ -182,17 +185,23 @@ class DesignPanel extends BaseDesignComponent {
     getReportSectionDesignCanvas(sectionName) {
          return this.getReportSection(sectionName).getDesignCanvas();
     }
+    
+    removeSelectedReportObjects() {
+        for (let i = 0; i < config.pageSections.length; ++i) {
+            this.getReportSectionDesignCanvas(config.pageSections[i]).removeSelectedReportObjects();
+        }
+    }
 
     addReportObject(reportObjectConfig) {
         let dc;
         switch (reportObjectConfig.objectType) {
             case 'dbdata':
-                dc = this.getReportSection(reportObjectConfig.reportSection).getDesignCanvas();
+                dc = this.getReportSectionDesignCanvas(reportObjectConfig.reportSection);
                 dc.getReportObjectComponents().push(<DBDataReportObject
                     key={reportObjectConfig.id}
                     onObjectSelect={this.onObjectSelect}
-                        boundingRect={dc.getRect()}
-                        config={reportObjectConfig}/>);
+                    boundingRect={dc.getRect()}
+                    config={reportObjectConfig}/>);
                 break;
 
         }

@@ -97,8 +97,8 @@ class HomePage extends React.Component {
          return this.toolbar;
     }
 
-    refreshLayout() {
-        return this.designPanel.refreshLayout();
+    refreshLayout(doc) {
+        return this.designPanel.refreshLayout(doc);
     }
     
     loadDefaultDocumentSettings() {

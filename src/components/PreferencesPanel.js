@@ -5,6 +5,7 @@ import defaults from '../config/defaults.json';
 import {ModalDialog} from './ModalDialog';
 import {NumericInput} from './NumericInput';
 import {QuerySelector} from './QuerySelector';
+import {copyObject} from './helpers';
 
 const documentSizeLoop = (docSize, data) => {
     return data.map((item) => {
@@ -41,7 +42,7 @@ class PreferencesPanel extends ModalDialog {
         this.setReportName = this.setReportName.bind(this);
         this.setQuery = this.setQuery.bind(this);
         this.allowCharacter = this.allowCharacter.bind(this);
-        this.settings = JSON.parse(JSON.stringify(document.designData.currentReport));
+        this.settings = copyObject(document.designData.currentReport);
         for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
             if (!this.settings[config.defaultPreferenceNames[i]]) {
                 this.settings[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];

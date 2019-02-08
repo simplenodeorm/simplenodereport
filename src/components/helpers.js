@@ -16,11 +16,7 @@ const popupMenuClick = function(e) {
 var ppi;
 
 export function clearDocumentDesignData() {
-    for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
-        document.designData[config.defaultPreferenceNames[i]] = '';
-    }
-    
-    document.designData.currentReport = {};
+    document.designData = '';
 }
     
 export function getFieldType(dbType) {
@@ -406,5 +402,11 @@ export function unmountComponents(components) {
                 }
             }
         }
+    }
+}
+
+export function copyObject(input) {
+    if (input) {
+        return JSON.parse(JSON.stringify(input));
     }
 }
