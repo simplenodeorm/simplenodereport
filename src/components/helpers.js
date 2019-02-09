@@ -311,22 +311,22 @@ export function isResizeCursor(cursor) {
 }
 
 export function isMoveCursor(cursor) {
-    return (cursor && (cursor === 'crosshair'));
+    return (cursor && (cursor === config.moveCursor));
 }
 
 export function getMoveResizeCursor(clientRect, mouseX, mouseY) {
     let retval = '';
     
-    if (Math.abs(clientRect.left-mouseX) < 3) {
+    if (Math.abs(clientRect.left-mouseX) < config.resizeMargin) {
         retval = 'w-resize';
-    } else if (Math.abs(clientRect.right - mouseX) < 3) {
+    } else if (Math.abs(clientRect.right - mouseX) < config.resizeMargin) {
         retval = 'e-resize';
-    } else if (Math.abs(clientRect.top - mouseY) < 3) {
+    } else if (Math.abs(clientRect.top - mouseY) < config.resizeMargin) {
         retval = 'n-resize';
-    } else if (Math.abs(clientRect.bottom - mouseY) < 3) {
+    } else if (Math.abs(clientRect.bottom - mouseY) < config.resizeMargin) {
         retval = 's-resize';
-    } else if (Math.abs(mouseY - clientRect.top) < 20) {
-        return 'crosshair';
+    } else if (Math.abs(mouseY - clientRect.top) > config.moveOffset) {
+        return config.moveCursor;
     }
     
     return retval;
@@ -386,23 +386,6 @@ export function setDefaultReportObjectSize(designPanel, reportObject) {
 export function isPointInRect(x, y, rc) {
     return ((x > rc.left && (x < (rc.left + rc.width))
         && (y > rc.top) && ( y < (rc.top + rc.height))));
-}
-
-export function unmountComponents(components) {
-    if (components) {
-        for (let i = 0; i < components.length; ++i) {
-            if (components[i]) {
-                try {
-                    let e = ReactDOM.findDOMNode(components[i]);
-                    ReactDOM.unmountComponentAtNode(e);
-                    if (e.parentNode) {
-                        e.parentNode.removeChild(e);
-                    }
-                } catch (e) {
-                }
-            }
-        }
-    }
 }
 
 export function copyObject(input) {

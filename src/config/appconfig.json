@@ -81,5 +81,8 @@
     "defaulttablecellpadding": 3,
     "selectedObjectBorder": "solid 1px red",
     "activeObjectBorder": "dotted 1px red",
-    "defaultReportObjectRect": {"top":  20, "left":  20, "height":  30, "width":  100}
+    "defaultReportObjectRect": {"top":  20, "left":  20, "height":  30, "width":  100},
+    "resizeMargin": 6,
+    "moveOffset": 20,
+    "moveCursor": "grabbing"
 }

@@ -6,7 +6,7 @@ import {TableHeader} from './TableHeader';
 
 const headerLoop = (data) => {
     return data.map((cinfo) => {
-        return <th><TableHeader text={cinfo.name}/></th>;
+        return <th><TableHeader config={cinfo}/></th>;
     });
 };
 
@@ -61,7 +61,7 @@ class DBDataReportObject extends ReportObject {
             }
             data.push(row);
         }
-
+        
         return {
             cssClassName: this.getCssClassName(),
             numRows: numRows,
@@ -121,8 +121,11 @@ class DBDataReportObject extends ReportObject {
             + '; text-align: center; }';
         style.appendChild(document.createTextNode(css));
 
-        css = '.' + objectData.cssClassName + ' th {overflow: hidden; ';
-
+        css = '.' + objectData.cssClassName
+            + ' th {overflow: hidden; -webkit-user-select: none; ';
+        css += '-moz-user-select: none; -ms-user-select: none; user-select: none; '
+        
+        
         if (this.hasBorder(this.props.config.headerBorderSettings)) {
             if (this.hasFullBorder(this.props.config.headerBorderSettings)) {
                 css += this.buildBorderCss('border', this.props.config.headerBorderSettings);
@@ -209,7 +212,7 @@ class DBDataReportObject extends ReportObject {
         return {top: 20, left: 20, height: 200, width: 300};
     }
     
-    isPageBreakReqired() {
+    isPageBreakRequired() {
         let retval = false;
         if (this.pageBreakController) {
         }
