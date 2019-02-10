@@ -4,13 +4,9 @@ import { DocumentTree } from './DocumentTree';
 import { DesignPanel } from './DesignPanel';
 import {AppToolbar} from './AppToolbar';
 import {StatusBar} from './StatusBar';
-import defaults from '../config/defaults.json';
 import '../app/App.css';
-import config from '../config/appconfig.json';
 import {getPixelsPerInch} from './helpers.js';
-import {getDocumentDimensions} from './helpers';
-
-const ppi = getPixelsPerInch();
+import {loadDefaultDocumentSettings} from './helpers';
 
 class HomePage extends React.Component {
     constructor(props) {
@@ -18,7 +14,7 @@ class HomePage extends React.Component {
 
         // if new set document defaults
         if (!document.designData.currentReport.reportName) {
-            this.loadDefaultDocumentSettings();
+            loadDefaultDocumentSettings();
         }
         
         this.setStatus = this.setStatus.bind(this);
@@ -101,31 +97,6 @@ class HomePage extends React.Component {
         return this.designPanel.refreshLayout(doc);
     }
     
-    loadDefaultDocumentSettings() {
-        let myPreferences = JSON.parse(localStorage.getItem('preferences'));
-        
-        if (!myPreferences || !myPreferences.documentSize) {                        
-            myPreferences = defaults;
-        } else {
-            for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
-                if (!myPreferences[config.defaultPreferenceNames[i]]) {
-                    myPreferences[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
-                }
-            }
-        }
-
-        let dim = getDocumentDimensions(myPreferences.documentSize);
-        document.designData.currentReport = {};
-        document.designData.currentReport.documentWidth = (ppi * dim[0]);
-        document.designData.currentReport.documentHeight = (ppi * dim[1]);
-        document.designData.currentReport.margins = [ppi * myPreferences.marginLeft, ppi * myPreferences.marginTop, ppi * myPreferences.marginRight, ppi * myPreferences.marginBottom];
-        document.designData.currentReport.footerHeight = ppi;
-        document.designData.currentReport.headerHeight = ppi;
-        document.designData.currentReport.font = myPreferences.font;
-        document.designData.currentReport.fontSize = myPreferences.fontSize;
-        document.designData.currentReport.fontFamily = myPreferences.fontFamily;
-        document.designData.currentReport.reportName = myPreferences.reportName;
-    }
 }
 
 export { HomePage };

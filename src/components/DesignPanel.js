@@ -191,14 +191,22 @@ class DesignPanel extends BaseDesignComponent {
             this.getReportSectionDesignCanvas(config.pageSections[i]).removeSelectedReportObjects();
         }
     }
-
+    
+    removeAllReportObjects() {
+        for (let i = 0; i < config.pageSections.length; ++i) {
+            this.getReportSectionDesignCanvas(config.pageSections[i]).removeAllReportObjects();
+        }
+    }
+    
     addReportObject(reportObjectConfig) {
         let dc;
         switch (reportObjectConfig.objectType) {
             case 'dbdata':
                 dc = this.getReportSectionDesignCanvas(reportObjectConfig.reportSection);
-                dc.getReportObjectComponents().push(<DBDataReportObject
+                dc.getReportObjectConfigurations().push(<DBDataReportObject
                     key={reportObjectConfig.id}
+                    index={dc.getReportObjectConfigurations().length}
+                    setMountedComponent={dc.setMountedComponent}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
                     config={reportObjectConfig}/>);

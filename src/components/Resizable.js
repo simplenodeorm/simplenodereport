@@ -32,6 +32,7 @@ class Resizable extends React.Component {
                 document.body.style.cursor = getMoveResizeCursor(rc, info.clientX, info.clientY);
             } else {
                 document.body.style.cursor = '';
+                this.style.cursor = '';
             }
         } else {
             document.body.style.cursor = this.startInfo.cursor;

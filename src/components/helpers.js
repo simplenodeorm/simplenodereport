@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import config from '../config/appconfig.json';
+import defaults from "../config/defaults";
 
 document.designData = {
     currentReport: {}
@@ -392,4 +393,30 @@ export function copyObject(input) {
     if (input) {
         return JSON.parse(JSON.stringify(input));
     }
+}
+
+export function loadDefaultDocumentSettings() {
+    let myPreferences = JSON.parse(localStorage.getItem('preferences'));
+    
+    if (!myPreferences || !myPreferences.documentSize) {
+        myPreferences = defaults;
+    } else {
+        for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
+            if (!myPreferences[config.defaultPreferenceNames[i]]) {
+                myPreferences[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
+            }
+        }
+    }
+    
+    let dim = getDocumentDimensions(myPreferences.documentSize);
+    document.designData.currentReport = {};
+    document.designData.currentReport.documentWidth = (ppi * dim[0]);
+    document.designData.currentReport.documentHeight = (ppi * dim[1]);
+    document.designData.currentReport.margins = [ppi * myPreferences.marginLeft, ppi * myPreferences.marginTop, ppi * myPreferences.marginRight, ppi * myPreferences.marginBottom];
+    document.designData.currentReport.footerHeight = ppi;
+    document.designData.currentReport.headerHeight = ppi;
+    document.designData.currentReport.font = myPreferences.font;
+    document.designData.currentReport.fontSize = myPreferences.fontSize;
+    document.designData.currentReport.fontFamily = myPreferences.fontFamily;
+    document.designData.currentReport.reportName = myPreferences.reportName;
 }

@@ -216,7 +216,8 @@ class AppToolbar extends BaseDesignComponent {
         }
         
         this.setState({canSave: true, canAddObject: true});
-        this.props.refreshLayout(doc);
+        this.props.getDesignPanel().removeAllReportObjects();
+        this.props.getDesignPanel().refreshLayout(doc);
     }
     
     

@@ -6,15 +6,18 @@ import {Resizable} from './Resizable';
 class ReportObject extends Resizable {
     constructor(props) {
         super(props);
-        
         this.onClick = this.onClick.bind(this);
         this.getObjectData = this.getObjectData.bind(this);
         this.getContent = this.getContent.bind(this);
     }
     
+    componentDidMount() {
+        this.props.setMountedComponent(this);
+    }
+    
     render() {
         if (this.props.config.removed) {
-            return <span/>
+            return <span />
         } else {
             const {left, top, width, height} = this.state;
             const objectData = this.getObjectData();

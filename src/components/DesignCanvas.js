@@ -18,8 +18,10 @@ class DesignCanvas extends React.Component {
             width: this.props.width
         };
         
-        this.reportObjectComponents = [];
+        this.mountedReportObjects = [];
+        this.reportObjectConfigurations = [];
         this.getRect = this.getRect.bind(this);
+        this.setMountedComponent = this.setMountedComponent.bind(this);
     }
 
     componentDidMount () {
@@ -44,18 +46,26 @@ class DesignCanvas extends React.Component {
 
     }
     
-    getReportObjectComponents() {
-        return this.reportObjectComponents;
+    getReportObjectConfigurations() {
+        return this.reportObjectConfigurations;
     }
     
     removeSelectedReportObjects() {
-        for (let i = 0; i < this.reportObjectComponents.length; ++i) {
-            if (this.reportObjectComponents[i].props.config.selected) {
-                this.reportObjectComponents[i].props.config.ref.remove();
+        for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
+            if (this.reportObjectConfigurations[i].props.config.selected) {
+                this.mountedReportObjects[i].remove();
             }
         }
+        this.setState(this.state);
     }
     
+    removeAllReportObjects() {
+        for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
+            this.mountedReportObjects[i].remove();
+         }
+        this.setState(this.state);
+    }
+
     render() {
         const {height, width, marginLeft, marginTop} = this.state;
         
@@ -69,8 +79,8 @@ class DesignCanvas extends React.Component {
         return <div className="designCanvas"
             ref={(c) => {this.myCanvas = c;}}
                     style={canvasStyle}>
-            {(this.reportObjectComponents.length > 0)
-                && loadChildren(this.reportObjectComponents)}</div>
+            {(this.reportObjectConfigurations.length > 0)
+                && loadChildren(this.reportObjectConfigurations)}</div>
     }
     
     getRect() {
@@ -81,6 +91,10 @@ class DesignCanvas extends React.Component {
             width: Math.round(width),
             height: Math.round(hght)
         };
+    }
+    
+    setMountedComponent(comp) {
+        this.mountedReportObjects[comp.props.index] = comp;
     }
 }
 
