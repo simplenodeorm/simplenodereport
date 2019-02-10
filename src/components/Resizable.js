@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import {getMoveResizeCursor, isMoveCursor, isPointInRect, isResizeCursor} from "./helpers";
+import {isPointInRect} from "./helpers";
 import config from "../config/appconfig";
 
 class Resizable extends React.Component {
@@ -23,16 +23,18 @@ class Resizable extends React.Component {
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
+        this.getMoveResizeCursor = this.getMoveResizeCursor.bind(this);
+        this.isMoveCursor = this.isMoveCursor.bind(this);
+        this.isResizeCursor = this.isResizeCursor.bind(this);
     }
     
     onMouseOver(info) {
         if (!this.startInfo) {
             let rc = ReactDOM.findDOMNode(this).getBoundingClientRect();
             if (isPointInRect(info.clientX, info.clientY, rc)) {
-                document.body.style.cursor = getMoveResizeCursor(rc, info.clientX, info.clientY);
+                document.body.style.cursor = this.getMoveResizeCursor(rc, info.clientX, info.clientY);
             } else {
                 document.body.style.cursor = '';
-                this.style.cursor = '';
             }
         } else {
             document.body.style.cursor = this.startInfo.cursor;
@@ -41,7 +43,7 @@ class Resizable extends React.Component {
     
     onMouseDown(info) {
         if (info.button === 0) {
-            if (isResizeCursor(document.body.style.cursor) || isMoveCursor(document.body.style.cursor)) {
+            if (this.isResizeCursor(document.body.style.cursor) || this.isMoveCursor(document.body.style.cursor)) {
                 document.addEventListener('mouseup', this.onMouseUp, true);
                 document.addEventListener('mouseover', this.onMouseOver, true);
                 this.startInfo = {x: info.screenX, y: info.screenY, cursor: document.body.style.cursor};
@@ -57,7 +59,7 @@ class Resizable extends React.Component {
             const {left, top, width, height} = this.state;
             let newLeft = left + (info.screenX - this.startInfo.x);
             let newTop = top + (info.screenY - this.startInfo.y);
-            if (isResizeCursor(document.body.style.cursor)) {
+            if (this.isResizeCursor(document.body.style.cursor)) {
                 switch (document.body.style.cursor) {
                     case 'w-resize':
                         this.onLayoutChange({left: newLeft, top: top, width: width + (left - newLeft), height: height});
@@ -84,7 +86,7 @@ class Resizable extends React.Component {
                         });
                         break;
                 }
-            } else if (isMoveCursor(document.body.style.cursor)) {
+            } else if (this.isMoveCursor(document.body.style.cursor)) {
                 this.onLayoutChange({
                     left: newLeft,
                     top: newTop,
@@ -133,6 +135,41 @@ class Resizable extends React.Component {
         return config.defaultReportObjectRect;
     }
     
+    getMoveResizeCursor(clientRect, mouseX, mouseY) {
+        let retval = '';
+        
+        if (Math.abs(clientRect.left - mouseX) < config.resizeMargin) {
+            retval = 'w-resize';
+        } else if (Math.abs(clientRect.right - mouseX) < config.resizeMargin) {
+            retval = 'e-resize';
+        } else if (Math.abs(clientRect.top - mouseY) < config.resizeMargin) {
+            retval = 'n-resize';
+        } else if (Math.abs(clientRect.bottom - mouseY) < config.resizeMargin) {
+            retval = 's-resize';
+        } else {
+            retval = this.handleCustomResize(clientRect, mouseX, mouseY);
+        }
+        
+        if (!retval) {
+            if (Math.abs(mouseY - clientRect.top) > config.moveOffset) {
+                retval = config.moveCursor;
+            }
+        }
+        
+        return retval;
+    }
+    
+    isResizeCursor(cursor) {
+        return cursor && cursor.includes('-resize');
+    }
+    
+    isMoveCursor(cursor) {
+        return (cursor && (cursor === config.moveCursor));
+    }
+    
+    handleCustomResize(clientRect, mouseX, mouseY) {
+        return '';
+    }
 }
 
 export {Resizable};

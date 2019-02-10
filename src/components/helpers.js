@@ -307,32 +307,6 @@ export function getReportColumn(key) {
 
 }
 
-export function isResizeCursor(cursor) {
-    return cursor && cursor.includes('-resize');
-}
-
-export function isMoveCursor(cursor) {
-    return (cursor && (cursor === config.moveCursor));
-}
-
-export function getMoveResizeCursor(clientRect, mouseX, mouseY) {
-    let retval = '';
-    
-    if (Math.abs(clientRect.left-mouseX) < config.resizeMargin) {
-        retval = 'w-resize';
-    } else if (Math.abs(clientRect.right - mouseX) < config.resizeMargin) {
-        retval = 'e-resize';
-    } else if (Math.abs(clientRect.top - mouseY) < config.resizeMargin) {
-        retval = 'n-resize';
-    } else if (Math.abs(clientRect.bottom - mouseY) < config.resizeMargin) {
-        retval = 's-resize';
-    } else if (Math.abs(mouseY - clientRect.top) > config.moveOffset) {
-        return config.moveCursor;
-    }
-    
-    return retval;
-}
-
 export function saveReportObject(designPanel, reportObject) {
     if (!reportObject.id) {
         if (!document.designData.currentReport.reportObjects) {
@@ -396,7 +370,7 @@ export function copyObject(input) {
 }
 
 export function loadDefaultDocumentSettings() {
-    getPixelsPerInch();
+    let pixelsPerInch = getPixelsPerInch();
     let myPreferences = JSON.parse(localStorage.getItem('preferences'));
     
     if (!myPreferences || !myPreferences.documentSize) {
@@ -411,11 +385,13 @@ export function loadDefaultDocumentSettings() {
     
     let dim = getDocumentDimensions(myPreferences.documentSize);
     document.designData.currentReport = {};
-    document.designData.currentReport.documentWidth = (ppi * dim[0]);
-    document.designData.currentReport.documentHeight = (ppi * dim[1]);
-    document.designData.currentReport.margins = [ppi * myPreferences.marginLeft, ppi * myPreferences.marginTop, ppi * myPreferences.marginRight, ppi * myPreferences.marginBottom];
-    document.designData.currentReport.footerHeight = ppi;
-    document.designData.currentReport.headerHeight = ppi;
+    document.designData.currentReport.documentWidth = (pixelsPerInch * dim[0]);
+    document.designData.currentReport.documentHeight = (pixelsPerInch * dim[1]);
+    document.designData.currentReport.margins = [pixelsPerInch * myPreferences.marginLeft,
+        pixelsPerInch * myPreferences.marginTop,
+        pixelsPerInch * myPreferences.marginRight, pixelsPerInch * myPreferences.marginBottom];
+    document.designData.currentReport.footerHeight = pixelsPerInch;
+    document.designData.currentReport.headerHeight = pixelsPerInch;
     document.designData.currentReport.font = myPreferences.font;
     document.designData.currentReport.fontSize = myPreferences.fontSize;
     document.designData.currentReport.fontFamily = myPreferences.fontFamily;

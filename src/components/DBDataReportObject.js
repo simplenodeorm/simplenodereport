@@ -1,8 +1,10 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import "../app/App.css";
 import {getFontHeight, getReportColumn} from './helpers';
 import {ReportObject} from './ReportObject';
 import {TableHeader} from './TableHeader';
+import config from "../config/appconfig";
 
 const headerLoop = (data) => {
     return data.map((cinfo) => {
@@ -27,6 +29,7 @@ class DBDataReportObject extends ReportObject {
         super(props);
         this.getObjectData = this.getObjectData.bind(this);
         this.pageBreakController = false;
+        this.columnWidths = [];
     }
 
     getObjectData() {
@@ -150,6 +153,7 @@ class DBDataReportObject extends ReportObject {
     
     
         for (let i = 0; i < objectData.objectColumns.length; ++i) {
+            this.columnWidths.push(objectData.objectColumns[i].width);
             css = 'div.' + objectData.cssClassName + ' th div:nth-child('
                 + (i+1)
                 + ') { width: '
@@ -216,6 +220,21 @@ class DBDataReportObject extends ReportObject {
         let retval = false;
         if (this.pageBreakController) {
         }
+        return retval;
+    }
+    
+    handleCustomResize(clientRect, mouseX, mouseY) {
+        let retval = '';
+        let rc = ReactDOM.findDOMNode(this).getBoundingClientRect();
+        let x = rc.left;
+        for (let i = 0; i < this.columnWidths.length-1; ++i) {
+            x += this.columnWidths[i];
+            if (Math.abs(mouseX - x) < config.resizeMargin) {
+                retval = 'col-resize';
+                break;
+            }
+        }
+    
         return retval;
     }
 }
