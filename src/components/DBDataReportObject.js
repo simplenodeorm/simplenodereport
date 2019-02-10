@@ -126,7 +126,7 @@ class DBDataReportObject extends ReportObject {
 
         css = '.' + objectData.cssClassName
             + ' th {overflow: hidden; -webkit-user-select: none; ';
-        css += '-moz-user-select: none; -ms-user-select: none; user-select: none; '
+        css += '-moz-user-select: none; -ms-user-select: none; user-select: none; ';
         
         
         if (this.hasBorder(this.props.config.headerBorderSettings)) {
@@ -223,7 +223,7 @@ class DBDataReportObject extends ReportObject {
         return retval;
     }
     
-    handleCustomResize(clientRect, mouseX, mouseY) {
+    getCustomResizeCursor(clientRect, mouseX, mouseY) {
         let retval = '';
         let rc = ReactDOM.findDOMNode(this).getBoundingClientRect();
         let x = rc.left;
@@ -237,6 +237,15 @@ class DBDataReportObject extends ReportObject {
     
         return retval;
     }
+    
+    isCustomResize(cursor) {
+        return (cursor === 'col-resize');
+    }
+    
+    handleCustomResize(info) {
+    
+    }
+    
 }
 
     

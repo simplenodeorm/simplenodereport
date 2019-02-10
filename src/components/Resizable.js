@@ -93,6 +93,8 @@ class Resizable extends React.Component {
                     width: width,
                     height: height
                 });
+            } else if (this.isCustomResize(document.body.style.cursor)) {
+                this.handleCustomResize(info);
             }
             
             document.body.style.cursor = '';
@@ -147,7 +149,7 @@ class Resizable extends React.Component {
         } else if (Math.abs(clientRect.bottom - mouseY) < config.resizeMargin) {
             retval = 's-resize';
         } else {
-            retval = this.handleCustomResize(clientRect, mouseX, mouseY);
+            retval = this.getCustomResizeCursor(clientRect, mouseX, mouseY);
         }
         
         if (!retval) {
@@ -167,8 +169,16 @@ class Resizable extends React.Component {
         return (cursor && (cursor === config.moveCursor));
     }
     
-    handleCustomResize(clientRect, mouseX, mouseY) {
+    getCustomResizeCursor(clientRect, mouseX, mouseY) {
         return '';
+    }
+    
+    isCustomResize(cursor) {
+        return false;
+    }
+    
+    handleCustomResize(info) {
+    
     }
 }
 
