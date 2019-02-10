@@ -396,6 +396,7 @@ export function copyObject(input) {
 }
 
 export function loadDefaultDocumentSettings() {
+    getPixelsPerInch();
     let myPreferences = JSON.parse(localStorage.getItem('preferences'));
     
     if (!myPreferences || !myPreferences.documentSize) {

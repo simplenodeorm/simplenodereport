@@ -5,7 +5,6 @@ import { DesignPanel } from './DesignPanel';
 import {AppToolbar} from './AppToolbar';
 import {StatusBar} from './StatusBar';
 import '../app/App.css';
-import {getPixelsPerInch} from './helpers.js';
 import {loadDefaultDocumentSettings} from './helpers';
 
 class HomePage extends React.Component {
