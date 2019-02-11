@@ -31,6 +31,7 @@ class Resizable extends React.Component {
         this.isCustomResizeCursor = this.isCustomResizeCursor.bind(this);
         this.getCustomResizeCursor = this.getCustomResizeCursor.bind(this);
         this.getCustomData = this.getCustomData.bind(this);
+        this.isContextMenu = this.isContextMenu.bind(this);
     }
     
     onMouseOver(info) {
@@ -54,77 +55,90 @@ class Resizable extends React.Component {
         }
     }
     
-    onMouseDown(info) {
-        if (info.button === 0) {
-            if (this.isResizeCursor(document.body.style.cursor)
-                || this.isMoveCursor(document.body.style.cursor)
-                || this.isCustomResizeCursor(document.body.style.cursor)) {
-                document.addEventListener('mouseup', this.onMouseUp, true);
-                document.addEventListener('mouseover', this.onMouseOver, true);
+    isContextMenu(info) {
+        return (info.type === 'contextmenu');
+    }
     
-                this.startInfo = {
-                    x: info.screenX,
-                    y: info.screenY,
-                    clientX: info.clientX,
-                    clientY: info.clientY,
-                    customData: this.getCustomData(info.clientX, info.clientY, info.screenX, info.screenY),
-                    cursor: document.body.style.cursor
-                };
-                info.preventDefault();
+    onMouseDown(info) {
+        if (!this.isContextMenu(info)) {
+            if (info.button === 0) {
+                if (this.isResizeCursor(document.body.style.cursor)
+                    || this.isMoveCursor(document.body.style.cursor)
+                    || this.isCustomResizeCursor(document.body.style.cursor)) {
+                    document.addEventListener('mouseup', this.onMouseUp, true);
+                    document.addEventListener('mouseover', this.onMouseOver, true);
+            
+                    this.startInfo = {
+                        x: info.screenX,
+                        y: info.screenY,
+                        clientX: info.clientX,
+                        clientY: info.clientY,
+                        customData: this.getCustomData(info.clientX, info.clientY, info.screenX, info.screenY),
+                        cursor: document.body.style.cursor
+                    };
+                    info.preventDefault();
+                }
             }
         }
     }
     
     onMouseUp(info) {
-        if (this.startInfo) {
-            document.removeEventListener('mouseup', this.onMouseUp, true);
-            document.removeEventListener('mouseover', this.onMouseOver, true);
-            const {left, top, width, height} = this.state;
-            let newLeft = left + (info.screenX - this.startInfo.x);
-            let newTop = top + (info.screenY - this.startInfo.y);
-            if (this.isCustomResizeCursor(document.body.style.cursor)) {
-                this.handleCustomResize(info);
-            } else if (this.isResizeCursor(document.body.style.cursor)) {
-                switch (document.body.style.cursor) {
-                    case 'w-resize':
-                        this.onLayoutChange({left: newLeft, top: top, width: width + (left - newLeft), height: height});
-                        break;
-                    case 'e-resize':
+        if (!this.isContextMenu(info)) {
+            if (this.startInfo) {
+                document.removeEventListener('mouseup', this.onMouseUp, true);
+                document.removeEventListener('mouseover', this.onMouseOver, true);
+                const {left, top, width, height} = this.state;
+                let newLeft = left + (info.screenX - this.startInfo.x);
+                let newTop = top + (info.screenY - this.startInfo.y);
+                if (this.isCustomResizeCursor(document.body.style.cursor)) {
+                    this.handleCustomResize(info);
+                } else if (this.isResizeCursor(document.body.style.cursor)) {
+                    switch (document.body.style.cursor) {
+                        case 'w-resize':
+                            this.onLayoutChange({
+                                left: newLeft,
+                                top: top,
+                                width: width + (left - newLeft),
+                                height: height
+                            });
+                            break;
+                        case 'e-resize':
                         
-                        this.onLayoutChange({
-                            left: left,
-                            top: top,
-                            width: width + (info.screenX - this.startInfo.x),
-                            height: height
-                        });
-                        break;
-                    case 'n-resize':
-                        this.onLayoutChange({
-                            left: left, top: newTop,
-                            width: width, height: height + (top - newTop)
-                        });
-                        break;
-                    case 's-resize':
-                        this.onLayoutChange({
-                            left: left,
-                            top: top,
-                            width: width,
-                            height: height + (info.screenY - this.startInfo.y)
-                        });
-                        break;
+                            this.onLayoutChange({
+                                left: left,
+                                top: top,
+                                width: width + (info.screenX - this.startInfo.x),
+                                height: height
+                            });
+                            break;
+                        case 'n-resize':
+                            this.onLayoutChange({
+                                left: left, top: newTop,
+                                width: width, height: height + (top - newTop)
+                            });
+                            break;
+                        case 's-resize':
+                            this.onLayoutChange({
+                                left: left,
+                                top: top,
+                                width: width,
+                                height: height + (info.screenY - this.startInfo.y)
+                            });
+                            break;
+                    }
+                } else if (this.isMoveCursor(document.body.style.cursor)) {
+                    this.onLayoutChange({
+                        left: newLeft,
+                        top: newTop,
+                        width: width,
+                        height: height
+                    });
                 }
-            } else if (this.isMoveCursor(document.body.style.cursor)) {
-                this.onLayoutChange({
-                    left: newLeft,
-                    top: newTop,
-                    width: width,
-                    height: height
-                });
-            }
             
-            document.body.style.cursor = '';
-            this.startInfo = '';
-            info.preventDefault();
+                document.body.style.cursor = '';
+                this.startInfo = '';
+                info.preventDefault();
+            }
         }
     }
     

@@ -62,7 +62,9 @@
         "ok": "Ok",
         "cancel": "Cancel",
         "deleteconfirmprompt": "Delete all selected report objects?",
-        "pagebreakcontroller": "Page Breaker"
+        "pagebreakcontroller": "Page Breaker",
+        "editreportobject": "Edit Report Object",
+        "deletereportobject": "Delete Report Object"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

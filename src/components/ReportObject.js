@@ -2,7 +2,8 @@ import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig';
 import {Resizable} from './Resizable';
-import {getStyleSheet} from "./helpers";
+import {getContextMenu} from "./helpers";
+import ReactDOM from "react-dom";
 
 class ReportObject extends Resizable {
     constructor(props) {
@@ -11,6 +12,10 @@ class ReportObject extends Resizable {
         this.getObjectData = this.getObjectData.bind(this);
         this.getContent = this.getContent.bind(this);
         this.getCssStyle = this.getCssStyle.bind(this);
+        this.onContextMenu = this.onContextMenu.bind(this);
+        this.onEdit = this.onEdit.bind(this);
+        this.onDelete = this.onDelete.bind(this);
+    
     }
     
     componentDidMount() {
@@ -57,6 +62,7 @@ class ReportObject extends Resizable {
                 onMouseDown={this.onMouseDown}
                 onMouseLeave={this.onMouseLeave}
                 onClick={this.onClick}
+                onContextMenu={this.onContextMenu}
                 className={objectData.cssClassName}>{content}</div>
         }
     }
@@ -67,13 +73,14 @@ class ReportObject extends Resizable {
     }
     
     onClick(info) {
-        if (info.ctrlKey) {
+        if (!this.isContextMenu(info) && info.ctrlKey) {
             this.props.config.selected = !this.props.config.selected;
             this.props.onObjectSelect(this.props.config.selected);
             this.setState(this.state);
             info.preventDefault();
         }
     }
+    
     
     
     getConfigValue(nm) {
@@ -132,6 +139,20 @@ class ReportObject extends Resizable {
     
     isPageBreakRequired() {
         return false;
+    }
+    
+    onContextMenu(info) {
+        info.preventDefault();
+        const cm = getContextMenu(info);
+        ReactDOM.render(<ul><li><button onClick={this.onEdit}>{config.textmsg.editreportobject}</button></li><li><button onClick={this.onDelete}>{config.textmsg.deletereportobject}</button></li></ul>, cm);
+    }
+    
+    onEdit(info) {
+    
+    }
+    
+    onDelete(info) {
+    
     }
 }
 

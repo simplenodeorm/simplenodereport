@@ -81,8 +81,16 @@ export function getContextMenu(info) {
     if (info.xOffset) {
         xOffset = info.xOffset;
     }
-    retval.style.top = info.event.pageY + yOffset + 'px';
-    retval.style.left = info.event.pageX + xOffset + 'px';
+    
+    if (info.event) {
+        retval.style.top = info.event.pageY + yOffset + 'px';
+        retval.style.left = info.event.pageX + xOffset + 'px';
+    } else {
+        retval.style.top = info.pageY + yOffset + 'px';
+        retval.style.left = info.pageX + xOffset + 'px';
+        
+    }
+    
     retval.style.visibility = 'visible';
     return retval;
 }
