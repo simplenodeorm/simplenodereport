@@ -1,13 +1,16 @@
 import React from 'react';
 import "../app/App.css";
-import {getFontHeight, getReportColumn} from './helpers';
+import {getFontHeight, getReportColumn,getStyleSheet} from './helpers';
 import {ReportObject} from './ReportObject';
 import {TableHeader} from './TableHeader';
 import config from "../config/appconfig";
 
-const headerLoop = (data) => {
-    return data.map((cinfo) => {
-        return <th><TableHeader config={cinfo}/></th>;
+const headerLoop = (columns, objectColumns) => {
+    return columns.map((cinfo, i) => {
+        const myStyle = {
+            width: objectColumns[i].width + 'px'
+        };
+        return <th style={myStyle}><TableHeader config={cinfo}/></th>;
     });
 };
 
@@ -77,7 +80,7 @@ class DBDataReportObject extends ReportObject {
 
     getContent(objectData) {
         return <table>
-            <thead><tr>{ headerLoop(objectData.columns) }</tr></thead>
+            <thead><tr>{ headerLoop(objectData.columns, objectData.objectColumns) }</tr></thead>
             <tbody>{ rowLoop(objectData.data) }</tbody>
         </table>;
     }
@@ -96,15 +99,16 @@ class DBDataReportObject extends ReportObject {
 
         return retval;
     }
-
-    loadCss(objectData) {
-        let style = document.getElementsByTagName('style')[0];
+    
+    getCssStyle(objectData) {
+        let style = document.createElement('style');
+        style.id = objectData.cssClassName;
     
         this.addBaseReportObjectCss(style, objectData.cssClassName);
         
         style.appendChild(document.createTextNode('.'
             + objectData.cssClassName
-            + ' table { border-spacing: 0; border-collapse: collapse; width: 98%; height:98%;}'));
+            + ' table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; width: 98%; height:98%;}'));
     
         let css = '.' + objectData.cssClassName
             + ' th div {margin: 0; padding: 0; font-family:'
@@ -148,16 +152,6 @@ class DBDataReportObject extends ReportObject {
         css += '} ';
 
         style.appendChild(document.createTextNode(css));
-    
-        for (let i = 0; i < objectData.objectColumns.length; ++i) {
-            css = 'div.' + objectData.cssClassName + ' th div:nth-child('
-                + (i+1)
-                + ') { width: '
-                + (Math.round(objectData.objectColumns[i].width) + 'px;')
-                + '} ';
-            style.appendChild(document.createTextNode(css));
-        }
-    
     
         style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' td {margin: 0; padding: 0;}'));
         css = '.' + objectData.cssClassName + ' td div {font-family: '
@@ -205,6 +199,7 @@ class DBDataReportObject extends ReportObject {
         }
         css += '} ';
         style.appendChild(document.createTextNode(css));
+        return style;
 
     }
     
@@ -253,31 +248,36 @@ class DBDataReportObject extends ReportObject {
     handleCustomResize(info) {
         let node = document.elementFromPoint(info.clientX, info.clientY).parentNode;
         if (node.nodeName === 'TD') {
-            let index = [].indexOf.call(node.parentNode.children, node);
+            let index = [].indexOf.call(node.parentNode.children, node) - 1;
             let width = node.getBoundingClientRect().width;
-            let delta = (info.screenX - this.startInfo.x)
+            let delta = (info.screenX - this.startInfo.x);
             let newWidth = Math.max(10, width + delta);
             
-            let displayCount = 0;
-            let foundIt = false;
+            let reportColumnIndex = 0;
+            
             for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
                 if (this.props.config.reportColumns[i].displayResult) {
-                    if (!foundIt && (index === displayCount)) {
+                    if (index === reportColumnIndex) {
                         this.props.config.reportColumns[i].width = newWidth;
-                        foundIt = true;
-                        displayCount = 0;
+                        break;
                     }
-                    
-                    displayCount++;
+                    reportColumnIndex++;
                 }
             }
-            
-            
-            let change = Math.floor((newWidth - width) / displayCount);
-
-            for (let i = index+1; i < this.props.config.reportColumns.length; ++i) {
+    
+            let updateCount = 0;
+            for (let i = reportColumnIndex+1; i < this.props.config.reportColumns.length; ++i) {
                 if (this.props.config.reportColumns[i].displayResult) {
-                    this.props.config.reportColumns[i].width -= change;
+                    updateCount++;
+                }
+            }
+    
+            if (updateCount > 0) {
+                let change = Math.floor((newWidth - width) / updateCount);
+                for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
+                    if (this.props.config.reportColumns[i].displayResult) {
+                        this.props.config.reportColumns[i].width -= change;
+                    }
                 }
             }
             

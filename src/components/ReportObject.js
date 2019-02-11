@@ -2,6 +2,7 @@ import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig';
 import {Resizable} from './Resizable';
+import {getStyleSheet} from "./helpers";
 
 class ReportObject extends Resizable {
     constructor(props) {
@@ -9,6 +10,7 @@ class ReportObject extends Resizable {
         this.onClick = this.onClick.bind(this);
         this.getObjectData = this.getObjectData.bind(this);
         this.getContent = this.getContent.bind(this);
+        this.getCssStyle = this.getCssStyle.bind(this);
     }
     
     componentDidMount() {
@@ -21,9 +23,18 @@ class ReportObject extends Resizable {
         } else {
             const {left, top, width, height} = this.state;
             let objectData = this.getObjectData();
+    
+            let newStyle = this.getCssStyle(objectData);
             
-            
-            this.loadCss(objectData);
+            // remove style if it exists so we can update
+            if (newStyle) {
+                let style = document.getElementById(objectData.cssClassName);
+                if (style) {
+                    style.parentNode.removeChild(style);
+                }
+    
+                document.body.appendChild(newStyle);
+            }
             
             const content = this.getContent(objectData);
   
@@ -97,7 +108,7 @@ class ReportObject extends Resizable {
         return <div/>;
     }
     
-    loadCss() {
+    getCssStyle() {
     }
     
     getCssClassName() {
