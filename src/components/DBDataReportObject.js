@@ -227,15 +227,20 @@ class DBDataReportObject extends ReportObject {
         return retval;
     }
     
-    getCustomData(mouseX, mouseY) {
-        return this.getResizeColumn(mouseX, mouseY);
+    getCustomData(clientX, clientY, screenX, screenY) {
+        return this.getResizeColumn(clientX, clientY, screenX, screenY);
     }
     
-    getResizeColumn(mouseX, mouseY) {
+    getResizeColumn(clientX, clientY, screenX, screenY) {
         let retval;
-        let node = document.elementFromPoint(mouseX, mouseY).parentNode;
+        let node = document.elementFromPoint(clientX, clientY).parentNode;
         if (node.nodeName === 'TD') {
             retval = [].indexOf.call(node.parentNode.children, node);
+            let rc = node.getBoundingClientRect();
+            
+            if ((screenX-clientX) < rc.left) {
+                retval--;
+            }
         }
         
         return retval;
@@ -246,42 +251,46 @@ class DBDataReportObject extends ReportObject {
     }
     
     handleCustomResize(info) {
-        let node = document.elementFromPoint(info.clientX, info.clientY).parentNode;
+        let node = document.elementFromPoint(this.startInfo.clientX, this.startInfo.clientY).parentNode;
         if (node.nodeName === 'TD') {
-            let index = [].indexOf.call(node.parentNode.children, node) - 1;
-            let width = node.getBoundingClientRect().width;
-            let delta = (info.screenX - this.startInfo.x);
-            let newWidth = Math.max(10, width + delta);
+            let index = [].indexOf.call(node.parentNode.children, node);
+            let rc = node.getBoundingClientRect();
+            let width = rc.width;
             
-            let reportColumnIndex = 0;
-            
-            for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
-                if (this.props.config.reportColumns[i].displayResult) {
-                    if (index === reportColumnIndex) {
-                        this.props.config.reportColumns[i].width = newWidth;
-                        break;
+            if (index >= 0) {
+                let delta = (info.screenX - this.startInfo.x);
+                let newWidth = Math.max(10, width + delta);
+    
+                let reportColumnIndex = 0;
+                
+                for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
+                    if (this.props.config.reportColumns[i].displayResult) {
+                        if (index === reportColumnIndex) {
+                            this.props.config.reportColumns[i].width = newWidth;
+                            break;
+                        }
+                        reportColumnIndex++;
                     }
-                    reportColumnIndex++;
                 }
-            }
     
-            let updateCount = 0;
-            for (let i = reportColumnIndex+1; i < this.props.config.reportColumns.length; ++i) {
-                if (this.props.config.reportColumns[i].displayResult) {
-                    updateCount++;
-                }
-            }
-    
-            if (updateCount > 0) {
-                let change = Math.floor((newWidth - width) / updateCount);
+                let updateCount = 0;
                 for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
                     if (this.props.config.reportColumns[i].displayResult) {
-                        this.props.config.reportColumns[i].width -= change;
+                        updateCount++;
                     }
                 }
+    
+                if (updateCount > 0) {
+                    let change = Math.round((newWidth - width) / updateCount);
+                    for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
+                        if (this.props.config.reportColumns[i].displayResult) {
+                            this.props.config.reportColumns[i].width -= change;
+                        }
+                    }
+                }
+    
+                this.setState(this.state);
             }
-            
-            this.setState(this.state);
         }
     }
     

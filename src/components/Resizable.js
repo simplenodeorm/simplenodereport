@@ -65,7 +65,9 @@ class Resizable extends React.Component {
                 this.startInfo = {
                     x: info.screenX,
                     y: info.screenY,
-                    customData: this.getCustomData(info.clientX, info.clientY),
+                    clientX: info.clientX,
+                    clientY: info.clientY,
+                    customData: this.getCustomData(info.clientX, info.clientY, info.screenX, info.screenY),
                     cursor: document.body.style.cursor
                 };
                 info.preventDefault();
@@ -201,7 +203,7 @@ class Resizable extends React.Component {
     
     }
     
-    getCustomData(x, y) {
+    getCustomData(clientX, clientY, screenX, screenY) {
         return '';
     }
 }
