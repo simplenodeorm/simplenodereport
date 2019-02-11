@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import "../app/App.css";
 import {getFontHeight, getReportColumn} from './helpers';
 import {ReportObject} from './ReportObject';
@@ -29,7 +28,6 @@ class DBDataReportObject extends ReportObject {
         super(props);
         this.getObjectData = this.getObjectData.bind(this);
         this.pageBreakController = false;
-        this.columnWidths = [];
     }
 
     getObjectData() {
@@ -151,9 +149,7 @@ class DBDataReportObject extends ReportObject {
 
         style.appendChild(document.createTextNode(css));
     
-    
         for (let i = 0; i < objectData.objectColumns.length; ++i) {
-            this.columnWidths.push(objectData.objectColumns[i].width);
             css = 'div.' + objectData.cssClassName + ' th div:nth-child('
                 + (i+1)
                 + ') { width: '
@@ -225,25 +221,68 @@ class DBDataReportObject extends ReportObject {
     
     getCustomResizeCursor(clientRect, mouseX, mouseY) {
         let retval = '';
-        let rc = ReactDOM.findDOMNode(this).getBoundingClientRect();
-        let x = rc.left;
-        for (let i = 0; i < this.columnWidths.length-1; ++i) {
-            x += this.columnWidths[i];
-            if (Math.abs(mouseX - x) < config.resizeMargin) {
-                retval = 'col-resize';
-                break;
+        let node = document.elementFromPoint(mouseX, mouseY).parentNode;
+        if (node.nodeName === 'TD') {
+            let rc = node.getBoundingClientRect();
+            if (Math.abs(rc.right - mouseX) <= config.resizeMargin) {
+                retval = config.columnResizeCursor;
             }
         }
     
         return retval;
     }
     
-    isCustomResize(cursor) {
-        return (cursor === 'col-resize');
+    getCustomData(mouseX, mouseY) {
+        return this.getResizeColumn(mouseX, mouseY);
+    }
+    
+    getResizeColumn(mouseX, mouseY) {
+        let retval;
+        let node = document.elementFromPoint(mouseX, mouseY).parentNode;
+        if (node.nodeName === 'TD') {
+            retval = [].indexOf.call(node.parentNode.children, node);
+        }
+        
+        return retval;
+    }
+    
+    isCustomResizeCursor(cursor) {
+        return (cursor === config.columnResizeCursor);
     }
     
     handleCustomResize(info) {
-    
+        let node = document.elementFromPoint(info.clientX, info.clientY).parentNode;
+        if (node.nodeName === 'TD') {
+            let index = [].indexOf.call(node.parentNode.children, node);
+            let width = node.getBoundingClientRect().width;
+            let delta = (info.screenX - this.startInfo.x)
+            let newWidth = Math.max(10, width + delta);
+            
+            let displayCount = 0;
+            let foundIt = false;
+            for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
+                if (this.props.config.reportColumns[i].displayResult) {
+                    if (!foundIt && (index === displayCount)) {
+                        this.props.config.reportColumns[i].width = newWidth;
+                        foundIt = true;
+                        displayCount = 0;
+                    }
+                    
+                    displayCount++;
+                }
+            }
+            
+            
+            let change = Math.floor((newWidth - width) / displayCount);
+
+            for (let i = index+1; i < this.props.config.reportColumns.length; ++i) {
+                if (this.props.config.reportColumns[i].displayResult) {
+                    this.props.config.reportColumns[i].width -= change;
+                }
+            }
+            
+            this.setState(this.state);
+        }
     }
     
 }

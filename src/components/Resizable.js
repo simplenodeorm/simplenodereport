@@ -23,14 +23,21 @@ class Resizable extends React.Component {
         this.onMouseOver = this.onMouseOver.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
         this.onMouseDown = this.onMouseDown.bind(this);
+        this.onMouseLeave = this.onMouseLeave.bind(this);
         this.getMoveResizeCursor = this.getMoveResizeCursor.bind(this);
         this.isMoveCursor = this.isMoveCursor.bind(this);
         this.isResizeCursor = this.isResizeCursor.bind(this);
+        this.handleCustomResize = this.handleCustomResize.bind(this);
+        this.isCustomResizeCursor = this.isCustomResizeCursor.bind(this);
+        this.getCustomResizeCursor = this.getCustomResizeCursor.bind(this);
+        this.getCustomData = this.getCustomData.bind(this);
     }
     
     onMouseOver(info) {
+        document.body.style.cursor = '';
         if (!this.startInfo) {
-            let rc = ReactDOM.findDOMNode(this).getBoundingClientRect();
+            let node = ReactDOM.findDOMNode(this);
+            let rc = node.getBoundingClientRect();
             if (isPointInRect(info.clientX, info.clientY, rc)) {
                 document.body.style.cursor = this.getMoveResizeCursor(rc, info.clientX, info.clientY);
             } else {
@@ -41,12 +48,26 @@ class Resizable extends React.Component {
         }
     }
     
+    onMouseLeave() {
+        if (!this.startInfo) {
+            document.body.style.cursor = '';
+        }
+    }
+    
     onMouseDown(info) {
         if (info.button === 0) {
-            if (this.isResizeCursor(document.body.style.cursor) || this.isMoveCursor(document.body.style.cursor)) {
+            if (this.isResizeCursor(document.body.style.cursor)
+                || this.isMoveCursor(document.body.style.cursor)
+                || this.isCustomResizeCursor(document.body.style.cursor)) {
                 document.addEventListener('mouseup', this.onMouseUp, true);
                 document.addEventListener('mouseover', this.onMouseOver, true);
-                this.startInfo = {x: info.screenX, y: info.screenY, cursor: document.body.style.cursor};
+    
+                this.startInfo = {
+                    x: info.screenX,
+                    y: info.screenY,
+                    customData: this.getCustomData(info.clientX, info.clientY),
+                    cursor: document.body.style.cursor
+                };
                 info.preventDefault();
             }
         }
@@ -59,7 +80,9 @@ class Resizable extends React.Component {
             const {left, top, width, height} = this.state;
             let newLeft = left + (info.screenX - this.startInfo.x);
             let newTop = top + (info.screenY - this.startInfo.y);
-            if (this.isResizeCursor(document.body.style.cursor)) {
+            if (this.isCustomResizeCursor(document.body.style.cursor)) {
+                this.handleCustomResize(info);
+            } else if (this.isResizeCursor(document.body.style.cursor)) {
                 switch (document.body.style.cursor) {
                     case 'w-resize':
                         this.onLayoutChange({left: newLeft, top: top, width: width + (left - newLeft), height: height});
@@ -74,8 +97,10 @@ class Resizable extends React.Component {
                         });
                         break;
                     case 'n-resize':
-                        this.onLayoutChange({left: left, top: newTop,
-                            width: width, height: height + (top - newTop)});
+                        this.onLayoutChange({
+                            left: left, top: newTop,
+                            width: width, height: height + (top - newTop)
+                        });
                         break;
                     case 's-resize':
                         this.onLayoutChange({
@@ -93,8 +118,6 @@ class Resizable extends React.Component {
                     width: width,
                     height: height
                 });
-            } else if (this.isCustomResize(document.body.style.cursor)) {
-                this.handleCustomResize(info);
             }
             
             document.body.style.cursor = '';
@@ -113,19 +136,19 @@ class Resizable extends React.Component {
             if (this.props.boundingRect.width < (newLeft + newWidth)) {
                 newWidth -= ((newLeft + newWidth) - this.props.boundingRect.width);
             }
-    
+            
             if (this.props.boundingRect.height < (newTop + newHeight)) {
                 newHeight -= ((newTop + newHeight) - this.props.boundingRect.height);
             }
         }
-    
+        
         let rc = {
             left: newLeft,
             top: newTop,
             width: newWidth,
             height: newHeight
         };
-
+        
         if (this.props.rect) {
             this.props.config.rect = rc;
         }
@@ -148,12 +171,9 @@ class Resizable extends React.Component {
             retval = 'n-resize';
         } else if (Math.abs(clientRect.bottom - mouseY) < config.resizeMargin) {
             retval = 's-resize';
-        } else {
+        } else if (Math.abs(mouseY - clientRect.top) > config.moveOffset) {
             retval = this.getCustomResizeCursor(clientRect, mouseX, mouseY);
-        }
-        
-        if (!retval) {
-            if (Math.abs(mouseY - clientRect.top) > config.moveOffset) {
+            if (!retval) {
                 retval = config.moveCursor;
             }
         }
@@ -173,13 +193,18 @@ class Resizable extends React.Component {
         return '';
     }
     
-    isCustomResize(cursor) {
+    isCustomResizeCursor(cursor) {
         return false;
     }
     
     handleCustomResize(info) {
     
     }
+    
+    getCustomData(x, y) {
+        return '';
+    }
 }
+
 
 export {Resizable};

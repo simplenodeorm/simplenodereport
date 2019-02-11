@@ -20,7 +20,8 @@ class ReportObject extends Resizable {
             return <span />
         } else {
             const {left, top, width, height} = this.state;
-            const objectData = this.getObjectData();
+            let objectData = this.getObjectData();
+            
             
             this.loadCss(objectData);
             
@@ -43,6 +44,7 @@ class ReportObject extends Resizable {
                 onMouseOver={this.onMouseOver}
                 onMouseUp={this.onMouseUp}
                 onMouseDown={this.onMouseDown}
+                onMouseLeave={this.onMouseLeave}
                 onClick={this.onClick}
                 className={objectData.cssClassName}>{content}</div>
         }

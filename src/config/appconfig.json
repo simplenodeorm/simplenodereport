@@ -84,5 +84,6 @@
     "defaultReportObjectRect": {"top":  20, "left":  20, "height":  30, "width":  100},
     "resizeMargin": 6,
     "moveOffset": 20,
-    "moveCursor": "grabbing"
+    "moveCursor": "grabbing",
+    "columnResizeCursor": "col-resize"
 }
