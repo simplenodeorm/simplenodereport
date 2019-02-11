@@ -20,7 +20,6 @@ class DesignPanel extends BaseDesignComponent {
         this.getReportSection = this.getReportSection.bind(this);
         this.getReportSectionDesignCanvas = this.getReportSectionDesignCanvas.bind(this);
         this.addReportObject = this.addReportObject.bind(this);
-        this.updateReportObject = this.updateReportObject.bind(this);
         this.refreshLayout = this.refreshLayout.bind(this);
         this.onObjectSelect = this.onObjectSelect.bind(this);
         this.onWheel = this.onWheel.bind(this);
@@ -221,11 +220,6 @@ class DesignPanel extends BaseDesignComponent {
 
     onObjectSelect(selected) {
         this.props.getToolbar().onReportObjectSelect(selected);
-    }
-    
-    
-    updateReportObject(reportObject) {
-
     }
 }
 

@@ -64,7 +64,8 @@
         "deleteconfirmprompt": "Delete all selected report objects?",
         "pagebreakcontroller": "Page Breaker",
         "editreportobject": "Edit Report Object",
-        "deletereportobject": "Delete Report Object"
+        "deletereportobject": "Delete Report Object",
+        "deleteoreportbjectprompt": "Delete the report object?"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

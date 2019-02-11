@@ -315,27 +315,6 @@ export function getReportColumn(key) {
 
 }
 
-export function saveReportObject(designPanel, reportObject) {
-    if (!reportObject.id) {
-        if (!document.designData.currentReport.reportObjects) {
-            document.designData.currentReport.reportObjects = [];
-        }
-        
-        setDefaultReportObjectSize(designPanel, reportObject);
-        
-        reportObject.id = document.designData.currentReport.reportObjects.length;
-        document.designData.currentReport.reportObjects.push(reportObject);
-        designPanel.addReportObject(reportObject);
-    } else {
-        for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
-            if (document.designData.currentReport.reportObjects[i].id === reportObject.id) {
-                document.designData.currentReport.reportObjects[i] = reportObject;
-                designPanel.updateReportObject(reportObject);
-                break;
-            }
-        }
-    }
-}
 
 export function setDefaultReportObjectSize(designPanel, reportObject) {
     switch (reportObject.objectType) {

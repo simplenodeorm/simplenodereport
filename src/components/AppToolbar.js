@@ -11,8 +11,8 @@ import {
     clearDocumentDesignData,
     copyObject,
     getContextMenu,
-    saveReportObject,
-    removeWaitMessage} from './helpers';
+    removeWaitMessage, setDefaultReportObjectSize
+} from './helpers';
 import {getModalContainer} from './helpers';
 import {getDocumentDimensions} from './helpers';
 import {getPixelsPerInch} from './helpers.js';
@@ -333,7 +333,16 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     saveReportObject(reportObject) {
-        saveReportObject(this.props.getDesignPanel(), reportObject);
+        let designPanel = this.props.getDesignPanel();
+        if (!document.designData.currentReport.reportObjects) {
+            document.designData.currentReport.reportObjects = [];
+        }
+    
+        setDefaultReportObjectSize(designPanel, reportObject);
+    
+        reportObject.id = document.designData.currentReport.reportObjects.length;
+        document.designData.currentReport.reportObjects.push(reportObject);
+        designPanel.addReportObject(reportObject);
     }
 }
 

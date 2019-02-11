@@ -15,6 +15,7 @@ class ReportObject extends Resizable {
         this.onContextMenu = this.onContextMenu.bind(this);
         this.onEdit = this.onEdit.bind(this);
         this.onDelete = this.onDelete.bind(this);
+        this.updateReportObject = this.updateReportObject.bind(this);
     
     }
     
@@ -148,11 +149,20 @@ class ReportObject extends Resizable {
     }
     
     onEdit(info) {
+    }
     
+    updateReportObject(reportObject) {
+        for (let key in this.props.config) {
+            this.props.config[key] = reportObject[key];
+        }
+        
+        this.setState(this.state);
     }
     
     onDelete(info) {
-    
+        if (window.confirm(config.textmsg.deleteoreportbjectprompt)) {
+            this.remove();
+        }
     }
 }
 

@@ -9,7 +9,7 @@ class Resizable extends React.Component {
         
         let rc = this.props.config.rect;
         if (!rc || !this.props.config.rect.height) {
-            rc = this.getDefaultRect();
+            this.props.config.rect = rc = this.getDefaultRect();
         }
         
         this.state = {
@@ -165,9 +165,7 @@ class Resizable extends React.Component {
             height: newHeight
         };
         
-        if (this.props.rect) {
-            this.props.config.rect = rc;
-        }
+        this.props.config.rect = rc;
         
         this.setState(rc);
     }

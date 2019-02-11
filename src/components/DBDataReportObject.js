@@ -1,9 +1,11 @@
 import React from 'react';
 import "../app/App.css";
-import {getFontHeight, getReportColumn,getStyleSheet} from './helpers';
+import {getFontHeight, getModalContainer, getReportColumn, copyObject} from './helpers';
 import {ReportObject} from './ReportObject';
 import {TableHeader} from './TableHeader';
 import config from "../config/appconfig";
+import ReactDOM from "react-dom";
+import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
 
 const headerLoop = (columns, objectColumns) => {
     return columns.map((cinfo, i) => {
@@ -294,6 +296,14 @@ class DBDataReportObject extends ReportObject {
         }
     }
     
+    onEdit(info) {
+        let rc = {left: 175, top: 50, width: 600, height: 400};
+        let mc = getModalContainer(rc);
+        ReactDOM.render(<DBDataGridSetupPanel
+            onOk={this.updateReportObject}
+            reportObject={copyObject(this.props.config)}/>, mc);
+    
+    }
 }
 
     
