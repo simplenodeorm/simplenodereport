@@ -60,15 +60,16 @@ class FontSelectPanel extends React.Component {
         }
 
         return <div className="fontSelect"><table cellspacing="0" cellpadding="0">
-            <tr><td style={{textDecoration: "underline"}} colspan="2">{this.props.label}</td></tr>
+            {this.props.label && <tr><td style={{textDecoration: "underline", textAlign: "center"}} colspan="2">{this.props.label}</td></tr> }
             <tr><th>{config.textmsg.namelabel}</th><td><select onChange={this.setFont}>{loop(config.fonts, font)}</select></td></tr>
-            <tr><th>{config.textmsg.sizelabel}</th><td><SizeSelect sizes={config.fontSizes} setSize={this.setFontSize} currentSize={fontSize}/></td></tr>
-            <tr><th>{config.textmsg.weightlabel}</th><td><select onChange={this.setFontWeight}>{loop(config.fontWeights, fontWeight)}</select></td></tr>
+            <tr><th>{config.textmsg.sizeweightlabel}</th>
+                <td><SizeSelect sizes={config.fontSizes} setSize={this.setFontSize} currentSize={fontSize}/>
+                    <select onChange={this.setFontWeight}>{loop(config.fontWeights, fontWeight)}</select></td></tr>
             <tr><th>{config.textmsg.fontcolorlabel}</th><td><ColorSelect colors={config.fontColors} setColor={this.setFontColor} currentColor={fontColor}/></td></tr>
             <tr><th>{config.textmsg.backgroundcolorlabel}</th><td><ColorSelect colors={config.backgroundColors} setColor={this.setBackgroundColor} currentColor={backgroundColor}/></td></tr>
-            <tr><td></td><td><Checkbox label={config.textmsg.italic} handleCheckboxChange={this.setItalic} isChecked={italic}/>&nbsp;
+            <tr><td style={{textAlign: "center"}} colspan="2"><Checkbox label={config.textmsg.italic} handleCheckboxChange={this.setItalic} isChecked={italic}/>&nbsp;
                 <Checkbox label={config.textmsg.underlined} handleCheckboxChange={this.setUnderlined} isChecked={underlined}/></td></tr>
-            <tr><td colspan="2"><div style={exampleStyle}>example text</div></td></tr>
+            <tr><td style={{textAlign: "center"}} colspan="2"><div style={exampleStyle}>example text</div></td></tr>
             </table></div>
     }
 

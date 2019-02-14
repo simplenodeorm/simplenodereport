@@ -214,31 +214,19 @@ export function getPixelsPerInch() {
     return ppi;
 }
 
-export function getFontHeight(fontName, fontSize, width, text) {
-    if (!width) {
-        width = '100';
+export function getFontHeight(fontName, fontSize, text) {
+    if (!text) {
+        text = 'XXXXXXXXXXXXXXX'
     }
-
-    let fontStyle = '{font-family: ' + fontName + '; font-size: ' + fontSize
-        + 'pt; width: '+ Math.floor(width) + 'px; left: -100px; top: -100px}';
-    let body = document.getElementsByTagName('body')[0];
-    let testElement = document.createElement('div');
-    testElement.setAttribute('id', 'font-test');
-    testElement.setAttribute('style', fontStyle);
-
-    if (text) {
-        testElement.innerHTML = text;
-    } else {
-        testElement.innerHTML = 'XXXXX'
-    }
-
-    body.appendChild(testElement);
-    let retval = document.getElementById('font-test').getBoundingClientRect().height;
-    body.removeChild(testElement);
-
-    return Math.ceil(retval/config.zoomFactor);
+    
+    return Math.ceil(getTextRect(fontName, fontSize, text).height / config.zoomFactor);
 }
 
+export function getTextRect(fontName, fontSize, text) {
+    let height = Math.ceil(fontSize * 1.333);
+    let width = Math.ceil(text.length * height / 1.75);
+    return  {left: 0, top: 0, height: height, width: width};
+}
 
 export function getDocumentDimensions(type) {
     let retval = [8.5, 11];
@@ -340,6 +328,9 @@ export function setDefaultReportObjectSize(designPanel, reportObject) {
                     reportObject.reportColumns[i].width = colwidth;
                 }
             }
+            break;
+        case 'label':
+            reportObject.rect = getTextRect(reportObject.fontSettings.font, reportObject.fontSettings.fontSize, reportObject.labelText);
             break;
     }
 }

@@ -8,6 +8,7 @@ import {FooterPanel} from './FooterPanel';
 import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
 import {DBDataReportObject} from './DBDataReportObject';
+import {LabelReportObject} from './LabelReportObject';
 import config from '../config/appconfig';
 
 class DesignPanel extends BaseDesignComponent {
@@ -22,6 +23,8 @@ class DesignPanel extends BaseDesignComponent {
         this.addReportObject = this.addReportObject.bind(this);
         this.refreshLayout = this.refreshLayout.bind(this);
         this.onObjectSelect = this.onObjectSelect.bind(this);
+        this.removeAllReportObjects = this.removeAllReportObjects.bind(this);
+        this.removeSelectedReportObjects = this.removeSelectedReportObjects.bind(this);
         this.onWheel = this.onWheel.bind(this);
         
         this.header = '';
@@ -203,6 +206,16 @@ class DesignPanel extends BaseDesignComponent {
             case 'dbdata':
                 dc = this.getReportSectionDesignCanvas(reportObjectConfig.reportSection);
                 dc.getReportObjectConfigurations().push(<DBDataReportObject
+                    key={reportObjectConfig.id}
+                    index={dc.getReportObjectConfigurations().length}
+                    setMountedComponent={dc.setMountedComponent}
+                    onObjectSelect={this.onObjectSelect}
+                    boundingRect={dc.getRect()}
+                    config={reportObjectConfig}/>);
+                break;
+            case 'label':
+                dc = this.getReportSectionDesignCanvas(reportObjectConfig.reportSection);
+                dc.getReportObjectConfigurations().push(<LabelReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}

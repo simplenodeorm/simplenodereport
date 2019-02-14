@@ -8,15 +8,13 @@ class BodyPanel extends ReportSection {
         const {height, margins, width} = this.state;
 
         return <div className="designChildContainer">
-            {document.designData.currentReport.documentSize &&
-                <DesignCanvas
-                    ref={(dc) => {this.setDesignCanvas(dc)}}
-                    location="body"
-                    height={height}
-                    width={width - (margins[0] + margins[2])}
-                    marginLeft={margins[0]}
-                    marginTop={0}/>
-            }
+            <DesignCanvas
+                ref={(dc) => {this.designCanvas = dc}}
+                location="body"
+                height={height}
+                width={width - (margins[0] + margins[2])}
+                marginLeft={margins[0]}
+                marginTop={0}/>
 
             <svg y="20" height={height} width={width} className="marginLines">
                 <line x1={margins[0]} y1="2" x2={margins[0]} y2={height} stroke="cyan" strokeWidth="0.75"/>

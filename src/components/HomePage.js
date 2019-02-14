@@ -71,7 +71,7 @@ class HomePage extends React.Component {
                         setStatus={curobj.setStatus} 
                         setCurrentReport={curobj.setCurrentReport}
                         getDesignPanel={this.getDesignPanel} />
-                    <DesignPanel ref={(dp) => {curobj.setDesignPanel(dp);}}
+                    <DesignPanel ref={(dp) => {this.designPanel = dp;}}
                         getToolbar={curobj.getToolbar}
                         setCurrentReport={curobj.setCurrentReport}/>
                 </SplitPane>
@@ -80,10 +80,6 @@ class HomePage extends React.Component {
             </div>;
     }
     
-    setDesignPanel(dp) {
-        this.designPanel = dp;
-    }
-
     getDesignPanel() {
         return this.designPanel;
     }

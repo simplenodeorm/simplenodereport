@@ -27,8 +27,7 @@
         "deleteselectedobjects": "delete selected objects",
         "dbdatagridsetuptitle": "DB Data Grid Setup",
         "namelabel": "Name:",
-        "sizelabel": "Size:",
-        "weightlabel": "Weight:",
+        "sizeweightlabel": "Size/Weight:",
         "underlined": "Underlined",
         "italic": "Italic",
         "headerfontlabel": "Header Font:",
@@ -65,7 +64,10 @@
         "pagebreakcontroller": "Page Breaker",
         "editreportobject": "Edit Report Object",
         "deletereportobject": "Delete Report Object",
-        "deleteoreportbjectprompt": "Delete the report object?"
+        "deleteoreportbjectprompt": "Delete the report object?",
+        "defaultreportlabeltext": "my label",
+        "labelfont": "Label Font",
+        "labelobjecttitle": "Label"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

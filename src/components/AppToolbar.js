@@ -11,13 +11,14 @@ import {
     clearDocumentDesignData,
     copyObject,
     getContextMenu,
-    removeWaitMessage, setDefaultReportObjectSize
-} from './helpers';
+    removeWaitMessage,
+    setDefaultReportObjectSize} from './helpers';
 import {getModalContainer} from './helpers';
 import {getDocumentDimensions} from './helpers';
 import {getPixelsPerInch} from './helpers.js';
 import axios from 'axios';
 import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
+import {LabelSetupPanel} from "./LabelSetupPanel";
 
 
 const reportObjectLoop = (obj, data) => {
@@ -45,7 +46,7 @@ class AppToolbar extends BaseDesignComponent {
         this.alignTextLeft = this.alignTextLeft.bind(this);
         this.alignTextMiddle = this.alignTextMiddle.bind(this);
         this.alignTextRight = this.alignTextRight.bind(this);
-        this.saveReportObject = this.saveReportObject.bind(this);
+        this.addReportObjectToReport = this.addReportObjectToReport.bind(this);
         this.onReportObjectSelect = this.onReportObjectSelect.bind(this);
         this.showReportObjectPopup = this.showReportObjectPopup.bind(this);
         
@@ -195,13 +196,14 @@ class AppToolbar extends BaseDesignComponent {
             footerHeight = ppi;
         }
 
-        let doc = {
-            document: {
+        document.designData = {
+            currentReport: {
                 reportName: settings.reportName,
                 documentWidth: dim[0] * ppi,
                 documentHeight: dim[1] * ppi,
                 headerHeight: headerHeight,
                 footerHeight: footerHeight,
+                documentSize: settings.documentSize,
                 margins: [
                     ppi * settings.marginLeft,
                     ppi * settings.marginTop,
@@ -212,12 +214,10 @@ class AppToolbar extends BaseDesignComponent {
         };
 
         for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
-            doc.document[config.defaultPreferenceNames[i]] = settings[config.defaultPreferenceNames[i]];
+            document.designData.currentReport[config.defaultPreferenceNames[i]] = settings[config.defaultPreferenceNames[i]];
         }
         
         this.setState({canSave: true, canAddObject: true});
-        this.props.getDesignPanel().removeAllReportObjects();
-        this.props.getDesignPanel().refreshLayout(doc);
     }
     
     
@@ -236,7 +236,6 @@ class AppToolbar extends BaseDesignComponent {
         };
         
         let doc = this.getReportDocument(params);
-        doc.document.ref = '';
         let validObjects = [];
         for(let i = 0; i < doc.document.reportObjects.length; ++i) {
             if (!doc.document.reportObjects[i].removed) {
@@ -252,6 +251,7 @@ class AppToolbar extends BaseDesignComponent {
             }
         }
     
+        doc.document.pixelsPerInch = getPixelsPerInch();
         axios.post(orm.url + '/report/save', doc, config)
             .then((response) => {
                 if (response.status === 200) {
@@ -315,6 +315,8 @@ class AppToolbar extends BaseDesignComponent {
         if (!reportObject) {
             reportObject = {
                 objectType: type,
+                labelText: config.textmsg.defaultreportlabeltext,
+                textAlign: "right",
                 rect: ''
             };
         } else {
@@ -326,20 +328,27 @@ class AppToolbar extends BaseDesignComponent {
                 rc = {left: 175, top: 50, width: 600, height: 400};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<DBDataGridSetupPanel
-                    onOk={this.saveReportObject}
+                    onOk={this.addReportObjectToReport}
+                    reportObject={reportObject}/>, mc);
+                break;
+            case 'label':
+                rc = {left: 175, top: 50, width: 300, height: 375};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<LabelSetupPanel
+                    onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;
         }
     }
-
-    saveReportObject(reportObject) {
+    
+    addReportObjectToReport(reportObject) {
         let designPanel = this.props.getDesignPanel();
         if (!document.designData.currentReport.reportObjects) {
             document.designData.currentReport.reportObjects = [];
         }
-    
+        
         setDefaultReportObjectSize(designPanel, reportObject);
-    
+        
         reportObject.id = document.designData.currentReport.reportObjects.length;
         document.designData.currentReport.reportObjects.push(reportObject);
         designPanel.addReportObject(reportObject);

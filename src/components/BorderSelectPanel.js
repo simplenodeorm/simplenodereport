@@ -65,7 +65,7 @@ class BorderSelectPanel extends React.Component {
 
 
         return <div className="fontSelect"><table cellspacing="0" cellpadding="0">
-            <tr><td style={{textDecoration: "underline"}} colspan="2">{this.props.label}</td></tr>
+            <tr><td style={{textDecoration: "underline", textAlign: "center"}} colspan="2">{this.props.label}</td></tr>
             <tr><th>{config.textmsg.borderstylelabel}</th><td><select onChange={this.setBorderStyle}>{loop(config.borderStyles, borderStyle)}</select></td></tr>
             <tr><th>{config.textmsg.borderwidthlabel}</th><td><SizeSelect sizes={config.borderWidths} setSize={this.setBorderWidth} currentSize={borderWidth}/></td></tr>
             <tr><th>{config.textmsg.bordercolorlabel}</th><td><ColorSelect colors={config.borderColors} setColor={this.setBorderColor} currentColor={borderColor}/></td></tr>

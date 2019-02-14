@@ -51,19 +51,23 @@ class DesignCanvas extends React.Component {
     }
     
     removeSelectedReportObjects() {
-        for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
-            if (this.reportObjectConfigurations[i].props.config.selected) {
-                this.mountedReportObjects[i].remove();
+        if (this.reportObjectConfigurations) {
+            for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
+                if (this.reportObjectConfigurations[i].props.config.selected) {
+                    this.mountedReportObjects[i].remove();
+                }
             }
+            this.setState(this.state);
         }
-        this.setState(this.state);
     }
     
     removeAllReportObjects() {
-        for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
-            this.mountedReportObjects[i].remove();
-         }
-        this.setState(this.state);
+        if (this.reportObjectConfigurations) {
+            for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
+                this.mountedReportObjects[i].remove();
+            }
+            this.setState(this.state);
+        }
     }
 
     render() {
