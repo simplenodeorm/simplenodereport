@@ -18,7 +18,6 @@ class FontSelectPanel extends React.Component {
         super(props);
 
         this.state = this.props.getFontSettings();
-
         this.setItalic = this.setItalic.bind(this);
         this.setUnderlined= this.setUnderlined.bind(this);
         this.setFont = this.setFont.bind(this);

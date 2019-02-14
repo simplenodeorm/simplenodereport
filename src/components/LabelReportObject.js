@@ -37,7 +37,17 @@ class LabelReportObject extends ReportObject {
         style.id = objectData.cssClassName;
         
         this.addBaseReportObjectCss(style, objectData.cssClassName);
+        let fontStyle = 'normal';
+        let textDecoration = 'none';
         
+        if (this.props.config.fontSettings.italic) {
+            fontStyle = 'italic';
+        }
+    
+        if (this.props.config.fontSettings.underlined) {
+            textDecoration = 'underline';
+        }
+    
         let css = '.' + objectData.cssClassName
             + ' span {margin: 0; padding: 0; font-family:'
             + this.props.config.fontSettings.font
@@ -45,6 +55,10 @@ class LabelReportObject extends ReportObject {
             + this.props.config.fontSettings.fontSize
             + 'pt; font-weight: '
             + this.props.config.fontSettings.fontWeight
+            + '; font-style: '
+            + fontStyle
+            + '; text-decoration: '
+            + textDecoration
             + '; color: '
             + this.props.config.fontSettings.fontColor
             + 'px; background-color: '
@@ -64,7 +78,7 @@ class LabelReportObject extends ReportObject {
         let mc = getModalContainer(rc);
         ReactDOM.render(<LabelSetupPanel
             onOk={this.updateReportObject}
-            reportObject={this.props.config}/>, mc);
+            reportObject={copyObject(this.props.config)}/>, mc);
         
     }
     

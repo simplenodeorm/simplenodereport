@@ -3,7 +3,7 @@ import "../app/App.css";
 
 const loop = (data, cursize) => {
     return data.map((info) => {
-        if (cursize && (info === cursize)) {
+        if (cursize && (info == cursize)) {
             return <option value={info} selected>{info}</option>;
         } else {
             return <option value={info}>{info}</option>;

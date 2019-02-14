@@ -112,6 +112,17 @@ class DBDataReportObject extends ReportObject {
             + objectData.cssClassName
             + ' table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; width: 98%; height:98%;}'));
     
+        let fontStyle = 'normal';
+        let textDecoration = 'none';
+        
+        if (this.props.config.fontSettings.italic) {
+            fontStyle = 'italic';
+        }
+    
+        if (this.props.config.fontSettings.underlined) {
+            textDecoration = 'underline';
+        }
+    
         let css = '.' + objectData.cssClassName
             + ' th div {margin: 0; padding: 0; font-family:'
             + this.props.config.headerFontSettings.font
@@ -121,6 +132,10 @@ class DBDataReportObject extends ReportObject {
             + this.props.config.headerFontSettings.fontWeight
             + '; color: '
             + this.props.config.headerFontSettings.fontColor
+            + '; font-style: '
+            + fontStyle
+            + '; text-decoration: '
+            + textDecoration
             + '; height: '
             + objectData.headerHeight
             + 'px; background-color: '
