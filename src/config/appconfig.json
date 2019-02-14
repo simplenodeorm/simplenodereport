@@ -90,5 +90,7 @@
     "resizeMargin": 6,
     "moveOffset": 20,
     "moveCursor": "grabbing",
-    "columnResizeCursor": "col-resize"
+    "columnResizeCursor": "col-resize",
+    "pointToPixelFactor": 1.3333,
+    "pointToPixelHeightFactor": 1.75
 }

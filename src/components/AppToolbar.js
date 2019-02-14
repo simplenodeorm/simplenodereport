@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Toolbar from './Toolbar';
 import '../app/App.css';
 import config from '../config/appconfig';
+import defaults from '../config/defaults';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {PreferencesPanel} from './PreferencesPanel';
 import {SaveReportPanel} from './SaveReportPanel';
@@ -196,8 +197,8 @@ class AppToolbar extends BaseDesignComponent {
             footerHeight = ppi;
         }
 
-        document.designData = {
-            currentReport: {
+        let doc = {
+            document: {
                 reportName: settings.reportName,
                 documentWidth: dim[0] * ppi,
                 documentHeight: dim[1] * ppi,
@@ -213,10 +214,14 @@ class AppToolbar extends BaseDesignComponent {
             }
         };
 
-        for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
-            document.designData.currentReport[config.defaultPreferenceNames[i]] = settings[config.defaultPreferenceNames[i]];
-        }
         
+        for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
+            doc.document[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
+        }
+    
+        this.props.getDesignPanel().removeAllReportObjects();
+        document.designData = '';
+        this.props.getDesignPanel().refreshLayout(doc);
         this.setState({canSave: true, canAddObject: true});
     }
     

@@ -223,8 +223,8 @@ export function getFontHeight(fontName, fontSize, text) {
 }
 
 export function getTextRect(fontName, fontSize, text) {
-    let height = Math.ceil(fontSize * 1.333);
-    let width = Math.ceil(text.length * height / 1.75);
+    let height = Math.ceil(fontSize * config.pointToPixelFactor);
+    let width = Math.ceil(text.length * height / config.pointToPixelHeightFactor);
     return  {left: 0, top: 0, height: height, width: width};
 }
 

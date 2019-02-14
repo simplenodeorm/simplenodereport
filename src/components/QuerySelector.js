@@ -2,10 +2,10 @@ import React from 'react';
 import "../app/App.css";
 import axios from 'axios';
 
-const loop = (data) => {
+const loop = (data, qid) => {
     return data.map((item) => {
         let docid = item.key + ':' + item.documentName;
-        if (document.designData.currentReport && (document.designData.currentReport.queryDocumentId === docid)) {
+        if (qid && (qid === docid)) {
             return <option value={docid} selected>{docid.replace(/_/g, ' ').replace('.json', '')}</option>;
         } else {
             return <option value={docid}>{docid.replace(/_/g, ' ').replace('.json', '')}</option>;
@@ -33,7 +33,7 @@ class QuerySelector extends React.Component {
         return <div>
             <select style={myStyle} onChange={this.props.setQuery}>
                 <option/>
-                {queryDocuments && loop(queryDocuments)}
+                {queryDocuments && loop(queryDocuments, this.props.queryId)}
             </select>
         </div>
     }

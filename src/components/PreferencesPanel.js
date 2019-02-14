@@ -48,6 +48,10 @@ class PreferencesPanel extends ModalDialog {
                 this.settings[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
             }
         }
+        
+        if (this.props.newDocument) {
+            this.settings.reportName = defaults.reportName;
+        }
     }
 
     getContent() {

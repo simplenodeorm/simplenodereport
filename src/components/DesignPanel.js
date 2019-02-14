@@ -148,7 +148,6 @@ class DesignPanel extends BaseDesignComponent {
             }
             
             document.designData.currentReport = doc.document;
-            document.designData.currentReport.reportName = doc.document.reportName;
             for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
                 this.getReportSection(document.designData.currentReport.reportObjects[i].reportSection).setState({error:''});
                 this.addReportObject(document.designData.currentReport.reportObjects[i]);
