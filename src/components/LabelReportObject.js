@@ -61,9 +61,11 @@ class LabelReportObject extends ReportObject {
             + textDecoration
             + '; color: '
             + this.props.config.fontSettings.fontColor
-            + 'px; background-color: '
+            + '; background-color: '
             + this.props.config.fontSettings.backgroundColor
-            + '; text-align: center; }';
+            + '; text-align: '
+            + this.props.config.textAlign + '; }';
+        
         style.appendChild(document.createTextNode(css));
         return style;
         
