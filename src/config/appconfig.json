@@ -103,5 +103,6 @@
     "pointToPixelHeightFactor": 1.75,
     "defaultTextColor": "black",
     "defaultBackgroundColor": "white",
-    "defaultFontWeight": 100
+    "defaultFontWeight": 100,
+    "keyMoveIncrement": 5
 }

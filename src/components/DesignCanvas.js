@@ -22,6 +22,7 @@ class DesignCanvas extends React.Component {
         this.reportObjectConfigurations = [];
         this.getRect = this.getRect.bind(this);
         this.setMountedComponent = this.setMountedComponent.bind(this);
+        this.getSelectedReportObjects = this.getSelectedReportObjects.bind(this);
     }
 
     componentDidMount () {
@@ -61,6 +62,19 @@ class DesignCanvas extends React.Component {
         }
     }
     
+    getSelectedReportObjects() {
+        let retval = [];
+        if (this.reportObjectConfigurations) {
+            for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
+                if (this.reportObjectConfigurations[i].props.config.selected) {
+                    this.reportObjectConfigurations[i].props.config.myIndex = i;
+                    retval.push(this.reportObjectConfigurations[i].props.config);
+                }
+            }
+        }
+        return retval;
+    }
+    
     removeAllReportObjects() {
         if (this.reportObjectConfigurations) {
             for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
@@ -81,6 +95,7 @@ class DesignCanvas extends React.Component {
         };
         
         return <div className="designCanvas"
+                    onKeyUp={this.onKeyUp}
             ref={(c) => {this.myCanvas = c;}}
                     style={canvasStyle}>
             {(this.reportObjectConfigurations.length > 0)

@@ -168,11 +168,7 @@ class AppToolbar extends BaseDesignComponent {
     
     
     deleteReportObjects() {
-        if (window.confirm(config.textmsg.deleteconfirmprompt)) {
-            this.props.getDesignPanel().removeSelectedReportObjects();
-            this.selectedReportObjectCounter = 0;
-            this.setState({itemsSelected: false});
-        }
+        this.props.getDesignPanel().removeSelectedReportObjects();
     }
 
     initializeNewReport(settings) {
@@ -221,6 +217,7 @@ class AppToolbar extends BaseDesignComponent {
             doc.document[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
         }
     
+        doc.document.queryDocumentId = settings.queryDocumentId;
         this.props.getDesignPanel().removeAllReportObjects();
         document.designData = '';
         this.props.getDesignPanel().refreshLayout(doc);
