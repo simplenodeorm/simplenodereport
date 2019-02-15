@@ -21,6 +21,7 @@ import axios from 'axios';
 import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
 import {LabelSetupPanel} from "./LabelSetupPanel";
 import {ImageSetupPanel} from "./ImageSetupPanel";
+import {LinkSetupPanel} from "./LinkSetupPanel";
 
 
 const reportObjectLoop = (obj, data) => {
@@ -348,6 +349,13 @@ class AppToolbar extends BaseDesignComponent {
                 rc = {left: 175, top: 50, width: 375, height: 200};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<ImageSetupPanel
+                    onOk={this.addReportObjectToReport}
+                    reportObject={reportObject}/>, mc);
+                break;
+            case 'link':
+                rc = {left: 175, top: 50, width: 375, height: 450};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<LinkSetupPanel
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;

@@ -67,11 +67,15 @@
         "deleteoreportbjectprompt": "Delete the report object?",
         "defaultreportlabeltext": "my label",
         "labelfont": "Label Font",
+        "linkfont": "Link Font",
         "labelobjecttitle": "Label",
         "imageobjecttitle": "Image",
         "urllabel": "URL:",
         "alttextlabel": "Alt Text:",
-        "sizetocontent": "Size to Content"
+        "sizetocontent": "Size to Content",
+        "linkobjecttitle": "Link",
+        "showinnewtab": "Show in New Tab",
+        "linktextlabel": "Link Text:"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

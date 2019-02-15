@@ -10,6 +10,7 @@ import {HorizontalRule} from './HorizontalRule';
 import {DBDataReportObject} from './DBDataReportObject';
 import {LabelReportObject} from './LabelReportObject';
 import {ImageReportObject} from './ImageReportObject';
+import {LinkReportObject} from './LinkReportObject';
 import config from '../config/appconfig';
 
 class DesignPanel extends BaseDesignComponent {
@@ -223,6 +224,15 @@ class DesignPanel extends BaseDesignComponent {
                 break;
             case 'image':
                 dc.getReportObjectConfigurations().push(<ImageReportObject
+                    key={reportObjectConfig.id}
+                    index={dc.getReportObjectConfigurations().length}
+                    setMountedComponent={dc.setMountedComponent}
+                    onObjectSelect={this.onObjectSelect}
+                    boundingRect={dc.getRect()}
+                    config={reportObjectConfig}/>);
+                break;
+            case 'link':
+                dc.getReportObjectConfigurations().push(<LinkReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}
