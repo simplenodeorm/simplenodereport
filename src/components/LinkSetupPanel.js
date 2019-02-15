@@ -35,12 +35,12 @@ class LinkSetupPanel extends ModalDialog {
                         isChecked={this.props.reportObject.showInNewTab}
                         handleCheckboxChange={this.showInNewTab}/></td>
                 </tr>
-                <tr><td colspan="2"><div className="centerAlign">
+                <tr><td colSpan="2"><div className="centerAlign">
                 <FontSelectPanel
                     label={config.textmsg.linkfont}
                     getFontSettings={this.getFontSettings}
                     setFontSettings={this.setFontSettings}/></div></td></tr>
-                    <tr><td colspan="2">
+                    <tr><td colSpan="2">
                     <div className="centerAlign">
                     <TextAlignSelect setTextAlign={this.setTextAlign}
                                      textAlign={this.props.reportObject.textAlign}/>
@@ -65,10 +65,12 @@ class LinkSetupPanel extends ModalDialog {
             this.props.reportObject.fontSettings = {
                 font: defaults.font,
                 fontSize: defaults.fontSize,
-                fontColor: 'black',
-                backgroundColor: 'white',
-                fontWeight: 100
+                fontColor: config.defaultTextColor,
+                backgroundColor: config.defaultBackgroundColor,
+                fontWeight: config.defaultFontWeight
             };
+    
+            this.props.reportObject.textAlign = 'left';
         }
         
         return this.props.reportObject.fontSettings;
@@ -87,11 +89,7 @@ class LinkSetupPanel extends ModalDialog {
     }
     
     isComplete() {
-        if (this.props.reportObject.url) {
-            return true;
-        } else {
-            return false;
-        }
+        return !!this.props.reportObject.url;
     }
     
     getError() {

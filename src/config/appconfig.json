@@ -100,5 +100,8 @@
     "moveCursor": "grabbing",
     "columnResizeCursor": "col-resize",
     "pointToPixelFactor": 1.3333,
-    "pointToPixelHeightFactor": 1.75
+    "pointToPixelHeightFactor": 1.75,
+    "defaultTextColor": "black",
+    "defaultBackgroundColor": "white",
+    "defaultFontWeight": 100
 }

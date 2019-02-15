@@ -30,8 +30,8 @@ class LabelSetupPanel extends ModalDialog {
                 getFontSettings={this.getFontSettings}
                 setFontSettings={this.setFontSettings}/>
             <div className="centerAlign">
-            <TextAlignSelect setTextAlign={this.setTextAlign}
-                textAlign={this.props.reportObject.textAlign}/>
+                <TextAlignSelect setTextAlign={this.setTextAlign}
+                    textAlign={this.props.reportObject.textAlign}/>
             </div>
         </div>
     }
@@ -49,7 +49,7 @@ class LabelSetupPanel extends ModalDialog {
             this.props.reportObject.fontSettings = {
                 font: defaults.font,
                 fontSize: defaults.fontSize,
-                fontColor: 'black',
+                fontColor: config.defaultTextColor,
                 backgroundColor: 'transparent',
                 fontWeight: 300
             };
@@ -71,11 +71,7 @@ class LabelSetupPanel extends ModalDialog {
     }
     
     isComplete() {
-        if (this.props.reportObject.labelText) {
-            return true;
-        } else {
-            return false;
-        }
+        return !!this.props.reportObject.labelText;
     }
     
     getError() {

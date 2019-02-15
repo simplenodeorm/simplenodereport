@@ -13,8 +13,8 @@ class DBDataGridSetupPanel extends ModalDialog {
             this.props.reportObject.headerFontSettings = {
                 font: defaults.font,
                 fontSize: defaults.fontSize,
-                fontColor: 'black',
-                backgroundColor: 'white',
+                fontColor: config.defaultTextColor,
+                backgroundColor: config.defaultBackgroundColor,
                 fontWeight: 900
             };
         }
@@ -23,8 +23,8 @@ class DBDataGridSetupPanel extends ModalDialog {
             this.props.reportObject.dataFontSettings = {
                 font: defaults.font,
                 fontSize: defaults.fontSize,
-                fontColor: 'black',
-                backgroundColor: 'white',
+                fontColor: config.defaultTextColor,
+                backgroundColor: config.defaultBackgroundColor,
                 fontWeight: 100
             };
         }

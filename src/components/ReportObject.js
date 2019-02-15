@@ -123,9 +123,13 @@ class ReportObject extends Resizable {
         return (document.designData.currentReport.reportName.replace(/ /g, '-') + '-' + this.props.config.objectType + '-' + this.props.config.id);
     }
     
-    addBaseReportObjectCss(style, className) {
+    addBaseReportObjectCss(style, className, textAlign) {
+        let ta = textAlign;
+        if (!ta) {
+            ta = 'left';
+        }
         style.appendChild(document.createTextNode('.' + className
-            + ' {position: relative; overflow: hidden; }'));
+            + ' {position: relative; overflow: hidden; text-align: ' + ta + ';}'));
     
         style.appendChild(document.createTextNode('div.'
             + className + ':hover { border: ' + config.activeObjectBorder + ';}'));
@@ -159,7 +163,7 @@ class ReportObject extends Resizable {
         this.setState(this.state);
     }
     
-    onDelete(info) {
+    onDelete() {
         if (window.confirm(config.textmsg.deleteoreportbjectprompt)) {
             this.remove();
         }

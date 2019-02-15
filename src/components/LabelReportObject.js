@@ -36,7 +36,7 @@ class LabelReportObject extends ReportObject {
         let style = document.createElement('style');
         style.id = objectData.cssClassName;
         
-        this.addBaseReportObjectCss(style, objectData.cssClassName);
+        this.addBaseReportObjectCss(style, objectData.cssClassName, this.props.config.textAlign);
         let fontStyle = 'normal';
         let textDecoration = 'none';
         
@@ -63,8 +63,7 @@ class LabelReportObject extends ReportObject {
             + this.props.config.fontSettings.fontColor
             + '; background-color: '
             + this.props.config.fontSettings.backgroundColor
-            + '; text-align: '
-            + this.props.config.textAlign + '; }';
+            + '; }';
         
         style.appendChild(document.createTextNode(css));
         return style;
