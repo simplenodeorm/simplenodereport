@@ -43,7 +43,7 @@ class LinkSetupPanel extends ModalDialog {
                     <tr><td colSpan="2">
                     <div className="centerAlign">
                     <TextAlignSelect setTextAlign={this.setTextAlign}
-                                     textAlign={this.props.reportObject.textAlign}/>
+                        textAlign={this.props.reportObject.textAlign}/>
                     </div></td></tr>
             </table></div>;
     }

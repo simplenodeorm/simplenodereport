@@ -23,16 +23,14 @@ class ImageReportObject extends ReportObject {
         if (!this.props.config.sizeToContent) {
             return <img style={{width: "100%", height: "100%"}} src={objectData.url} alt={objectData.altText}/>;
         } else {
-            return <img src={objectData.url} alt={objectData.altText}/>;
+            return <img src={objectData.url} alt={objectData.altText} />;
         }
     }
     
     getCssStyle(objectData) {
         let style = document.createElement('style');
         style.id = objectData.cssClassName;
-        
         this.addBaseReportObjectCss(style, objectData.cssClassName);
-
         return style;
         
     }
