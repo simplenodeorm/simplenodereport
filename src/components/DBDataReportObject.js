@@ -115,11 +115,11 @@ class DBDataReportObject extends ReportObject {
         let fontStyle = 'normal';
         let textDecoration = 'none';
         
-        if (this.props.config.fontSettings.italic) {
+        if (this.props.config.headerFontSettings.italic) {
             fontStyle = 'italic';
         }
     
-        if (this.props.config.fontSettings.underlined) {
+        if (this.props.config.headerFontSettings.underlined) {
             textDecoration = 'underline';
         }
     
@@ -170,6 +170,17 @@ class DBDataReportObject extends ReportObject {
 
         style.appendChild(document.createTextNode(css));
     
+        fontStyle = 'normal';
+        textDecoration = 'none';
+
+        if (this.props.config.dataFontSettings.italic) {
+            fontStyle = 'italic';
+        }
+    
+        if (this.props.config.dataFontSettings.underlined) {
+            textDecoration = 'underline';
+        }
+    
         style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' td {margin: 0; padding: 0;}'));
         css = '.' + objectData.cssClassName + ' td div {font-family: '
             + this.props.config.dataFontSettings.font
@@ -179,6 +190,10 @@ class DBDataReportObject extends ReportObject {
             + this.props.config.dataFontSettings.fontWeight
             + '; color: '
             + this.props.config.dataFontSettings.fontColor
+            + '; font-style: '
+            + fontStyle
+            + '; text-decoration: '
+            + textDecoration
             + '; height: '
             + objectData.dataRowHeight
             + 'px; background-color: '
@@ -248,7 +263,7 @@ class DBDataReportObject extends ReportObject {
         return this.getResizeColumn(clientX, clientY, screenX, screenY);
     }
     
-    getResizeColumn(clientX, clientY, screenX, screenY) {
+    getResizeColumn(clientX, clientY, screenX) {
         let retval;
         let node = document.elementFromPoint(clientX, clientY).parentNode;
         if (node.nodeName === 'TD') {

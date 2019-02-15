@@ -23,9 +23,16 @@ class ReportSectionSelect extends React.Component{
     }
     
     render() {
-        return <div className="locationSelect">{config.textmsg.targetlocationlabel}
-            <select onChange={this.setReportSection}>{loop(config.pageSections, this.props.reportObject.reportSection)}</select>
-        </div>;
+        if (this.props.asTableRow) {
+            return <tr><th>{config.textmsg.targetlocationlabel}</th><td>
+                <select onChange={this.setReportSection}>{loop(config.pageSections, this.props.reportObject.reportSection)}</select>
+            </td></tr>;
+            
+        } else {
+            return <div className="locationSelect">{config.textmsg.targetlocationlabel}
+                <select onChange={this.setReportSection}>{loop(config.pageSections, this.props.reportObject.reportSection)}</select>
+            </div>;
+        }
     }
 
     setReportSection(e) {

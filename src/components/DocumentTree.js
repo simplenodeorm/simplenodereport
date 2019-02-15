@@ -6,7 +6,7 @@ import config from '../config/appconfig.json';
 import './defaultTree.css';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import axios from 'axios';
-import {clearContextMenu,copyObject,getContextMenu,removeWaitMessage} from './helpers';
+import {clearContextMenu, clearDocumentDesignData, copyObject, getContextMenu, removeWaitMessage} from './helpers';
 const rdimage = <img alt="report document" src="/images/report-document.png"/>;
 const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 
@@ -191,6 +191,8 @@ class DocumentTree extends BaseDesignComponent {
     }
     
     loadDocumentData(doc) {
+        clearDocumentDesignData();
+        this.props.getDesignPanel().removeAllReportObjects();
         this.props.getDesignPanel().refreshLayout(doc);
         this.props.getToolbar().setState({canSave: true, canAddObject: true});
     }

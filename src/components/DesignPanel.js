@@ -9,6 +9,7 @@ import {VerticalRule} from './VerticalRule';
 import {HorizontalRule} from './HorizontalRule';
 import {DBDataReportObject} from './DBDataReportObject';
 import {LabelReportObject} from './LabelReportObject';
+import {ImageReportObject} from './ImageReportObject';
 import config from '../config/appconfig';
 
 class DesignPanel extends BaseDesignComponent {
@@ -200,10 +201,9 @@ class DesignPanel extends BaseDesignComponent {
     }
     
     addReportObject(reportObjectConfig) {
-        let dc;
+        let dc = this.getReportSectionDesignCanvas(reportObjectConfig.reportSection);
         switch (reportObjectConfig.objectType) {
             case 'dbdata':
-                dc = this.getReportSectionDesignCanvas(reportObjectConfig.reportSection);
                 dc.getReportObjectConfigurations().push(<DBDataReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
@@ -213,8 +213,16 @@ class DesignPanel extends BaseDesignComponent {
                     config={reportObjectConfig}/>);
                 break;
             case 'label':
-                dc = this.getReportSectionDesignCanvas(reportObjectConfig.reportSection);
                 dc.getReportObjectConfigurations().push(<LabelReportObject
+                    key={reportObjectConfig.id}
+                    index={dc.getReportObjectConfigurations().length}
+                    setMountedComponent={dc.setMountedComponent}
+                    onObjectSelect={this.onObjectSelect}
+                    boundingRect={dc.getRect()}
+                    config={reportObjectConfig}/>);
+                break;
+            case 'image':
+                dc.getReportObjectConfigurations().push(<ImageReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}

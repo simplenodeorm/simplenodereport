@@ -58,7 +58,7 @@ class FontSelectPanel extends React.Component {
             exampleStyle.textDecoration = 'none';
         }
 
-        return <div className="fontSelect"><table cellspacing="0" cellpadding="0">
+        return <div className="dataEntry"><table cellspacing="0" cellpadding="0">
             {this.props.label && <tr><td style={{textDecoration: "underline", textAlign: "center"}} colspan="2">{this.props.label}</td></tr> }
             <tr><th>{config.textmsg.namelabel}</th><td><select onChange={this.setFont}>{loop(config.fonts, font)}</select></td></tr>
             <tr><th>{config.textmsg.sizeweightlabel}</th>

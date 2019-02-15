@@ -20,11 +20,20 @@ class TextAlignSelect extends React.Component{
     
     render() {
         const alignments = ["left", "center", "right"];
-        return <div className="textAlignSelect">{config.textmsg.textalignlabel}
-            <select onChange={this.setTextAlign}>
-                {loop(alignments, this.props.textAlign)}
-            </select>
-        </div>;
+        if (this.props.asTableRow) {
+            return <tr><th>{config.textmsg.textalignlabel}
+            </th><td><select onChange={this.setTextAlign}>
+                    {loop(alignments, this.props.textAlign)}
+            </select></td>
+            </tr>;
+            
+        } else {
+            return <div className="textAlignSelect">{config.textmsg.textalignlabel}
+                <select onChange={this.setTextAlign}>
+                    {loop(alignments, this.props.textAlign)}
+                </select>
+            </div>;
+        }
     }
 
     setTextAlign(e) {

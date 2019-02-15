@@ -20,6 +20,7 @@ import {getPixelsPerInch} from './helpers.js';
 import axios from 'axios';
 import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
 import {LabelSetupPanel} from "./LabelSetupPanel";
+import {ImageSetupPanel} from "./ImageSetupPanel";
 
 
 const reportObjectLoop = (obj, data) => {
@@ -340,6 +341,13 @@ class AppToolbar extends BaseDesignComponent {
                 rc = {left: 175, top: 50, width: 300, height: 375};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<LabelSetupPanel
+                    onOk={this.addReportObjectToReport}
+                    reportObject={reportObject}/>, mc);
+                break;
+            case 'image':
+                rc = {left: 175, top: 50, width: 375, height: 200};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<ImageSetupPanel
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;
