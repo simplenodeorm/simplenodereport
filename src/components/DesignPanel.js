@@ -11,6 +11,7 @@ import {DBDataReportObject} from './DBDataReportObject';
 import {LabelReportObject} from './LabelReportObject';
 import {ImageReportObject} from './ImageReportObject';
 import {LinkReportObject} from './LinkReportObject';
+import {ShapeReportObject} from './ShapeReportObject';
 import {clearContextMenu, clearModalContainer, copyObject} from './helpers';
 
 import config from '../config/appconfig';
@@ -284,6 +285,15 @@ class DesignPanel extends BaseDesignComponent {
                 break;
             case 'link':
                 dc.getReportObjectConfigurations().push(<LinkReportObject
+                    key={reportObjectConfig.id}
+                    index={dc.getReportObjectConfigurations().length}
+                    setMountedComponent={dc.setMountedComponent}
+                    onObjectSelect={this.onObjectSelect}
+                    boundingRect={dc.getRect()}
+                    config={reportObjectConfig}/>);
+                break;
+            case 'shape':
+                dc.getReportObjectConfigurations().push(<ShapeReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}

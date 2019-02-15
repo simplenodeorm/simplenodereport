@@ -22,6 +22,7 @@ import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
 import {LabelSetupPanel} from "./LabelSetupPanel";
 import {ImageSetupPanel} from "./ImageSetupPanel";
 import {LinkSetupPanel} from "./LinkSetupPanel";
+import {ShapeSetupPanel} from "./ShapeSetupPanel";
 
 
 const reportObjectLoop = (obj, data) => {
@@ -275,7 +276,7 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     preferences() {
-        let rc = {left: 200, top: 75, width: 400, height: 375};
+        let rc = {left: 200, top: 75, width: 400, height: 350};
         let mc = getModalContainer(rc);
         ReactDOM.render(<PreferencesPanel onOk={this.savePreferences}/>, mc);
     }
@@ -353,6 +354,13 @@ class AppToolbar extends BaseDesignComponent {
                 rc = {left: 175, top: 50, width: 375, height: 450};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<LinkSetupPanel
+                    onOk={this.addReportObjectToReport}
+                    reportObject={reportObject}/>, mc);
+                break;
+            case 'shape':
+                rc = {left: 175, top: 50, width: 275, height: 350};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<ShapeSetupPanel
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;

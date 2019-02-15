@@ -64,11 +64,12 @@ class BorderSelectPanel extends React.Component {
         }
 
 
-        return <div className="fontSelect"><table cellspacing="0" cellpadding="0">
-            <tr><td style={{textDecoration: "underline", textAlign: "center"}} colspan="2">{this.props.label}</td></tr>
+        return <div className="dataEntry"><table cellSpacing="0" cellPadding="0">
+            <tr><td style={{textDecoration: "underline", textAlign: "center"}} colSpan="2">{this.props.label}</td></tr>
             <tr><th>{config.textmsg.borderstylelabel}</th><td><select onChange={this.setBorderStyle}>{loop(config.borderStyles, borderStyle)}</select></td></tr>
             <tr><th>{config.textmsg.borderwidthlabel}</th><td><SizeSelect sizes={config.borderWidths} setSize={this.setBorderWidth} currentSize={borderWidth}/></td></tr>
             <tr><th>{config.textmsg.bordercolorlabel}</th><td><ColorSelect colors={config.borderColors} setColor={this.setBorderColor} currentColor={borderColor}/></td></tr>
+            {!this.props.hideCheckboxes &&
             <tr>
                 <td></td>
                 <td>
@@ -76,12 +77,17 @@ class BorderSelectPanel extends React.Component {
                     <Checkbox label={config.textmsg.top} handleCheckboxChange={this.setTop} isChecked={top}/>
                 </td>
             </tr>
-            <tr><td></td>
+            }
+            {!this.props.hideCheckboxes &&
+            <tr>
+                <td></td>
                 <td>
-                    <Checkbox label={config.textmsg.right} handleCheckboxChange={this.setRight} isChecked={right}/>&nbsp;
+                    <Checkbox label={config.textmsg.right} handleCheckboxChange={this.setRight}
+                              isChecked={right}/>&nbsp;
                     <Checkbox label={config.textmsg.bottom} handleCheckboxChange={this.setBottom} isChecked={bottom}/>
                 </td>
             </tr>
+            }
             <tr><th>{config.textmsg.examplelabel}</th><td><div style={exampleStyle}/></td></tr>
             </table></div>
     }

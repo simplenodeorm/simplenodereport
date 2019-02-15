@@ -75,7 +75,10 @@
         "sizetocontent": "Size to Content",
         "linkobjecttitle": "Link",
         "showinnewtab": "Show in New Tab",
-        "linktextlabel": "Link Text:"
+        "linktextlabel": "Link Text:",
+        "shapeobjecttitle": "Shape",
+        "shapeborder": "Shape Border",
+        "shapelabel": "Shape:"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
@@ -91,6 +94,7 @@
     "fontColors": ["gainsboro",  "lightgray",	"silver", "darkgray", "gray", "dimgray", "lightslategray", "slategray", "darkslategray", "black"],
     "defaultPreferenceNames": ["marginLeft", "marginTop", "marginRight", "marginBottom", "fontFamily", "font", "fontSize", "documentSize", "reportName", "queryDocumentId"],
     "reportObjectTypes": ["label", "dbdata", "dbcolumn", "link", "image", "shape", "graph"],
+    "shapes": ["rectangle", "ellipse", "line"],
     "defaulttablecellpadding": 3,
     "selectedObjectBorder": "solid 1px red",
     "activeObjectBorder": "dotted 1px red",
@@ -104,5 +108,6 @@
     "defaultTextColor": "black",
     "defaultBackgroundColor": "white",
     "defaultFontWeight": 100,
-    "keyMoveIncrement": 5
+    "keyMoveIncrement": 5,
+    "defaultShape": "rectangle"
 }
