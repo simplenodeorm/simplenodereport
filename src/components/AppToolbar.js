@@ -358,7 +358,7 @@ class AppToolbar extends BaseDesignComponent {
                     reportObject={reportObject}/>, mc);
                 break;
             case 'shape':
-                rc = {left: 175, top: 50, width: 275, height: 350};
+                rc = {left: 175, top: 50, width: 275, height: 300};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<ShapeSetupPanel
                     onOk={this.addReportObjectToReport}

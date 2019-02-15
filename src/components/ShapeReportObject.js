@@ -22,7 +22,7 @@ class ShapeReportObject extends ReportObject {
     }
     
     getContent(objectData) {
-        return "";
+        return '';
     }
     
     getCssStyle(objectData) {
@@ -30,8 +30,7 @@ class ShapeReportObject extends ReportObject {
         style.id = objectData.cssClassName;
         
         let css = '.' + objectData.cssClassName
-            + ' { background: transparent'
-            + ' position: relative; overflow: hidden; ';
+            + ' { background: transparent; position: relative; overflow: hidden; ';
     
         if (this.props.config.borderSettings.shape !== 'line') {
             css += this.buildBorderCss('border', this.props.config.borderSettings);
@@ -56,14 +55,13 @@ class ShapeReportObject extends ReportObject {
     }
     
     onEdit(info) {
-        let rc = {left: 175, top: 50, width: 300, height: 350};
+        let rc = {left: 175, top: 50, width: 275, height: 300};
         let mc = getModalContainer(rc);
         ReactDOM.render(<ShapeSetupPanel
             onOk={this.updateReportObject}
             reportObject={copyObject(this.props.config)}/>, mc);
         
     }
-    
 }
 
 export {ShapeReportObject};

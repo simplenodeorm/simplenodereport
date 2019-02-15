@@ -13,13 +13,18 @@ class ShapeSetupPanel extends ModalDialog {
         this.getBorderSettings = this.getBorderSettings.bind(this);
         this.setBorderSettings = this.setBorderSettings.bind(this);
         this.setShape = this.setShape.bind(this);
+        
+        if (!this.props.reportObject.shape) {
+            this.props.reportObject.shape = config.defaultShape;
+        }
     }
     
     getContent() {
         return <div className="dataEntry"><table>
             <ReportSectionSelect asTableRow={true} reportObject={this.props.reportObject} />
             <ShapeSelect asTableRow={true} currentShape={this.props.reportObject.shape} setShape={this.setShape}/>
-            <tr><td colSpan="2">
+            <tr><td colSpan={2}/></tr>
+            <tr><td style={{paddingLeft: "20px"}} colSpan="2">
                 <BorderSelectPanel hideCheckboxes={true}
                 label={config.textmsg.shapeborder}
                 getBorderSettings={this.getBorderSettings}
