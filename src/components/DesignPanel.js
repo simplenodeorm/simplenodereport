@@ -40,10 +40,8 @@ class DesignPanel extends BaseDesignComponent {
         this.removeSelectedReportObjects = this.removeSelectedReportObjects.bind(this);
         this.onWheel = this.onWheel.bind(this);
         this.handleKeyDown = this.handleKeyDown.bind(this);
-        this.moveSelectedReportObjectsUp = this.moveSelectedReportObjectsUp.bind(this);
-        this.moveSelectedReportObjectsDown = this.moveSelectedReportObjectsDown.bind(this);
-        this.moveSelectedReportObjectsLeft = this.moveSelectedReportObjectsLeft.bind(this);
-        this.moveSelectedReportObjectsRight = this.moveSelectedReportObjectsRight.bind(this);
+        this.moveSelectedReportObjects = this.moveSelectedReportObjects.bind(this);
+        this.deselectAllObjects = this.deselectAllObjects.bind(this);
         
         this.header = '';
         this.body = '';
@@ -73,21 +71,16 @@ class DesignPanel extends BaseDesignComponent {
             case ESCAPE_KEY:
                 clearContextMenu();
                 clearModalContainer();
+                this.deselectAllObjects();
                 break;
             case DELETE_KEY:
                 this.removeSelectedReportObjects();
                 break;
             case UPARROW_KEY:
-                this.moveSelectedReportObjectsUp();
-                break;
             case DOWNARROW_KEY:
-                this.moveSelectedReportObjectsDown();
-                break;
             case LEFTARROW_KEY:
-                this.moveSelectedReportObjectsLeft();
-                break;
             case RIGHTARROW_KEY:
-                this.moveSelectedReportObjectsRight();
+                this.moveSelectedReportObjects(event.keyCode);
                 break;
             default:
                 break;
@@ -310,54 +303,42 @@ class DesignPanel extends BaseDesignComponent {
         this.props.getToolbar().onReportObjectSelect(selected);
     }
     
-    moveSelectedReportObjectsUp() {
+    moveSelectedReportObjects(key) {
         for (let i = 0; i < config.pageSections.length; ++i) {
             let canvas = this.getReportSectionDesignCanvas(config.pageSections[i]);
             let robjects = canvas.getSelectedReportObjects();
             for (let i = 0; i < robjects.length; ++i) {
                 let rc = copyObject(robjects[i].rect);
-                rc.top -= config.keyMoveIncrement;
-                canvas.mountedReportObjects[robjects[i].myIndex].onLayoutChange(rc);
-            }
-        }
-    }
-
-    moveSelectedReportObjectsDown() {
-        for (let i = 0; i < config.pageSections.length; ++i) {
-            let canvas = this.getReportSectionDesignCanvas(config.pageSections[i]);
-            let robjects = canvas.getSelectedReportObjects();
-            for (let i = 0; i < robjects.length; ++i) {
-                let rc = copyObject(robjects[i].rect);
-                rc.top += config.keyMoveIncrement;
+                switch(key) {
+                    case UPARROW_KEY:
+                        rc.top -= config.keyMoveIncrement;
+                        break;
+                    case DOWNARROW_KEY:
+                        rc.top += config.keyMoveIncrement;
+                        break;
+                    case LEFTARROW_KEY:
+                        rc.left -= config.keyMoveIncrement;
+                        break;
+                    case RIGHTARROW_KEY:
+                        rc.left += config.keyMoveIncrement;
+                        break;
+    
+                }
                 canvas.mountedReportObjects[robjects[i].myIndex].onLayoutChange(rc);
             }
         }
     }
     
-    moveSelectedReportObjectsLeft() {
+    deselectAllObjects() {
         for (let i = 0; i < config.pageSections.length; ++i) {
             let canvas = this.getReportSectionDesignCanvas(config.pageSections[i]);
             let robjects = canvas.getSelectedReportObjects();
             for (let i = 0; i < robjects.length; ++i) {
-                let rc = copyObject(robjects[i].rect);
-                rc.left -= config.keyMoveIncrement;
-                canvas.mountedReportObjects[robjects[i].myIndex].onLayoutChange(rc);
+                robjects[i].selected = false;
+                canvas.mountedReportObjects[robjects[i].myIndex].setState(canvas.mountedReportObjects[robjects[i].myIndex].state);
             }
         }
     }
-
-    moveSelectedReportObjectsRight() {
-        for (let i = 0; i < config.pageSections.length; ++i) {
-            let canvas = this.getReportSectionDesignCanvas(config.pageSections[i]);
-            let robjects = canvas.getSelectedReportObjects();
-            for (let i = 0; i < robjects.length; ++i) {
-                let rc = copyObject(robjects[i].rect);
-                rc.left += config.keyMoveIncrement;
-                canvas.mountedReportObjects[robjects[i].myIndex].onLayoutChange(rc);
-            }
-        }
-    }
-    
 }
 
 export {DesignPanel};
