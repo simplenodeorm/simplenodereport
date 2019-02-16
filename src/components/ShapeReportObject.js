@@ -32,12 +32,16 @@ class ShapeReportObject extends ReportObject {
         let css = '.' + objectData.cssClassName
             + ' { background: transparent; position: absolute; z-index:-1; ';
     
-        if (this.props.config.borderSettings.shape !== 'line') {
+        if (this.props.config.shape !== 'line') {
             css += this.buildBorderCss('border', this.props.config.borderSettings);
         } else {
             css += this.buildBorderCss('border-top', this.props.config.borderSettings);
         }
         
+        if (this.props.config.shape === 'ellipse')
+            css += (' border-radius:' + (this.props.config.rect.width/2) + 'px'
+                + '/' + (this.props.config.rect.height/2) + 'px; ')
+    
         css += '}';
     
         style.appendChild(document.createTextNode(css));
@@ -51,7 +55,11 @@ class ShapeReportObject extends ReportObject {
     }
     
     getDefaultRect() {
-        return {top: 20, left: 20, height: 100, width: 100};
+        if (this.props.config.shape !== 'line') {
+            return {top: 20, left: 20, height: 100, width: 100};
+        } else {
+            return {top: 20, left: 20, height: 10, width: 100};
+        }
     }
     
     onEdit(info) {

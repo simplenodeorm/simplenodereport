@@ -34,6 +34,15 @@ class ShapeSetupPanel extends ModalDialog {
     
     setShape(info) {
         this.props.reportObject.shape = info.target.options[info.target.selectedIndex].value;
+        if (this.props.reportObject.shape === 'line') {
+            this.props.reportObject.borderSettings.left = false;
+            this.props.reportObject.borderSettings.right = false;
+            this.props.reportObject.borderSettings.bottom = false;
+        } else {
+            this.props.reportObject.borderSettings.left = true;
+            this.props.reportObject.borderSettings.right = true;
+            this.props.reportObject.borderSettings.bottom = true;
+        }
     }
     
     
