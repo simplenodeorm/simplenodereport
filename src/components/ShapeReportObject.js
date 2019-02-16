@@ -30,7 +30,7 @@ class ShapeReportObject extends ReportObject {
         style.id = objectData.cssClassName;
         
         let css = '.' + objectData.cssClassName
-            + ' { background: transparent; position: absolute; z-index:-1;  ';
+            + ' { background: transparent; position: absolute; z-index:-1; ';
     
         if (this.props.config.borderSettings.shape !== 'line') {
             css += this.buildBorderCss('border', this.props.config.borderSettings);

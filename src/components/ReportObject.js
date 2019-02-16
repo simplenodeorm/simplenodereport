@@ -82,14 +82,8 @@ class ReportObject extends Resizable {
         }
     }
     
-    
-    
     getConfigValue(nm) {
         return config[nm];
-    }
-    
-    getConfigText(nm) {
-        return config.textmsg[nm];
     }
     
     hasBorder(settings) {
@@ -129,7 +123,7 @@ class ReportObject extends Resizable {
             ta = 'left';
         }
         style.appendChild(document.createTextNode('.' + className
-            + ' {position: absolute; z-index:1; text-align: ' + ta + ';}'));
+            + ' {position: absolute; z-index: 1; text-align: ' + ta + ';}'));
     
         style.appendChild(document.createTextNode('div.'
             + className + ':hover { border: ' + config.activeObjectBorder + ';}'));
