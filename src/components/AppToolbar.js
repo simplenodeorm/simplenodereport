@@ -364,6 +364,9 @@ class AppToolbar extends BaseDesignComponent {
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;
+            case 'graph':
+                alert('Under construction');
+                break;
         }
     }
     
