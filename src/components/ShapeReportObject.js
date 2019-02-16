@@ -38,10 +38,11 @@ class ShapeReportObject extends ReportObject {
             css += this.buildBorderCss('border-top', this.props.config.borderSettings);
         }
         
-        if (this.props.config.shape === 'ellipse')
-            css += (' border-radius:' + (this.props.config.rect.width/2) + 'px'
-                + '/' + (this.props.config.rect.height/2) + 'px; ')
-    
+        if (this.props.config.shape === 'ellipse') {
+            css += (' border-radius:' + (this.props.config.rect.width / 2) + 'px'
+                + '/' + (this.props.config.rect.height / 2) + 'px; ')
+        }
+        
         css += '}';
     
         style.appendChild(document.createTextNode(css));
