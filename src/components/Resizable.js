@@ -204,7 +204,7 @@ class Resizable extends React.Component {
     }
     
     getCustomResizeCursor(clientRect, mouseX, mouseY) {
-        return '';
+        return undefined;
     }
     
     isCustomResizeCursor(cursor) {

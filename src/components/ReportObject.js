@@ -129,7 +129,7 @@ class ReportObject extends Resizable {
             ta = 'left';
         }
         style.appendChild(document.createTextNode('.' + className
-            + ' {position: relative; overflow: hidden; text-align: ' + ta + ';}'));
+            + ' {position: absolute; z-index:1; text-align: ' + ta + ';}'));
     
         style.appendChild(document.createTextNode('div.'
             + className + ':hover { border: ' + config.activeObjectBorder + ';}'));
