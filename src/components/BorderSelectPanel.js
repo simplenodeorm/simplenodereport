@@ -68,10 +68,10 @@ class BorderSelectPanel extends React.Component {
             <tr><td style={{textDecoration: "underline", textAlign: "center"}} colSpan="2">{this.props.label}</td></tr>
             <tr><th>{config.textmsg.borderstylelabel}</th><td><select onChange={this.setBorderStyle}>{loop(config.borderStyles, borderStyle)}</select></td></tr>
             <tr><th>{config.textmsg.borderwidthlabel}</th><td><SizeSelect sizes={config.borderWidths} setSize={this.setBorderWidth} currentSize={borderWidth}/></td></tr>
-            <tr><th>{config.textmsg.bordercolorlabel}</th><td><ColorSelect colors={config.borderColors} setColor={this.setBorderColor} currentColor={borderColor}/></td></tr>
+            <tr><th>{config.textmsg.bordercolorlabel}</th><td><ColorSelect colors={config.colors} setColor={this.setBorderColor} currentColor={borderColor}/></td></tr>
             {!this.props.hideCheckboxes &&
             <tr>
-                <td></td>
+                <td/>
                 <td>
                     <Checkbox label={config.textmsg.left} handleCheckboxChange={this.setLeft} isChecked={left}/>&nbsp;
                     <Checkbox label={config.textmsg.top} handleCheckboxChange={this.setTop} isChecked={top}/>
@@ -80,7 +80,7 @@ class BorderSelectPanel extends React.Component {
             }
             {!this.props.hideCheckboxes &&
             <tr>
-                <td></td>
+                <td/>
                 <td>
                     <Checkbox label={config.textmsg.right} handleCheckboxChange={this.setRight}
                               isChecked={right}/>&nbsp;

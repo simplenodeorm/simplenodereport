@@ -118,16 +118,22 @@ class ReportObject extends Resizable {
     }
     
     addBaseReportObjectCss(style, className, textAlign) {
-        let ta = textAlign;
-        if (!ta) {
-            ta = 'left';
+        let ta = '';
+        if (textAlign) {
+            ta = ' text-align: ' + textAlign + '; ';
         }
         style.appendChild(document.createTextNode('.' + className
-            + ' {position: absolute; z-index: 1; text-align: ' + ta + ';}'));
-    
+            + ' {position: absolute; z-index: 1; overflow: hidden; '
+            + ta
+            + this.getCustomCssFragment()
+            + '}'));
         style.appendChild(document.createTextNode('div.'
             + className + ':hover { border: ' + config.activeObjectBorder + ';}'));
     
+    }
+    
+    getCustomCssFragment() {
+        return '';
     }
     
     remove() {

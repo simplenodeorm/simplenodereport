@@ -25,34 +25,28 @@ class ShapeReportObject extends ReportObject {
         return '';
     }
     
+    getCustomCssFragment() {
+        let retval = ' background: transparent; z-index:-1; ';
+    
+        if (this.props.config.shape !== 'line') {
+            retval += this.buildBorderCss('border', this.props.config.borderSettings);
+        } else {
+            retval += this.buildBorderCss('border-top', this.props.config.borderSettings);
+        }
+    
+        if (this.props.config.shape === 'ellipse') {
+            retval += (' border-radius:' + (this.props.config.rect.width / 2) + 'px'
+                + '/' + (this.props.config.rect.height / 2) + 'px; ')
+        }
+    
+        return retval;
+    }
+
     getCssStyle(objectData) {
         let style = document.createElement('style');
         style.id = objectData.cssClassName;
-        
-        let css = '.' + objectData.cssClassName
-            + ' { background: transparent; position: absolute; z-index:-1; ';
-    
-        if (this.props.config.shape !== 'line') {
-            css += this.buildBorderCss('border', this.props.config.borderSettings);
-        } else {
-            css += this.buildBorderCss('border-top', this.props.config.borderSettings);
-        }
-        
-        if (this.props.config.shape === 'ellipse') {
-            css += (' border-radius:' + (this.props.config.rect.width / 2) + 'px'
-                + '/' + (this.props.config.rect.height / 2) + 'px; ')
-        }
-        
-        css += '}';
-    
-        style.appendChild(document.createTextNode(css));
-
-        style.appendChild(document.createTextNode('div.'
-            + objectData.cssClassName
-            + ':hover { border: ' + config.activeObjectBorder + ';}'));
-    
+        this.addBaseReportObjectCss(style, objectData.cssClassName);
         return style;
-        
     }
     
     getDefaultRect() {
