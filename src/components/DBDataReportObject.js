@@ -2,7 +2,6 @@ import React from 'react';
 import "../app/App.css";
 import {getFontHeight, getModalContainer, getReportColumn, copyObject} from './helpers';
 import {ReportObject} from './ReportObject';
-import {TableHeader} from './TableHeader';
 import config from "../config/appconfig";
 import ReactDOM from "react-dom";
 import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
@@ -12,7 +11,7 @@ const headerLoop = (columns, objectColumns) => {
         const myStyle = {
             width: objectColumns[i].width + 'px'
         };
-        return <th style={myStyle}><TableHeader config={cinfo}/></th>;
+        return <th style={myStyle}><div>{cinfo.name}</div></th>;
     });
 };
 
@@ -144,8 +143,7 @@ class DBDataReportObject extends ReportObject {
         style.appendChild(document.createTextNode(css));
 
         css = '.' + objectData.cssClassName
-            + ' th {overflow: hidden; -webkit-user-select: none; ';
-        css += '-moz-user-select: none; -ms-user-select: none; user-select: none; ';
+            + ' th {overflow: hidden; margin: 0; padding: 0; ';
         
         
         if (this.hasBorder(this.props.config.headerBorderSettings)) {
