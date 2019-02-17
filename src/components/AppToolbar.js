@@ -24,6 +24,7 @@ import {ImageSetupPanel} from "./ImageSetupPanel";
 import {LinkSetupPanel} from "./LinkSetupPanel";
 import {ShapeSetupPanel} from "./ShapeSetupPanel";
 import {CurrentDateSetupPanel} from './CurrentDateSetupPanel';
+import {PageNumberSetupPanel} from './PageNumberSetupPanel';
 
 const reportObjectLoop = (obj, data) => {
     return data.map((item) => {
@@ -368,6 +369,13 @@ class AppToolbar extends BaseDesignComponent {
                 rc = {left: 175, top: 50, width: 300, height: 375};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<CurrentDateSetupPanel
+                    onOk={this.addReportObjectToReport}
+                    reportObject={reportObject}/>, mc);
+                break;
+            case 'page number':
+                rc = {left: 175, top: 50, width: 300, height: 375};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<PageNumberSetupPanel
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;

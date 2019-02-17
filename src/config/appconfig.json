@@ -81,7 +81,11 @@
         "shapelabel": "Shape:",
         "currentdateobjecttitle": "Current Date",
         "dateformatlabel": "Date Format:",
-        "datefont": "Date Font"
+        "datefont": "Date Font",
+        "pagenumlocationlabel": "Location:",
+        "pagenumformatlabel": "Format:",
+        "pagenumfont": "Page Number Font",
+        "pagenumberobjecttitle": "Page Number"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
@@ -100,10 +104,13 @@
         {"format": "yyyy-mm-dd", "example": "2019-01-21"},
         {"format": "dd MMM yyyy", "example": "21 Jan 2017"},
         {"format": "MMMMMMMMM dd, yyyy", "example": "January 21, 2019"}],
-    "pageNumberFormats": ["1", "1.", "[1]", "(1)"],
+    "pageNumberFormats": [
+        {"key":"?.", "example": "1."},
+        {"key":"[?]", "example": "[1]"},
+        {"key": "(?)", "example": "(1)"}],
     "pageNumberLocations": [
-        {"key": "bl", "name": "bottom left"},
         {"key": "bm", "name": "bottom middle"},
+        {"key": "bl", "name": "bottom left"},
         {"key": "br", "name": "bottom right"},
         {"key": "tl", "name": "top left"},
         {"key": "tm", "name": "top middle"},

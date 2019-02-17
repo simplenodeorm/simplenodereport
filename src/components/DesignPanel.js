@@ -13,6 +13,8 @@ import {ImageReportObject} from './ImageReportObject';
 import {LinkReportObject} from './LinkReportObject';
 import {ShapeReportObject} from './ShapeReportObject';
 import {CurrentDateReportObject} from './CurrentDateReportObject';
+import {PageNumberReportObject} from './PageNumberReportObject';
+
 import {clearContextMenu, clearModalContainer, copyObject} from './helpers';
 
 import config from '../config/appconfig';
@@ -304,6 +306,15 @@ class DesignPanel extends BaseDesignComponent {
                 break;
             case 'current date':
                 dc.getReportObjectConfigurations().push(<CurrentDateReportObject
+                    key={reportObjectConfig.id}
+                    index={dc.getReportObjectConfigurations().length}
+                    setMountedComponent={dc.setMountedComponent}
+                    onObjectSelect={this.onObjectSelect}
+                    boundingRect={dc.getRect()}
+                    config={reportObjectConfig}/>);
+                break;
+            case 'page number':
+                dc.getReportObjectConfigurations().push(<PageNumberReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}
