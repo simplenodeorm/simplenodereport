@@ -1,24 +1,13 @@
 import React from 'react';
 import '../app/App.css';
 import {ReportObject} from "./ReportObject";
-import config from '../config/appconfig';
-import {copyObject, getModalContainer, getTextRect, formatDate} from "./helpers";
+import {copyObject, getModalContainer, formatDate, getTextRect} from "./helpers";
 import ReactDOM from "react-dom";
 import {CurrentDateSetupPanel} from "./CurrentDateSetupPanel";
 
 class CurrentDateReportObject extends ReportObject {
     constructor(props) {
         super(props);
-        if (!this.props.config.format) {
-            this.props.config.format = config.dateFormats[0].format
-        }
-        
-        
-        if (!this.props.config.rect) {
-            let rc = getTextRect(this.props.config.fontSettings.font,
-                this.props.config.fontSettings.fontSize, this.props.config.format);
-            this.props.config.rect = {left: 20, top: 20, width: rc.width, height: rc.height};
-        }
     }
     
     getObjectData() {
@@ -29,7 +18,7 @@ class CurrentDateReportObject extends ReportObject {
     }
     
     getContent(objectData) {
-        return <div>{formatDate(new Date(), objectData.format)}</div>
+        return <span>{formatDate(new Date(), objectData.format)}</span>
     }
     
     getCssStyle(objectData) {
@@ -66,12 +55,15 @@ class CurrentDateReportObject extends ReportObject {
             + '; }';
         
         style.appendChild(document.createTextNode(css));
+        
         return style;
         
     }
     
     getDefaultRect() {
-        return {top: 20, left: 20, height: 20, width: 75};
+        let rc = getTextRect(this.props.config.fontSettings.font,
+            this.props.config.fontSettings.fontSize, this.props.config.format);
+        return {left: 20, top: 20, width: rc.width, height: rc.height};
     }
     
     onEdit(info) {

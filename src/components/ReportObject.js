@@ -114,7 +114,9 @@ class ReportObject extends Resizable {
     }
     
     getCssClassName() {
-        return (document.designData.currentReport.reportName.replace(/ /g, '-') + '-' + this.props.config.objectType + '-' + this.props.config.id);
+        return (document.designData.currentReport.reportName.replace(/ /g, '-')
+            + '-' + this.props.config.objectType.replace(/ /g, '-')
+            + '-' + this.props.config.id);
     }
     
     addBaseReportObjectCss(style, className, textAlign) {

@@ -10,9 +10,9 @@ import {ReportSectionSelect} from "./ReportSectionSelect";
 const loop = (formats, curformat) => {
     return formats.map((format) => {
         if (curformat && (format.key === curformat)) {
-            return <option value={format.key} selected>{format.example}</option>;
+            return <option value={format.format} selected>{format.example}</option>;
         } else {
-            return <option value={format.key}>{format.example}</option>;
+            return <option value={format.format}>{format.example}</option>;
         }
     });
 };
@@ -24,20 +24,29 @@ class CurrentDateSetupPanel extends ModalDialog {
         this.setFontSettings = this.setFontSettings.bind(this);
         this.setFormat = this.setFormat.bind(this);
         this.setTextAlign = this.setTextAlign.bind(this);
-    
+
         if (!this.props.reportObject.format) {
-            this.props.reportObject.format = config.dateFormats[0].format;
+            this.props.reportObject.format = config.dateFormats[0].format
+        }
+        
+        if (!this.props.reportObject.textAlign) {
+            this.props.reportObject.textAlign = 'center';
         }
     }
     
     getContent() {
-        return <div style={{marginLeft: "5px"}} className="dataEntry">
+        return <div className="dataEntry">
             <table>
-            <ReportSectionSelect asTableRow={true}
-                reportObject={this.props.reportObject} />
-            <tr><th>{config.textmsg.dateformatlabel}</th><td><select onChange={this.setFormat}>
-                    {loop(config.dateFormats, this.props.reportObject.format)}
-            </select></td></tr></table>
+                <ReportSectionSelect asTableRow={true} reportObject={this.props.reportObject} />
+                <tr>
+                    <th>{config.textmsg.dateformatlabel}</th>
+                    <td>
+                        <select onChange={this.setFormat}>
+                            {loop(config.dateFormats, this.props.reportObject.format)}
+                        </select>
+                    </td>
+                </tr>
+            </table>
             <FontSelectPanel
                 label={config.textmsg.datefont}
                 getFontSettings={this.getFontSettings}
@@ -63,8 +72,8 @@ class CurrentDateSetupPanel extends ModalDialog {
                 font: defaults.font,
                 fontSize: defaults.fontSize,
                 fontColor: config.defaultTextColor,
-                backgroundColor: 'transparent',
-                fontWeight: 300
+                backgroundColor: config.defaultBackgroundColor,
+                fontWeight: config.defaultFontWeight
             };
         }
         

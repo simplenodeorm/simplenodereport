@@ -377,20 +377,13 @@ export function loadDefaultDocumentSettings() {
 }
 
 export function formatDate(dt, format) {
-    let day = '' + dt.getDay();
-    let mon = '' + (dt.getMonth()+1);
-    let year = dt.getFullYear();
+    let dstr = dt.toISOString();
+    let day = dstr.substring(8, 10);
+    let mon = dstr.substring(5, 7);
+    let year = dstr.substring(0, 4);
     let mname;
     if (format.includes('MMM')) {
         mname = config.monthNames[dt.getMonth()];
-    }
-    
-    if (day.length === 1) {
-        day = ('0' + day);
-    }
-    
-    if (mon.length === 1) {
-        mon = '0' + mon;
     }
     
     let retval = format.replace('dd', day).replace('yyyy', year);
