@@ -375,3 +375,35 @@ export function loadDefaultDocumentSettings() {
     document.designData.currentReport.fontFamily = myPreferences.fontFamily;
     document.designData.currentReport.reportName = myPreferences.reportName;
 }
+
+export function formatDate(dt, format) {
+    let day = '' + dt.getDay();
+    let mon = '' + (dt.getMonth()+1);
+    let year = dt.getFullYear();
+    let mname;
+    if (format.includes('MMM')) {
+        mname = config.monthNames[dt.getMonth()];
+    }
+    
+    if (day.length === 1) {
+        day = ('0' + day);
+    }
+    
+    if (mon.length === 1) {
+        mon = '0' + mon;
+    }
+    
+    let retval = format.replace('dd', day).replace('yyyy', year);
+    
+    if (mname) {
+        if (format.includes(' MMM ')) {
+            retval = retval.replace('MMM', mname.substring(0, 3));
+        } else {
+            retval = retval.replace('MMMMMMMMM', mname);
+        }
+    } else {
+        retval = retval.replace('mm', mon);
+    }
+    
+    return retval;
+}
