@@ -129,6 +129,7 @@
     "defaultBackgroundColor": "white",
     "defaultFontWeight": 100,
     "keyMoveIncrement": 5,
+    "pageNumberPadding": 10,
     "defaultShape": "rectangle",
     "monthNames": [
         "January",

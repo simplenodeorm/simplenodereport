@@ -119,13 +119,17 @@ class ReportObject extends Resizable {
             + '-' + this.props.config.id);
     }
     
+    getOverflowType() {
+        return 'hidden';
+    }
+    
     addBaseReportObjectCss(style, className, textAlign) {
         let ta = '';
         if (textAlign) {
             ta = ' text-align: ' + textAlign + '; ';
         }
         style.appendChild(document.createTextNode('.' + className
-            + ' {position: absolute; z-index: 1; overflow: hidden; '
+            + ' {position: absolute; z-index: 1; overflow: ' + this.getOverflowType() + '; '
             + ta
             + this.getCustomCssFragment()
             + '}'));

@@ -103,12 +103,12 @@ class DesignCanvas extends React.Component {
     }
     
     getRect() {
-        const {hght, width} = this.state;
+        const {height, width} = this.state;
         return {
             left: 0,
             top: 0,
             width: Math.round(width),
-            height: Math.round(hght)
+            height: Math.round(height)
         };
     }
     

@@ -1,9 +1,10 @@
 import React from 'react';
 import '../app/App.css';
 import {ReportObject} from "./ReportObject";
-import {copyObject, getModalContainer, formatDate, getTextRect} from "./helpers";
+import {copyObject, getModalContainer, getTextRect} from "./helpers";
 import ReactDOM from "react-dom";
 import {PageNumberSetupPanel} from "./PageNumberSetupPanel";
+import config from '../config/appconfig';
 
 class PageNumberReportObject extends ReportObject {
     constructor(props) {
@@ -61,10 +62,36 @@ class PageNumberReportObject extends ReportObject {
         
     }
     
+    getOverflowType() {
+        return 'visible';
+    }
+    
     getDefaultRect() {
+        let retval;
         let rc = getTextRect(this.props.config.fontSettings.font,
             this.props.config.fontSettings.fontSize, this.props.config.format);
-        return {left: 20, top: 20, width: rc.width, height: rc.height};
+        switch(this.props.config.location) {
+            case 'tl':
+                retval = {left: -rc.width/2, top: -config.pageNumberPadding, width: rc.width, height: rc.height};
+                break;
+            case 'tm':
+                retval = {left: ((this.props.boundingRect.width - rc.width)/2), top: -config.pageNumberPadding, width: rc.width, height: rc.height};
+                break;
+            case 'tr':
+                retval = {left: (this.props.boundingRect.width -rc.width/2), top: -config.pageNumberPadding, width: rc.width, height: rc.height};
+                break;
+            case 'bl':
+                retval = {left: -rc.width/2, top: this.props.boundingRect.height + config.pageNumberPadding, width: rc.width, height: rc.height};
+                break;
+            case 'bm':
+                retval = {left: ((this.props.boundingRect.width - rc.width)/2), top: this.props.boundingRect.height + config.pageNumberPadding, width: rc.width, height: rc.height};
+                break;
+            case 'br':
+                retval = {left: (this.props.boundingRect.width -rc.width/2), top: this.props.boundingRect.height + config.pageNumberPadding, width: rc.width, height: rc.height};
+                break;
+        }
+        
+        return retval;
     }
     
     onEdit(info) {
