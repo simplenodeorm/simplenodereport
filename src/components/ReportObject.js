@@ -42,6 +42,8 @@ class ReportObject extends Resizable {
                 document.body.appendChild(newStyle);
             }
             
+            this.props.config.style = newStyle.innerHTML;
+            
             const content = this.getContent(objectData);
   
             const myStyle = {

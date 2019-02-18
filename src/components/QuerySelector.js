@@ -5,10 +5,12 @@ import axios from 'axios';
 const loop = (data, qid) => {
     return data.map((item) => {
         let docid = item.key + ':' + item.documentName;
+        let displayName = item.group + ': ' + item.documentName.replace(/_/g, ' ').replace('.json', '');
+
         if (qid && (qid === docid)) {
-            return <option value={docid} selected>{docid.replace(/_/g, ' ').replace('.json', '')}</option>;
+            return <option value={docid} selected>{displayName}</option>;
         } else {
-            return <option value={docid}>{docid.replace(/_/g, ' ').replace('.json', '')}</option>;
+            return <option value={docid}>{displayName}</option>;
         }
     });
 };

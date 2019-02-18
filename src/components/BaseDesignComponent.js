@@ -1,24 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {isUnaryOperator} from './helpers';
 import {getWaitMessage} from './helpers';
 import {removeWaitMessage} from './helpers';
 
 class BaseDesignComponent extends React.Component {
-    inputParametersRequired() {
-        let retval;
-
-        for (let i = 0; i < document.designData.whereComparisons.length; ++i) {
-            if (!document.designData.whereComparisons[i].customFilterInput
-                && !isUnaryOperator(document.designData.whereComparisons[i].comparisonOperator)
-                && !document.designData.whereComparisons[i].comparisonValue) {
-                retval = true;
-                break;
-            }
-        }
-
-        return retval;
-    }
 
     isModalClick(e) { 
         let retval = false;
@@ -42,6 +27,7 @@ class BaseDesignComponent extends React.Component {
 
     getReportDocument(params) {
         document.designData.currentReport.reportName = params.reportName.replace(/ /g, '_');
+
         return {
             authenticator: params.authenticator,
             group: params.group,

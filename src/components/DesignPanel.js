@@ -46,6 +46,7 @@ class DesignPanel extends BaseDesignComponent {
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.moveSelectedReportObjects = this.moveSelectedReportObjects.bind(this);
         this.deselectAllObjects = this.deselectAllObjects.bind(this);
+        this.sizeSelectedReportObjects = this.sizeSelectedReportObjects.bind(this);
         
         this.header = '';
         this.body = '';
@@ -84,7 +85,11 @@ class DesignPanel extends BaseDesignComponent {
             case DOWNARROW_KEY:
             case LEFTARROW_KEY:
             case RIGHTARROW_KEY:
-                this.moveSelectedReportObjects(event.keyCode);
+                if (event.shiftKey ) {
+                    this.sizeSelectedReportObjects(event.keyCode);
+                } else {
+                    this.moveSelectedReportObjects(event.keyCode);
+                }
                 break;
             default:
                 break;
@@ -360,6 +365,27 @@ class DesignPanel extends BaseDesignComponent {
         }
     }
     
+    sizeSelectedReportObjects(key) {
+        for (let i = 0; i < config.pageSections.length; ++i) {
+            let canvas = this.getReportSectionDesignCanvas(config.pageSections[i]);
+            let robjects = canvas.getSelectedReportObjects();
+            for (let i = 0; i < robjects.length; ++i) {
+                let rc = copyObject(robjects[i].rect);
+                switch(key) {
+                    case DOWNARROW_KEY:
+                        rc.height += config.keyMoveIncrement;
+                        break;
+                    case RIGHTARROW_KEY:
+                        rc.width += config.keyMoveIncrement;
+                        break;
+                    
+                }
+                canvas.mountedReportObjects[robjects[i].myIndex].onLayoutChange(rc);
+            }
+        }
+    }
+
+
     deselectAllObjects() {
         for (let i = 0; i < config.pageSections.length; ++i) {
             let canvas = this.getReportSectionDesignCanvas(config.pageSections[i]);
