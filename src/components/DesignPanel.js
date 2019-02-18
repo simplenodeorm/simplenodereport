@@ -372,14 +372,20 @@ class DesignPanel extends BaseDesignComponent {
             for (let i = 0; i < robjects.length; ++i) {
                 let rc = copyObject(robjects[i].rect);
                 switch(key) {
+                    case UPARROW_KEY:
+                        rc.height -= config.keyMoveIncrement;
+                        break;
                     case DOWNARROW_KEY:
                         rc.height += config.keyMoveIncrement;
+                        break;
+                    case LEFTARROW_KEY:
+                        rc.width -= config.keyMoveIncrement;
                         break;
                     case RIGHTARROW_KEY:
                         rc.width += config.keyMoveIncrement;
                         break;
-                    
                 }
+                
                 canvas.mountedReportObjects[robjects[i].myIndex].onLayoutChange(rc);
             }
         }
