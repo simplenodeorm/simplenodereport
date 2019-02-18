@@ -136,6 +136,11 @@ class AppToolbar extends BaseDesignComponent {
                     {!canSave && <img alt='save report' src='/images/save-disabled.png'/>}
                     <span className="label">Save Report</span>
                 </button>
+                <button className="button" title='run report' disabled={!canSave} onClick={this.onRun}>
+                    {canSave && <img alt='run report' src='/images/run.png'/>}
+                    {!canSave && <img alt='run report' src='/images/run-disabled.png'/>}
+                    <span className="label">Run</span>
+                </button>
             </div>
         </div>;
     }
@@ -231,6 +236,10 @@ class AppToolbar extends BaseDesignComponent {
         let rc = {left: 200, top: 50, width: 450, height: 425};
         let mc = getModalContainer(rc);
         ReactDOM.render(<SaveReportPanel onOk={this.saveReport}/>, mc);
+    }
+    
+    onRun() {
+        alert('---->run');
     }
     
     saveReport(params) {
