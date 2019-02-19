@@ -42,6 +42,7 @@ class AppToolbar extends BaseDesignComponent {
         this.alignTop = this.alignTop.bind(this);
         this.alignRight = this.alignRight.bind(this);
         this.alignBottom = this.alignBottom.bind(this);
+        this.alignObject = this.alignObject.bind(this);
         this.deleteReportObjects = this.deleteReportObjects.bind(this);
         this.onSave = this.onSave.bind(this);
         this.saveReport = this.saveReport.bind(this);
@@ -51,6 +52,7 @@ class AppToolbar extends BaseDesignComponent {
         this.alignTextLeft = this.alignTextLeft.bind(this);
         this.alignTextMiddle = this.alignTextMiddle.bind(this);
         this.alignTextRight = this.alignTextRight.bind(this);
+        this.alignText = this.alignText.bind(this);
         this.addReportObjectToReport = this.addReportObjectToReport.bind(this);
         this.onReportObjectSelect = this.onReportObjectSelect.bind(this);
         this.showReportObjectPopup = this.showReportObjectPopup.bind(this);
@@ -201,18 +203,34 @@ class AppToolbar extends BaseDesignComponent {
         
             dc.setState(dc.state);
         }
-        
     }
 
     alignTextLeft() {
+        this.alignText('left');
     }
 
     alignTextMiddle() {
+        this.alignText('middle');
     }
     
     alignTextRight() {
+        this.alignText('right');
     }
     
+    alignText(pos) {
+        for (let i = 0; i < config.pageSections.length; ++i) {
+            let dc = this.props.getDesignPanel().getReportSectionDesignCanvas(config.pageSections[i]);
+            let selectedObjects = dc.getSelectedReportObjects();
+        
+            for (let j = 0; j < selectedObjects.length; ++j) {
+                selectedObjects[j].textAlign = pos;
+                let comp = dc.mountedReportObjects[selectedObjects[j].myIndex];
+                comp.setState(comp.state);
+            }
+        
+            dc.setState(dc.state);
+        }
+    }
     
     deleteReportObjects() {
         this.props.getDesignPanel().removeSelectedReportObjects();

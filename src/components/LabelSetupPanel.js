@@ -41,7 +41,7 @@ class LabelSetupPanel extends ModalDialog {
     }
     
     setTextAlign(value) {
-        this.props.reportObject.textAlign = value
+        this.props.reportObject.textAlign = value;
     }
     
     getFontSettings() {
