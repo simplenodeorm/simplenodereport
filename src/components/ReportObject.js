@@ -78,7 +78,7 @@ class ReportObject extends Resizable {
     onClick(info) {
         if (!this.isContextMenu(info) && info.ctrlKey) {
             this.props.config.selected = !this.props.config.selected;
-            this.props.onObjectSelect(this.props.config.selected);
+            this.props.onObjectSelect(this.props.config);
             this.setState(this.state);
             info.preventDefault();
         }

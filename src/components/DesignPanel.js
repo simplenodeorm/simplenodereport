@@ -335,8 +335,15 @@ class DesignPanel extends BaseDesignComponent {
         }
     }
 
-    onObjectSelect(selected) {
-        this.props.getToolbar().onReportObjectSelect(selected);
+    onObjectSelect(ro) {
+        let canvas = this.getReportSectionDesignCanvas(ro.reportSection);
+        if (ro.selected && !canvas.firstSelected) {
+            canvas.firstSelected = ro;
+        } else if (!ro.selected && (ro === canvas.firstSelected)) {
+            canvas.firstSelected = '';
+        }
+        
+        this.props.getToolbar().onReportObjectSelect(ro.selected);
     }
     
     moveSelectedReportObjects(key) {
