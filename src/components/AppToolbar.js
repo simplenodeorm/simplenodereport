@@ -85,61 +85,61 @@ class AppToolbar extends BaseDesignComponent {
         return <div>
             <Toolbar menu={menu} brand={orm.name} logo="logo.png"/>
             <div className="buttonbar">
-                <button className="button" title='add new report' onClick={this.newReport}>
-                    <img alt='new report' src='/images/newreport.png'/>
-                    <span className="label">New Report</span>
+                <button className="button" title={config.textmsg.newreport} onClick={this.newReport}>
+                    <img alt={config.textmsg.newreport} src='/images/newreport.png'/>
+                    <span className="label">{config.textmsg.new}</span>
                 </button>
-                <button className="button" disabled={!canAddObject} title='add new report object' onClick={this.showReportObjectPopup}>
-                    {canAddObject && <img alt='new report object' src='/images/newobject.png'/>}
-                    {!canAddObject && <img alt='new report object' src='/images/newobject-disabled.png'/>}
-                    <span className="label">Add Object</span>
+                <button className="button" disabled={!canAddObject} title={config.textmsg.newreportobject} onClick={this.showReportObjectPopup}>
+                    {canAddObject && <img alt={config.textmsg.newreportobject} src='/images/newobject.png'/>}
+                    {!canAddObject && <img alt={config.textmsg.newreportobject} src='/images/newobject-disabled.png'/>}
+                    <span className="label">{config.textmsg.add}</span>
                 </button>
                 <div className="aligntool">
-                    <button className="button" title='align text left' disabled={!canSave} onClick={this.textAlignLeft}>
-                        {itemsSelected && <img alt='align text left' src='/images/align-text-left.png'/>} 
-                        {!itemsSelected && <img alt='align text left' src='/images/align-text-left-disabled.png'/>}
+                    <button className="button" title={config.textmsg.alignleft} disabled={!canSave} onClick={this.textAlignLeft}>
+                        {itemsSelected && <img alt={config.textmsg.alignleft} src='/images/align-text-left.png'/>}
+                        {!itemsSelected && <img alt={config.textmsg.alignleft} src='/images/align-text-left-disabled.png'/>}
                     </button>
-                    <button className="button" title='align text middle' disabled={!canSave} onClick={this.textAlignMiddle}>
-                        {itemsSelected && <img alt='align text middle' src='/images/align-text-middle.png'/>} 
-                        {!itemsSelected && <img alt='align text middle' src='/images/align-text-middle-disabled.png'/>}
+                    <button className="button" title={config.textmsg.aligncenter} disabled={!canSave} onClick={this.textAlignMiddle}>
+                        {itemsSelected && <img alt={config.textmsg.aligncenter} src='/images/align-text-middle.png'/>}
+                        {!itemsSelected && <img alt={config.textmsg.aligncenter} src='/images/align-text-middle-disabled.png'/>}
                     </button>
-                    <button className="button" title='align text right' disabled={!canSave} onClick={this.textAlignRight}>
-                        {itemsSelected && <img alt='align text right' src='/images/align-text-right.png'/>} 
-                        {!itemsSelected && <img alt='align text right' src='/images/align-text-right-disabled.png'/>}
+                    <button className="button" title={config.textmsg.alignright} disabled={!canSave} onClick={this.textAlignRight}>
+                        {itemsSelected && <img alt={config.textmsg.alignright} src='/images/align-text-right.png'/>}
+                        {!itemsSelected && <img alt={config.textmsg.alignright} src='/images/align-text-right-disabled.png'/>}
                     </button>
                 </div>
                 <div className="aligntool">
-                    <button className="button" title='align selected objects left' disabled={!canSave} onClick={this.alignLeft}>
-                        {itemsSelected && <img alt='align left' src='/images/align-left.png'/>} 
-                        {!itemsSelected && <img alt='align left' src='/images/align-left-disabled.png'/>}
+                    <button className="button" title={config.textmsg.alignobjectleft} disabled={!canSave} onClick={this.alignLeft}>
+                        {itemsSelected && <img alt={config.textmsg.alignobjectleft} src='/images/align-left.png'/>}
+                        {!itemsSelected && <img alt={config.textmsg.alignobjectleft} src='/images/align-left-disabled.png'/>}
                     </button>
-                    <button className="button" title='align selected objects top' disabled={!canSave} onClick={this.alignTop}>
-                        {itemsSelected && <img alt='align top' src='/images/align-top.png'/>} 
-                        {!itemsSelected && <img alt='align top' src='/images/align-top-disabled.png'/>}
+                    <button className="button" title={config.textmsg.alignobjecttop} disabled={!canSave} onClick={this.alignTop}>
+                        {itemsSelected && <img alt={config.textmsg.alignobjecttop} src='/images/align-top.png'/>}
+                        {!itemsSelected && <img alt={config.textmsg.alignobjecttop} src='/images/align-top-disabled.png'/>}
                     </button>
-                    <button className="button" title='align selected objects right' disabled={!canSave} onClick={this.alignRight}>
-                        {itemsSelected && <img alt='align right' src='/images/align-right.png'/>} 
-                        {!itemsSelected && <img alt='align right' src='/images/align-right-disabled.png'/>}
+                    <button className="button" title={config.textmsg.alignobjectright} disabled={!canSave} onClick={this.alignRight}>
+                        {itemsSelected && <img alt={config.textmsg.alignobjectright} src='/images/align-right.png'/>}
+                        {!itemsSelected && <img alt={config.textmsg.alignobjectright} src='/images/align-right-disabled.png'/>}
                     </button>
-                    <button className="button" title='align selected objects bottom' disabled={!canSave} onClick={this.alignBottom}>
-                        {itemsSelected && <img alt='align bottom' src='/images/align-bottom.png'/>} 
-                        {!itemsSelected && <img alt='align bottom' src='/images/align-bottom-disabled.png'/>}
+                    <button className="button" title={config.textmsg.alignobjectbottom} disabled={!canSave} onClick={this.alignBottom}>
+                        {itemsSelected && <img alt={config.textmsg.alignobjectbottom} src='/images/align-bottom.png'/>}
+                        {!itemsSelected && <img alt={config.textmsg.alignobjectbottom} src='/images/align-bottom-disabled.png'/>}
                     </button>
                 </div>
-                <button className="button" title='delete selected report object report' disabled={!canSave} onClick={this.deleteReportObjects}>
-                    {itemsSelected && <img alt='delete report objects' src='/images/delete.png'/>} 
-                    {!itemsSelected && <img alt='delete report objects' src='/images/delete-disabled.png'/>}
-                    <span className="label">Delete Objects</span>
+                <button className="button" title={config.textmsg.delete} disabled={!canSave} onClick={this.deleteReportObjects}>
+                    {itemsSelected && <img alt={config.textmsg.delete} src='/images/delete.png'/>}
+                    {!itemsSelected && <img alt={config.textmsg.delete} src='/images/delete-disabled.png'/>}
+                    <span className="label">{config.textmsg.delete}</span>
                 </button>
-                <button className="button" title='save report' disabled={!canSave} onClick={this.onSave}>
-                    {canSave && <img alt='save report' src='/images/save.png'/>} 
-                    {!canSave && <img alt='save report' src='/images/save-disabled.png'/>}
-                    <span className="label">Save Report</span>
+                <button className="button" title={config.textmsg.save} disabled={!canSave} onClick={this.onSave}>
+                    {canSave && <img alt={config.textmsg.save} src='/images/save.png'/>}
+                    {!canSave && <img alt={config.textmsg.save} src='/images/save-disabled.png'/>}
+                    <span className="label">{config.textmsg.save}</span>
                 </button>
-                <button className="button" title='run report' disabled={!canSave} onClick={this.onRun}>
-                    {canSave && <img alt='run report' src='/images/run.png'/>}
-                    {!canSave && <img alt='run report' src='/images/run-disabled.png'/>}
-                    <span className="label">Run</span>
+                <button className="button" title={config.textmsg.run} disabled={!canSave} onClick={this.onRun}>
+                    {canSave && <img alt={config.textmsg.run} src='/images/run.png'/>}
+                    {!canSave && <img alt={config.textmsg.run} src='/images/run-disabled.png'/>}
+                    <span className="label">{config.textmsg.run}</span>
                 </button>
             </div>
         </div>;
