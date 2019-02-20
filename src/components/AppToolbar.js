@@ -50,7 +50,7 @@ class AppToolbar extends BaseDesignComponent {
         this.addReportObject = this.addReportObject.bind(this);
         this.showReportObjectPopup = this.showReportObjectPopup.bind(this);
         this.alignTextLeft = this.alignTextLeft.bind(this);
-        this.alignTextMiddle = this.alignTextMiddle.bind(this);
+        this.alignTextCenter = this.alignTextCenter.bind(this);
         this.alignTextRight = this.alignTextRight.bind(this);
         this.alignText = this.alignText.bind(this);
         this.addReportObjectToReport = this.addReportObjectToReport.bind(this);
@@ -97,15 +97,15 @@ class AppToolbar extends BaseDesignComponent {
                     <span className="label">{config.textmsg.add}</span>
                 </button>
                 <div className="aligntool">
-                    <button className="button" title={config.textmsg.alignleft} disabled={!canSave} onClick={this.textAlignLeft}>
+                    <button className="button" title={config.textmsg.alignleft} disabled={!canSave} onClick={this.alignTextLeft}>
                         {itemsSelected && <img alt={config.textmsg.alignleft} src='/images/align-text-left.png'/>}
                         {!itemsSelected && <img alt={config.textmsg.alignleft} src='/images/align-text-left-disabled.png'/>}
                     </button>
-                    <button className="button" title={config.textmsg.aligncenter} disabled={!canSave} onClick={this.textAlignMiddle}>
+                    <button className="button" title={config.textmsg.aligncenter} disabled={!canSave} onClick={this.alignTextCenter}>
                         {itemsSelected && <img alt={config.textmsg.aligncenter} src='/images/align-text-middle.png'/>}
                         {!itemsSelected && <img alt={config.textmsg.aligncenter} src='/images/align-text-middle-disabled.png'/>}
                     </button>
-                    <button className="button" title={config.textmsg.alignright} disabled={!canSave} onClick={this.textAlignRight}>
+                    <button className="button" title={config.textmsg.alignright} disabled={!canSave} onClick={this.alignTextRight}>
                         {itemsSelected && <img alt={config.textmsg.alignright} src='/images/align-text-right.png'/>}
                         {!itemsSelected && <img alt={config.textmsg.alignright} src='/images/align-text-right-disabled.png'/>}
                     </button>
@@ -209,8 +209,8 @@ class AppToolbar extends BaseDesignComponent {
         this.alignText('left');
     }
 
-    alignTextMiddle() {
-        this.alignText('middle');
+    alignTextCenter() {
+        this.alignText('center');
     }
     
     alignTextRight() {
