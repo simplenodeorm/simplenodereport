@@ -3,7 +3,7 @@ import '../app/App.css';
 import {ReportObject} from "./ReportObject";
 import {copyObject, getModalContainer} from "./helpers";
 import ReactDOM from "react-dom";
-import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
+import {ColumnDataSetupPanel} from "./ColumnDataSetupPanel";
 
 class ColumnDataReportObject extends ReportObject {
     constructor(props) {
@@ -64,19 +64,13 @@ class ColumnDataReportObject extends ReportObject {
     }
     
     onEdit(info) {
-        let rc = {left: 175, top: 50, width: 600, height: 400};
+        let rc = {left: 175, top: 50, width: 400, height: 400};
         let mc = getModalContainer(rc);
-        ReactDOM.render(<DBDataGridSetupPanel
+        ReactDOM.render(<ColumnDataSetupPanel
             onOk={this.updateReportObject}
             reportObject={copyObject(this.props.config)}/>, mc);
         
     }
-    
-    updateReportObject(reportObject) {
-        this.props.config.fontSettings = reportObject.dataFontSettings;
-        this.setState(this.state);
-    }
-    
 }
 
 export {ColumnDataReportObject};

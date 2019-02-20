@@ -100,7 +100,11 @@
         "alignobjecttop": "align selected objects top",
         "alignobjectright": "align selected objects right",
         "alignobjectbottom": "align selected objects bottom",
-        "asgrid": "As Grid"
+        "asgrid": "As Grid",
+        "columndataobjecttitle": "Column Data",
+        "columnnamelabel": "Column Name:",
+        "columnpathlabel": "Column Path:",
+        "columnfont": "Column Font"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
@@ -144,6 +148,7 @@
     "defaultTextColor": "black",
     "defaultBackgroundColor": "white",
     "defaultFontWeight": 100,
+    "defaultColumnWidth": 75,
     "keyMoveIncrement": 5,
     "pageNumberPadding": 10,
     "defaultShape": "rectangle",
