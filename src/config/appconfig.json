@@ -99,7 +99,8 @@
         "alignobjectleft": "align selected objects left",
         "alignobjecttop": "align selected objects top",
         "alignobjectright": "align selected objects right",
-        "alignobjectbottom": "align selected objects bottom"
+        "alignobjectbottom": "align selected objects bottom",
+        "asgrid": "As Grid"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
@@ -131,6 +132,7 @@
         {"key": "tr", "name": "top right"}],
     "defaulttablecellpadding": 3,
     "selectedObjectBorder": "solid 1px red",
+    "labelBorder": "dotted 1px darkBlue",
     "activeObjectBorder": "dotted 1px red",
     "defaultReportObjectRect": {"top":  20, "left":  20, "height":  30, "width":  100},
     "resizeMargin": 6,

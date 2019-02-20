@@ -12,8 +12,11 @@ import {
     clearDocumentDesignData,
     copyObject,
     getContextMenu,
+    getFontHeight,
+    getReportColumn,
     removeWaitMessage,
-    setDefaultReportObjectSize} from './helpers';
+    setDefaultReportObjectSize
+} from './helpers';
 import {getModalContainer} from './helpers';
 import {getDocumentDimensions} from './helpers';
 import {getPixelsPerInch} from './helpers.js';
@@ -398,6 +401,8 @@ class AppToolbar extends BaseDesignComponent {
     
         switch(type) {
             case 'dbdata':
+                reportObject.asGrid = true;
+                reportObject.pageBreakController = true;
                 rc = {left: 175, top: 50, width: 600, height: 400};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<DBDataGridSetupPanel
@@ -458,11 +463,49 @@ class AppToolbar extends BaseDesignComponent {
             document.designData.currentReport.reportObjects = [];
         }
         
-        setDefaultReportObjectSize(designPanel, reportObject);
-        
-        reportObject.id = document.designData.currentReport.reportObjects.length;
-        document.designData.currentReport.reportObjects.push(reportObject);
-        designPanel.addReportObject(reportObject);
+        if ((reportObject.objectType === 'dbdata') && !reportObject.asGrid) {
+            let height = getFontHeight(reportObject.dataFontSettings.font,
+                reportObject.dataFontSettings.fontSize) + config.defaulttablecellpadding;
+            let ypos = 20;
+            for (let i = 0; i < reportObject.reportColumns.length; ++i) {
+                if (reportObject.reportColumns[i].displayResult) {
+                    let dbcol = getReportColumn(reportObject.reportColumns[i].key);
+                    if (dbcol) {
+                        let rol = {
+                            objectType: 'label',
+                            reportSection: reportObject.reportSection,
+                            labelText: dbcol.name,
+                            textAlign: 'right',
+                            fontSettings: reportObject.headerFontSettings,
+                            rect: {top: ypos, left: 20, height: height, width:100}
+                        };
+                        let ro = {
+                            objectType: 'dbcol',
+                            reportSection: reportObject.reportSection,
+                            columnPath: dbcol.path,
+                            columnName: dbcol.name,
+                            textAlign: reportObject.reportColumns[i].textAlign,
+                            fontSettings: reportObject.dataFontSettings,
+                            rect: {top: ypos, left: 121, height: height, width:100}
+                        };
+                        rol.id = document.designData.currentReport.reportObjects.length;
+                        document.designData.currentReport.reportObjects.push(rol);
+                        designPanel.addReportObject(rol);
+                        
+                        ro.id = document.designData.currentReport.reportObjects.length;
+                        document.designData.currentReport.reportObjects.push(ro);
+                        designPanel.addReportObject(ro);
+                        ypos += (height+5)
+                    }
+                }
+            }
+            
+        } else {
+            setDefaultReportObjectSize(designPanel, reportObject);
+            reportObject.id = document.designData.currentReport.reportObjects.length;
+            document.designData.currentReport.reportObjects.push(reportObject);
+            designPanel.addReportObject(reportObject);
+        }
     }
 }
 

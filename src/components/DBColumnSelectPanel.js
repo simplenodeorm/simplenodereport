@@ -74,10 +74,17 @@ class DBColumnSelectPanel extends BaseDesignComponent {
             if (document.designData.currentReport.reportColumns[i].isNumeric) {
                 ta = 'right';
             }
+            
+            let displayResult = true;
+            if (this.props.reportObject.objectType === 'dbcol') {
+                if (document.designData.currentReport.reportColumns[i].path !== this.props.reportObject.columnPath) {
+                    displayResult = false;
+                }
+            }
             this.props.reportObject.reportColumns.push({
                 key: document.designData.currentReport.reportColumns[i].key,
                 textAlign: ta,
-                displayResult: true,
+                displayResult: displayResult,
                 displayTotal: false
             });
         }

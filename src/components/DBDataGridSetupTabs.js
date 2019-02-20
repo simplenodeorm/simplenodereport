@@ -14,6 +14,7 @@ class DBDataGridSetupTabs extends BaseDesignComponent {
         super(props);
         this.onDisplayAll = this.onDisplayAll.bind(this);
         this.onClearAll = this.onClearAll.bind(this);
+        this.onAsGrid = this.onAsGrid.bind(this);
         this.onPageBreakController = this.onPageBreakController.bind(this);
     }
 
@@ -23,6 +24,9 @@ class DBDataGridSetupTabs extends BaseDesignComponent {
                     <ReportSectionSelect reportObject={this.props.reportObject} />
                     <button className="button" onClick={this.onDisplayAll}>{config.textmsg.displayall}</button>
                     <button className="button" onClick={this.onClearAll}>{config.textmsg.clearall}</button>
+                    <Checkbox label={config.textmsg.asgrid}
+                              handleCheckboxChange={this.onAsGrid}
+                              isChecked={this.props.reportObject.asGrid}/>&nbsp;
                     <Checkbox label={config.textmsg.pagebreakcontroller}
                               handleCheckboxChange={this.onPageBreakController}
                               isChecked={this.props.reportObject.pageBreakController}/>
@@ -46,6 +50,10 @@ class DBDataGridSetupTabs extends BaseDesignComponent {
             </div>;
     }
     
+    onAsGrid(asGrid) {
+        this.props.reportObject.asGrid = asGrid;
+    }
+
     onPageBreakController(pageBreaker) {
         this.props.reportObject.pageBreakController = pageBreaker;
     }
