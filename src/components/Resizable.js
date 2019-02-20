@@ -125,6 +125,22 @@ class Resizable extends React.Component {
                                 height: height + (info.screenY - this.startInfo.y)
                             });
                             break;
+                        case 'se-resize':
+                            this.onLayoutChange({
+                                left: left,
+                                top: top,
+                                width: width + (info.screenX - this.startInfo.x),
+                                height: height + (info.screenY - this.startInfo.y)
+                            });
+                            break;
+                        case 'sw-resize':
+                            this.onLayoutChange({
+                                left: left,
+                                top: top,
+                                width: width + (left - newLeft),
+                                height: height + (info.screenY - this.startInfo.y)
+                            });
+                    break;
                     }
                 } else if (this.isMoveCursor(document.body.style.cursor)) {
                     this.onLayoutChange({
@@ -176,8 +192,14 @@ class Resizable extends React.Component {
     
     getMoveResizeCursor(clientRect, mouseX, mouseY) {
         let retval = '';
-        
-        if (Math.abs(clientRect.left - mouseX) < config.resizeMargin) {
+    
+        if ((Math.abs(clientRect.bottom - mouseY) < config.resizeMargin)
+            && (Math.abs(clientRect.right - mouseX) < config.resizeMargin)) {
+            retval = 'se-resize'
+        } else if ((Math.abs(clientRect.bottom - mouseY) < config.resizeMargin)
+                && (Math.abs(clientRect.left - mouseX) < config.resizeMargin)) {
+            retval = 'sw-resize'
+        } else if (Math.abs(clientRect.left - mouseX) < config.resizeMargin) {
             retval = 'w-resize';
         } else if (Math.abs(clientRect.right - mouseX) < config.resizeMargin) {
             retval = 'e-resize';
