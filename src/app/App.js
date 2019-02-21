@@ -1,13 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route,  } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { PrivateRoute } from '../auth/PrivateRoute';
 import { HomePage } from '../components/HomePage';
 import LoginPage from '../auth/LoginPage';
+import {ReportContainer} from '../components/ReportContainer';
 import './App.css';
 
 class App extends React.Component  {
 
-    onUnload(event) {
+    onUnload() {
         localStorage.removeItem('orm');
     }
 
@@ -23,8 +24,12 @@ class App extends React.Component  {
         return (<div>
             <Router>
                 <div>
-                    <Route path="/login" component={LoginPage} />
-                    <PrivateRoute exact path="/" component={HomePage}/> 
+                    {(document.location.pathname === '/runreport')
+                        && <PrivateRoute path="/" component={ReportContainer}/>}
+                    {(document.location.pathname === '/')
+                        && <PrivateRoute exact path="/" component={HomePage}/>}
+                    <Route path="/login" component={LoginPage}/>
+                    
                 </div>
             </Router>
         </div>);
