@@ -109,6 +109,7 @@
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,
+    "wheelIncrement": 25,
     "documentSizeNames": ["LETTER", "LEGAL", "4A0", "2A0", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "A10"],
     "fonts": ["Arial", "Helvetica", "Times New Roman", "Courier New", "Courier", "Verdana"],
     "fontSizes": [6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 35, 40, 45, 50],

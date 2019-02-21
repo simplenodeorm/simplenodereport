@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'rc-slider';
 import Tooltip from 'rc-tooltip';
+import config from '../config/appconfig';
 import {getPixelsPerInch} from './helpers.js';
 
 import 'rc-slider/assets/index.css';
@@ -83,7 +84,7 @@ class VerticalRule extends React.Component {
     }
 
     onWheel(e) {
-        let newval = this.slider.getValue() - (e.deltaY * 5);
+        let newval = this.slider.getValue() - (e.deltaY * config.wheelIncrement);
 
         if ((newval <= 0) && (newval >= this.slider.getLowerBound())) {
             this.slider.onChange({value: newval});
