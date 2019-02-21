@@ -53,6 +53,9 @@ class ReportObject extends Resizable {
                 height: height + 'px',
             };
     
+            if (this.props.config.objectType === 'label') {
+                myStyle.border = config.labelBorder;
+            }
             if (this.props.config.selected) {
                 myStyle.border = config.selectedObjectBorder;
             }

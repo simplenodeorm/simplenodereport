@@ -486,7 +486,7 @@ class AppToolbar extends BaseDesignComponent {
                             columnName: dbcol.name,
                             textAlign: reportObject.reportColumns[i].textAlign,
                             fontSettings: reportObject.dataFontSettings,
-                            rect: {top: ypos, left: 121, height: height, width:100}
+                            rect: {top: ypos, left: 125, height: height, width:100}
                         };
                         rol.id = document.designData.currentReport.reportObjects.length;
                         document.designData.currentReport.reportObjects.push(rol);

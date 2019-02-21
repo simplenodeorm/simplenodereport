@@ -29,10 +29,7 @@ class LabelReportObject extends ReportObject {
     }
     
     getContent(objectData) {
-        let myStyle = {
-            border: config.labelBorder
-        };
-        return <div style={myStyle}>{objectData.labelText}</div>;
+        return <div>{objectData.labelText}</div>;
     }
     
     getCssStyle(objectData) {
