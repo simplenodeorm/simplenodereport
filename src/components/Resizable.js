@@ -135,9 +135,9 @@ class Resizable extends React.Component {
                             break;
                         case 'sw-resize':
                             this.onLayoutChange({
-                                left: left,
+                                left: newLeft,
                                 top: top,
-                                width: width + (left - newLeft),
+                                width: width + newLeft,
                                 height: height + (info.screenY - this.startInfo.y)
                             });
                     break;
