@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { PrivateRoute } from '../auth/PrivateRoute';
 import { HomePage } from '../components/HomePage';
 import LoginPage from '../auth/LoginPage';
+import RunReportLoginPage from '../auth/RunReportLoginPage';
 import {ReportContainer} from '../components/ReportContainer';
 import './App.css';
 
@@ -21,15 +22,17 @@ class App extends React.Component  {
     }
 
     render() {
+        if (document.location.pathname.startsWith('/runreport')) {
+            document.runReportMode = true;
+            document.reportId = document.location.pathname.substring('/runreport'.length + 1);
+        }
         return (<div>
             <Router>
                 <div>
-                    {(document.location.pathname === '/runreport')
-                        && <PrivateRoute path="/" component={ReportContainer}/>}
-                    {(document.location.pathname === '/')
-                        && <PrivateRoute exact path="/" component={HomePage}/>}
-                    <Route path="/login" component={LoginPage}/>
-                    
+                    {document.runReportMode && <PrivateRoute path="/" component={ReportContainer}/>}
+                    {document.runReportMode && <Route path="/login" component={RunReportLoginPage}/>}
+                    {!document.runReportMode && <PrivateRoute exact path="/" component={HomePage}/>}
+                    {!document.runReportMode && <Route path="/login" component={LoginPage}/>}
                 </div>
             </Router>
         </div>);

@@ -1,21 +1,12 @@
 import React from 'react';
 import orms from '../config/orms.json';
-import config from '../config/appconfig.json';
+import config from '../config/runreportconfig.json';
 import base64 from 'base-64';
 import axios from 'axios';
 import {BaseDesignComponent} from '../components/BaseDesignComponent';
 import {removeWaitMessage} from '../components/helpers';
 import { withRouter } from 'react-router';
-
-import '../app/App.css';
-
-const loop = (data) => {
-    return data.map((item) => {
-        return <option key="{item.name}">{item.name}</option>;
-    });
-};
-
-const options = loop(orms);
+import '../app/RunReport.css';
 
 class LoginPage extends BaseDesignComponent {
     constructor(props) {
@@ -24,37 +15,15 @@ class LoginPage extends BaseDesignComponent {
         this.state = {
             username: '',
             password: '',
-            orm: '',
+            orm: this.findOrm(document.reportId.split('.')[0]),
             submitted: false,
             loading: false,
             error: ''
         };
 
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleChange(e) {
-        const {name, value} = e.target;
-
-        if (name === "orm") {
-            if (value) {
-                for (let i = 0; i < orms.length; ++i) {
-                    if (orms[i].name === e.target.value) {
-                        this.setState({orm: orms[i]});
-                        this.setState({username: orms[i].defaultUsername});
-                        this.setState({password: orms[i].defaultPassword});
-                        break;
-                    }
-                }
-            } else {
-                this.setState({orm: undefined});
-                this.setState({username: ''});
-                this.setState({password: ''});
-            }
-        } else {
-            this.setState({[name]: value});
-        }
+         this.handleSubmit = this.handleSubmit.bind(this);
+         this.handleChange = this.handleChange.bind(this);
+        
     }
 
     handleSubmit(e) {
@@ -71,7 +40,25 @@ class LoginPage extends BaseDesignComponent {
         this.setState({loading: true});
         this.login(username, password, orm, config);
     }
+    
 
+    handleChange(e) {
+        const {name, value} = e.target;
+        this.setState({[name]: value});
+    }
+    
+    findOrm(ormName) {
+        let retval;
+        for (let i = 0; i < orms.length; ++i) {
+            if (orms[i].name === ormName) {
+                retval = orms[i];
+                break;
+            }
+        }
+    
+        return retval;
+    }
+    
     render() {
         const {username, password, orm, submitted, loading, error} = this.state;
 
@@ -80,7 +67,7 @@ class LoginPage extends BaseDesignComponent {
                 <h1 className="loginTitle">{config.textmsg.logintitletext}</h1>
                 <div className="errorDisplay">{error}</div>
                 <div className="login">
-                    <h3>Design Login</h3>
+                    <h3>{config.textmsg.reportlogin}</h3>
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div>
                             <label htmlFor="username">{config.textmsg.username}</label>
@@ -89,19 +76,17 @@ class LoginPage extends BaseDesignComponent {
                                 <div className="errorDisplay">*{config.textmsg.usernamerequired}</div>
                             }
                         </div>
-                        <div><label>{config.textmsg.password}</label>
+                        <div>
+                            <label htmlFor="password">{config.textmsg.password}</label>
                             <input type="password" name="password" defaultValue={password} onBlur={this.handleChange} />
                             {submitted && !password &&
                                 <div className="errorDisplay">*{config.textmsg.passwordrequired}</div>
                             }
                         </div>
                         <div>
-                            <label>{config.textmsg.targetorm}</label>
-                            <select name="orm" onChange={this.handleChange}><option/>{options}</select>
+                            <label>ORM</label>
+                            <input type="text" name="orm" defaultValue={orm.name} disabled={true}/>
 
-                            {submitted && !orm &&
-                                <div className="errorDisplay">*{config.textmsg.targetormrequired}</div>
-                            }
                         </div>
                         <div>
                             <input type="submit" disabled={loading} value={config.textmsg.login}/>
@@ -122,22 +107,22 @@ class LoginPage extends BaseDesignComponent {
         };
 
         localStorage.removeItem('orm');
-        selectedOrm.authString = authString;
         
-        const orm = selectedOrm;
+        const {orm} = this.state;
+        orm.authString = authString;
         const instance = axios.create({baseURL: orm.url});
         instance.get('/design/login', config)
                 .then((response) => {
                     if (response.status === 200) {
                         localStorage.setItem('orm', JSON.stringify(orm));
                         curcomp.props.history.push('/');
-                        removeWaitMessage();
                     } else {
-                        removeWaitMessage();
                         curcomp.setState({error: response.statusText, loading: false, submitted: false});
                     }
+                    removeWaitMessage();
                 })
                 .catch((err) => {
+                    removeWaitMessage();
                     curcomp.setState({error: err.toString(), loading: false, submitted: false});
                 });
     }

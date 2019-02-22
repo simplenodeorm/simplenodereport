@@ -1,0 +1,16 @@
+{
+    "textmsg": {
+        "logintitletext": "Run Report",
+        "reportlogin": "Login",
+        "username": "Username",
+        "password": "Password",
+        "login": "Login",
+        "passwordrequired": "Password is required",
+        "usernamerequired": "Username is required",
+        "authenticating": "Authenticating..."
+    },
+    "pageSections": ["header", "body", "footer"],
+    "defaultReportAuthenticator": "DefaultAuthorizer",
+    "zoomFactor": 1.25,
+    "wheelIncrement": 25
+}

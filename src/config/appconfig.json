@@ -104,7 +104,16 @@
         "columndataobjecttitle": "Column Data",
         "columnnamelabel": "Column Name:",
         "columnpathlabel": "Column Path:",
-        "columnfont": "Column Font"
+        "columnfont": "Column Font",
+        "designlogin": "Design Login",
+        "username": "Username",
+        "password": "Password",
+        "login": "Login",
+        "targetorm": "Target ORM",
+        "targetormrequired": "Target ORM is Required",
+        "passwordrequired": "Password is required",
+        "usernamerequired": "Username is required",
+        "authenticating": "Authenticating..."
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

@@ -1,0 +1,214 @@
+:root {
+    --default-bkcolor: white;
+    --default-text-color: black;
+    --default-font-size:10pt;
+    --default-font-weight:100;
+    --wait-message-font-color: navy;
+    --error-message-color: red;
+    --info-message-color: lightGreen;
+    --input-background:linear-gradient(top, #d6d7d7, #dee0e0);
+    --default-input-height: 22px;
+    --wait-message-height: 30px;
+  }
+
+html {
+    overflow:hidden;
+    height:100%;
+}
+
+body {
+    background-color: var(--bar-color);
+    font-weight: var(--default-font-weight);
+    color: var(--default-text-color);
+    float:left;
+    text-align: left;
+    font-size:var(--default-font-size);
+    font-family: var(--font-family);
+}
+
+select {
+    background: linear-gradient(top, #d6d7d7, #dee0e0);
+    border: 1px solid #a1a3a3;
+    border-radius: 4px;
+    box-shadow: 0 1px #fff;
+    box-sizing: border-box;
+    color: var(--default-text-color);
+    height: var(--default-input-height);
+    margin: 5px 0 0 3px;
+    transition: box-shadow 0.3s;
+    width: 240px;
+}
+
+input[type="password"], input[type="text"] {
+    background: var(--input-background);
+    border: 1px solid #a1a3a3;
+    border-radius: 4px;
+    box-shadow: 0 1px #fff;
+    box-sizing: border-box;
+    color: var(--default-text-color);
+    height: var(--default-input-height);
+    margin: 5px 0 0 3px;
+    padding-left: 5px;
+    transition: box-shadow 0.3s;
+    width: 240px;
+}
+
+input[type="password"]:focus, input[type="text"]:focus {
+    box-shadow: 0 0 4px 1px rgba(55, 166, 155, 0.3);
+    outline: 0;
+}
+
+input[type="submit"] {
+    width:100px;
+    height:25px;
+    font-size:14px;
+    font-weight:500;
+    color:#fff;
+    text-align: center;
+    vertical-align:middle;
+    text-decoration:none;
+    text-transform:uppercase;
+    text-shadow:1px 1px 0 #37a69b;
+    padding-top:3px;
+    margin: 10px 0 0 10px;
+    cursor:pointer;
+    border: none;  
+    background-color: var(--submit-bkcolor);
+    border-radius: 5px;
+    box-shadow: inset 0 1px 0 #2ab7ec, 0 2px 0 0 #497a78, 0 10px 5px #999;
+}
+
+
+.login div {
+    text-align: right;
+    padding-right: 20px;
+}
+
+.login {
+    background: #eceeee;
+    border: 1px solid #42464b;
+    border-radius: 10px;
+    height: 225px;
+    margin: 15% 30%;
+    width: 375px;
+}
+
+.login h3 {
+    background: var(--header-background);
+    border-bottom: 2px solid #a6abaf;
+    border-radius: 10px 10px 0 0;
+    box-sizing: border-box;
+    color: var(--header-text-color);
+    display: block;
+    padding-top: 2px;
+    margin: 0;
+    height: 24px;
+    text-align: center;
+}
+
+.label {
+    font-weight: 600;
+}
+
+.fieldLabel {
+    margin-left: 3px;
+    font-size: var(--small-font-size);
+    text-align: right;
+    font-weight: 600;
+}
+
+input[type="checkbox"] {
+    display: inline;
+    width: 12px;
+    height: 12px;
+    vertical-align: middle;
+    margin: 2px;
+}
+
+.saveButton {
+    cursor: pointer;
+    vertical-align: middle;
+    margin-top: 2px;
+    margin-left: 20px;
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.saveButton .text {
+    vertical-align: middle;
+    padding-bottom: 15px;
+    margin-left: 2px;
+    font-size: var(--default-font-size);
+}
+
+
+.parameterInputPanel {
+    padding: 5px;
+}
+
+.inputEntryList {
+    position: relative;
+    box-sizing:border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 170px;
+}
+
+.parameterInputPanel .inputLabel {
+    font-weight: 600;
+    text-align: right;
+    margin: 0;
+    vertical-align: middle;
+    padding-top: 10px
+}
+
+.waitMessage {
+    background: #eceeee;
+    border: 1px solid #42464b;
+    border-radius: 5px;
+    font-weight:600;
+    height: var(--wait-message-height);
+    color: var(--wait-message-font-color);
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.waitMessage span {
+    position: absolute;
+    padding-top: 5px;
+}
+
+.waitMessage img {
+    margin: 5px;
+}
+
+.errorDisplay {
+    background: transparent;
+    color: var(--error-message-color);
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+
+.loginTitle {
+    color: gray
+}
+
+.dataEntry {
+    padding: 0;
+    margin-left: 5px;
+    display: inline-block;
+}
+
+.dataEntry th {
+    text-align: right;
+    font-weight: 500;
+    vertical-align: middle;
+}
+
+.dataEntry select {
+    width: auto;
+    margin-left: 3px;
+}
+

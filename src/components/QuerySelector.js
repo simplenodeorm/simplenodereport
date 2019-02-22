@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const loop = (data, qid) => {
     return data.map((item) => {
-        let docid = item.key + ':' + item.documentName;
+        let docid = item.key + '.' + item.documentName;
         let displayName = item.group + ': ' + item.documentName.replace(/_/g, ' ').replace('.json', '');
 
         if (qid && (qid === docid)) {
