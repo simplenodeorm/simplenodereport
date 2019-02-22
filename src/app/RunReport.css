@@ -195,20 +195,49 @@ input[type="checkbox"] {
     color: gray
 }
 
-.dataEntry {
-    padding: 0;
-    margin-left: 5px;
-    display: inline-block;
+.reportruninfo {
+    color: gray;
+    font-size: 18pt;
+    margin-left: 50px;
+    margin-top: 100px;
 }
 
-.dataEntry th {
-    text-align: right;
-    font-weight: 500;
+.reportrunerror {
+    color: crimson;
+    font-size: 18pt;
+    margin-left: 50px;
+    margin-top: 100px;
+}
+
+.reportruncancel {
+    color: yellow;
+    font-size: 18pt;
+    margin-left: 50px;
+    margin-top: 100px;
+}
+
+.parameterInputPanel {
+    padding: 5px;
+}
+
+.inputEntryList {
+    position: relative;
+    box-sizing:border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 170px;
+}
+
+.parameterInputPanel .inputLabel {
+    font-weight: 600;
+    text-align:right;
+    margin: 0;
     vertical-align: middle;
+    padding-top: 10px
 }
 
-.dataEntry select {
-    width: auto;
-    margin-left: 3px;
+.formatSelectionLine .dateInput {
+    margin: 2px;
+    width: 70px;
+    height: 18px;
 }
-

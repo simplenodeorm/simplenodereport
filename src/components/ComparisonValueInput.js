@@ -1,5 +1,5 @@
 import React from 'react';
-import "../app/App.css";
+import "../app/RunReport.css";
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {NumericInput} from './NumericInput';
 import DatePicker from 'react-datepicker';
@@ -29,12 +29,6 @@ class ComparisonValueInput extends BaseDesignComponent {
                     index={this.props.index}
                     allowCharacter={this.props.allowCharacter}
                     defaultValue={val}/>;
-            default:
-                return <input 
-                    className="customColumnInput" 
-                    type='text' 
-                    onBlur={this.onBlur} 
-                    defaultValue={val}/>;
         }
     }
 
@@ -44,8 +38,6 @@ class ComparisonValueInput extends BaseDesignComponent {
         } else {
             this.props.setValue(this.props.index, val.target.value);
         }
-            
-        this.props.setTabState(false, false, false, !this.isWhereValid());
     }
 }
 

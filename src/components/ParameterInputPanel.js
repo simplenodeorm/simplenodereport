@@ -1,9 +1,8 @@
 import React from 'react';
 import "../app/App.css";
-import config from '../config/appconfig.json';
+import config from '../config/runreportconfig.json';
 import {ModalDialog} from './ModalDialog';
 import {ComparisonValueInput} from './ComparisonValueInput';
-import {isUnaryOperator} from './helpers';
 
 class ParameterInputPanel extends ModalDialog {
     constructor(props) {
@@ -13,40 +12,33 @@ class ParameterInputPanel extends ModalDialog {
         this.allowCharacter = this.allowCharacter.bind(this);
         this.params = [];
         this.comparisonOperators = [];
-        this.distinct = false;
-        this.validityCheckOnly = false;
-        this.resultFormat = 'object';
     }
 
     getContent() {
-        const initParams = (this.params.length === 0);
         const inputLoop = (data) => {
             let ipos = 0;
-            return data.map((p, i) => {
-                if (!p.comparisonValue && !isUnaryOperator(p.comparisonOperator) && !p.customFilterInput) {
-                    if (initParams) {
-                        this.params.push('');
-                    }
-                    let pos = p.fieldName.lastIndexOf('.');
-                    this.comparisonOperators.push(p.comparisonOperator);
-                    return <tr><td title={p.fieldName} className="inputLabel">{p.fieldName.substring(pos+1) + ':'}</td><td>
-                        <ComparisonValueInput 
-                            setValue={this.setValue} 
+            return data.map((p) => {
+                this.params.push('');
+                let pos = p.fieldName.lastIndexOf('.');
+                this.comparisonOperators.push(p.comparisonOperator);
+                return <tr>
+                    <td title={p.fieldName} className="inputLabel">{p.fieldName.substring(pos + 1) + ':'}</td>
+                    <td>
+                        <ComparisonValueInput
+                            setValue={this.setValue}
                             getValue={this.getValue}
                             allowCharacter={this.allowCharacter}
                             fieldType={p.fieldType}
                             usePortal="true"
-                            index={ipos++} />
-                    </td></tr>
-                }  else {
-                    return undefined;
-                }
+                            index={ipos++}/>
+                    </td>
+                </tr>
             });
         };
         
         return <div className="parameterInputPanel">
             <div className="inputEntryList">
-                <table>{inputLoop(document.designData.whereComparisons)}</table>
+                <table>{inputLoop(this.props.whereComparisons)}</table>
             </div>
         </div>;
     }

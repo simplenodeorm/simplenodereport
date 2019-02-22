@@ -303,7 +303,6 @@ export function getReportColumn(key) {
 
 }
 
-
 export function setDefaultReportObjectSize(designPanel, reportObject) {
     switch (reportObject.objectType) {
         case 'dbdata':
