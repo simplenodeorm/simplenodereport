@@ -87,8 +87,7 @@ class ReportContainer extends BaseDesignComponent {
     showReport(data) {
         let style = document.createElement('style');
         style.appendChild(document.createTextNode(data.style));
-        document.body.appendChild(style);
-    
+        document.head.appendChild(style);
         document.getElementById("reportContainer").innerHTML = data.html;
     }
     

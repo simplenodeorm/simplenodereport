@@ -12,7 +12,7 @@
   }
 
 html {
-    overflow:hidden;
+    overflow:auto;
     height:100%;
 }
 
@@ -20,8 +20,6 @@ body {
     background-color: var(--bar-color);
     font-weight: var(--default-font-weight);
     color: var(--default-text-color);
-    float:left;
-    text-align: left;
     font-size:var(--default-font-size);
     font-family: var(--font-family);
 }
@@ -240,4 +238,8 @@ input[type="checkbox"] {
     margin: 2px;
     width: 70px;
     height: 18px;
+}
+
+#reportContainer {
+    height: 110%;
 }
