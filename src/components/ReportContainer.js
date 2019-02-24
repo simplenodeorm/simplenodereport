@@ -20,14 +20,14 @@ class ReportContainer extends BaseDesignComponent {
         this.cancelReport = this.cancelReport.bind(this);
         this.runWithParameters = this.runWithParameters.bind(this);
         this.showInputPanel = this.showInputPanel.bind(this);
+        this.showReport = this.showReport.bind(this);
         this.run = this.run.bind(this);
         
         this.run();
     }
 
     render() {
-        return <div>
-            <h1 className="loginTitle">{config.textmsg.reportrunner}</h1>
+        return <div id="reportContainer">
             {this.getRunReportContent()}
         </div>;
     }
@@ -37,13 +37,13 @@ class ReportContainer extends BaseDesignComponent {
         let docname = document.reportId.substring(document.reportId.lastIndexOf('.') + 1);
     
         if (cancelled) {
-            return <div className="reportruncancel">{config.textmsg.reportcancelled}</div>;
+            return <div><h1 className="loginTitle">{config.textmsg.reportrunner}</h1><div className="reportruncancel">{config.textmsg.reportcancelled}</div></div>;
         } else if (error) {
-            return <div className="reportrunerror">{error}</div>;
+            return <div><h1 className="loginTitle">{config.textmsg.reportrunner}</h1><div className="reportrunerror">{error}</div></div>;
         } else if (!inputRequired && !content) {
-            return <div className="reportruninfo">
+            return <div><h1 className="loginTitle">{config.textmsg.reportrunner}</h1><div className="reportruninfo">
                 <img alt="" src="/images/spinner.gif"/>
-                &nbsp;&nbsp;{config.textmsg.runningreport.replace('<1>', docname)}</div>;
+                &nbsp;&nbsp;{config.textmsg.runningreport.replace('<1>', docname)}</div></div>;
         } else if (inputRequired) {
             return this.showInputPanel(content);
         }
@@ -54,11 +54,11 @@ class ReportContainer extends BaseDesignComponent {
         let rc = {left: 200, top: 50, width: 300, height: height};
         let mc = getModalContainer(rc);
         ReactDOM.render(<ParameterInputPanel
-        whereComparisons={content}
-        onOk={this.runWithParameters}
-        onCancel={this.cancelReport}/>, mc);
+            whereComparisons={content}
+            onOk={this.runWithParameters}
+            onCancel={this.cancelReport}/>, mc);
 
-        return <div/>
+        return <div><h1 className="loginTitle">{config.textmsg.reportrunner}</h1></div>
     }
     
     runWithParameters(results) {
@@ -73,13 +73,7 @@ class ReportContainer extends BaseDesignComponent {
         axios.post(orm.url + '/report/run/' + docid, {"parameters": results.parameters}, config)
             .then((response) => {
                 if (response.status === 200) {
-                    if (response.data.userInputRequired) {
-                        // show parameter input screen
-                        curcomp.setState({"inputRequired": true, "content": response.data.whereComparisons});
-                    } else {
-                        // report content
-                        curcomp.setState({"inputRequired": false, "content": response.data});
-                    }
+                    curcomp.showReport(response.data);
                 } else {
                     curcomp.setState({error: 'Error: HTTP status ' + response.status})
                 }
@@ -90,6 +84,13 @@ class ReportContainer extends BaseDesignComponent {
     
     }
     
+    showReport(data) {
+        let style = document.createElement('style');
+        style.appendChild(document.createTextNode(data.style));
+        document.body.appendChild(style);
+    
+        document.getElementById("reportContainer").innerHTML = data.html;
+    }
     
     cancelReport() {
         clearModalContainer();
@@ -111,8 +112,7 @@ class ReportContainer extends BaseDesignComponent {
                         // show parameter input screen
                         curcomp.setState({inputRequired: true, content: response.data.whereComparisons});
                     } else {
-                        // report content
-                        curcomp.setState({inputRequired: false, content: response.data});
+                        curcomp.showReport(response.data)
                     }
                 } else {
                     curcomp.setState({error: 'Error: HTTP status ' + response.status})

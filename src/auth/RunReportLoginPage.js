@@ -84,7 +84,7 @@ class LoginPage extends BaseDesignComponent {
                             }
                         </div>
                         <div>
-                            <label>ORM</label>
+                            <label>ORM:</label>
                             <input type="text" name="orm" defaultValue={orm.name} disabled={true}/>
 
                         </div>

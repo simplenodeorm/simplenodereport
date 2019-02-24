@@ -2,8 +2,8 @@
     "textmsg": {
         "logintitletext": "Run Report",
         "reportlogin": "Login",
-        "username": "Username",
-        "password": "Password",
+        "username": "Username:",
+        "password": "Password:",
         "login": "Login",
         "passwordrequired": "Password is required",
         "usernamerequired": "Username is required",
