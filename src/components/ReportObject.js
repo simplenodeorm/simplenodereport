@@ -119,8 +119,7 @@ class ReportObject extends Resizable {
     }
     
     getCssClassName() {
-        return (document.designData.currentReport.reportName.replace(/ /g, '-')
-            + '-' + this.props.config.objectType.replace(/ /g, '-')
+        return ('rpt-' + this.props.config.objectType.replace(/ /g, '-')
             + '-' + this.props.config.id);
     }
     
@@ -138,7 +137,7 @@ class ReportObject extends Resizable {
             + ta
             + this.getCustomCssFragment()
             + '}'));
-        style.appendChild(document.createTextNode('div.'
+        style.appendChild(document.createTextNode(' div.'
             + className + ':hover { border: ' + config.activeObjectBorder + ';}'));
     
     }

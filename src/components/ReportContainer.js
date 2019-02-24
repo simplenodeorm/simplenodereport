@@ -25,6 +25,13 @@ class ReportContainer extends BaseDesignComponent {
         
         this.run();
     }
+    
+    clearStyle() {
+        let styles = document.getElementsByTagName("style");
+        for (let i = 0; i < styles.length; ++i) {
+            styles[i].parentNode.removeChild(styles[i]);
+        }
+    }
 
     render() {
         return <div id="reportContainer">
@@ -85,6 +92,7 @@ class ReportContainer extends BaseDesignComponent {
     }
     
     showReport(data) {
+        this.clearStyle();
         let style = document.createElement('style');
         style.appendChild(document.createTextNode(data.style));
         document.head.appendChild(style);
