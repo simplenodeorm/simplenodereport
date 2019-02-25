@@ -109,7 +109,7 @@ class DBDataReportObject extends ReportObject {
         
         style.appendChild(document.createTextNode('.'
             + objectData.cssClassName
-            + ' table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; width: 98%; height:98%;}'));
+            + ' table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; width: 98%; height:98%;} '));
     
         let fontStyle = 'normal';
         let textDecoration = 'none';
@@ -139,7 +139,7 @@ class DBDataReportObject extends ReportObject {
             + objectData.headerHeight
             + 'px; background-color: '
             + this.props.config.headerFontSettings.backgroundColor
-            + '; text-align: center; }';
+            + '; text-align: center; } ';
         style.appendChild(document.createTextNode(css));
 
         css = '.' + objectData.cssClassName
@@ -179,7 +179,7 @@ class DBDataReportObject extends ReportObject {
             textDecoration = 'underline';
         }
     
-        style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' td {margin: 0; padding: 0;}'));
+        style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' td {margin: 0; padding: 0;} '));
         css = '.' + objectData.cssClassName + ' td div {font-family: '
             + this.props.config.dataFontSettings.font
             + '; font-size: '

@@ -58,7 +58,7 @@ class ReportContainer extends BaseDesignComponent {
     
     showInputPanel(content) {
         let height = (150 + (22 * content.length));
-        let rc = {left: 200, top: 50, width: 300, height: height};
+        let rc = {left: 150, top: 100, width: 300, height: height};
         let mc = getModalContainer(rc);
         ReactDOM.render(<ParameterInputPanel
             whereComparisons={content}

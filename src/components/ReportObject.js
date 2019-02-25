@@ -136,9 +136,9 @@ class ReportObject extends Resizable {
             + ' {position: absolute; z-index: 1; overflow: ' + this.getOverflowType() + '; '
             + ta
             + this.getCustomCssFragment()
-            + '}'));
+            + '} '));
         style.appendChild(document.createTextNode(' div.'
-            + className + ':hover { border: ' + config.activeObjectBorder + ';}'));
+            + className + ':hover { border: ' + config.activeObjectBorder + ';} '));
     
     }
     
