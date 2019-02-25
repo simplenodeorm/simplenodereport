@@ -113,7 +113,9 @@
         "targetormrequired": "Target ORM is Required",
         "passwordrequired": "Password is required",
         "usernamerequired": "Username is required",
-        "authenticating": "Authenticating..."
+        "authenticating": "Authenticating...",
+        "bringtofront": "Bring to Front",
+        "sendtoback": "Send to Back"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

@@ -8,6 +8,7 @@ class Resizable extends React.Component {
         super(props);
         
         let rc = this.props.config.rect;
+        
         if (!rc || !this.props.config.rect.height) {
             this.props.config.rect = rc = this.getDefaultRect();
         }

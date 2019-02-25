@@ -38,7 +38,7 @@ class CurrentDateReportObject extends ReportObject {
         }
     
         let css = '.' + objectData.cssClassName
-            + ' span {margin: 0; padding: 0; font-family:'
+            + ' span {width: 100%; height: 100%; margin: 0; padding: 0; font-family:'
             + this.props.config.fontSettings.font
             + '; font-size: '
             + this.props.config.fontSettings.fontSize

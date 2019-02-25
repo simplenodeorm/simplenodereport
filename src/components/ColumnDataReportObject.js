@@ -39,7 +39,7 @@ class ColumnDataReportObject extends ReportObject {
         }
         
         let css = '.' + objectData.cssClassName
-            + ' div {font-family:'
+            + ' div {width: 100%; height: 100%; position: relative; font-family:'
             + this.props.config.fontSettings.font
             + '; font-size: '
             + this.props.config.fontSettings.fontSize

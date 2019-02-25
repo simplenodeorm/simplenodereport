@@ -49,7 +49,7 @@ class LabelReportObject extends ReportObject {
         }
     
         let css = '.' + objectData.cssClassName
-            + ' div {margin: 0; padding: 0; font-family:'
+            + ' div {width: 100%; height: 100%; margin: 0; padding: 0; font-family:'
             + this.props.config.fontSettings.font
             + '; font-size: '
             + this.props.config.fontSettings.fontSize
