@@ -47,6 +47,7 @@ class DesignPanel extends BaseDesignComponent {
         this.moveSelectedReportObjects = this.moveSelectedReportObjects.bind(this);
         this.deselectAllObjects = this.deselectAllObjects.bind(this);
         this.sizeSelectedReportObjects = this.sizeSelectedReportObjects.bind(this);
+        this.updatePageBreak = this.updatePageBreak.bind(this);
         
         this.header = '';
         this.body = '';
@@ -334,12 +335,21 @@ class DesignPanel extends BaseDesignComponent {
                     setMountedComponent={dc.setMountedComponent}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
+                    updatePageBreak={this.updatePageBreak}
                     config={reportObjectConfig}/>);
                 break;
         }
 
         if (dc) {
             dc.setState(dc.state);
+        }
+    }
+    
+    updatePageBreak(curobj) {
+        for (let i = 0; i < document.designData.currentReport.reportObjects.length; ++i) {
+            if (curobj !== document.designData.currentReport.reportObjects[i]) {
+                document.designData.currentReport.reportObjects[i].pageBreakController = '';
+            }
         }
     }
 

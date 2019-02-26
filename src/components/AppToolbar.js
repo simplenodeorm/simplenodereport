@@ -406,6 +406,7 @@ class AppToolbar extends BaseDesignComponent {
                 rc = {left: 175, top: 50, width: 600, height: 400};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<DBDataGridSetupPanel
+                    getDesignPanel={this.props.getDesignPanel}
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;
@@ -467,6 +468,8 @@ class AppToolbar extends BaseDesignComponent {
             let height = getFontHeight(reportObject.dataFontSettings.font,
                 reportObject.dataFontSettings.fontSize) + config.defaulttablecellpadding;
             let ypos = 20;
+            let pb = reportObject.pageBreakController;
+            reportObject.pageBreakController = false;
             for (let i = 0; i < reportObject.reportColumns.length; ++i) {
                 if (reportObject.reportColumns[i].displayResult) {
                     let dbcol = getReportColumn(reportObject.reportColumns[i].key);
@@ -499,9 +502,18 @@ class AppToolbar extends BaseDesignComponent {
                     }
                 }
             }
+    
+            if (pb) {
+                let ro = document.designData.currentReport.reportObjects[document.designData.currentReport.reportObjects.length - 1];
+                ro.pageBreakController = true;
+                designPanel.updatePageBreak(ro);
+            }
             
         } else {
             setDefaultReportObjectSize(designPanel, reportObject);
+            if (reportObject.pageBreakController) {
+                designPanel.updatePageBreak(reportObject)
+            }
             reportObject.id = document.designData.currentReport.reportObjects.length;
             document.designData.currentReport.reportObjects.push(reportObject);
             designPanel.addReportObject(reportObject);

@@ -237,13 +237,6 @@ class DBDataReportObject extends ReportObject {
         return {top: 20, left: 20, height: 200, width: 300};
     }
     
-    isPageBreakRequired() {
-        let retval = false;
-        if (this.pageBreakController) {
-        }
-        return retval;
-    }
-    
     getCustomResizeCursor(clientRect, mouseX, mouseY) {
         let retval = '';
         let node = document.elementFromPoint(mouseX, mouseY).parentNode;

@@ -68,6 +68,7 @@ class ColumnDataReportObject extends ReportObject {
         let mc = getModalContainer(rc);
         ReactDOM.render(<ColumnDataSetupPanel
             onOk={this.updateReportObject}
+            updatePageBreak={this.props.updatePageBreak}
             reportObject={copyObject(this.props.config)}/>, mc);
         
     }
