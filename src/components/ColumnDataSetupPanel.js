@@ -6,14 +6,12 @@ import {ReportSectionSelect} from "./ReportSectionSelect";
 import {FontSelectPanel} from "./FontSelectPanel";
 import {TextAlignSelect} from "./TextAlignSelect";
 import defaults from "../config/defaults";
-import {Checkbox} from "./Checkbox";
 
 class ColumnDataSetupPanel extends ModalDialog {
     constructor(props) {
         super(props);
         this.getFontSettings = this.getFontSettings.bind(this);
         this.setFontSettings = this.setFontSettings.bind(this);
-        this.onPageBreakController = this.onPageBreakController.bind(this);
     }
     
     getContent() {
@@ -28,14 +26,6 @@ class ColumnDataSetupPanel extends ModalDialog {
                     <th>{config.textmsg.columnpathlabel}</th>
                     <td><input type="text" defaultValue={this.props.reportObject.columnPath} readOnly={true}/></td>
                 </tr>
-                <tr>
-                    <td/><td>
-                        <Checkbox label={config.textmsg.pagebreakcontroller}
-                              handleCheckboxChange={this.onPageBreakController}
-                              isChecked={this.props.reportObject.pageBreakController}/>
-                    </td>
-                </tr>
-    
                 <tr><td colSpan="2"><div className="centerAlign">
                 <FontSelectPanel
                     label={config.textmsg.columnfont}
@@ -48,10 +38,6 @@ class ColumnDataSetupPanel extends ModalDialog {
                     </div></td></tr>
             </table>
             </div>;
-    }
-    
-    onPageBreakController(pageBreaker) {
-        this.props.reportObject.pageBreakController = pageBreaker;
     }
     
     getFontSettings() {

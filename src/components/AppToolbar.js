@@ -401,9 +401,7 @@ class AppToolbar extends BaseDesignComponent {
     
         switch(type) {
             case 'dbdata':
-                reportObject.asGrid = true;
-                reportObject.pageBreakController = true;
-                rc = {left: 175, top: 50, width: 600, height: 400};
+                rc = {left: 175, top: 50, width: 600, height: 425};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<DBDataGridSetupPanel
                     getDesignPanel={this.props.getDesignPanel}
@@ -464,7 +462,8 @@ class AppToolbar extends BaseDesignComponent {
             document.designData.currentReport.reportObjects = [];
         }
         
-        if ((reportObject.objectType === 'dbdata') && !reportObject.asGrid) {
+        if ((reportObject.objectType === 'dbdata')
+            && (reportObject.displayFormat > 2)) {
             let height = getFontHeight(reportObject.dataFontSettings.font,
                 reportObject.dataFontSettings.fontSize) + config.defaulttablecellpadding;
             let ypos = 20;
@@ -487,6 +486,7 @@ class AppToolbar extends BaseDesignComponent {
                             reportSection: reportObject.reportSection,
                             columnPath: dbcol.path,
                             columnName: dbcol.name,
+                            displayFormat: reportObject.displayFormat,
                             textAlign: reportObject.reportColumns[i].textAlign,
                             fontSettings: reportObject.dataFontSettings,
                             rect: {top: ypos, left: 125, height: height, width:100}

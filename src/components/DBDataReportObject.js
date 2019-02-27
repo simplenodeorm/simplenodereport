@@ -318,7 +318,7 @@ class DBDataReportObject extends ReportObject {
     }
     
     onEdit(info) {
-        let rc = {left: 175, top: 50, width: 600, height: 400};
+        let rc = {left: 175, top: 50, width: 600, height: 425};
         let mc = getModalContainer(rc);
         ReactDOM.render(<DBDataGridSetupPanel
             onOk={this.updateReportObject}

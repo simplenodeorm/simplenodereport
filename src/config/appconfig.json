@@ -115,7 +115,8 @@
         "usernamerequired": "Username is required",
         "authenticating": "Authenticating...",
         "bringtofront": "Bring to Front",
-        "sendtoback": "Send to Back"
+        "sendtoback": "Send to Back",
+        "dbobjectdisplayformat": "Display Format:"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
@@ -146,6 +147,25 @@
         {"key": "tl", "name": "top left"},
         {"key": "tm", "name": "top middle"},
         {"key": "tr", "name": "top right"}],
+    "dbObjectDisplayFormats": [
+        {
+            "key": 1,
+            "display": "Grid"
+        },
+        {
+            "key": 2,
+            "display": "Grid with Page Break"
+        },
+        {
+            "key": 3,
+            "display": "Name/Value Pairs by Row"
+        },
+        {
+            "key": 4,
+            "display": "Name/Value Pairs by Row with Page Break"
+        }
+    ],
+    "defaultDbObjectDisplayFormat": 2,
     "defaulttablecellpadding": 3,
     "selectedObjectBorder": "solid 1px red",
     "labelBorder": "dotted 1px darkBlue",
