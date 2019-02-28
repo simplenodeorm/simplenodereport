@@ -2,7 +2,6 @@ import React from 'react';
 import "../app/App.css";
 import config from "../config/appconfig";
 import {ModalDialog} from "./ModalDialog";
-import {ReportSectionSelect} from "./ReportSectionSelect";
 import {FontSelectPanel} from "./FontSelectPanel";
 import {TextAlignSelect} from "./TextAlignSelect";
 import defaults from "../config/defaults";
@@ -12,12 +11,12 @@ class ColumnDataSetupPanel extends ModalDialog {
         super(props);
         this.getFontSettings = this.getFontSettings.bind(this);
         this.setFontSettings = this.setFontSettings.bind(this);
+        this.setTextAlign = this.setTextAlign.bind(this);
     }
     
     getContent() {
         return <div className="dataEntry">
             <table>
-                <ReportSectionSelect asTableRow={true} reportObject={this.props.reportObject} />
                 <tr>
                     <th>{config.textmsg.columnnamelabel}</th>
                     <td><input type="text" defaultValue={this.props.reportObject.columnName} readOnly={true}/></td>
@@ -26,16 +25,15 @@ class ColumnDataSetupPanel extends ModalDialog {
                     <th>{config.textmsg.columnpathlabel}</th>
                     <td><input type="text" defaultValue={this.props.reportObject.columnPath} readOnly={true}/></td>
                 </tr>
-                <tr><td colSpan="2"><div className="centerAlign">
-                <FontSelectPanel
-                    label={config.textmsg.columnfont}
-                    getFontSettings={this.getFontSettings}
-                    setFontSettings={this.setFontSettings}/></div></td></tr>
-                    <tr><td colSpan="2">
-                    <div className="centerAlign">
-                    <TextAlignSelect setTextAlign={this.setTextAlign}
-                        textAlign={this.props.reportObject.textAlign}/>
-                    </div></td></tr>
+                <TextAlignSelect asTableRow={true} setTextAlign={this.setTextAlign}
+                                 textAlign={this.props.reportObject.textAlign}/>
+                <tr><td colSpan="2">
+                        <div className="centerAlign">
+                    <FontSelectPanel
+                        label={config.textmsg.columnfont}
+                        getFontSettings={this.getFontSettings}
+                        setFontSettings={this.setFontSettings}/>
+                </div></td></tr>
             </table>
             </div>;
     }
@@ -54,6 +52,10 @@ class ColumnDataSetupPanel extends ModalDialog {
         }
         
         return this.props.reportObject.fontSettings;
+    }
+    
+    setTextAlign(ta) {
+        this.props.reportObject.textAlign = ta;
     }
     
     setFontSettings(name, value) {

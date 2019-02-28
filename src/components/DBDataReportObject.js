@@ -55,6 +55,8 @@ class DBDataReportObject extends ReportObject {
             this.props.config.dataFontSettings.fontSize) +
             this.getConfigValue('defaulttablecellpadding');
     
+        this.props.config.headerHeight = headerHeight;
+        this.props.config.dataRowHeight = dataRowHeight;
         let numRows = Math.floor(height / dataRowHeight);
     
         let data = [];
