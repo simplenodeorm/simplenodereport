@@ -282,7 +282,9 @@ class AppToolbar extends BaseDesignComponent {
 
         
         for (let i = 0; i < config.defaultPreferenceNames.length; ++i) {
-            doc.document[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
+            if (!doc.document[config.defaultPreferenceNames[i]]) {
+                doc.document[config.defaultPreferenceNames[i]] = defaults[config.defaultPreferenceNames[i]];
+            }
         }
     
         doc.document.queryDocumentId = settings.queryDocumentId;

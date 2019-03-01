@@ -63,9 +63,6 @@ class ColumnDataSetupPanel extends ModalDialog {
     }
     
     getResult() {
-        if (this.props.reportObject.pageBreakController) {
-            this.props.updatePageBreak(this.props.reportObject);
-        }
         return this.props.reportObject;
     };
     

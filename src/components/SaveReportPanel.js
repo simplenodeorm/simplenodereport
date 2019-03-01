@@ -57,7 +57,7 @@ class SaveReportPanel extends ModalDialog {
                     <tr>
                         <td className="inputLabel">{config.textmsg.documentnamelabel}</td>
                         <td><input type="text"
-                            defaultValue={document.designData.currentReport.reportName.replace(/_/g, ' ')}
+                            defaultValue={this.reportName}
                             onChange={this.onReportName} /></td>
                     </tr>
                     <tr>
