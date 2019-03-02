@@ -242,6 +242,5 @@ input[type="checkbox"] {
     height: 18px;
 }
 
-#reportContainer {
-    height: 110%;
-}
+
+#reportContainer {height: 110%;}

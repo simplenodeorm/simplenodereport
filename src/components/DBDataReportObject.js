@@ -111,7 +111,7 @@ class DBDataReportObject extends ReportObject {
         
         style.appendChild(document.createTextNode('.'
             + objectData.cssClassName
-            + ' table { table-layout: fixed; border-spacing: 0; border-collapse: collapse; width: 98%; height:98%;} '));
+            + ' table { table-layout: fixed; border-spacing: 0; border-collapse: collapse;} '));
     
         let fontStyle = 'normal';
         let textDecoration = 'none';
