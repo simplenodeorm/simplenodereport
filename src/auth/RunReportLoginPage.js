@@ -25,6 +25,10 @@ class LoginPage extends BaseDesignComponent {
          this.handleChange = this.handleChange.bind(this);
         
     }
+    
+    componentDidMount() {
+        this.username.focus();
+    }
 
     handleSubmit(e) {
         e.preventDefault();
@@ -71,7 +75,9 @@ class LoginPage extends BaseDesignComponent {
                     <form name="form" onSubmit={this.handleSubmit}>
                         <div>
                             <label htmlFor="username">{config.textmsg.username}</label>
-                            <input type="text" name="username" defaultValue={username} onBlur={this.handleChange} />
+                            <input type="text" name="username"
+                                   ref={(input) => { this.username = input; }}
+                                   defaultValue={username} onBlur={this.handleChange} />
                             {submitted && !username &&
                                 <div className="errorDisplay">*{config.textmsg.usernamerequired}</div>
                             }

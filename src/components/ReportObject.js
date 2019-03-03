@@ -112,7 +112,7 @@ class ReportObject extends Resizable {
         return prefix + ': '
             + settings.borderStyle
             + ' '
-            + settings.borderWidth/getPixelsPerInch()
+            + (settings.borderWidth/getPixelsPerInch()).toFixed(3)
             + 'in '
             + settings.borderColor + ';';
     }
