@@ -2,7 +2,7 @@ import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig';
 import {Resizable} from './Resizable';
-import {clearContextMenu, getContextMenu} from "./helpers";
+import {clearContextMenu, getContextMenu,getPixelsPerInch} from "./helpers";
 import ReactDOM from "react-dom";
 
 class ReportObject extends Resizable {
@@ -112,8 +112,8 @@ class ReportObject extends Resizable {
         return prefix + ': '
             + settings.borderStyle
             + ' '
-            + settings.borderWidth
-            + 'px '
+            + settings.borderWidth/getPixelsPerInch()
+            + 'in '
             + settings.borderColor + ';';
     }
     
