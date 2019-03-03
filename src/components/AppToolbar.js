@@ -474,7 +474,7 @@ class AppToolbar extends BaseDesignComponent {
             let id = document.designData.currentReport.reportObjects.length
             for (let i = 0; i < reportObject.reportColumns.length; ++i) {
                 if (reportObject.reportColumns[i].displayResult) {
-                    let dbcol = getReportColumn(reportObject.reportColumns[i].key);
+                    let dbcol = copyObject(getReportColumn(reportObject.reportColumns[i].key));
                     if (dbcol) {
                         let rol = {
                             objectType: 'label',
