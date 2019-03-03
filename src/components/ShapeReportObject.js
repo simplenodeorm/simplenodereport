@@ -2,7 +2,7 @@ import React from 'react';
 import '../app/App.css';
 import {ReportObject} from "./ReportObject";
 import config from '../config/appconfig';
-import {copyObject, getModalContainer} from "./helpers";
+import {copyObject, getModalContainer, getPixelsPerInch} from "./helpers";
 import ReactDOM from "react-dom";
 import {ShapeSetupPanel} from "./ShapeSetupPanel";
 
@@ -26,7 +26,8 @@ class ShapeReportObject extends ReportObject {
     }
     
     getCustomCssFragment() {
-        let retval = ' background: transparent; z-index:-1; ';
+        let ppi = getPixelsPerInch();
+        let retval = ' background: transparent; ';
     
         if (this.props.config.shape !== 'line') {
             retval += this.buildBorderCss('border', this.props.config.borderSettings);
@@ -35,8 +36,8 @@ class ShapeReportObject extends ReportObject {
         }
     
         if (this.props.config.shape === 'ellipse') {
-            retval += (' border-radius:' + (this.props.config.rect.width / 2) + 'px'
-                + '/' + (this.props.config.rect.height / 2) + 'px; ')
+            retval += (' border-radius:' + ((this.props.config.rect.width/ppi) / 2) + 'in'
+                + '/' + ((this.props.config.rect.height/ppi) / 2) + 'in; ')
         }
     
         return retval;

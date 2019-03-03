@@ -87,9 +87,9 @@ class DesignPanel extends BaseDesignComponent {
             case LEFTARROW_KEY:
             case RIGHTARROW_KEY:
                 if (event.shiftKey ) {
-                    this.sizeSelectedReportObjects(event.keyCode);
+                    this.sizeSelectedReportObjects(event);
                 } else {
-                    this.moveSelectedReportObjects(event.keyCode);
+                    this.moveSelectedReportObjects(event);
                 }
                 break;
             default:
@@ -364,13 +364,16 @@ class DesignPanel extends BaseDesignComponent {
         this.props.getToolbar().onReportObjectSelect(ro.selected);
     }
     
-    moveSelectedReportObjects(key) {
+    moveSelectedReportObjects(e) {
         for (let i = 0; i < config.pageSections.length; ++i) {
             let canvas = this.getReportSectionDesignCanvas(config.pageSections[i]);
             let robjects = canvas.getSelectedReportObjects();
+            if (robjects.length > 0) {
+                e.preventDefault();
+            }
             for (let i = 0; i < robjects.length; ++i) {
                 let rc = copyObject(robjects[i].rect);
-                switch(key) {
+                switch(e.keyCode) {
                     case UPARROW_KEY:
                         rc.top -= config.keyMoveIncrement;
                         break;
@@ -386,17 +389,21 @@ class DesignPanel extends BaseDesignComponent {
     
                 }
                 canvas.mountedReportObjects[robjects[i].myIndex].onLayoutChange(rc);
+                
             }
         }
     }
     
-    sizeSelectedReportObjects(key) {
+    sizeSelectedReportObjects(e) {
         for (let i = 0; i < config.pageSections.length; ++i) {
             let canvas = this.getReportSectionDesignCanvas(config.pageSections[i]);
             let robjects = canvas.getSelectedReportObjects();
+            if (robjects.length > 0) {
+                e.preventDefault();
+            }
             for (let i = 0; i < robjects.length; ++i) {
                 let rc = copyObject(robjects[i].rect);
-                switch(key) {
+                switch(e.keyCode) {
                     case UPARROW_KEY:
                         rc.height -= config.keyMoveIncrement;
                         break;

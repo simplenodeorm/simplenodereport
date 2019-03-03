@@ -471,6 +471,7 @@ class AppToolbar extends BaseDesignComponent {
             let ypos = 20;
             let pb = reportObject.pageBreakController;
             reportObject.pageBreakController = false;
+            let id = document.designData.currentReport.reportObjects.length
             for (let i = 0; i < reportObject.reportColumns.length; ++i) {
                 if (reportObject.reportColumns[i].displayResult) {
                     let dbcol = getReportColumn(reportObject.reportColumns[i].key);
@@ -493,11 +494,11 @@ class AppToolbar extends BaseDesignComponent {
                             fontSettings: reportObject.dataFontSettings,
                             rect: {top: ypos, left: 125, height: height, width:100}
                         };
-                        rol.id = document.designData.currentReport.reportObjects.length;
+                        rol.id = id++;
                         document.designData.currentReport.reportObjects.push(rol);
                         designPanel.addReportObject(rol);
                         
-                        ro.id = document.designData.currentReport.reportObjects.length;
+                        ro.id = id++;
                         document.designData.currentReport.reportObjects.push(ro);
                         designPanel.addReportObject(ro);
                         ypos += (height+5)
