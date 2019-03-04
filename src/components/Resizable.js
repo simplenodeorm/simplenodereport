@@ -92,7 +92,7 @@ class Resizable extends React.Component {
                 let newLeft = left + (info.screenX - this.startInfo.x);
                 let newTop = top + (info.screenY - this.startInfo.y);
                 if (this.isCustomResizeCursor(document.body.style.cursor)) {
-                    this.handleCustomResize(info);
+                    this.handleCustomResize(info, document.body.style.cursor);
                 } else if (this.isResizeCursor(document.body.style.cursor)) {
                     switch (document.body.style.cursor) {
                         case 'w-resize':
@@ -234,7 +234,7 @@ class Resizable extends React.Component {
         return false;
     }
     
-    handleCustomResize(info) {
+    handleCustomResize(info, cursor) {
     
     }
     

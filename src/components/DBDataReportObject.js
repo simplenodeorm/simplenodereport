@@ -51,9 +51,13 @@ class DBDataReportObject extends ReportObject {
     
         let headerHeight = this.getHeaderHeight(columns, objectColumns) +
             this.getConfigValue('defaulttablecellpadding');
-        let dataRowHeight = getFontHeight(this.props.config.dataFontSettings.font,
-            this.props.config.dataFontSettings.fontSize) +
-            this.getConfigValue('defaulttablecellpadding');
+        let dataRowHeight = this.props.config.rowHeight;
+        
+        if (!dataRowHeight) {
+            dataRowHeight = getFontHeight(this.props.config.dataFontSettings.font,
+                this.props.config.dataFontSettings.fontSize) +
+                this.getConfigValue('defaulttablecellpadding');
+        }
     
         this.props.config.headerHeight = headerHeight;
         this.props.config.dataRowHeight = dataRowHeight;
@@ -90,16 +94,19 @@ class DBDataReportObject extends ReportObject {
 
     getHeaderHeight(columns, objectColumns) {
         let retval = 0;
-        for (let i = 0; i < columns.length; ++i) {
-            let fh = getFontHeight(this.props.config.headerFontSettings.font,
-                this.props.config.headerFontSettings.fontSize,
-                objectColumns[i].width, columns[i].name);
-                + this.getConfigValue('defaulttablecellpadding');
-            if (Math.max(fh, retval) > retval)  {
-                retval = fh;
+        if (!this.props.config.rowHeight) {
+            for (let i = 0; i < columns.length; ++i) {
+                let fh = getFontHeight(this.props.config.headerFontSettings.font,
+                    this.props.config.headerFontSettings.fontSize,
+                    objectColumns[i].width, columns[i].name);
+                +this.getConfigValue('defaulttablecellpadding');
+                if (Math.max(fh, retval) > retval) {
+                    retval = fh;
+                }
             }
+        } else {
+            retval = this.props.config.rowHeight;
         }
-
         return retval;
     }
     
@@ -246,6 +253,8 @@ class DBDataReportObject extends ReportObject {
             let rc = node.getBoundingClientRect();
             if (Math.abs(rc.right - mouseX) <= config.resizeMargin) {
                 retval = config.columnResizeCursor;
+            } else if (Math.abs((rc.top + rc.height) - mouseY) <= config.resizeMargin) {
+                retval = config.rowResizeCursor;
             }
         }
     
@@ -272,49 +281,55 @@ class DBDataReportObject extends ReportObject {
     }
     
     isCustomResizeCursor(cursor) {
-        return (cursor === config.columnResizeCursor);
+        return ((cursor === config.columnResizeCursor)
+            || (cursor === config.rowResizeCursor));
     }
     
-    handleCustomResize(info) {
+    handleCustomResize(info, cursor) {
         let node = document.elementFromPoint(this.startInfo.clientX, this.startInfo.clientY).parentNode;
         if (node.nodeName === 'TD') {
-            let index = [].indexOf.call(node.parentNode.children, node);
-            let rc = node.getBoundingClientRect();
-            let width = rc.width;
+            if (cursor === config.rowResizeCursor) {
+                this.props.config.rowHeight = info.screenY - this.startInfo.y;
+                this.setState(this.state);
+            } else if (cursor === config.columnResizeCursor) {
+                let index = [].indexOf.call(node.parentNode.children, node);
+                let rc = node.getBoundingClientRect();
+                let width = rc.width;
+        
+                if (index >= 0) {
+                    let delta = (info.screenX - this.startInfo.x);
+                    let newWidth = Math.max(10, width + delta);
             
-            if (index >= 0) {
-                let delta = (info.screenX - this.startInfo.x);
-                let newWidth = Math.max(10, width + delta);
-    
-                let reportColumnIndex = 0;
-                
-                for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
-                    if (this.props.config.reportColumns[i].displayResult) {
-                        if (index === reportColumnIndex) {
-                            this.props.config.reportColumns[i].width = newWidth;
-                            break;
+                    let reportColumnIndex = 0;
+            
+                    for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
+                        if (this.props.config.reportColumns[i].displayResult) {
+                            if (index === reportColumnIndex) {
+                                this.props.config.reportColumns[i].width = newWidth;
+                                break;
+                            }
+                            reportColumnIndex++;
                         }
-                        reportColumnIndex++;
                     }
-                }
-    
-                let updateCount = 0;
-                for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
-                    if (this.props.config.reportColumns[i].displayResult) {
-                        updateCount++;
-                    }
-                }
-    
-                if (updateCount > 0) {
-                    let change = Math.round((newWidth - width) / updateCount);
+            
+                    let updateCount = 0;
                     for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
                         if (this.props.config.reportColumns[i].displayResult) {
-                            this.props.config.reportColumns[i].width -= change;
+                            updateCount++;
                         }
                     }
+            
+                    if (updateCount > 0) {
+                        let change = Math.round((newWidth - width) / updateCount);
+                        for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
+                            if (this.props.config.reportColumns[i].displayResult) {
+                                this.props.config.reportColumns[i].width -= change;
+                            }
+                        }
+                    }
+            
+                    this.setState(this.state);
                 }
-    
-                this.setState(this.state);
             }
         }
     }
