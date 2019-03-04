@@ -27,7 +27,8 @@ class ShapeReportObject extends ReportObject {
     
     getCustomCssFragment() {
         let ppi = getPixelsPerInch();
-        let retval = ' background: transparent; ';
+        let retval = ' z-index: 0; background: transparent; ';
+        
     
         if (this.props.config.shape !== 'line') {
             retval += this.buildBorderCss('border', this.props.config.borderSettings);
