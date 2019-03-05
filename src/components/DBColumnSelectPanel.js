@@ -16,12 +16,10 @@ class DBColumnSelectPanel extends BaseDesignComponent {
                 dataLoaded: false
             };
         } else {
-            this.populateReportObjectData();
             this.state = {
                 move: false,
                 dataLoaded: true
             };
-
         }
 
         this.columnSelects = [];
@@ -74,18 +72,23 @@ class DBColumnSelectPanel extends BaseDesignComponent {
             if (document.designData.currentReport.reportColumns[i].isNumeric) {
                 ta = 'right';
             }
-            
+    
+    
             let displayResult = true;
+            let displayTotal = false;
+    
             if (this.props.reportObject.objectType === 'dbcol') {
                 if (document.designData.currentReport.reportColumns[i].path !== this.props.reportObject.columnPath) {
                     displayResult = false;
+                    displayTotal = false;
                 }
             }
+    
             this.props.reportObject.reportColumns.push({
                 key: document.designData.currentReport.reportColumns[i].key,
                 textAlign: ta,
                 displayResult: displayResult,
-                displayTotal: false
+                displayTotal: displayTotal
             });
         }
     }

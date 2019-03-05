@@ -153,7 +153,8 @@ class DBDataReportObject extends ReportObject {
 
         css = '.' + objectData.cssClassName
             + ' th {overflow: hidden; margin: 0; padding: 0; ';
-        
+    
+        this.props.config.totalsSeparator = config.dbDataTotalsSeparator;
         
         if (this.hasBorder(this.props.config.headerBorderSettings)) {
             if (this.hasFullBorder(this.props.config.headerBorderSettings)) {

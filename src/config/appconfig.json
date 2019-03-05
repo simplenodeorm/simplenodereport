@@ -180,6 +180,7 @@
     "pointToPixelHeightFactor": 1.75,
     "defaultTextColor": "black",
     "defaultBackgroundColor": "white",
+    "dbDataTotalsSeparator": "solid 0.025in black",
     "defaultFontWeight": 100,
     "defaultColumnWidth": 75,
     "keyMoveIncrement": 5,
