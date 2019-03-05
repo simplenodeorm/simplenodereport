@@ -9,9 +9,9 @@ import {TextAlignSelect} from "./TextAlignSelect";
 const formatLoop = (formats, curformat) => {
     return formats.map((format) => {
         if (curformat && (format.key === curformat)) {
-            return <option value={format.format} selected>{format.example}</option>;
+            return <option value={format.key} selected>{format.example}</option>;
         } else {
-            return <option value={format.format}>{format.example}</option>;
+            return <option value={format.key}>{format.example}</option>;
         }
     });
 };
