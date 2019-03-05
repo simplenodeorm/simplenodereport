@@ -15,13 +15,18 @@ class ImageReportObject extends ReportObject {
             cssClassName: this.getCssClassName(),
             url: this.props.config.url,
             altText: this.props.config.altText,
-            sizeToContent: false
+            retainAspect: this.props.config.retainAspect,
+            sizeToContent: this.props.config.sizeToContent
         };
     }
     
     getContent(objectData) {
-        if (!this.props.config.sizeToContent) {
-            return <img style={{width: "100%", height: "100%"}} src={objectData.url} alt={objectData.altText}/>;
+        if (!objectData.sizeToContent) {
+            if (!objectData.retainAspect) {
+                return <img style={{width: "100%", height: "100%"}} src={objectData.url} alt={objectData.altText}/>;
+            } else {
+                return <img style={{width: "auto", height: "auto", maxWidth: "100%", maxHeight: "100%"}} src={objectData.url} alt={objectData.altText}/>;
+            }
         } else {
             return <img src={objectData.url} alt={objectData.altText} />;
         }
@@ -40,8 +45,10 @@ class ImageReportObject extends ReportObject {
     }
     
     onEdit(info) {
-        let rc = {left: 175, top: 50, width: 350, height: 200};
+        let rc = {left: 175, top: 50, width: 375
+            , height: 250};
         let mc = getModalContainer(rc);
+        
         ReactDOM.render(<ImageSetupPanel
             onOk={this.updateReportObject}
             reportObject={copyObject(this.props.config)}/>, mc);

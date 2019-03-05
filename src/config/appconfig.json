@@ -116,7 +116,8 @@
         "authenticating": "Authenticating...",
         "bringtofront": "Bring to Front",
         "sendtoback": "Send to Back",
-        "dbobjectdisplayformat": "Display Format:"
+        "dbobjectdisplayformat": "Display Format:",
+        "retainaspectratio": "Retain Aspect Ratio"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

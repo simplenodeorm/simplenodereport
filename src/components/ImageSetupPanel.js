@@ -8,8 +8,13 @@ import {ReportSectionSelect} from "./ReportSectionSelect";
 class ImageSetupPanel extends ModalDialog {
     constructor(props) {
         super(props);
+        
+        if (!this.props.reportObject.url) {
+            this.props.reportObject.retainAspect = true;
+        }
         this.setUrl = this.setUrl.bind(this);
         this.setAltText= this.setAltText.bind(this);
+        this.setRetainAspect = this.setRetainAspect.bind(this);
         this.setSizeToContent = this.setSizeToContent.bind(this);
     }
     
@@ -26,11 +31,21 @@ class ImageSetupPanel extends ModalDialog {
                     <td><input type="text" defaultValue={this.props.reportObject.altText} onBlur={this.setAltText}/></td>
                 </tr>
                 <tr>
+                    <td/>
+                    <td><Checkbox label={config.textmsg.retainaspectratio}
+                          isChecked={this.props.reportObject.retainAspect}
+                          handleCheckboxChange={this.setRetainAspect}/></td>
+                </tr>
+                <tr>
                     <th/><td><Checkbox label={config.textmsg.sizetocontent}
                         isChecked={this.props.reportObject.sizeToContent}
                         handleCheckboxChange={this.setSizeToContent}/></td>
                 </tr>
             </table></div>;
+    }
+    
+    setRetainAspect(retainAspect) {
+        this.props.reportObject.retainAspect = retainAspect;
     }
     
     setUrl(info) {
@@ -54,11 +69,7 @@ class ImageSetupPanel extends ModalDialog {
     }
     
     isComplete() {
-        if (this.props.reportObject.url && this.props.reportObject.altText) {
-            return true;
-        } else {
-            return false;
-        }
+        return !!(this.props.reportObject.url && this.props.reportObject.altText);
     }
     
     getError() {

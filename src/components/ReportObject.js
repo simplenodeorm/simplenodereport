@@ -201,7 +201,7 @@ class ReportObject extends Resizable {
     }
     
     updateReportObject(reportObject) {
-        for (let key in this.props.config) {
+        for (let key in reportObject) {
             this.props.config[key] = reportObject[key];
         }
         

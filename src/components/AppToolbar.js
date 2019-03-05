@@ -418,7 +418,7 @@ class AppToolbar extends BaseDesignComponent {
                     reportObject={reportObject}/>, mc);
                 break;
             case 'image':
-                rc = {left: 175, top: 50, width: 375, height: 200};
+                rc = {left: 175, top: 50, width: 375, height: 250};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<ImageSetupPanel
                     onOk={this.addReportObjectToReport}
