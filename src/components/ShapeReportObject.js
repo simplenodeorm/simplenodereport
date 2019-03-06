@@ -30,10 +30,16 @@ class ShapeReportObject extends ReportObject {
         let retval = ' z-index: 0; background: transparent; ';
         
     
-        if (this.props.config.shape !== 'line') {
-            retval += this.buildBorderCss('border', this.props.config.borderSettings);
-        } else {
-            retval += this.buildBorderCss('border-top', this.props.config.borderSettings);
+        switch(this.props.config.shape) {
+            case 'horizontal line':
+                retval += this.buildBorderCss('border-top', this.props.config.borderSettings);
+                break;
+            case 'vertical line':
+                retval += this.buildBorderCss('border-right', this.props.config.borderSettings);
+                break;
+            default:
+                retval += this.buildBorderCss('border', this.props.config.borderSettings);
+                break;
         }
     
         if (this.props.config.shape === 'ellipse') {

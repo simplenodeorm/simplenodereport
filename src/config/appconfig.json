@@ -131,7 +131,7 @@
     "borderWidths": [1, 2, 3, 4, 5, 6],
     "defaultPreferenceNames": ["marginLeft", "marginTop", "marginRight", "marginBottom", "fontFamily", "font", "fontSize", "documentSize", "reportName", "queryDocumentId"],
     "reportObjectTypes": ["current date","dbdata", "image", "graph", "label", "link", "page number", "shape"],
-    "shapes": ["rectangle", "ellipse", "line"],
+    "shapes": ["rectangle", "ellipse", "horizontal line", "vertical line"],
     "dateFormats": [
         {"format": "mm/dd/yyyy", "example": "01/21/2019"},
         {"format": "yyyy-mm-dd", "example": "2019-01-21"},
