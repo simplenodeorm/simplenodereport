@@ -23,7 +23,9 @@ class ReportContainer extends BaseDesignComponent {
         this.showReport = this.showReport.bind(this);
         this.run = this.run.bind(this);
         
-        this.run();
+        if (!this.props.data) {
+            this.run();
+        }
     }
     
     clearStyle() {
@@ -34,9 +36,15 @@ class ReportContainer extends BaseDesignComponent {
     }
 
     render() {
-        return <div id="reportContainer">
-            {this.getRunReportContent()}
-        </div>;
+        if (this.props.data) {
+            return <div id="reportContainer">
+                {setTimeout(this.showReport, 500)}
+            </div>;
+        } else {
+            return <div id="reportContainer">
+                {this.getRunReportContent()}
+            </div>;
+        }
     }
     
     getRunReportContent() {
@@ -57,6 +65,9 @@ class ReportContainer extends BaseDesignComponent {
     }
     
     showInputPanel(content) {
+        if (!content) {
+            content = this.props.data;
+        }
         let height = (150 + (22 * content.length));
         let rc = {left: 150, top: 100, width: 300, height: height};
         let mc = getModalContainer(rc);
@@ -128,7 +139,7 @@ class ReportContainer extends BaseDesignComponent {
             .catch((err) => {
                 curcomp.setState({error: err.toString()});
             });
-    }
+        }
 }
 
 export { ReportContainer };

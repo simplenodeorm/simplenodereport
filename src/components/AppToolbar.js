@@ -15,11 +15,12 @@ import {
     getFontHeight,
     getReportColumn,
     removeWaitMessage,
-    setDefaultReportObjectSize
+    setDefaultReportObjectSize,
+    getPixelsPerInch,
+    getModalContainer,
+    getDocumentDimensions
 } from './helpers';
-import {getModalContainer} from './helpers';
-import {getDocumentDimensions} from './helpers';
-import {getPixelsPerInch} from './helpers.js';
+
 import axios from 'axios';
 import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
 import {LabelSetupPanel} from "./LabelSetupPanel";
@@ -28,6 +29,7 @@ import {LinkSetupPanel} from "./LinkSetupPanel";
 import {ShapeSetupPanel} from "./ShapeSetupPanel";
 import {CurrentDateSetupPanel} from './CurrentDateSetupPanel';
 import {PageNumberSetupPanel} from './PageNumberSetupPanel';
+import {ParameterInputPanel} from "./ParameterInputPanel";
 
 const reportObjectLoop = (obj, data) => {
     return data.map((item) => {
@@ -48,6 +50,7 @@ class AppToolbar extends BaseDesignComponent {
         this.alignObject = this.alignObject.bind(this);
         this.deleteReportObjects = this.deleteReportObjects.bind(this);
         this.onSave = this.onSave.bind(this);
+        this.onRun = this.onRun.bind(this);
         this.saveReport = this.saveReport.bind(this);
         this.initializeNewReport = this.initializeNewReport.bind(this);
         this.addReportObject = this.addReportObject.bind(this);
@@ -59,6 +62,9 @@ class AppToolbar extends BaseDesignComponent {
         this.addReportObjectToReport = this.addReportObjectToReport.bind(this);
         this.onReportObjectSelect = this.onReportObjectSelect.bind(this);
         this.showReportObjectPopup = this.showReportObjectPopup.bind(this);
+        this.showInputPanel = this.showInputPanel.bind(this);
+        this.generateReport = this.generateReport.bind(this);
+        this.showReport = this.showReport.bind(this);
         
         this.selectedReportObjectCounter = 0;
         
@@ -302,7 +308,69 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     onRun() {
-        alert('---->run');
+        const curcomp = this;
+        const orm = JSON.parse(localStorage.getItem('orm'));
+        const config = {
+            headers: {'Authorization': orm.authString}
+        };
+    
+        axios.get(orm.url + '/report/userinputrequired/'
+            + document.designData.currentReport.queryDocumentId, config)
+            .then((response) => {
+                if (response.status === 200) {
+                    if (response.data.userInputRequired) {
+                        curcomp.showInputPanel(response.data.whereComparisons);
+                    } else {
+                        curcomp.generateReport();
+                    }
+                } else {
+                    curcomp.props.setStatus('Error: HTTP status ' + response.status, true);
+                }
+            })
+            .catch((err) => {
+                curcomp.props.setStatus(err.toString(), true);
+            });
+    }
+    
+    generateReport(params) {
+        this.showWaitMessage('Running report ' + document.designData.currentReport.reportName + '...');
+        const curcomp = this;
+        const orm = JSON.parse(localStorage.getItem('orm'));
+        const config = {
+            headers: {'Authorization': orm.authString}
+        };
+        document.designData.currentReport.pixelsPerInch = getPixelsPerInch();
+        axios.post(orm.url + '/report/runfordesign', {report: {document: document.designData.currentReport}, parameters: params}, config)
+            .then((response) => {
+                if (response.status === 200) {
+                    curcomp.showReport(response.data);
+                } else {
+                    curcomp.props.setStatus('Error: HTTP status ' + response.status, true);
+                }
+                removeWaitMessage();
+            })
+            .catch((err) => {
+                removeWaitMessage();
+                curcomp.props.setStatus(err.toString(), true);
+            });
+    }
+
+    showInputPanel(content) {
+        let height = (150 + (22 * content.length));
+        let rc = {left: 150, top: 100, width: 300, height: height};
+        let mc = getModalContainer(rc);
+        ReactDOM.render(<ParameterInputPanel
+            whereComparisons={content}
+            onOk={this.generateReport}
+            onCancel={this.cancelReport}/>, mc);
+    }
+    
+    showReport(data) {
+        let myWindow = window.open("", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=600,height=800");
+        myWindow.document.write('<head><style>'
+            + data.style
+            + '</style></head><body style="background-color: #202020">'
+            + data.html + '</body></html>');
     }
     
     saveReport(params) {
