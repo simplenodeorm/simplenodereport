@@ -32,28 +32,42 @@ class BorderSelectPanel extends React.Component {
     render() {
         const {borderStyle, borderWidth, borderColor, left, top, right, bottom} = this.state;
 
-
-        let exampleStyle;
-
-        if (left || right || top || bottom) {
-            exampleStyle = {
-                height: '20px',
-                marginLeft: '2px',
-                marginTop: '3px'
-            };
-
+        let exampleStyle = {
+            height: '20px',
+            marginLeft: '2px',
+            marginTop: '3px'
+        };
+        
+        if (this.props.getDesiredShape && this.props.getDesiredShape()) {
+            switch(this.props.getDesiredShape()) {
+                case 'rectangle':
+                    exampleStyle.border = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
+                    break;
+                case 'ellipse':
+                    exampleStyle.border = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
+                    exampleStyle.borderRadius = '25px/10px';
+                    break;
+                case 'vertical line':
+                    exampleStyle.borderLeft = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
+                    break;
+                case 'horizontal line':
+                    exampleStyle.borderBottom = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
+                    break;
+            }
+            
+        } else if (left || right || top || bottom) {
             if (left) {
                 exampleStyle.borderLeft = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
             }
-
+    
             if (top) {
                 exampleStyle.borderTop = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
             }
-
+    
             if (right) {
                 exampleStyle.borderRight = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
             }
-
+    
             if (bottom) {
                 exampleStyle.borderBottom = borderStyle + ' ' + borderWidth + 'px ' + borderColor;
             }
@@ -62,7 +76,6 @@ class BorderSelectPanel extends React.Component {
                 border: 'none'
             };
         }
-
 
         return <div className="dataEntry"><table cellSpacing="0" cellPadding="0">
             <tr><td style={{textDecoration: "underline", textAlign: "center"}} colSpan="2">{this.props.label}</td></tr>
