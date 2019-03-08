@@ -31,6 +31,8 @@ import {CurrentDateSetupPanel} from './CurrentDateSetupPanel';
 import {PageNumberSetupPanel} from './PageNumberSetupPanel';
 import {ParameterInputPanel} from "./ParameterInputPanel";
 
+const cfg = config;
+
 const reportObjectLoop = (obj, data) => {
     return data.map((item) => {
         return <li><button onClick={obj.addReportObject} value={item}>{item}</button></li>
@@ -333,7 +335,7 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     generateReport(params) {
-        this.showWaitMessage('Running report ' + document.designData.currentReport.reportName + '...');
+        this.showWaitMessage(cfg.textmsg.runningreportmsg.replace('?', document.designData.currentReport.reportName));
         const curcomp = this;
         const orm = JSON.parse(localStorage.getItem('orm'));
         const config = {
@@ -374,7 +376,7 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     saveReport(params) {
-        this.showWaitMessage('Saving report...');
+        this.showWaitMessage(cfg.textmsg.savingreportmsg);
         const curcomp = this;
         const orm = JSON.parse(localStorage.getItem('orm'));
         const config = {

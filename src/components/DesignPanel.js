@@ -165,6 +165,8 @@ class DesignPanel extends BaseDesignComponent {
         if (sz && this.header) {
             const {height} = this.state;
             document.designData.currentReport.headerHeight = sz;
+            this.getReportSectionDesignCanvas('header').getRect().height += (height - sz);
+            this.getReportSectionDesignCanvas('body').getRect().height += (sz - height);
             this.header.setState({height: sz});
             this.body.setState({height: height - (document.designData.currentReport.headerHeight + document.designData.currentReport.footerHeight)});
         }

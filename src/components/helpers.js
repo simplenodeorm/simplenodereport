@@ -327,6 +327,13 @@ export function setDefaultReportObjectSize(designPanel, reportObject) {
         case 'label':
             reportObject.rect = getTextRect(reportObject.fontSettings.font, reportObject.fontSettings.fontSize, reportObject.labelText);
             break;
+        case 'shape':
+            if (reportObject.shape === 'horizontal line') {
+                reportObject.rect = {left: 20, top: 20, width: 50, height: 8};
+            } else if (reportObject.shape === 'vertical line') {
+                reportObject.rect = {left: 20, top: 20, width: 8, height: 50};
+            }
+            break;
     }
 }
 

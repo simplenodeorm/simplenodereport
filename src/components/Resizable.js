@@ -104,7 +104,6 @@ class Resizable extends React.Component {
                             });
                             break;
                         case 'e-resize':
-                        
                             this.onLayoutChange({
                                 left: left,
                                 top: top,
@@ -150,6 +149,8 @@ class Resizable extends React.Component {
                         width: width,
                         height: height
                     });
+                    
+                    
                 }
             
                 document.body.style.cursor = '';
@@ -164,16 +165,6 @@ class Resizable extends React.Component {
         let newTop = Math.max(3, info.top);
         let newWidth = info.width;
         let newHeight = info.height;
-        
-        if (this.props.boundingRect) {
-            if (this.props.boundingRect.width < (newLeft + newWidth)) {
-                newWidth -= ((newLeft + newWidth) - this.props.boundingRect.width);
-            }
-            
-            if (this.props.boundingRect.height < (newTop + newHeight)) {
-                newHeight -= ((newTop + newHeight) - this.props.boundingRect.height);
-            }
-        }
         
         let rc = {
             left: newLeft,

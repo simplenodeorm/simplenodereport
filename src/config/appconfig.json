@@ -117,7 +117,9 @@
         "bringtofront": "Bring to Front",
         "sendtoback": "Send to Back",
         "dbobjectdisplayformat": "Display Format:",
-        "retainaspectratio": "Retain Aspect Ratio"
+        "retainaspectratio": "Retain Aspect Ratio",
+        "savingreportmsg": "Saving report...",
+        "runningreportmsg": "Running ? report..."
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
