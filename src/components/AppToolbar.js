@@ -249,7 +249,7 @@ class AppToolbar extends BaseDesignComponent {
 
     initializeNewReport(settings) {
         clearDocumentDesignData();
-        let dim = getDocumentDimensions(settings.documentSize);
+        let dim = getDocumentDimensions(settings.documentSize, settings.orientation);
         let ppi = getPixelsPerInch();
     
         let headerHeight;

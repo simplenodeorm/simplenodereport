@@ -119,7 +119,8 @@
         "dbobjectdisplayformat": "Display Format:",
         "retainaspectratio": "Retain Aspect Ratio",
         "savingreportmsg": "Saving report...",
-        "runningreportmsg": "Running ? report..."
+        "runningreportmsg": "Running ? report...",
+        "orientationlabel": "Orientation:"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

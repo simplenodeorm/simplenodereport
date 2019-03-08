@@ -5,6 +5,7 @@ import defaults from '../config/defaults.json';
 import {ModalDialog} from './ModalDialog';
 import {NumericInput} from './NumericInput';
 import {QuerySelector} from './QuerySelector';
+import {OrientationSelect} from './OrientationSelect';
 import {copyObject} from './helpers';
 
 const documentSizeLoop = (docSize, data) => {
@@ -58,6 +59,7 @@ class PreferencesPanel extends ModalDialog {
         return <div className="preferencesPanel">
             <table>
                 {this.props.newDocument && <tr><th>{config.textmsg.documentnamelabel}</th><td><input className="nameInput" type="text" size="20" onBlur={this.setReportName} defaultValue={this.settings.reportName} /></td></tr> }
+                {this.props.newDocument && <OrientationSelect settings={this.settings} asTableRow={true}/> }
                 {this.props.newDocument && <tr><th>{config.textmsg.backingquery}</th><td><QuerySelector setQuery={this.setQuery}/></td></tr> }
             
                 <tr><th>{config.textmsg.leftmargin}</th><td><NumericInput maxLength='4' onBlur={this.setLeftMargin} allowCharacter={this.allowCharacter}  defaultValue={this.settings.marginLeft}/></td></tr>

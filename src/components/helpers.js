@@ -228,7 +228,7 @@ export function getTextRect(fontName, fontSize, text) {
     return  {left: 0, top: 0, height: height, width: width};
 }
 
-export function getDocumentDimensions(type) {
+export function getDocumentDimensions(type, orientation) {
     let retval = [8.5, 11];
     switch(type.toUpperCase()) {
         case '4A0':
@@ -281,6 +281,12 @@ export function getDocumentDimensions(type) {
             break;
     }
     
+    
+    if (orientation && (orientation === 'landscape')) {
+        let save = retval[0];
+        retval[0] = retval[1];
+        retval[1] = save;
+    }
     return retval;
 }
 
