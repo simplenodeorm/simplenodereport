@@ -48,6 +48,7 @@ class DesignPanel extends BaseDesignComponent {
         this.deselectAllObjects = this.deselectAllObjects.bind(this);
         this.sizeSelectedReportObjects = this.sizeSelectedReportObjects.bind(this);
         this.updatePageBreak = this.updatePageBreak.bind(this);
+        this.getSelectedReportObjects = this.getSelectedReportObjects.bind(this);
         
         this.header = '';
         this.body = '';
@@ -264,6 +265,14 @@ class DesignPanel extends BaseDesignComponent {
         }
     }
     
+    getSelectedReportObjects() {
+        let retval = [];
+        for (let i = 0; i < config.pageSections.length; ++i) {
+            retval.push(this.getReportSectionDesignCanvas(config.pageSections[i]).getSelectedReportObjects());
+        }
+        return retval;
+    }
+    
     addReportObject(reportObjectConfig) {
         let dc = this.getReportSectionDesignCanvas(reportObjectConfig.reportSection);
         switch (reportObjectConfig.objectType) {
@@ -272,6 +281,7 @@ class DesignPanel extends BaseDesignComponent {
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
                     config={reportObjectConfig}/>);
@@ -280,6 +290,7 @@ class DesignPanel extends BaseDesignComponent {
                 dc.getReportObjectConfigurations().push(<LabelReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
                     setMountedComponent={dc.setMountedComponent}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
@@ -290,6 +301,7 @@ class DesignPanel extends BaseDesignComponent {
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
                     config={reportObjectConfig}/>);
@@ -299,6 +311,7 @@ class DesignPanel extends BaseDesignComponent {
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
                     config={reportObjectConfig}/>);
@@ -308,6 +321,7 @@ class DesignPanel extends BaseDesignComponent {
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
                     config={reportObjectConfig}/>);
@@ -316,6 +330,7 @@ class DesignPanel extends BaseDesignComponent {
                 dc.getReportObjectConfigurations().push(<CurrentDateReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
                     setMountedComponent={dc.setMountedComponent}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
@@ -325,6 +340,7 @@ class DesignPanel extends BaseDesignComponent {
                 dc.getReportObjectConfigurations().push(<PageNumberReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
                     setMountedComponent={dc.setMountedComponent}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
@@ -334,6 +350,7 @@ class DesignPanel extends BaseDesignComponent {
                 dc.getReportObjectConfigurations().push(<ColumnDataReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
                     setMountedComponent={dc.setMountedComponent}
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}

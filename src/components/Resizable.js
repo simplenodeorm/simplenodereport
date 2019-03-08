@@ -149,8 +149,6 @@ class Resizable extends React.Component {
                         width: width,
                         height: height
                     });
-                    
-                    
                 }
             
                 document.body.style.cursor = '';
