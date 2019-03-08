@@ -335,14 +335,19 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     generateReport(params) {
-        this.showWaitMessage(cfg.textmsg.runningreportmsg.replace('?', document.designData.currentReport.reportName));
-        const curcomp = this;
+        this.showWaitMessage(cfg.textmsg.runningreportmsg.replace('?', document.designData.currentReport.reportName));       const curcomp = this;
         const orm = JSON.parse(localStorage.getItem('orm'));
         const config = {
             headers: {'Authorization': orm.authString}
         };
+        
+        let inputParams;
+        
+        if (params) {
+            inputParams = params.parameters;
+        }
         document.designData.currentReport.pixelsPerInch = getPixelsPerInch();
-        axios.post(orm.url + '/report/runfordesign', {report: {document: document.designData.currentReport}, parameters: params}, config)
+        axios.post(orm.url + '/report/runfordesign', {report: {document: document.designData.currentReport}, parameters: inputParams}, config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.showReport(response.data);
