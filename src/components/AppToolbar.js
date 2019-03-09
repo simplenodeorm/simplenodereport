@@ -26,6 +26,7 @@ import {DBDataGridSetupPanel} from "./DBDataGridSetupPanel";
 import {LabelSetupPanel} from "./LabelSetupPanel";
 import {ImageSetupPanel} from "./ImageSetupPanel";
 import {LinkSetupPanel} from "./LinkSetupPanel";
+import {EmailSetupPanel} from "./EmailSetupPanel";
 import {ShapeSetupPanel} from "./ShapeSetupPanel";
 import {CurrentDateSetupPanel} from './CurrentDateSetupPanel';
 import {PageNumberSetupPanel} from './PageNumberSetupPanel';
@@ -503,6 +504,13 @@ class AppToolbar extends BaseDesignComponent {
                 rc = {left: 175, top: 50, width: 375, height: 450};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<LinkSetupPanel
+                    onOk={this.addReportObjectToReport}
+                    reportObject={reportObject}/>, mc);
+                break;
+            case 'email':
+                rc = {left: 175, top: 50, width: 375, height: 450};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<EmailSetupPanel
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;

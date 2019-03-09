@@ -15,6 +15,7 @@ import {ShapeReportObject} from './ShapeReportObject';
 import {CurrentDateReportObject} from './CurrentDateReportObject';
 import {PageNumberReportObject} from './PageNumberReportObject';
 import {ColumnDataReportObject} from './ColumnDataReportObject';
+import {EmailReportObject} from './EmailReportObject';
 import {clearContextMenu, clearModalContainer, copyObject} from './helpers';
 
 import config from '../config/appconfig';
@@ -308,6 +309,16 @@ class DesignPanel extends BaseDesignComponent {
                 break;
             case 'link':
                 dc.getReportObjectConfigurations().push(<LinkReportObject
+                    key={reportObjectConfig.id}
+                    index={dc.getReportObjectConfigurations().length}
+                    setMountedComponent={dc.setMountedComponent}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
+                    onObjectSelect={this.onObjectSelect}
+                    boundingRect={dc.getRect()}
+                    config={reportObjectConfig}/>);
+                break;
+            case 'email':
+                dc.getReportObjectConfigurations().push(<EmailReportObject
                     key={reportObjectConfig.id}
                     index={dc.getReportObjectConfigurations().length}
                     setMountedComponent={dc.setMountedComponent}
