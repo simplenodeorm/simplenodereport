@@ -295,6 +295,15 @@ export function isNumeric(type) {
     return ((dbtype === 'float') || (dbtype === 'number'));
 }
 
+export function isString(type) {
+    return (getFieldType(type) === 'string');
+}
+
+export function isDate(type) {
+    return (getFieldType(type) === 'date');
+}
+
+
 export function getReportColumn(key) {
     let retval;
 

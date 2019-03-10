@@ -3,7 +3,7 @@ import {BaseDesignComponent} from './BaseDesignComponent';
 import {ColumnSelectLine} from './ColumnSelectLine';
 import axios from "axios";
 import "../app/App.css";
-import {getUniqueKey, isNumeric,removeWaitMessage} from './helpers';
+import {getUniqueKey, isNumeric,isString,isDate,removeWaitMessage} from './helpers';
 
 
 class DBColumnSelectPanel extends BaseDesignComponent {
@@ -88,7 +88,10 @@ class DBColumnSelectPanel extends BaseDesignComponent {
                 key: document.designData.currentReport.reportColumns[i].key,
                 textAlign: ta,
                 displayResult: displayResult,
-                displayTotal: displayTotal
+                displayTotal: displayTotal,
+                isString: document.designData.currentReport.reportColumns[i].isString,
+                isNumeric: document.designData.currentReport.reportColumns[i].isNumeric,
+                isDate: document.designData.currentReport.reportColumns[i].isDate
             });
         }
     }
@@ -109,6 +112,8 @@ class DBColumnSelectPanel extends BaseDesignComponent {
                     for (let i = 0; i < document.designData.currentReport.reportColumns.length; ++i) {
                         document.designData.currentReport.reportColumns[i].key = getUniqueKey();
                         document.designData.currentReport.reportColumns[i].isNumeric = isNumeric(document.designData.currentReport.reportColumns[i].type);
+                        document.designData.currentReport.reportColumns[i].isString = isString(document.designData.currentReport.reportColumns[i].type);
+                        document.designData.currentReport.reportColumns[i].isDate = isDate(document.designData.currentReport.reportColumns[i].type);
                     }
                     curcomp.populateReportObjectData();
                     removeWaitMessage();

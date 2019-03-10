@@ -34,25 +34,29 @@ class ColumnSelectLine extends React.Component {
     }
 
     render() {
-        const {displayResult, displayTotal, textAlign} = this.state;
+        const {displayResult, textAlign} = this.state;
         let columnData = getReportColumn(this.props.reportColumns[this.props.index].key);
 
         return <div className="columnSelectLine">
             <div className="lineStyle1">
                 { (this.props.index > 0) ? <MoveButton type='up' index={this.props.index} onMove={this.onMoveUp} /> : <img alt="" src="/images/blank.png"/> }
-                <span className="label">{this.props.index + 1}.&nbsp;</span>{columnData.path.replace(/\./g, '->')}</div>
+                <span className="label">{this.props.index + 1}.
+                    &nbsp;<Checkbox label={config.textmsg.displayresult}
+                    handleCheckboxChange={this.setDisplayResult} isChecked={displayResult}/>
+                    </span>{columnData.path.replace(/\./g, '->')}</div>
             <div className="lineStyle1">
                 { (this.props.index < (this.props.nodeCount() - 1)) ? <MoveButton type='down' index={this.props.index} onMove={this.onMoveDown} /> : <img alt="" src="/images/blank.png"/> }
                 <span>
-                    <TextAlignSelect setTextAlign={this.setTextAlign} textAlign={textAlign}/>
+                    <TextAlignSelect setTextAlign={this.setTextAlign}
+                        ref={(ta) => {this.textAlign = ta}}
+                        textAlign={textAlign}
+                        disabled={!this.props.reportColumns[this.props.index].displayResult}/>
                     &nbsp;
-                    { columnData.type.includes('VARCHAR')
-                        && <SpecialHandlingSelect
-                            setSpecialHandlingType={this.setSpecialHandlingType}
-                            currentValue={this.props.reportColumns[this.props.index].specialHandlingType} /> }
-                    <Checkbox label={config.textmsg.displayresult} handleCheckboxChange={this.setDisplayResult} isChecked={displayResult}/>
-                    &nbsp;
-                    { columnData.isNumeric && <Checkbox label={config.textmsg.displaytotal} handleCheckboxChange={this.setDisplayTotal} isChecked={displayTotal}/> }
+                    <SpecialHandlingSelect
+                        ref={(sp) => {this.specialHandlingSelect = sp}}
+                        setSpecialHandlingType={this.setSpecialHandlingType}
+                        reportColumn={this.props.reportColumns[this.props.index]}
+                        disabled={!this.props.reportColumns[this.props.index].displayResult}/>
                 </span>
             </div>
         </div>;
@@ -68,6 +72,8 @@ class ColumnSelectLine extends React.Component {
 
     setDisplayResult(display) {
         this.props.reportColumns[this.props.index].displayResult = display;
+        this.textAlign.setState({disabled: !display});
+        this.specialHandlingSelect.setState({disabled: !display})
     }
 
     setDisplayTotal(display) {

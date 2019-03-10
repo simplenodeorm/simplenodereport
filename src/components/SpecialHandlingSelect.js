@@ -16,16 +16,36 @@ class SpecialHandlingSelect extends React.Component {
     constructor(props) {
         super(props);
         this.setSpecialHandlingType = this.setSpecialHandlingType.bind(this);
+        
+        this.state = {
+            disabled: this.props.disabled
+        };
     }
     
+    componentWillReceiveProps(nextProps) {
+        this.setState({disabled: nextProps.disabled});
+    }
+    
+    
     render() {
-        let cval = this.props.currentValue;
+        const {disabled} = this.state;
+        let cval = this.props.reportColumn.specialHandlingType;
         if (!cval) {
             cval = 'none';
         }
-        return <div className="locationSelect">
+        
+        let dis = '';
+        if (disabled) {
+            dis = 'disabled';
+            this.props.setSpecialHandlingType("none");
+        }
+        
+        return (<div className="locationSelect">
             {config.textmsg.specialhandlinglabel}
-            <select onChange={this.setSpecialHandlingType}>{loop(["none", "email", "link", "image"], cval)}</select></div>;
+            <select onChange={this.setSpecialHandlingType} disabled={dis}>
+            {this.props.reportColumn.isString && loop(["none", "email", "link", "image"], cval)}
+            {this.props.reportColumn.isNumeric && loop(["none", "sum", "avg", "max", "min"], cval)}
+            </select></div>);
     }
 
     setSpecialHandlingType(info) {

@@ -16,20 +16,34 @@ class TextAlignSelect extends React.Component{
     constructor(props) {
         super(props);
         this.setTextAlign = this.setTextAlign.bind(this);
+        
+        this.state = {
+            disabled: this.props.disabled
+        }
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        this.setState({disabled: nextProps.disabled});
     }
     
     render() {
         const alignments = ["left", "center", "right"];
+        const {disabled} = this.state;
+        let dis = '';
+        if (disabled) {
+            dis = 'disabled'
+        }
+        
         if (this.props.asTableRow) {
             return <tr><th>{config.textmsg.textalignlabel}
-            </th><td><select onChange={this.setTextAlign}>
+            </th><td><select onChange={this.setTextAlign} disabled={dis}>
                     {loop(alignments, this.props.textAlign)}
             </select></td>
             </tr>;
             
         } else {
             return <div className="textAlignSelect">{config.textmsg.textalignlabel}
-                <select onChange={this.setTextAlign}>
+                <select onChange={this.setTextAlign} disabled={dis}>
                     {loop(alignments, this.props.textAlign)}
                 </select>
             </div>;
