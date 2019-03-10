@@ -320,7 +320,6 @@ export function setDefaultReportObjectSize(designPanel, reportObject) {
                 }
             }
             
-            reportObject.columnCount = colcnt;
             reportObject.rect = {top: 20, left: 20, height: 200, width: 300};
             let colwidth = config.defaultColumnWidth;
             

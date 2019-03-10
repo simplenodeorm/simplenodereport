@@ -15,15 +15,20 @@ const headerLoop = (columns, objectColumns) => {
     });
 };
 
-const rowLoop = (data) => {
+const rowLoop = (data, objectColumns) => {
     return data.map((row) => {
-        return <tr>{columnLoop(row)}</tr>;
+        return <tr>{columnLoop(row, objectColumns)}</tr>;
     });
 };
 
-const columnLoop = (row) => {
-    return row.map((col) => {
-        return <td><div>{col}</div></td>;
+const columnLoop = (row, objectColumns) => {
+    return row.map((col, i) => {
+        if (objectColumns[i].specialHandlingType && objectColumns[i].specialHandlingType !== 'none') {
+            return <td><div>{objectColumns[i].specialHandlingType}</div></td>;
+            
+        } else {
+            return <td><div>{col}</div></td>;
+        }
     });
 };
 
@@ -31,7 +36,6 @@ class DBDataReportObject extends ReportObject {
     constructor(props) {
         super(props);
         this.getObjectData = this.getObjectData.bind(this);
-        this.pageBreakController = false;
     }
 
     getObjectData() {
@@ -88,7 +92,7 @@ class DBDataReportObject extends ReportObject {
     getContent(objectData) {
         return <table>
             <thead><tr>{ headerLoop(objectData.columns, objectData.objectColumns) }</tr></thead>
-            <tbody>{ rowLoop(objectData.data) }</tbody>
+            <tbody>{ rowLoop(objectData.data, objectData.objectColumns) }</tbody>
         </table>;
     }
 

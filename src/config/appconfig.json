@@ -124,7 +124,8 @@
         "retainaspectratio": "Retain Aspect Ratio",
         "savingreportmsg": "Saving report...",
         "runningreportmsg": "Running ? report...",
-        "orientationlabel": "Orientation:"
+        "orientationlabel": "Orientation:",
+        "specialhandlinglabel": "Special Handling:"
     },
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",

@@ -5,6 +5,7 @@ import {Checkbox} from './Checkbox';
 import {TextAlignSelect} from './TextAlignSelect';
 import config from '../config/appconfig.json';
 import {getReportColumn} from './helpers';
+import {SpecialHandlingSelect} from './SpecialHandlingSelect';
 
 class ColumnSelectLine extends React.Component {
     constructor(props) {
@@ -22,6 +23,7 @@ class ColumnSelectLine extends React.Component {
         this.setDisplayResult = this.setDisplayResult.bind(this);
         this.setDisplayTotal = this.setDisplayTotal.bind(this);
         this.setTextAlign = this.setTextAlign.bind(this);
+        this.setSpecialHandlingType = this.setSpecialHandlingType.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -43,8 +45,14 @@ class ColumnSelectLine extends React.Component {
                 { (this.props.index < (this.props.nodeCount() - 1)) ? <MoveButton type='down' index={this.props.index} onMove={this.onMoveDown} /> : <img alt="" src="/images/blank.png"/> }
                 <span>
                     <TextAlignSelect setTextAlign={this.setTextAlign} textAlign={textAlign}/>
+                    &nbsp;
+                    { columnData.type.includes('VARCHAR')
+                        && <SpecialHandlingSelect
+                            setSpecialHandlingType={this.setSpecialHandlingType}
+                            currentValue={this.props.reportColumns[this.props.index].specialHandlingType} /> }
                     <Checkbox label={config.textmsg.displayresult} handleCheckboxChange={this.setDisplayResult} isChecked={displayResult}/>
-                    &nbsp;{ columnData.isNumeric && <Checkbox label={config.textmsg.displaytotal} handleCheckboxChange={this.setDisplayTotal} isChecked={displayTotal}/> }
+                    &nbsp;
+                    { columnData.isNumeric && <Checkbox label={config.textmsg.displaytotal} handleCheckboxChange={this.setDisplayTotal} isChecked={displayTotal}/> }
                 </span>
             </div>
         </div>;
@@ -68,6 +76,10 @@ class ColumnSelectLine extends React.Component {
 
     setTextAlign(textAlign) {
         this.props.reportColumns[this.props.index].textAlign = textAlign;
+    }
+    
+    setSpecialHandlingType(value) {
+        this.props.reportColumns[this.props.index].specialHandlingType = value;
     }
 }
 
