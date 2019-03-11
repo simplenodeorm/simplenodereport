@@ -30,18 +30,21 @@ class DBColumnSelectPanel extends BaseDesignComponent {
 
     render() {
         const {dataLoaded} = this.state;
+        const loop = (data) => {
+            return data.map((node, i) => {
+                return  <ColumnSelectLine
+                    reportColumns={this.props.reportObject.reportColumns}
+                    index={i}
+                    nodeCount={this.getNodeCount}
+                    onMove={this.onMove}/>;
+            
+            });
+        };
+    
         if (dataLoaded) {
-            let loop = (data) => {
-                return data.map((node, i) => {
-                    return  <ColumnSelectLine
-                        reportColumns={this.props.reportObject.reportColumns}
-                        index={i}
-                        nodeCount={this.getNodeCount}
-                        onMove={this.onMove}/>;
-
-                });};
-
-
+            if (!this.props.reportObject.reportColumns || (this.props.reportObject.reportColumns.length ===0)) {
+                this.populateReportObjectData();
+            }
             return <div style={{height: "75%"}} className="tabContainer">{loop(this.props.reportObject.reportColumns, this.columnSelects)}</div>;
         } else {
             return <div className="tabContainer"/>;

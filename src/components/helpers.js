@@ -19,7 +19,21 @@ var ppi;
 export function clearDocumentDesignData() {
     document.designData = '';
 }
+
+export function getPrecision(dbType) {
+    let retval = 0;
+    let pos = dbType.indexOf(',');
+    if (pos > 0) {
+        let pos2 = dbType.indexOf(')', pos);
+        
+        if (pos2 > pos) {
+            retval = Number(dbType.substring(pos+1, pos2).trim())
+        }
+    }
     
+    return retval;
+}
+
 export function getFieldType(dbType) {
     let retval;
     let check = dbType.toLowerCase();

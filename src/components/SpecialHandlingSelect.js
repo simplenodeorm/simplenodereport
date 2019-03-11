@@ -2,6 +2,8 @@ import React from 'react';
 import "../app/App.css";
 import config from "../config/appconfig";
 
+const stringOptions = ["none", "email", "link", "image"];
+const numericOptions = ["none", "sum", "avg", "max", "min"];
 const loop = (data, cursel) => {
     return data.map((info) => {
         if (cursel === info) {
@@ -33,19 +35,29 @@ class SpecialHandlingSelect extends React.Component {
         if (!cval) {
             cval = 'none';
         }
-        
+    
         let dis = '';
         if (disabled) {
             dis = 'disabled';
             this.props.setSpecialHandlingType("none");
         }
-        
-        return (<div className="locationSelect">
+    
+        let opts;
+        if (this.props.reportColumn.isString) {
+            opts = stringOptions;
+        } else if (this.props.reportColumn.isNumeric) {
+            opts = numericOptions;
+        }
+    
+        if (opts) {
+         return (<div className="locationSelect">
             {config.textmsg.specialhandlinglabel}
             <select onChange={this.setSpecialHandlingType} disabled={dis}>
-            {this.props.reportColumn.isString && loop(["none", "email", "link", "image"], cval)}
-            {this.props.reportColumn.isNumeric && loop(["none", "sum", "avg", "max", "min"], cval)}
+                {loop(opts, cval)}
             </select></div>);
+        } else {
+            return <span />
+        }
     }
 
     setSpecialHandlingType(info) {
