@@ -185,35 +185,37 @@ class AppToolbar extends BaseDesignComponent {
         for (let i = 0; i < config.pageSections.length; ++i) {
             let dc = this.props.getDesignPanel().getReportSectionDesignCanvas(config.pageSections[i]);
             let selectedObjects = dc.getSelectedReportObjects();
+    
             let fs = dc.firstSelected;
             if (!fs) {
                 fs = selectedObjects[0];
             }
-        
-            for (let j = 0; j < selectedObjects.length; ++j) {
-                if (selectedObjects[j] != fs) {
-                    switch (pos) {
-                        case 'left':
-                            selectedObjects[j].rect.left = fs.rect.left;
-                            dc.mountedReportObjects[selectedObjects[j].myIndex].setState({left: selectedObjects[j].rect.left});
-                            break;
-                        case 'top':
-                            selectedObjects[j].rect.top = fs.rect.top;
-                            dc.mountedReportObjects[selectedObjects[j].myIndex].setState({top: selectedObjects[j].rect.top});
-                            break;
-                        case 'right':
-                            selectedObjects[j].rect.left = (fs.rect.left + fs.rect.width) - selectedObjects[j].rect.width;
-                            dc.mountedReportObjects[selectedObjects[j].myIndex].setState({left: selectedObjects[j].rect.left});
-                            break;
-                        case 'bottom':
-                            selectedObjects[j].rect.top = (fs.rect.top + fs.rect.height) - selectedObjects[j].rect.height;
-                            dc.mountedReportObjects[selectedObjects[j].myIndex].setState({top: selectedObjects[j].rect.top});
-                            break;
+            if (selectedObjects && fs) {
+                for (let j = 0; j < selectedObjects.length; ++j) {
+                    if (selectedObjects[j] != fs) {
+                        switch (pos) {
+                            case 'left':
+                                selectedObjects[j].rect.left = fs.rect.left;
+                                dc.mountedReportObjects[selectedObjects[j].myIndex].setState({left: selectedObjects[j].rect.left});
+                                break;
+                            case 'top':
+                                selectedObjects[j].rect.top = fs.rect.top;
+                                dc.mountedReportObjects[selectedObjects[j].myIndex].setState({top: selectedObjects[j].rect.top});
+                                break;
+                            case 'right':
+                                selectedObjects[j].rect.left = (fs.rect.left + fs.rect.width) - selectedObjects[j].rect.width;
+                                dc.mountedReportObjects[selectedObjects[j].myIndex].setState({left: selectedObjects[j].rect.left});
+                                break;
+                            case 'bottom':
+                                selectedObjects[j].rect.top = (fs.rect.top + fs.rect.height) - selectedObjects[j].rect.height;
+                                dc.mountedReportObjects[selectedObjects[j].myIndex].setState({top: selectedObjects[j].rect.top});
+                                break;
+                        }
                     }
                 }
-            }
         
-            dc.setState(dc.state);
+                dc.setState(dc.state);
+            }
         }
     }
 

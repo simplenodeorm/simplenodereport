@@ -16,6 +16,7 @@ class LinkSetupPanel extends ModalDialog {
         this.setUrl = this.setUrl.bind(this);
         this.setLinkText= this.setLinkText.bind(this);
         this.showInNewTab = this.showInNewTab.bind(this);
+        this.setTextAlign = this.setTextAlign.bind(this);
     }
     
     getContent() {
@@ -54,6 +55,10 @@ class LinkSetupPanel extends ModalDialog {
     
     setLinkText(info) {
         this.props.reportObject.linkText = info.target.value;
+    }
+    
+    setTextAlign(value) {
+        this.props.reportObject.textAlign = value;
     }
     
     showInNewTab(showInNewTab) {
