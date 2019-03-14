@@ -7,6 +7,7 @@ import defaults from '../config/defaults';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {PreferencesPanel} from './PreferencesPanel';
 import {SaveReportPanel} from './SaveReportPanel';
+import {HelpButton} from './HelpButton';
 import {
     clearContextMenu,
     clearDocumentDesignData,
@@ -155,6 +156,7 @@ class AppToolbar extends BaseDesignComponent {
                     {!canSave && <img alt={config.textmsg.run} src='/images/run-disabled.png'/>}
                     <span className="label">{config.textmsg.run}</span>
                 </button>
+                <HelpButton/>
             </div>
         </div>;
     }
