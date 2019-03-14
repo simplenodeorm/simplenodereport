@@ -118,11 +118,13 @@ class DesignPanel extends BaseDesignComponent {
             <div className="designPanel">
                 <div ref={(dw) => {this.dw = dw}} className="documentWrapper" style={designStyle}>
                     <SplitPane
+                        ref={(sp) => {this.splitPane1 = sp}}
                         split="horizontal"
                         minSize={0}
                         onDragFinished={this.onFooterSize}
                         defaultSize={height - document.designData.currentReport.footerHeight}>
                         <SplitPane
+                            ref={(sp) => {this.splitPane2 = sp}}
                             split="horizontal"
                             minSize={0}
                             onDragFinished={this.onHeaderSize}
@@ -214,6 +216,10 @@ class DesignPanel extends BaseDesignComponent {
                 this.getReportSection(document.designData.currentReport.reportObjects[i].reportSection).setState({error:''});
                 this.addReportObject(document.designData.currentReport.reportObjects[i]);
             }
+            
+            
+            this.splitPane1.setState({draggedSize: (document.designData.currentReport.documentHeight - document.designData.currentReport.footerHeight)});
+            this.splitPane2.setState({draggedSize: document.designData.currentReport.headerHeight});
         }
 
         this.props.setCurrentReport(document.designData.currentReport);
@@ -225,7 +231,7 @@ class DesignPanel extends BaseDesignComponent {
             width: document.designData.currentReport.documentWidth,
             margins: document.designData.currentReport.margins
         };
-
+    
         this.setState(layout);
     }
 
