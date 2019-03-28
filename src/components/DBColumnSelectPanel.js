@@ -3,7 +3,7 @@ import {BaseDesignComponent} from './BaseDesignComponent';
 import {ColumnSelectLine} from './ColumnSelectLine';
 import axios from "axios";
 import "../app/App.css";
-import {getUniqueKey, isNumeric,isString,isDate,removeWaitMessage} from './helpers';
+import {getUniqueKey, isNumeric,isString,isDate,removeWaitMessage,getOrmUrl} from './helpers';
 
 
 class DBColumnSelectPanel extends BaseDesignComponent {
@@ -108,7 +108,7 @@ class DBColumnSelectPanel extends BaseDesignComponent {
             headers: {'Authorization': orm.authString }
         };
 
-        axios.get(orm.url + '/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId, config)
+        axios.get(getOrmUrl(orm.url) + '/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId, config)
             .then((response) => {
                 if (response.status === 200) {
                     document.designData.currentReport.reportColumns = response.data;

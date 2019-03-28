@@ -4,7 +4,7 @@ import config from '../config/appconfig.json';
 import base64 from 'base-64';
 import axios from 'axios';
 import {BaseDesignComponent} from '../components/BaseDesignComponent';
-import {removeWaitMessage} from '../components/helpers';
+import {removeWaitMessage,getOrmUrl} from '../components/helpers';
 import { withRouter } from 'react-router';
 
 import '../app/App.css';
@@ -131,7 +131,7 @@ class LoginPage extends BaseDesignComponent {
         selectedOrm.authString = authString;
         
         const orm = selectedOrm;
-        const instance = axios.create({baseURL: orm.url});
+        const instance = axios.create({baseURL: getOrmUrl(orm.url)});
         instance.get('/design/login', config)
                 .then((response) => {
                     if (response.status === 200) {

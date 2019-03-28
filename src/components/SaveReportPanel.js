@@ -5,6 +5,7 @@ import Tree from 'rc-tree';
 import './defaultTree.css';
 import "../app/App.css";
 import axios from 'axios';
+import {getOrmUrl} from './helpers';
 
 const rfimage = <img alt="query folder" src="/images/report-folder.png"/>;
 class SaveReportPanel extends ModalDialog {
@@ -126,7 +127,7 @@ class SaveReportPanel extends ModalDialog {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/report/authorizers', config)
+        axios.get(getOrmUrl(orm.url) + '/report/authorizers', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({authorizers: response.data});
@@ -146,7 +147,7 @@ class SaveReportPanel extends ModalDialog {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/report/document/groups', config)
+        axios.get(getOrmUrl(orm.url) + '/report/document/groups', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({groups: response.data});

@@ -1,6 +1,7 @@
 import React from 'react';
 import "../app/App.css";
 import axios from 'axios';
+import {getOrmUrl} from './helpers';
 
 const loop = (data, qid) => {
     return data.map((item) => {
@@ -46,7 +47,7 @@ class QuerySelector extends React.Component {
         const config = {
             headers: {'Authorization': orm.authString}
         };
-        axios.get(orm.url + '/report/querydocuments', config)
+        axios.get(getOrmUrl(orm.url) + '/report/querydocuments', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({queryDocuments: response.data});

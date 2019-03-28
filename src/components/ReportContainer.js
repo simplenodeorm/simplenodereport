@@ -3,7 +3,7 @@ import '../app/RunReport.css';
 import config from '../config/runreportconfig.json';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import axios from "axios";
-import {getModalContainer,clearModalContainer} from "./helpers";
+import {getModalContainer,clearModalContainer,getOrmUrl} from "./helpers";
 import ReactDOM from "react-dom";
 import {ParameterInputPanel} from "./ParameterInputPanel";
 
@@ -88,7 +88,7 @@ class ReportContainer extends BaseDesignComponent {
         };
     
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);
-        axios.post(orm.url + '/report/run/' + docid, {"parameters": results.parameters}, config)
+        axios.post(getOrmUrl(orm.url) + '/report/run/' + docid, {"parameters": results.parameters}, config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.showReport(response.data);
@@ -123,7 +123,7 @@ class ReportContainer extends BaseDesignComponent {
         };
         
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);
-        axios.get(orm.url + '/report/run/' + docid, config)
+        axios.get(getOrmUrl(orm.url) + '/report/run/' + docid, config)
             .then((response) => {
                 if (response.status === 200) {
                     if (response.data.userInputRequired) {

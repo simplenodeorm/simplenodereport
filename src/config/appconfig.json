@@ -126,6 +126,7 @@
         "orientationlabel": "Orientation:",
         "specialhandlinglabel": "Special Handling:"
     },
+    "demoMode": true,
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,

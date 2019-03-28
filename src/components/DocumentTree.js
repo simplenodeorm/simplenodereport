@@ -6,7 +6,13 @@ import config from '../config/appconfig.json';
 import './defaultTree.css';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import axios from 'axios';
-import {clearContextMenu, clearDocumentDesignData, copyObject, getContextMenu, removeWaitMessage} from './helpers';
+import {
+    clearContextMenu,
+    clearDocumentDesignData,
+    copyObject,
+    getContextMenu,
+    removeWaitMessage,
+    getOrmUrl} from './helpers';
 const rdimage = <img alt="report document" src="/images/report-document.png"/>;
 const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 
@@ -104,7 +110,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/report/load/' + selectedDocument, axiosConfig)
+        axios.get(getOrmUrl(orm.url) + '/report/load/' + selectedDocument, axiosConfig)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.loadDocumentData(response.data);
@@ -130,7 +136,7 @@ class DocumentTree extends BaseDesignComponent {
                 headers: {'Authorization': orm.authString}
             };
 
-            axios.get(orm.url + '/report/delete/' + selectedDocument, config)
+            axios.get(getOrmUrl(orm.url) + '/report/delete/' + selectedDocument, config)
                 .then((response) => {
                     if (response.status === 200) {
                         curcomp.loadDocuments();
@@ -154,7 +160,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/report/document/groups', config)
+        axios.get(getOrmUrl(orm.url) + '/report/document/groups', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({groups: response.data});
@@ -176,7 +182,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(orm.url + '/report/documents', config)
+        axios.get(getOrmUrl(orm.url) + '/report/documents', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({documents: response.data});
