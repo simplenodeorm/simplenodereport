@@ -149,7 +149,7 @@ class AppToolbar extends BaseDesignComponent {
                 </button>
                 <button className="button" title={config.textmsg.save} disabled={config.demoMode || !canSave} onClick={this.onSave}>
                     {!config.demoMode && canSave && <img alt={config.textmsg.save} src='/images/save.png'/>}
-                    {!canSave && <img alt={config.textmsg.save} src='/images/save-disabled.png'/>}
+                    {(config.demoMode || !canSave) && <img alt={config.textmsg.save} src='/images/save-disabled.png'/>}
                     <span className="label">{config.textmsg.save}</span>
                 </button>
                 <button className="button" title={config.textmsg.run} disabled={!canSave} onClick={this.onRun}>
