@@ -1,4 +1,4 @@
-Simple Node Report is a React 16 report designer for the simplenodeorm. 
+Simple Node Report is a React report designer for the simplenodeorm. 
 Simple Node Report allows the user to create, save and run WYSIWYG style 
 HTML reports in simplenodeorm
 
