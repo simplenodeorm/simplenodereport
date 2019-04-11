@@ -138,7 +138,7 @@
     "borderStyles": ["none", "hidden", "dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset"],
     "borderWidths": [1, 2, 3, 4, 5, 6],
     "defaultPreferenceNames": ["marginLeft", "marginTop", "marginRight", "marginBottom", "fontFamily", "font", "fontSize", "documentSize", "reportName", "queryDocumentId"],
-    "reportObjectTypes": ["current date","dbdata", "image", "graph", "label", "link", "email", "page number", "shape"],
+    "reportObjectTypes": ["current date","dbdata", "image", "chart", "label", "link", "email", "page number", "shape"],
     "shapes": ["rectangle", "ellipse", "horizontal line", "vertical line"],
     "dateFormats": [
         {"format": "mm/dd/yyyy", "example": "01/21/2019"},
@@ -195,6 +195,16 @@
     "keyMoveIncrement": 5,
     "pageNumberPadding": 10,
     "defaultShape": "rectangle",
+    "chartTypes": [
+        "Bar",
+        "Line",
+        "Area",
+        "Scatter",
+        "Doughnut",
+        "Pie",
+        "Polar Area",
+        "Radar"
+    ],
     "monthNames": [
         "January",
         "February",

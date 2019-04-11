@@ -33,6 +33,7 @@ import {ShapeSetupPanel} from "./ShapeSetupPanel";
 import {CurrentDateSetupPanel} from './CurrentDateSetupPanel';
 import {PageNumberSetupPanel} from './PageNumberSetupPanel';
 import {ParameterInputPanel} from "./ParameterInputPanel";
+import {ChartSetupPanel} from "./ChartSetupPanel";
 
 const cfg = config;
 
@@ -379,11 +380,14 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     showReport(data) {
-        let myWindow = window.open("", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=600,height=800");
+        let myWindow = window.open("", "_blank", "titlebar=yes,toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=600,height=800");
         myWindow.document.write('<head><style>'
             + data.style
             + '</style></head><body style="background-color: #202020">'
             + data.html + '</body></html>');
+        
+        myWindow.stop();
+        
     }
     
     saveReport(params) {
@@ -540,8 +544,14 @@ class AppToolbar extends BaseDesignComponent {
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;
-            case 'graph':
-                alert('Under construction');
+            case 'chart':
+                rc = {left: 175, top: 50, width: 600, height: 425};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<ChartSetupPanel
+                    getDesignPanel={this.props.getDesignPanel}
+                    onOk={this.addReportObjectToReport}
+                    reportObject={reportObject}/>, mc);
+                break;
                 break;
         }
     }
