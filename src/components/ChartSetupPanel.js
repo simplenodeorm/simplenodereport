@@ -42,7 +42,7 @@ class ChartSetupPanel extends ModalDialog {
     };
 
     getTitle() {
-        return config.textmsg.dbdatagridsetuptitle;
+        return config.textmsg.chartsetuptitle;
     }
         
     isComplete() {

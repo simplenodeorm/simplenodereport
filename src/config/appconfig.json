@@ -25,6 +25,7 @@
         "backingquery": "Backing Query:",
         "fontfamily": "Font Family:",
         "deleteselectedobjects": "delete selected objects",
+        "chartsetuptitle": "Chart Setup",
         "dbdatagridsetuptitle": "DB Data Grid Setup",
         "namelabel": "Name:",
         "sizeweightlabel": "Size/Weight:",
@@ -124,7 +125,8 @@
         "savingreportmsg": "Saving report...",
         "runningreportmsg": "Running ? report...",
         "orientationlabel": "Orientation:",
-        "specialhandlinglabel": "Special Handling:"
+        "specialhandlinglabel": "Special Handling:",
+        "charttypelabel": "Chart Type:"
     },
     "demoMode": true,
     "pageSections": ["header", "body", "footer"],
@@ -196,14 +198,14 @@
     "pageNumberPadding": 10,
     "defaultShape": "rectangle",
     "chartTypes": [
-        "Bar",
-        "Line",
-        "Area",
-        "Scatter",
-        "Doughnut",
-        "Pie",
-        "Polar Area",
-        "Radar"
+        "bar",
+        "line",
+        "area",
+        "scatter",
+        "doughnut",
+        "pie",
+        "polar area",
+        "radar"
     ],
     "monthNames": [
         "January",

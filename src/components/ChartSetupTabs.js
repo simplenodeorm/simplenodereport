@@ -2,6 +2,7 @@ import React from 'react';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {ReportSectionSelect} from './ReportSectionSelect';
+import {ChartTypeSelect} from './ChartTypeSelect';
 import config from '../config/appconfig.json';
 import "../app/App.css";
 
@@ -12,9 +13,8 @@ class ChartSetupTabs extends BaseDesignComponent {
 
     render() {
         return <div className="tabSetContainer">
-                <table>
-                    <ReportSectionSelect reportObject={this.props.reportObject} />
-                </table>
+                <ReportSectionSelect reportObject={this.props.reportObject} />
+                <ChartTypeSelect reportObject={this.props.reportObject}/>
                 <Tabs>
                     <TabList>
                         <Tab>{config.textmsg.selectdata}</Tab>
