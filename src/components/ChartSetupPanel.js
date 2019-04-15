@@ -42,7 +42,7 @@ class ChartSetupPanel extends ModalDialog {
     };
 
     getTitle() {
-        return config.textmsg.chartsetuptitle;
+        return config.textmsg.chartsetuptitle + '[' + this.props.reportObject.chartType + ']';
     }
         
     isComplete() {
