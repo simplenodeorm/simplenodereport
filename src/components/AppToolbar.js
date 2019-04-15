@@ -39,7 +39,11 @@ const cfg = config;
 
 const reportObjectLoop = (obj, data) => {
     return data.map((item) => {
-        return <li><button onClick={obj.addReportObject} value={item}>{item}</button></li>
+        if (item === 'chart') {
+            return <li><button>{'chart'}</button><ul>{reportObjectLoop(obj, config.chartTypes)}</ul></li>;
+        } else {
+            return <li><button onClick={obj.addReportObject} value={item}>{item}</button></li>
+        }
     });
 };
 
@@ -544,14 +548,23 @@ class AppToolbar extends BaseDesignComponent {
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;
-            case 'chart':
-                rc = {left: 175, top: 50, width: 600, height: 425};
-                mc = getModalContainer(rc);
-                ReactDOM.render(<ChartSetupPanel
-                    getDesignPanel={this.props.getDesignPanel}
-                    onOk={this.addReportObjectToReport}
-                    reportObject={reportObject}/>, mc);
-                break;
+                case 'bar':
+                case 'line':
+                    reportObject.type = 'chart';
+                    reportObject.chartType = type;
+                    rc = {left: 175, top: 50, width: 600, height: 425};
+                    mc = getModalContainer(rc);
+                    ReactDOM.render(<ChartSetupPanel
+                        getDesignPanel={this.props.getDesignPanel}
+                        onOk={this.addReportObjectToReport}
+                        reportObject={reportObject}/>, mc);
+                    break;
+                case 'pie':
+                case 'doughnut':
+                    reportObject.type = 'chart';
+                    reportObject.chartType = type;
+                    break;
+    
                 break;
         }
     }

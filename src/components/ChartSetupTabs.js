@@ -17,9 +17,9 @@ class ChartSetupTabs extends BaseDesignComponent {
                 <ChartTypeSelect reportObject={this.props.reportObject}/>
                 <Tabs>
                     <TabList>
-                        <Tab>{config.textmsg.selectdata}</Tab>
-                        <Tab>{config.textmsg.font}</Tab>
-                        <Tab>{config.textmsg.border}</Tab>
+                        <Tab>{config.textmsg.legend}</Tab>
+                        <Tab>{config.textmsg.title}</Tab>
+                        <Tab>{config.textmsg.elements}</Tab>
                     </TabList>
                     <TabPanel>
                     </TabPanel>

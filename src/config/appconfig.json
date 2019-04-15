@@ -126,7 +126,10 @@
         "runningreportmsg": "Running ? report...",
         "orientationlabel": "Orientation:",
         "specialhandlinglabel": "Special Handling:",
-        "charttypelabel": "Chart Type:"
+        "charttypelabel": "Chart Type:",
+        "legend": "Legend",
+        "title": "Title",
+        "elements": "Elements"
     },
     "demoMode": true,
     "pageSections": ["header", "body", "footer"],
@@ -200,12 +203,8 @@
     "chartTypes": [
         "bar",
         "line",
-        "area",
-        "scatter",
-        "doughnut",
         "pie",
-        "polar area",
-        "radar"
+        "doughnut"
     ],
     "monthNames": [
         "January",
