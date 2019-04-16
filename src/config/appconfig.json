@@ -129,9 +129,14 @@
         "charttypelabel": "Chart Type:",
         "legend": "Legend",
         "title": "Title",
-        "elements": "Elements"
+        "elements": "Elements",
+        "legendfontlabel": "Legend Font",
+        "displaylegend": "Display Legend",
+        "positionlabel": "Position:",
+        "displaytitle": "Display Title"
     },
     "demoMode": true,
+    "defaultLegendPosition": "bottom",
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,
@@ -205,6 +210,24 @@
         "line",
         "pie",
         "doughnut"
+    ],
+    "chartLegendPositions": [
+        {
+            "key": "top",
+            "text": "top"
+        },
+        {
+            "key": "left",
+            "text": "left"
+        },
+        {
+            "key": "bottom",
+            "text": "bottom"
+        },
+        {
+            "key": "right",
+            "text": "right"
+        }
     ],
     "monthNames": [
         "January",

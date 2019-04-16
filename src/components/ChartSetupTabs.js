@@ -2,6 +2,8 @@ import React from 'react';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {ReportSectionSelect} from './ReportSectionSelect';
+import {ChartLegendPanel} from './ChartLegendPanel';
+import {ChartTitlePanel} from './ChartTitlePanel';
 import config from '../config/appconfig.json';
 import "../app/App.css";
 
@@ -20,8 +22,10 @@ class ChartSetupTabs extends BaseDesignComponent {
                         <Tab>{config.textmsg.elements}</Tab>
                     </TabList>
                     <TabPanel>
+                        <ChartLegendPanel reportObject={this.props.reportObject}/>
                     </TabPanel>
                     <TabPanel>
+                        <ChartTitlePanel reportObject={this.props.reportObject}/>
                     </TabPanel>
                     <TabPanel>
                     </TabPanel>

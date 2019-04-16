@@ -5,6 +5,7 @@
     "marginRight": 0.5,
     "marginBottom": 0.5,
     "fontSize": 10,
+    "fontWeight": 200,
     "orientation": "portrait",
     "fontFamily": "Arial,Helvetica,sans-serif",
     "font": "Arial",
