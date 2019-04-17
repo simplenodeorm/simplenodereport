@@ -548,24 +548,19 @@ class AppToolbar extends BaseDesignComponent {
                     onOk={this.addReportObjectToReport}
                     reportObject={reportObject}/>, mc);
                 break;
-                case 'bar':
-                case 'line':
-                    reportObject.type = 'chart';
-                    reportObject.chartType = type;
-                    rc = {left: 175, top: 50, width: 600, height: 425};
-                    mc = getModalContainer(rc);
-                    ReactDOM.render(<ChartSetupPanel
-                        getDesignPanel={this.props.getDesignPanel}
-                        onOk={this.addReportObjectToReport}
-                        reportObject={reportObject}/>, mc);
-                    break;
-                case 'pie':
-                case 'doughnut':
-                    reportObject.type = 'chart';
-                    reportObject.chartType = type;
-                    break;
-    
-                break;
+            case 'bar':
+            case 'line':
+            case 'pie':
+            case 'doughnut':
+                reportObject.type = 'chart';
+                reportObject.chartType = type;
+                rc = {left: 175, top: 50, width: 500, height: 425};
+                mc = getModalContainer(rc);
+                ReactDOM.render(<ChartSetupPanel
+                    getDesignPanel={this.props.getDesignPanel}
+                    onOk={this.addReportObjectToReport}
+                    reportObject={reportObject}/>, mc);
+            break;
         }
     }
     

@@ -895,4 +895,31 @@ input[type="checkbox"] {
     border: solid 1px crimson;
 }
 
+.chartElements {
+    position: absolute;
+    box-sizing:border-box;
+    background: var(--default-bkcolor);
+    vertical-align: top;
+    width: 98%;
+}
 
+.chartElements table {
+    padding: 0;
+    margin: 0;
+}
+
+.chartElements th {
+    font-weight: var(--strong-font-weight);
+    text-align: center;
+    border-bottom: solid gray 1px;
+}
+
+.chartElements tr td:nth-of-type(1) {
+    text-align: right;
+}
+
+.chartElements select {
+    width: 75px;
+    margin: 0;
+    padding: 0;
+}

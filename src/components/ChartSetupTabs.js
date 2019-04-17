@@ -4,6 +4,7 @@ import {BaseDesignComponent} from './BaseDesignComponent';
 import {ReportSectionSelect} from './ReportSectionSelect';
 import {ChartLegendPanel} from './ChartLegendPanel';
 import {ChartTitlePanel} from './ChartTitlePanel';
+import {ChartElementsPanel} from './ChartElementsPanel';
 import config from '../config/appconfig.json';
 import "../app/App.css";
 
@@ -20,12 +21,16 @@ class ChartSetupTabs extends BaseDesignComponent {
                         <Tab>{config.textmsg.legend}</Tab>
                         <Tab>{config.textmsg.title}</Tab>
                         <Tab>{config.textmsg.elements}</Tab>
+                        <Tab>{config.textmsg.dataset}</Tab>
                     </TabList>
                     <TabPanel>
                         <ChartLegendPanel reportObject={this.props.reportObject}/>
                     </TabPanel>
                     <TabPanel>
                         <ChartTitlePanel reportObject={this.props.reportObject}/>
+                    </TabPanel>
+                    <TabPanel>
+                        <ChartElementsPanel reportObject={this.props.reportObject}/>
                     </TabPanel>
                     <TabPanel>
                     </TabPanel>

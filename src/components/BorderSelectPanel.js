@@ -79,8 +79,8 @@ class BorderSelectPanel extends React.Component {
 
         return <div className="dataEntry"><table cellSpacing="0" cellPadding="0">
             <tr><td style={{textDecoration: "underline", textAlign: "center"}} colSpan="2">{this.props.label}</td></tr>
-            <tr><th>{config.textmsg.borderstylelabel}</th><td><select onChange={this.setBorderStyle}>{loop(config.borderStyles, borderStyle)}</select></td></tr>
-            <tr><th>{config.textmsg.borderwidthlabel}</th><td><SizeSelect sizes={config.borderWidths} setSize={this.setBorderWidth} currentSize={borderWidth}/></td></tr>
+            <tr><th>{config.textmsg.stylelabel}</th><td><select onChange={this.setBorderStyle}>{loop(config.borderStyles, borderStyle)}</select></td></tr>
+            <tr><th>{config.textmsg.widthlabel}</th><td><SizeSelect sizes={config.borderWidths} setSize={this.setBorderWidth} currentSize={borderWidth}/></td></tr>
             <tr><th>{config.textmsg.bordercolorlabel}</th><td><ColorSelect colors={config.colors} setColor={this.setBorderColor} currentColor={borderColor}/></td></tr>
             {!this.props.hideCheckboxes &&
             <tr>
