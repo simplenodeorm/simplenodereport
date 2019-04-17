@@ -18,7 +18,7 @@ class TitlePositionSelect extends React.Component{
         this.setTitlePosition = this.setTitlePosition.bind(this);
 
         if (!this.props.reportObject.titlePosition) {
-            this.props.reportObject.titlePosition = config.defaultLegendPosition;
+            this.props.reportObject.titlePosition = config.defaultTitlePosition;
         }
     }
     

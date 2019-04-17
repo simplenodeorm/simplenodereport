@@ -33,7 +33,7 @@ class ChartTitlePanel extends BaseDesignComponent {
     
     render() {
         return <div className="tabContainer">
-            <input type={'text'} defaultValue={'my title'} onBlur={this.setTitle}/>
+            <input type={'text'} style={{width: '150px'}} defaultValue={'my title'} onBlur={this.setTitle}/>
             &nbsp;&nbsp;&nbsp;
             <Checkbox label={config.textmsg.displaytitle}
                       handleCheckboxChange={this.setDisplay}

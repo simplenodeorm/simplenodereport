@@ -145,6 +145,7 @@
     },
     "demoMode": true,
     "defaultLegendPosition": "bottom",
+    "defaultTitlePosition": "top",
     "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,
