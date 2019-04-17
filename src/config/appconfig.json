@@ -141,7 +141,10 @@
         "radiuslabel": "Radius:",
         "stylelabel": "Style:",
         "linecolorlabel": "Line Color:",
-        "linewidthlabel": "Line Width:"
+        "linewidthlabel": "Line Width:",
+        "catanddatamutuallyexclusive": "category and data selections are mutually exclusive",
+        "onecatallowed": "only 1 category selection allowed",
+        "onedataallowed": "only 1 data selection allowed"
     },
     "demoMode": true,
     "defaultLegendPosition": "bottom",

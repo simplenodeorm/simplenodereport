@@ -33,6 +33,7 @@ class ChartDBColumnSelectPanel extends BaseDesignComponent {
         const loop = (data) => {
             return data.map((node, i) => {
                 return  <ChartColumnSelectLine
+                    chartType={this.props.reportObject.chartType}
                     reportColumns={this.props.reportObject.reportColumns}
                     index={i}
                     nodeCount={this.getNodeCount}
