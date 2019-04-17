@@ -17,7 +17,7 @@ class ChartLegendPanel extends BaseDesignComponent {
                 fontSize: defaults.fontSize,
                 fontColor: config.defaultTextColor,
                 backgroundColor: config.defaultBackgroundColor,
-                fontWeight: defaults.fontWeight,
+                fontWeight: defaults.fontWeight
             };
     
             this.props.reportObject.displayLegend = true;

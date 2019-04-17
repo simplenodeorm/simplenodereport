@@ -17,7 +17,7 @@ class ChartTitlePanel extends BaseDesignComponent {
                 fontSize: defaults.fontSize,
                 fontColor: config.defaultTextColor,
                 backgroundColor: config.defaultBackgroundColor,
-                fontWeight: defaults.defaultFontWeight,
+                fontWeight: defaults.fontWeight
             };
             
             this.props.reportObject.displayTitle = true;

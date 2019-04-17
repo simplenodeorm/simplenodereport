@@ -5,6 +5,7 @@ import {ReportSectionSelect} from './ReportSectionSelect';
 import {ChartLegendPanel} from './ChartLegendPanel';
 import {ChartTitlePanel} from './ChartTitlePanel';
 import {ChartElementsPanel} from './ChartElementsPanel';
+import {ChartDBColumnSelectPanel} from './ChartDBColumnSelectPanel';
 import config from '../config/appconfig.json';
 import "../app/App.css";
 
@@ -33,6 +34,7 @@ class ChartSetupTabs extends BaseDesignComponent {
                         <ChartElementsPanel reportObject={this.props.reportObject}/>
                     </TabPanel>
                     <TabPanel>
+                        <ChartDBColumnSelectPanel reportObject={this.props.reportObject}/>
                     </TabPanel>
                 </Tabs>
             </div>;
