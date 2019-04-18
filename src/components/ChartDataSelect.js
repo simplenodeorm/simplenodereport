@@ -2,6 +2,7 @@ import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig.json';
 import {ChartDataAxisLine} from './ChartDataAxisLine';
+import {allowMultipleChartDataAxis} from './helpers';
 
 const selectLoop = (data) => {
     return data.map((info) => {
@@ -29,6 +30,8 @@ class ChartDataSelect extends React.Component{
         this.categorySelected = this.categorySelected.bind(this);
         this.getSelectionContent = this.getSelectionContent.bind(this);
         this.updateDataAxis = this.updateDataAxis.bind(this);
+        this.canAdd = this.canAdd.bind(this);
+        this.noDataAxisSelected = this.noDataAxisSelected.bind(this);
         
         this.state = {
             update: false
@@ -59,19 +62,36 @@ class ChartDataSelect extends React.Component{
     
     getSelectionContent() {
         let catSelected = this.categorySelected();
-        let enableAdd = (this.currentColumn && catSelected);
+        let enableAdd = (this.currentColumn && catSelected && this.canAdd());
         if (catSelected) {
             if (enableAdd) {
                 return <span>&nbsp;<img alt="add data axis" src="/images/add.png" onClick={this.addDataAxis}/>
                     <select onChange={this.setCurrentColumn}><option/>{selectLoop(this.props.reportColumns)}</select></span>
             } else {
-                return <span>&nbsp;<img alt="add data axis" src="/images/adddisabled.png" onClick={this.addDataAxis}/>
+                return <span>&nbsp;<img alt="add data axis" src="/images/adddisabled.png"/>
                     <select onChange={this.setCurrentColumn}><option/>{selectLoop(this.props.reportColumns)}</select></span>
     
             }
         } else {
             return <span>&nbsp;<img alt="add data axis" src="/images/adddisabled.png" /><select/></span>
         }
+    }
+    
+    canAdd() {
+        return (allowMultipleChartDataAxis(this.props.chartType)
+            || this.noDataAxisSelected());
+    }
+    
+    noDataAxisSelected() {
+        let retval = true;
+        for (let i = 0; i < this.props.reportColumns.length; ++i) {
+            if (this.props.reportColumns[i].axis === 'data') {
+                retval = false;
+                break;
+            }
+        }
+        
+        return retval;
     }
     
     categorySelected() {

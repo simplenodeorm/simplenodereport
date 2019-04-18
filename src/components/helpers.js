@@ -452,3 +452,8 @@ export function getOrmUrl(inurl) {
     }
     return retval;
 }
+
+
+export function allowMultipleChartDataAxis(chartType) {
+    return ((chartType !== 'pie') && (chartType !== 'doughnut'));
+}

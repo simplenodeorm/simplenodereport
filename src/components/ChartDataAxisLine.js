@@ -2,7 +2,7 @@ import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig.json';
 import {ColorSelect} from './ColorSelect';
-import {getReportColumn} from './helpers';
+import {getReportColumn,allowMultipleChartDataAxis} from './helpers';
 
 class ChartDataAxisLine extends React.Component {
     constructor(props) {
@@ -18,16 +18,18 @@ class ChartDataAxisLine extends React.Component {
     
     render() {
         let columnData = getReportColumn(this.props.reportColumn.key);
+        let allowColor = allowMultipleChartDataAxis(this.props.chartType);
         if (columnData.function) {
             return <div className="columnSelectLine">
                 <div className="lineStyle1">
                     <img alt="delete data axis" src="/images/delete.png" onClick={this.deleteAxis}/>
                     &nbsp;{columnData.function + '(' + columnData.path.replace(/\./g, '->') + ')'}
                  </div>
+                {allowColor &&
                 <table>
                     <tr><td>{config.textmsg.colorlabel}</td><td><ColorSelect currentColor={this.props.reportColumn.color} setColor={this.setColor}/></td></tr>
                     <tr><td>{config.textmsg.labellabel}</td><td><input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/></td></tr>
-                </table>
+                </table>}
             </div>;
         } else {
             return <div className="columnSelectLine">
@@ -35,10 +37,11 @@ class ChartDataAxisLine extends React.Component {
                     <img alt="delete data axis" src="/images/delete.png" onClick={this.deleteAxis}/>
                     &nbsp;{columnData.path.replace(/\./g, '->')}
                 </div>
+                {allowColor &&
                 <table>
                     <tr><td>{config.textmsg.colorlabel}</td><td><ColorSelect currentColor={this.props.reportColumn.color} setColor={this.setColor}/></td></tr>
                     <tr><td>{config.textmsg.labellabel}</td><td><input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/></td></tr>
-                </table>
+                </table>}
             </div>;
         }
     }
