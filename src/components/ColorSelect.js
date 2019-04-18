@@ -1,5 +1,6 @@
 import React from 'react';
 import "../app/App.css";
+import config from '../config/appconfig.json';
 
 class ColorSelect extends React.Component {
     constructor(props) {
@@ -31,10 +32,16 @@ class ColorSelect extends React.Component {
         const myStyle = {
             backgroundColor: selectedColor
         };
+        
+        let colors = this.props.colors;
+        
+        if (!colors) {
+            colors = config.colors;
+        }
 
         return <div style={myStyle} className="colorPicker">
             <img alt="display color list" src="/images/pie-chart.png" onClick={this.setDisplayList}/>
-            {displayList &&  <div className="colorlist">{loop(this.props.colors)}</div>}
+            {displayList &&  <div className="colorlist">{loop(colors)}</div>}
         </div>
     }
 

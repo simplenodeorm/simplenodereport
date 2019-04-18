@@ -143,9 +143,12 @@
         "linecolorlabel": "Line Color:",
         "linewidthlabel": "Line Width:",
         "categorylabel": "Category:",
-        "datalabel": "Data:"
+        "datalabel": "Data:",
+        "colorlabel": "Color:",
+        "labellabel": "Label:"
     },
     "demoMode": true,
+    "defaultDataAxisColor": "blue",
     "defaultLegendPosition": "bottom",
     "defaultTitlePosition": "top",
     "pageSections": ["header", "body", "footer"],

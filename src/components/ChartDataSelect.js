@@ -28,6 +28,8 @@ class ChartDataSelect extends React.Component{
         this.setCurrentColumn = this.setCurrentColumn.bind(this);
         this.categorySelected = this.categorySelected.bind(this);
         this.getSelectionContent = this.getSelectionContent.bind(this);
+        this.updateDataAxis = this.updateDataAxis.bind(this);
+        
         this.state = {
             update: false
         }
