@@ -39,10 +39,17 @@ class ColorSelect extends React.Component {
             colors = config.colors;
         }
 
-        return <div style={myStyle} className="colorPicker">
-            <img alt="display color list" src="/images/pie-chart.png" onClick={this.setDisplayList}/>
-            {displayList &&  <div className="colorlist">{loop(colors)}</div>}
-        </div>
+        if (this.props.asSpan) {
+            return <span style={myStyle} className="colorPicker">
+                <img alt="display color list" src="/images/pie-chart.png" onClick={this.setDisplayList}/>
+                {displayList && <div className="colorlist">{loop(colors)}</div>}
+            </span>
+        } else {
+            return <div style={myStyle} className="colorPicker">
+                <img alt="display color list" src="/images/pie-chart.png" onClick={this.setDisplayList}/>
+                {displayList && <div className="colorlist">{loop(colors)}</div>}
+            </div>
+        }
     }
 
     setDisplayList() {

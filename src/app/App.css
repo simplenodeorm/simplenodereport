@@ -797,6 +797,11 @@ input[type="checkbox"] {
     margin:0;
 }
 
+
+.columnSelectLine input[type="text"] {
+    width: 200px;
+}
+
 .tabContainer {
     position: absolute;
     box-sizing:border-box;
@@ -849,6 +854,7 @@ input[type="checkbox"] {
     text-align: right;
     margin: 3px 0 3px 3px;
     vertical-align: middle;
+    display: inline-block;
     height: var(--default-input-height);
 }
 
@@ -873,6 +879,9 @@ input[type="checkbox"] {
     height: 75px;
     overflow:auto;
     position: sticky;
+    padding:0;
+    margin: 0;
+    border: gray 1px solid;
 }
 
 .locationSelect {

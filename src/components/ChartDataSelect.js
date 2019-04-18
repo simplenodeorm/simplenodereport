@@ -52,7 +52,7 @@ class ChartDataSelect extends React.Component{
         };
         
         return <div className={'chartDataSelect'}>
-            {config.textmsg.datalabel}
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{config.textmsg.datalabel}
             {this.getSelectionContent()}
             <div className={'dataAxisContainer'}>
                 {dataIndexLoop(this.props.reportColumns)}

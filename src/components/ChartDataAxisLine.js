@@ -26,10 +26,10 @@ class ChartDataAxisLine extends React.Component {
                     &nbsp;{columnData.function + '(' + columnData.path.replace(/\./g, '->') + ')'}
                  </div>
                 {allowColor &&
-                <table>
-                    <tr><td>{config.textmsg.colorlabel}</td><td><ColorSelect currentColor={this.props.reportColumn.color} setColor={this.setColor}/></td></tr>
-                    <tr><td>{config.textmsg.labellabel}</td><td><input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/></td></tr>
-                </table>}
+                <span>
+                    &nbsp;&nbsp;{config.textmsg.colorlabel}&nbsp;<ColorSelect asSpan={true} currentColor={this.props.reportColumn.color} setColor={this.setColor}/>
+                    &nbsp;&nbsp;{config.textmsg.labellabel}&nbsp;<input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/>
+                </span>}
             </div>;
         } else {
             return <div className="columnSelectLine">
@@ -38,10 +38,10 @@ class ChartDataAxisLine extends React.Component {
                     &nbsp;{columnData.path.replace(/\./g, '->')}
                 </div>
                 {allowColor &&
-                <table>
-                    <tr><td>{config.textmsg.colorlabel}</td><td><ColorSelect currentColor={this.props.reportColumn.color} setColor={this.setColor}/></td></tr>
-                    <tr><td>{config.textmsg.labellabel}</td><td><input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/></td></tr>
-                </table>}
+                <span>
+                    &nbsp;&nbsp;{config.textmsg.colorlabel}&nbsp;<ColorSelect asSpan={true} currentColor={this.props.reportColumn.color} setColor={this.setColor}/>
+                    &nbsp;&nbsp;{config.textmsg.labellabel}&nbsp;<input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/>
+                </span>}
             </div>;
         }
     }
