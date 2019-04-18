@@ -40,7 +40,7 @@ const cfg = config;
 const reportObjectLoop = (obj, data) => {
     return data.map((item) => {
         if (item === 'chart') {
-            return <li><button>{'chart'}</button><ul>{reportObjectLoop(obj, config.chartTypes)}</ul></li>;
+            return <li><button>{'chart -'}</button><ul>{reportObjectLoop(obj, config.chartTypes)}</ul></li>;
         } else {
             return <li><button onClick={obj.addReportObject} value={item}>{item}</button></li>
         }

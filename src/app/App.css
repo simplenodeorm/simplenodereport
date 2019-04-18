@@ -805,6 +805,18 @@ input[type="checkbox"] {
     width: 98%;
 }
 
+.dataAxisContainer {
+    position: absolute;
+    box-sizing:border-box;
+    background: var(--default-bkcolor);
+    overflow: auto;
+    height: 200px;
+    margin-top: 3px;
+    border: solid gray 1px;
+    width: 98%;
+}
+
+
 .dataEntry {
     padding: 0;
     margin-left: 5px;
@@ -926,4 +938,9 @@ input[type="checkbox"] {
 
 .chartTitle input {
     width: 75px;
+}
+
+.chartDataSelect img {
+    vertical-align: middle;
+    cursor: pointer;
 }
