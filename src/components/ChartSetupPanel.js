@@ -3,32 +3,10 @@ import config from '../config/appconfig.json';
 import {ModalDialog} from './ModalDialog';
 import {ChartSetupTabs} from './ChartSetupTabs';
 import "../app/App.css";
-import defaults from '../config/defaults.json';
 
 class ChartSetupPanel extends ModalDialog {
     constructor(props) {
         super(props);
-
-        if (!this.props.reportObject.headerFontSettings) {
-            this.props.reportObject.headerFontSettings = {
-                font: defaults.font,
-                fontSize: defaults.fontSize,
-                fontColor: config.defaultTextColor,
-                backgroundColor: config.defaultBackgroundColor,
-                fontWeight: 900
-            };
-        }
-
-        if (!this.props.reportObject.dataFontSettings) {
-            this.props.reportObject.dataFontSettings = {
-                font: defaults.font,
-                fontSize: defaults.fontSize,
-                fontColor: config.defaultTextColor,
-                backgroundColor: config.defaultBackgroundColor,
-                fontWeight: 100
-            };
-        }
-
     }
 
     getContent() {

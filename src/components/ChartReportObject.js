@@ -8,6 +8,9 @@ import { Bar } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 import { Doughnut } from 'react-chartjs-2';
+import randomColor from 'randomcolor';
+import tinycolor from 'tinycolor2'
+
 
 class ChartReportObject extends ReportObject {
     constructor(props) {
@@ -16,10 +19,7 @@ class ChartReportObject extends ReportObject {
     
     getObjectData() {
         return {
-            cssClassName: this.getCssClassName(),
-            url: this.props.config.url,
-            linkText: this.props.config.linkText,
-            showInNewTab: false
+            cssClassName: this.getCssClassName()
         };
     }
     
@@ -44,7 +44,7 @@ class ChartReportObject extends ReportObject {
     }
     
     getDefaultRect() {
-        return {top: 20, left: 20, height: 100, width: 100};
+        return {top: 20, left: 20, height: 200, width: 300};
     }
     
     onEdit(info) {
@@ -56,29 +56,11 @@ class ChartReportObject extends ReportObject {
     }
     
     getData() {
+        let ds = this.getDatasets();
         return {
-            title: "my title",
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [
-                {
-                    label: 'My First dataset',
-                    backgroundColor: 'rgba(255,99,132,0.2)',
-                    borderColor: 'rgba(255,99,132,1)',
-                    borderWidth: 1,
-                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                    hoverBorderColor: 'rgba(255,99,132,1)',
-                    data: [65, 59, 80, 81, 56, 55, 40]
-                },
-                {
-                    label: 'dataset2',
-                    backgroundColor: 'blue',
-                    borderColor: 'rgba(255,99,132,1)',
-                    borderWidth: 1,
-                    hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                    hoverBorderColor: 'rgba(255,99,132,1)',
-                    data: [23, 65, 10, 91, 32, 44, 60]
-                }
-            ]
+            title: this.props.config.title,
+            labels: ['catvalue1', 'catvalue2', 'catvalue3', 'catvalue4', 'catvalue5'],
+            datasets: ds
         };
     }
     
@@ -94,37 +76,111 @@ class ChartReportObject extends ReportObject {
         };
     }
     
+    getDatasets() {
+        let retval = [];
+    
+        let dataAxes = this.getDataAxisDefs();
+        for (let i = 0; i < dataAxes.length; ++i) {
+            let ds = {};
+            ds.id = ('ds' + i);
+            if (dataAxes[i].label) {
+                ds.label = dataAxes[i].label;
+            } else {
+                ds.label = ('label' + (i+1));
+            }
+            
+            if (dataAxes[i].color) {
+                switch(this.props.config.chartType) {
+                    case 'bar':
+                        ds.backgroundColor = dataAxes[i].color;
+                        ds.borderColor = dataAxes[i].color;
+                        ds.borderWidth = dataAxes[i].borderWidth;
+                        ds.hoverBackgroundColor = tinycolor(ds.backgroundColor).darken(15).toString();
+                        break;
+                    case 'line':
+                        ds.borderColor = dataAxes[i].color;
+                        ds.borderWidth = dataAxes[i].borderWidth;
+                        if (dataAxes[i].showBackground) {
+                            ds.backgroundColor = tinycolor(ds.borderColor).lighten(20).toString();
+                            ds.hoverBackgroundColor = tinycolor(ds.borderColor).darken(20).toString();
+                        } else {
+                            ds.backgroundColor = 'transparent';
+                            ds.hoverBackgroundColor = 'transparent';
+                        }
+                        break;
+                }
+            }
+            ds.data = [];
+    
+            for (let i = 0; i < 5; i++) {
+                ds.data.push(Math.floor(Math.random() * 100));
+        
+                switch(this.props.config.chartType) {
+                    case 'pie':
+                    case 'doughnut':
+                        if (!ds.backgroundColor) {
+                            ds.backgroundColor = [];
+                        }
+                
+                        ds.backgroundColor.push(randomColor({luminosity: 'dark'}));
+                        break;
+            
+                }
+            }
+            
+            retval.push(ds);
+        }
+        
+    
+        return retval;
+    }
     
     getOptions() {
+        let lstyle = 'normal';
+        let tstyle = 'normal';
+        
+        if (this.props.config.legendFontSettings.italic) {
+            lstyle = 'italic';
+        }
+    
+        if (this.props.config.titleFontSettings.italic) {
+            tstyle = 'italic';
+        }
+        
         return {
+            responsive: this.props.config.responsive,
+            maintainAspectRatio: this.props.config.maintainAspect,
             legend: {
-                display: true,
-                boxWidth: 20,
-                position: 'top',
-                fontSize: 8,
-                fontColor: 'black',
-                fontFamily: 'arial',
-                fontStyle: 'normal'
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        max: 100,
-                        min: 0,
-                        stepSize: 10
-                    }
-                }]
+                display: this.props.config.legendFontSettings.display,
+                boxWidth: '20px',
+                position: this.props.config.legendFontSettings.position,
+                fontSize: this.props.config.legendFontSettings.fontSize,
+                fontColor: this.props.config.legendFontSettings.fontColor,
+                fontFamily: this.props.config.legendFontSettings.font,
+                fontStyle: lstyle
             },
             title: {
-                display: true,
-                position: 'top',
-                fontSize: 25,
-                fontColor: 'black',
-                fontFamily: 'arial',
-                fontStyle: 'normal',
-                    text: "my title"
+                display: this.props.config.titleFontSettings.display,
+                position: this.props.config.titleFontSettings.position,
+                fontSize: this.props.config.titleFontSettings.fontSize,
+                fontColor: this.props.config.titleFontSettings.fontColor,
+                fontFamily: this.props.config.titleFontSettings.font,
+                fontStyle: tstyle,
+                text: this.props.config.title
             }
         }
+    }
+    
+    getDataAxisDefs() {
+        let retval = [];
+        
+        for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
+            if (this.props.config.reportColumns[i].axis === 'data') {
+                retval.push(this.props.config.reportColumns[i]);
+            }
+        }
+        
+        return retval;
     }
 }
 

@@ -2,9 +2,7 @@ import React from 'react';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {ReportSectionSelect} from './ReportSectionSelect';
-import {ChartLegendPanel} from './ChartLegendPanel';
-import {ChartTitlePanel} from './ChartTitlePanel';
-import {ChartElementsPanel} from './ChartElementsPanel';
+import {ChartTitleSetupPanel} from './ChartTitleSetupPanel';
 import {ChartDBColumnSelectPanel} from './ChartDBColumnSelectPanel';
 import config from '../config/appconfig.json';
 import "../app/App.css";
@@ -19,19 +17,11 @@ class ChartSetupTabs extends BaseDesignComponent {
                 <ReportSectionSelect reportObject={this.props.reportObject} />
                 <Tabs>
                     <TabList>
-                        <Tab>{config.textmsg.legend}</Tab>
-                        <Tab>{config.textmsg.title}</Tab>
-                        <Tab>{config.textmsg.elements}</Tab>
+                        <Tab>{config.textmsg.titlelegend}</Tab>
                         <Tab>{config.textmsg.dataset}</Tab>
                     </TabList>
                     <TabPanel>
-                        <ChartLegendPanel reportObject={this.props.reportObject}/>
-                    </TabPanel>
-                    <TabPanel>
-                        <ChartTitlePanel reportObject={this.props.reportObject}/>
-                    </TabPanel>
-                    <TabPanel>
-                        <ChartElementsPanel reportObject={this.props.reportObject}/>
+                        <ChartTitleSetupPanel reportObject={this.props.reportObject}/>
                     </TabPanel>
                     <TabPanel>
                         <ChartDBColumnSelectPanel reportObject={this.props.reportObject}/>
