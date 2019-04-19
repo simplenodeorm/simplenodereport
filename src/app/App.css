@@ -799,7 +799,10 @@ input[type="checkbox"] {
 
 
 .columnSelectLine input[type="text"] {
-    width: 200px;
+    width: 150px;
+}
+.columnSelectLine select {
+    width: 40px;
 }
 
 .tabContainer {

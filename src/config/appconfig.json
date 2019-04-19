@@ -149,7 +149,8 @@
         "labellabel": "Label:",
         "sizelabel" : "Size:",
         "maintainaspect": "Maintain Aspect",
-        "responsive": "Responsive"
+        "responsive": "Responsive",
+        "showbackground": "Show Background"
     },
     "demoMode": true,
     "defaultDataAxisColor": "blue",

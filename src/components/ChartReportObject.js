@@ -100,13 +100,15 @@ class ChartReportObject extends ReportObject {
                     case 'line':
                         ds.borderColor = dataAxes[i].color;
                         ds.borderWidth = dataAxes[i].borderWidth;
-                        if (dataAxes[i].showBackground) {
+                        if (this.props.config.showBackground) {
                             ds.backgroundColor = tinycolor(ds.borderColor).lighten(20).toString();
                             ds.hoverBackgroundColor = tinycolor(ds.borderColor).darken(20).toString();
                         } else {
                             ds.backgroundColor = 'transparent';
                             ds.hoverBackgroundColor = 'transparent';
                         }
+                        ds.pointStyle = this.props.config.pointStyle;
+                        ds.pointRadius = this.props.config.pointRadius;
                         break;
                 }
             }

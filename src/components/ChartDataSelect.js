@@ -113,6 +113,9 @@ class ChartDataSelect extends React.Component{
     
     addDataAxis() {
         this.currentColumn.axis = 'data';
+        if (!this.currentColumn.borderWidth) {
+            this.currentColumn.borderWidth = 1;
+        }
         this.currentColumn = '';
         this.updateDataAxis();
     }
