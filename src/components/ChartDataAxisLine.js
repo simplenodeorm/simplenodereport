@@ -30,7 +30,7 @@ class ChartDataAxisLine extends React.Component {
                 {allowColor &&
                 <span>
                     &nbsp;&nbsp;{config.textmsg.colorlabel}&nbsp;<ColorSelect asSpan={true} currentColor={this.props.reportColumn.color} setColor={this.setColor}/>
-                    &nbsp;&nbsp;{config.textmsg.sizelabel}&nbsp;<SizeSelect sizes={config.borderWidths} setSize={this.setSize} currentSize={this.props.reportColumn.borderWidth}/>
+                    {this.getWidthSelectIfRequired()}
                     &nbsp;&nbsp;{config.textmsg.labellabel}&nbsp;<input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/>
                 </span>}
             </div>;
@@ -43,10 +43,18 @@ class ChartDataAxisLine extends React.Component {
                 {allowColor &&
                 <span>
                     &nbsp;&nbsp;{config.textmsg.colorlabel}&nbsp;<ColorSelect asSpan={true} currentColor={this.props.reportColumn.color} setColor={this.setColor}/>
-                    &nbsp;&nbsp;{config.textmsg.sizelabel}&nbsp;<SizeSelect sizes={config.borderWidths} setSize={this.setSize} currentSize={this.props.reportColumn.borderWidth}/>
+                    {this.getWidthSelectIfRequired()}
                     &nbsp;&nbsp;{config.textmsg.labellabel}&nbsp;<input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/>
                 </span>}
             </div>;
+        }
+    }
+    
+    getWidthSelectIfRequired() {
+        if (this.props.chartType === 'line') {
+            return <span>&nbsp;&nbsp;{config.textmsg.widthlabel}&nbsp;<SizeSelect sizes={config.borderWidths} setSize={this.setSize} currentSize={this.props.reportColumn.borderWidth}/></span>;
+        } else {
+            return '';
         }
     }
 

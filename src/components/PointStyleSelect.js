@@ -31,7 +31,7 @@ class PointStyleSelect extends React.Component{
             
         } else {
             return <div className="locationSelect">{config.textmsg.pointstylelabel}
-                <select onChange={this.setPointSTyle}>{loop(pointStyles, this.props.reportObject.legendPosition)}</select>
+                <select onChange={this.setPointStyle}>{loop(pointStyles, this.props.reportObject.legendPosition)}</select>
             </div>;
         }
     }

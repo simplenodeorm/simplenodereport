@@ -94,14 +94,14 @@ class ChartReportObject extends ReportObject {
                     case 'bar':
                         ds.backgroundColor = dataAxes[i].color;
                         ds.borderColor = dataAxes[i].color;
-                        ds.borderWidth = dataAxes[i].borderWidth;
+                        ds.borderWidth = 1;
                         ds.hoverBackgroundColor = tinycolor(ds.backgroundColor).darken(15).toString();
                         break;
                     case 'line':
                         ds.borderColor = dataAxes[i].color;
                         ds.borderWidth = dataAxes[i].borderWidth;
                         if (this.props.config.showBackground) {
-                            ds.backgroundColor = tinycolor(ds.borderColor).lighten(20).toString();
+                            ds.backgroundColor = tinycolor(ds.borderColor).lighten(40).desaturate(20).toString();
                             ds.hoverBackgroundColor = tinycolor(ds.borderColor).darken(20).toString();
                         } else {
                             ds.backgroundColor = 'transparent';
@@ -154,12 +154,15 @@ class ChartReportObject extends ReportObject {
             maintainAspectRatio: this.props.config.maintainAspect,
             legend: {
                 display: this.props.config.legendFontSettings.display,
-                boxWidth: '20px',
                 position: this.props.config.legendFontSettings.position,
                 fontSize: this.props.config.legendFontSettings.fontSize,
                 fontColor: this.props.config.legendFontSettings.fontColor,
                 fontFamily: this.props.config.legendFontSettings.font,
-                fontStyle: lstyle
+                fontStyle: lstyle,
+                labels: {
+                    boxWidth: 10,
+                    boxHeight: 2
+                }
             },
             title: {
                 display: this.props.config.titleFontSettings.display,
