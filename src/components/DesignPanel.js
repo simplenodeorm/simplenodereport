@@ -11,6 +11,7 @@ import {DBDataReportObject} from './DBDataReportObject';
 import {LabelReportObject} from './LabelReportObject';
 import {ImageReportObject} from './ImageReportObject';
 import {LinkReportObject} from './LinkReportObject';
+import {ChartReportObject} from './ChartReportObject';
 import {ShapeReportObject} from './ShapeReportObject';
 import {CurrentDateReportObject} from './CurrentDateReportObject';
 import {PageNumberReportObject} from './PageNumberReportObject';
@@ -372,6 +373,16 @@ class DesignPanel extends BaseDesignComponent {
                     onObjectSelect={this.onObjectSelect}
                     boundingRect={dc.getRect()}
                     updatePageBreak={this.updatePageBreak}
+                    config={reportObjectConfig}/>);
+                break;
+            case 'chart':
+                dc.getReportObjectConfigurations().push(<ChartReportObject
+                    key={reportObjectConfig.id}
+                    index={dc.getReportObjectConfigurations().length}
+                    setMountedComponent={dc.setMountedComponent}
+                    getSelectedReportObjects={this.getSelectedReportObjects}
+                    onObjectSelect={this.onObjectSelect}
+                    boundingRect={dc.getRect()}
                     config={reportObjectConfig}/>);
                 break;
         }

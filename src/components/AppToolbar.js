@@ -552,7 +552,7 @@ class AppToolbar extends BaseDesignComponent {
             case 'line':
             case 'pie':
             case 'doughnut':
-                reportObject.type = 'chart';
+                reportObject.objectType = 'chart';
                 reportObject.chartType = type;
                 rc = {left: 175, top: 50, width: 500, height: 425};
                 mc = getModalContainer(rc);

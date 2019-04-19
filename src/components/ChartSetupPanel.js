@@ -49,7 +49,8 @@ class ChartSetupPanel extends ModalDialog {
         let retval = false;
 
         for (let i = 0; i < this.props.reportObject.reportColumns.length; ++i) {
-            if (this.props.reportObject.reportColumns[i].displayResult) {
+            if (this.props.reportObject.reportColumns[i].axis
+                && (this.props.reportObject.reportColumns[i].axis === 'data')) {
                 retval = true;
                 break;
             }
@@ -60,7 +61,7 @@ class ChartSetupPanel extends ModalDialog {
     
     getError() { 
         this.state.error = false;
-        return 'Please select at list one display column';
+        return 'Please select category and at last one data column';
     }
 }
 
