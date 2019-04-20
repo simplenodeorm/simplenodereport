@@ -1,6 +1,7 @@
 import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig.json';
+import tinycolor from 'tinycolor2'
 
 class ColorSelect extends React.Component {
     constructor(props) {
@@ -38,7 +39,13 @@ class ColorSelect extends React.Component {
         if (!colors) {
             colors = config.colors;
         }
-
+    
+        colors.sort(function(a,b) {
+            let c1 = tinycolor(a);
+            let c2 = tinycolor(b);
+            return (c1.toHslString() > c2.toHslString());
+        });
+        
         if (this.props.asSpan) {
             return <span style={myStyle} className="colorPicker">
                 <img alt="display color list" src="/images/pie-chart.png" onClick={this.setDisplayList}/>

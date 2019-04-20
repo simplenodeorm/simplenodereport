@@ -3,7 +3,7 @@ import "../app/App.css";
 import config from '../config/appconfig.json';
 import {ColorSelect} from './ColorSelect';
 import {SizeSelect} from './SizeSelect';
-import {getReportColumn,allowMultipleChartDataAxis} from './helpers';
+import {getReportColumn,allowMultipleChartDataAxis,formatSelectColumnForDisplay} from './helpers';
 
 class ChartDataAxisLine extends React.Component {
     constructor(props) {
@@ -21,33 +21,18 @@ class ChartDataAxisLine extends React.Component {
     render() {
         let columnData = getReportColumn(this.props.reportColumn.key);
         let allowColor = allowMultipleChartDataAxis(this.props.chartType);
-        if (columnData.function) {
-            return <div className="columnSelectLine">
-                <div className="lineStyle1">
-                    <img alt="delete data axis" src="/images/delete.png" onClick={this.deleteAxis}/>
-                    &nbsp;{columnData.function + '(' + columnData.path.replace(/\./g, '->') + ')'}
-                 </div>
-                {allowColor &&
-                <span>
-                    &nbsp;&nbsp;{config.textmsg.colorlabel}&nbsp;<ColorSelect asSpan={true} currentColor={this.props.reportColumn.color} setColor={this.setColor}/>
-                    {this.getWidthSelectIfRequired()}
-                    &nbsp;&nbsp;{config.textmsg.labellabel}&nbsp;<input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/>
-                </span>}
-            </div>;
-        } else {
-            return <div className="columnSelectLine">
-                <div className="lineStyle1">
-                    <img alt="delete data axis" src="/images/delete.png" onClick={this.deleteAxis}/>
-                    &nbsp;{columnData.path.replace(/\./g, '->')}
-                </div>
-                {allowColor &&
-                <span>
-                    &nbsp;&nbsp;{config.textmsg.colorlabel}&nbsp;<ColorSelect asSpan={true} currentColor={this.props.reportColumn.color} setColor={this.setColor}/>
-                    {this.getWidthSelectIfRequired()}
-                    &nbsp;&nbsp;{config.textmsg.labellabel}&nbsp;<input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/>
-                </span>}
-            </div>;
-        }
+        return <div className="columnSelectLine">
+            <div className="lineStyle1">
+                <img alt="delete data axis" src="/images/delete.png" onClick={this.deleteAxis}/>
+                &nbsp;{formatSelectColumnForDisplay(columnData)}
+             </div>
+            {allowColor &&
+            <span>
+                &nbsp;&nbsp;{config.textmsg.colorlabel}&nbsp;<ColorSelect asSpan={true} currentColor={this.props.reportColumn.color} setColor={this.setColor}/>
+                {this.getWidthSelectIfRequired()}
+                &nbsp;&nbsp;{config.textmsg.labellabel}&nbsp;<input type={'text'} defaultValue={this.props.reportColumn.label} onBlur={this.setLabel}/>
+            </span>}
+        </div>;
     }
     
     getWidthSelectIfRequired() {

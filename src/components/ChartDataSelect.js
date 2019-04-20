@@ -2,19 +2,13 @@ import React from 'react';
 import "../app/App.css";
 import config from '../config/appconfig.json';
 import {ChartDataAxisLine} from './ChartDataAxisLine';
-import {allowMultipleChartDataAxis} from './helpers';
+import {allowMultipleChartDataAxis,formatSelectColumnForDisplay} from './helpers';
 
 const selectLoop = (data) => {
     return data.map((info) => {
         if (info.isNumeric) {
-            let display;
-            if (info.function) {
-                display = info.function + '(' + info.path.replace(/\./g, '->') + ')';
-            } else {
-                display = info.path.replace(/\./g, '->')
-            }
             if (!info.axis) {
-                return <option value={info.path}>{display}</option>;
+                return <option value={info.path}>{formatSelectColumnForDisplay(info)}</option>;
             } else {
                 return '';
             }

@@ -457,3 +457,18 @@ export function getOrmUrl(inurl) {
 export function allowMultipleChartDataAxis(chartType) {
     return ((chartType !== 'pie') && (chartType !== 'doughnut'));
 }
+
+export function formatSelectColumnForDisplay(selcol) {
+    let retval;
+    if (selcol.function) {
+        retval = selcol.function + '(' + selcol.path.replace(/\./g, '->') + ')';
+    } else {
+        retval = selcol.path.replace(/\./g, '->');
+    }
+    
+    if (selcol.customInput) {
+        retval = selcol.customInput.replace('?', retval);
+    }
+    
+    return retval;
+}

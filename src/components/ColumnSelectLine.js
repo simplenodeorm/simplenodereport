@@ -4,7 +4,7 @@ import {MoveButton} from './MoveButton';
 import {Checkbox} from './Checkbox';
 import {TextAlignSelect} from './TextAlignSelect';
 import config from '../config/appconfig.json';
-import {getReportColumn} from './helpers';
+import {formatSelectColumnForDisplay, getReportColumn} from './helpers';
 import {SpecialHandlingSelect} from './SpecialHandlingSelect';
 
 class ColumnSelectLine extends React.Component {
@@ -43,7 +43,7 @@ class ColumnSelectLine extends React.Component {
                 <span className="label">{this.props.index + 1}.
                     &nbsp;<Checkbox label={config.textmsg.displayresult}
                     handleCheckboxChange={this.setDisplayResult} isChecked={displayResult}/>
-                    </span>{columnData.path.replace(/\./g, '->')}</div>
+                    </span>{formatSelectColumnForDisplay(columnData)}</div>
             <div className="lineStyle1">
                 { (this.props.index < (this.props.nodeCount() - 1)) ? <MoveButton type='down' index={this.props.index} onMove={this.onMoveDown} /> : <img alt="" src="/images/blank.png"/> }
                 <span>
