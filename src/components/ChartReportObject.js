@@ -138,6 +138,7 @@ class ChartReportObject extends ReportObject {
         if (this.props.config.titleFontSettings.italic) {
             tstyle = 'italic';
         }
+        
         let lstyle = 'normal';
     
         if (this.props.config.legendFontSettings.italic) {
@@ -157,16 +158,16 @@ class ChartReportObject extends ReportObject {
                 text: this.props.config.title
             },
             legend: {
-                    display: this.props.config.legendFontSettings.display,
-                    position: this.props.config.legendFontSettings.position,
-                   labels: {
-                        boxWidth: 10,
-                        boxHeight: 2,
-                       fontColor: this.props.config.legendFontSettings.fontColor,
-                       fontSize: this.props.config.legendFontSettings.fontSize,
-                       fontFamily: this.props.config.legendFontSettings.font,
-                       fontStyle: lstyle
-                    }
+               display: this.props.config.legendFontSettings.display,
+               position: this.props.config.legendFontSettings.position,
+               labels: {
+                   boxWidth: 10,
+                   boxHeight: 2,
+                   fontColor: this.props.config.legendFontSettings.fontColor,
+                   fontSize: this.props.config.legendFontSettings.fontSize,
+                   fontFamily: this.props.config.legendFontSettings.font,
+                   fontStyle: lstyle
+                }
              }
         }
     }
