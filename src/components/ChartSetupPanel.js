@@ -26,13 +26,16 @@ class ChartSetupPanel extends ModalDialog {
     isComplete() {
         let retval = false;
 
-        for (let i = 0; i < this.props.reportObject.reportColumns.length; ++i) {
-            if (this.props.reportObject.reportColumns[i].axis
-                && (this.props.reportObject.reportColumns[i].axis === 'data')) {
-                retval = true;
-                break;
+        if (this.props.reportObject.reportColumns) {
+            for (let i = 0; i < this.props.reportObject.reportColumns.length; ++i) {
+                if (this.props.reportObject.reportColumns[i].axis
+                    && (this.props.reportObject.reportColumns[i].axis === 'data')) {
+                    retval = true;
+                    break;
+                }
             }
         }
+        
 
         return retval;
     }

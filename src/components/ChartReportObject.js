@@ -26,13 +26,13 @@ class ChartReportObject extends ReportObject {
     getContent(objectData) {
         switch(this.props.config.chartType) {
             case 'bar':
-                return <Bar data={this.getData()} legend={this.getLegend()} options={this.getOptions()}/>;
+                return <Bar data={this.getData()} options={this.getOptions()}/>;
             case 'line':
-                return <Line data={this.getData()} legend={this.getLegend()} options={this.getOptions()}/>;
+                return <Line data={this.getData()} options={this.getOptions()}/>;
             case 'pie':
-                return <Pie data={this.getData()} legend={this.getLegend()} options={this.getOptions()}/>;
+                return <Pie data={this.getData()} options={this.getOptions()}/>;
             case 'doughnut':
-                return <Doughnut data={this.getData()}  legend={this.getLegend()} options={this.getOptions()}/>;
+                return <Doughnut data={this.getData()} options={this.getOptions()}/>;
         }
    }
     
@@ -65,17 +65,12 @@ class ChartReportObject extends ReportObject {
     }
     
     getLegend() {
-        return {
-            display: true,
-            position: 'top',
-            fullWidth: true,
-            reverse: false,
-            labels: {
-                fontColor: 'rgb(255, 99, 132)'
-            }
-        };
-    }
     
+        return {
+             labels: {
+             }
+        }
+    }
     getDatasets() {
         let retval = [];
     
@@ -138,33 +133,21 @@ class ChartReportObject extends ReportObject {
     }
     
     getOptions() {
-        let lstyle = 'normal';
         let tstyle = 'normal';
         
-        if (this.props.config.legendFontSettings.italic) {
-            lstyle = 'italic';
-        }
-    
         if (this.props.config.titleFontSettings.italic) {
             tstyle = 'italic';
+        }
+        let lstyle = 'normal';
+    
+        if (this.props.config.legendFontSettings.italic) {
+            lstyle = 'italic';
         }
         
         return {
             responsive: this.props.config.responsive,
             maintainAspectRatio: this.props.config.maintainAspect,
-            legend: {
-                display: this.props.config.legendFontSettings.display,
-                position: this.props.config.legendFontSettings.position,
-                fontSize: this.props.config.legendFontSettings.fontSize,
-                fontColor: this.props.config.legendFontSettings.fontColor,
-                fontFamily: this.props.config.legendFontSettings.font,
-                fontStyle: lstyle,
-                labels: {
-                    boxWidth: 10,
-                    boxHeight: 2
-                }
-            },
-            title: {
+             title: {
                 display: this.props.config.titleFontSettings.display,
                 position: this.props.config.titleFontSettings.position,
                 fontSize: this.props.config.titleFontSettings.fontSize,
@@ -172,7 +155,19 @@ class ChartReportObject extends ReportObject {
                 fontFamily: this.props.config.titleFontSettings.font,
                 fontStyle: tstyle,
                 text: this.props.config.title
-            }
+            },
+            legend: {
+                    display: this.props.config.legendFontSettings.display,
+                    position: this.props.config.legendFontSettings.position,
+                   labels: {
+                        boxWidth: 10,
+                        boxHeight: 2,
+                       fontColor: this.props.config.legendFontSettings.fontColor,
+                       fontSize: this.props.config.legendFontSettings.fontSize,
+                       fontFamily: this.props.config.legendFontSettings.font,
+                       fontStyle: lstyle
+                    }
+             }
         }
     }
     
