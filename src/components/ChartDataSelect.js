@@ -52,8 +52,8 @@ class ChartDataSelect extends React.Component{
         };
         
         return <div className={'chartDataSelect'}>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{config.textmsg.datalabel}
-            {this.getSelectionContent()}
+            <span style={{paddingLeft: '24px'}}> {config.textmsg.datalabel}
+            {this.getSelectionContent()}</span>
             <div className={'dataAxisContainer'}>
                 {dataIndexLoop(this.props.reportColumns)}
             </div>
@@ -65,15 +65,15 @@ class ChartDataSelect extends React.Component{
         let enableAdd = (this.currentColumn && catSelected && this.canAdd());
         if (catSelected) {
             if (enableAdd) {
-                return <span>&nbsp;<img alt="add data axis" src="/images/add.png" onClick={this.addDataAxis}/>
-                    <select onChange={this.setCurrentColumn}><option/>{selectLoop(this.props.reportColumns)}</select></span>
+                return <span><select onChange={this.setCurrentColumn}><option/>{selectLoop(this.props.reportColumns)}</select>
+                        <img alt="add data axis" src="/images/add.png" onClick={this.addDataAxis}/></span>
             } else {
-                return <span>&nbsp;<img alt="add data axis" src="/images/adddisabled.png"/>
-                    <select onChange={this.setCurrentColumn}><option/>{selectLoop(this.props.reportColumns)}</select></span>
+                return <span><select onChange={this.setCurrentColumn}><option/>{selectLoop(this.props.reportColumns)}</select>
+                <img alt="add data axis" src="/images/adddisabled.png"/></span>
     
             }
         } else {
-            return <span>&nbsp;<img alt="add data axis" src="/images/adddisabled.png" /><select/></span>
+            return <span><select/><img alt="add data axis" src="/images/adddisabled.png" /></span>
         }
     }
     
