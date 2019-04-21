@@ -150,7 +150,9 @@
         "sizelabel" : "Size:",
         "maintainaspect": "Maintain Aspect",
         "responsive": "Responsive",
-        "showbackground": "Show Background"
+        "showbackground": "Show Background",
+        "xaxeslabel": "X Axes Name:",
+        "yaxeslabel": "Y Axes Name:"
     },
     "demoMode": false,
     "defaultDataAxisColor": "blue",

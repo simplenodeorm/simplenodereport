@@ -35,8 +35,8 @@ class ChartReportObject extends ReportObject {
                 return <Doughnut data={this.getData()} options={this.getOptions()}/>;
         }
    }
-    
-    getCssStyle(objectData) {
+   
+   getCssStyle(objectData) {
         let style = document.createElement('style');
         style.id = objectData.cssClassName;
         this.addBaseReportObjectCss(style, objectData.cssClassName, this.props.config.textAlign);
@@ -62,14 +62,6 @@ class ChartReportObject extends ReportObject {
             labels: ['catvalue1', 'catvalue2', 'catvalue3', 'catvalue4', 'catvalue5'],
             datasets: ds
         };
-    }
-    
-    getLegend() {
-    
-        return {
-             labels: {
-             }
-        }
     }
     
     getDatasets() {
@@ -146,7 +138,7 @@ class ChartReportObject extends ReportObject {
             lstyle = 'italic';
         }
         
-        return {
+        let retval = {
             responsive: this.props.config.responsive,
             maintainAspectRatio: this.props.config.maintainAspect,
              title: {
@@ -170,7 +162,22 @@ class ChartReportObject extends ReportObject {
                    fontStyle: lstyle
                 }
              }
+        };
+    
+        if (this.props.config.yAxes || this.props.config.xAxes) {
+            retval.scales = {};
+            if (this.props.config.yAxes && this.props.config.yAxes.label) {
+                retval.scales.yAxes = [];
+                retval.scales.yAxes.push({scaleLabel: {display: true, labelString: this.props.config.yAxes.label}});
+            }
+        
+            if (this.props.config.xAxes && this.props.config.xAxes.label) {
+                retval.scales.xAxes = [];
+                retval.scales.xAxes.push({scaleLabel: {display: true, labelString: this.props.config.xAxes.label}});
+            }
         }
+    
+        return retval;
     }
     
     getDataAxisDefs() {
