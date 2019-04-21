@@ -14,7 +14,7 @@ const popupMenuClick = function(e) {
     }
 };
 
-var ppi;
+let ppi;
 
 export function clearDocumentDesignData() {
     document.designData = '';

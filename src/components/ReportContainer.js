@@ -107,6 +107,14 @@ class ReportContainer extends BaseDesignComponent {
         let style = document.createElement('style');
         style.appendChild(document.createTextNode(data.style));
         document.head.appendChild(style);
+        if (data.js) {
+            for (let i = 0; i < data.js.length; ++i) {
+                let stag = document.createElement('script');
+                stag.src = data.js[i];
+                document.head.appendChild(stag);
+            }
+        }
+        
         document.getElementById("reportContainer").innerHTML = data.html;
     }
     

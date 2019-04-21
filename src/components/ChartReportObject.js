@@ -71,6 +71,7 @@ class ChartReportObject extends ReportObject {
              }
         }
     }
+    
     getDatasets() {
         let retval = [];
     

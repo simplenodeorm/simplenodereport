@@ -152,7 +152,7 @@
         "responsive": "Responsive",
         "showbackground": "Show Background"
     },
-    "demoMode": true,
+    "demoMode": false,
     "defaultDataAxisColor": "blue",
     "defaultLegendPosition": "bottom",
     "defaultTitlePosition": "top",

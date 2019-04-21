@@ -384,13 +384,20 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     showReport(data) {
+        let script = '';
+        
+        if (data.js) {
+            script = '<script src="' + data.js + '"></script>';
+        }
         let myWindow = window.open("", "_blank", "titlebar=yes,toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=600,height=800");
-        myWindow.document.write('<head><style>'
+        myWindow.document.write('<html><head><style>'
             + data.style
-            + '</style></head><body style="background-color: #202020">'
+            + '</style>'
+            + script
+            + '</head><body style="background-color: #202020">'
             + data.html + '</body></html>');
         
-        myWindow.stop();
+    //    myWindow.stop();
         
     }
     
