@@ -37,9 +37,8 @@ export function getPrecision(dbType) {
 export function getFieldType(dbType) {
     let retval;
     let check = dbType.toLowerCase();
-    if (check.startsWith('number')) {
+    if (check.startsWith('number') || check.startsWith('decimal')) {
         check = 'number';
-        
     }
     switch (check) {
         case 'date':
@@ -307,6 +306,24 @@ export function getDocumentDimensions(type, orientation) {
 export function isNumeric(type) {
     let dbtype = getFieldType(type);
     return ((dbtype === 'float') || (dbtype === 'number'));
+}
+
+export function precision(type) {
+    let retval = 0;
+    
+    if (isNumeric(type)) {
+        let pos = type.indexOf(',');
+        
+        if (pos > -1) {
+            let pos2 = type.indexOf(')');
+            
+            if (pos2 > pos) {
+                retval = Number(type.substring(pos+1, pos2));
+            }
+        }
+    }
+    
+    return retval;
 }
 
 export function isString(type) {

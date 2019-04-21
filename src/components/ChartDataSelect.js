@@ -6,7 +6,7 @@ import {allowMultipleChartDataAxis,formatSelectColumnForDisplay} from './helpers
 
 const selectLoop = (data) => {
     return data.map((info) => {
-        if (info.isNumeric) {
+        if (info.isNumeric || info.function) {
             if (!info.axis) {
                 return <option value={info.path}>{formatSelectColumnForDisplay(info)}</option>;
             } else {

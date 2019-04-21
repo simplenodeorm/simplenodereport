@@ -4,7 +4,7 @@ import {ChartCategorySelect} from './ChartCategorySelect';
 import {ChartDataSelect} from './ChartDataSelect';
 import axios from "axios";
 import "../app/App.css";
-import {getUniqueKey, isNumeric,isString,isDate,removeWaitMessage,getOrmUrl} from './helpers';
+import {getUniqueKey, isNumeric,isString,isDate,removeWaitMessage,getOrmUrl,precision} from './helpers';
 
 
 class ChartDBColumnSelectPanel extends BaseDesignComponent {
@@ -50,9 +50,11 @@ class ChartDBColumnSelectPanel extends BaseDesignComponent {
                 key: document.designData.currentReport.reportColumns[i].key,
                 path: document.designData.currentReport.reportColumns[i].path,
                 function: document.designData.currentReport.reportColumns[i].function,
+                customInput: document.designData.currentReport.reportColumns[i].customInput,
                 isString: document.designData.currentReport.reportColumns[i].isString,
                 isNumeric: document.designData.currentReport.reportColumns[i].isNumeric,
-                isDate: document.designData.currentReport.reportColumns[i].isDate
+                isDate: document.designData.currentReport.reportColumns[i].isDate,
+                precision: document.designData.currentReport.reportColumns[i].precision
             });
         }
     }
@@ -75,6 +77,10 @@ class ChartDBColumnSelectPanel extends BaseDesignComponent {
                         document.designData.currentReport.reportColumns[i].isNumeric = isNumeric(document.designData.currentReport.reportColumns[i].type);
                         document.designData.currentReport.reportColumns[i].isString = isString(document.designData.currentReport.reportColumns[i].type);
                         document.designData.currentReport.reportColumns[i].isDate = isDate(document.designData.currentReport.reportColumns[i].type);
+                        
+                        if (document.designData.currentReport.reportColumns[i].isNumeric) {
+                            document.designData.currentReport.reportColumns[i].precision = precision(document.designData.currentReport.reportColumns[i].type);
+                        }
                     }
                     curcomp.populateReportObjectData();
                     removeWaitMessage();

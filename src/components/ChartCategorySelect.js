@@ -1,13 +1,14 @@
 import React from 'react';
 import "../app/App.css";
+import {formatSelectColumnForDisplay} from './helpers';
 import config from '../config/appconfig.json';
 
 const loop = (data) => {
     return data.map((info) => {
         if (!info.axis) {
-            return <option value={info.path}>{info.path.replace(/\./g, '->')}</option>;
+            return <option value={info.path}>{formatSelectColumnForDisplay(info)}</option>;
         } else if (info.axis === 'category') {
-            return <option value={info.path} selected>{info.path.replace(/\./g, '->')}</option>;
+            return <option value={info.path} selected>{formatSelectColumnForDisplay(info)}</option>;
         }
     });
 };
@@ -15,7 +16,6 @@ const loop = (data) => {
 class ChartCategorySelect extends React.Component{
     constructor(props) {
         super(props);
-        
         this.setCategoryAxis = this.setCategoryAxis.bind(this);
     }
     
