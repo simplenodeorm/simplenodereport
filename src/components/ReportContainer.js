@@ -107,15 +107,28 @@ class ReportContainer extends BaseDesignComponent {
         let style = document.createElement('style');
         style.appendChild(document.createTextNode(data.style));
         document.head.appendChild(style);
-        if (data.js) {
-            for (let i = 0; i < data.js.length; ++i) {
-                let stag = document.createElement('script');
-                stag.src = data.js[i];
-                document.head.appendChild(stag);
-            }
+        if (data.chartData) {
+            let stag = document.createElement('script');
+            stag.src = data.chartData.chartjsurl;
+            document.head.appendChild(stag);
         }
-        
         document.getElementById("reportContainer").innerHTML = data.html;
+    
+        if (data.chartData) {
+            let chartCode = '';
+    
+            for (let i = 0; i < data.chartData.charts.length; ++i) {
+                chartCode += 'alert("in func"); new Chart(document.getElementById("'
+                    + data.chartData.charts[i].canvasId
+                    + '").getContext("2d"),'
+                    + JSON.stringify(data.chartData.charts[i])
+                    + ');\n'
+            }
+    
+            chartCode += '; window.stop()';
+            new Function(chartCode)();
+        }
+    
     }
     
     cancelReport() {

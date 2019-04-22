@@ -385,19 +385,23 @@ class AppToolbar extends BaseDesignComponent {
     
     showReport(data) {
         let script = '';
-        
-        if (data.js) {
-            script = '<script src="' + data.js + '"></script>';
-        }
+    
+        for (let i = 0; i < data.chartData.charts.length; ++i) {
+            script += 'new Chart(document.getElementById("'
+                + data.chartData.charts[i].canvasId
+                + '").getContext("2d"),'
+                + JSON.stringify(data.chartData.charts[i])
+                + ');\n'
+1        }
         let myWindow = window.open("", "_blank", "titlebar=yes,toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=600,height=800");
         myWindow.document.write('<html><head><style>'
             + data.style
-            + '</style>'
+            + '</style><script src="'
+            + data.chartData.chartjsurl
+            + '"></script></head><body style="background-color: #202020">'
+            + data.html + '<script>'
             + script
-            + '</head><body style="background-color: #202020">'
-            + data.html + '</body></html>');
-        
-    //    myWindow.stop();
+            + 'window.stop();</script></body></html>');
         
     }
     
