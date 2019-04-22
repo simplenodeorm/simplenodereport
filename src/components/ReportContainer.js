@@ -118,7 +118,7 @@ class ReportContainer extends BaseDesignComponent {
             let chartCode = '';
     
             for (let i = 0; i < data.chartData.charts.length; ++i) {
-                chartCode += 'alert("in func"); new Chart(document.getElementById("'
+                chartCode += 'new Chart(document.getElementById("'
                     + data.chartData.charts[i].canvasId
                     + '").getContext("2d"),'
                     + JSON.stringify(data.chartData.charts[i])
