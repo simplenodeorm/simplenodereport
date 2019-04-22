@@ -384,24 +384,31 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     showReport(data) {
-        let script = '';
+        let chartscript1 = '';
+        let chartscript2 = '';
+        
+        if (data.chartData) {
+            chartscript1 = '<script src="' + data.chartData.chartjsurl + '"/></script>';
+            for (let i = 0; i < data.chartData.charts.length; ++i) {
+                chartscript2 += 'new Chart(document.getElementById("'
+                    + data.chartData.charts[i].canvasId
+                    + '").getContext("2d"),'
+                    + JSON.stringify(data.chartData.charts[i])
+                    + ');\n'
+            }
     
-        for (let i = 0; i < data.chartData.charts.length; ++i) {
-            script += 'new Chart(document.getElementById("'
-                + data.chartData.charts[i].canvasId
-                + '").getContext("2d"),'
-                + JSON.stringify(data.chartData.charts[i])
-                + ');\n'
-1        }
+            chartscript2 = '<script>' + chartscript2 + 'window.stop();</script>'
+        }
+        
         let myWindow = window.open("", "_blank", "titlebar=yes,toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=600,height=800");
         myWindow.document.write('<html><head><style>'
             + data.style
-            + '</style><script src="'
-            + data.chartData.chartjsurl
-            + '"></script></head><body style="background-color: #202020">'
-            + data.html + '<script>'
-            + script
-            + 'window.stop();</script></body></html>');
+            + '</style>'
+            + chartscript1
+            + '</head><body style="background-color: #202020">'
+            + data.html
+            + chartscript2
+            + '</body></html>');
         
     }
     
