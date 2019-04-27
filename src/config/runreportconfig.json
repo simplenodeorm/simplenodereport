@@ -14,7 +14,8 @@
         "reportrunner": "Report Runner"
 
     },
-    "pageSections": ["header", "body", "footer"],
+    "demoMode": false,
+   "pageSections": ["header", "body", "footer"],
     "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,
     "wheelIncrement": 25

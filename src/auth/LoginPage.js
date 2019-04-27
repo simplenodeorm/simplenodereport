@@ -11,7 +11,11 @@ import '../app/App.css';
 
 const loop = (data) => {
     return data.map((item) => {
-        return <option key="{item.name}">{item.name}</option>;
+        if (config.demoMode && (item.name === 'hr')) {
+            return <option key="{item.name}" selected>{item.name}</option>;
+        } else {
+            return <option key="{item.name}">{item.name}</option>;
+        }
     });
 };
 
@@ -20,34 +24,33 @@ const options = loop(orms);
 class LoginPage extends BaseDesignComponent {
     constructor(props) {
         super(props);
-
-        if (config.demoMode) {
-            this.state = {
-                username: 'testuser',
-                password: 'testpass',
-                orm: '',
-                submitted: false,
-                loading: false,
-                error: ''
-            };
-        } else {
-            this.state = {
-                username: '',
-                password: '',
-                orm: '',
-                submitted: false,
-                loading: false,
-                error: ''
-            };
-            
-        }
-
+    
+        this.state = {
+            username: '',
+            password: '',
+            orm: '',
+            submitted: false,
+            loading: false,
+            error: ''
+        };
+    
+    
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-    }
+   }
 
     componentDidMount() {
-        this.username.focus();
+        if (config.demoMode) {
+            this.handleChange({
+                name: 'orm',
+                target: {
+                    name: 'orm',
+                    value: 'hr'
+                }
+            });
+        } else {
+            this.username.focus();
+        }
     }
     
     handleChange(e) {
@@ -60,6 +63,8 @@ class LoginPage extends BaseDesignComponent {
                         this.setState({orm: orms[i]});
                         this.setState({username: orms[i].defaultUsername});
                         this.setState({password: orms[i].defaultPassword});
+                        this.username.focus();
+    
                         break;
                     }
                 }

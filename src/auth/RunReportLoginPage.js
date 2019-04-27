@@ -11,15 +11,27 @@ import '../app/RunReport.css';
 class LoginPage extends BaseDesignComponent {
     constructor(props) {
         super(props);
-
-        this.state = {
-            username: '',
-            password: '',
-            orm: this.findOrm(document.reportId.split('.')[0]),
-            submitted: false,
-            loading: false,
-            error: ''
-        };
+    
+        if (config.demoMode) {
+            this.state = {
+                username: 'testuser',
+                password: 'testpass',
+                orm: this.findOrm(document.reportId.split('.')[0]),
+                submitted: false,
+                loading: false,
+                error: ''
+            }
+        } else {
+            this.state = {
+                username: '',
+                password: '',
+                orm: this.findOrm(document.reportId.split('.')[0]),
+                submitted: false,
+                loading: false,
+                error: ''
+            }
+    
+        }
 
          this.handleSubmit = this.handleSubmit.bind(this);
          this.handleChange = this.handleChange.bind(this);
