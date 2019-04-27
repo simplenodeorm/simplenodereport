@@ -21,14 +21,26 @@ class LoginPage extends BaseDesignComponent {
     constructor(props) {
         super(props);
 
-        this.state = {
-            username: '',
-            password: '',
-            orm: '',
-            submitted: false,
-            loading: false,
-            error: ''
-        };
+        if (config.demoMode) {
+            this.state = {
+                username: 'testuser',
+                password: 'testpass',
+                orm: '',
+                submitted: false,
+                loading: false,
+                error: ''
+            };
+        } else {
+            this.state = {
+                username: '',
+                password: '',
+                orm: '',
+                submitted: false,
+                loading: false,
+                error: ''
+            };
+            
+        }
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);

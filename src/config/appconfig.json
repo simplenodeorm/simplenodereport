@@ -154,7 +154,7 @@
         "xaxeslabel": "X Axes Name:",
         "yaxeslabel": "Y Axes Name:"
     },
-    "demoMode": true,
+    "demoMode": false,
     "defaultDataAxisColor": "blue",
     "defaultLegendPosition": "bottom",
     "defaultTitlePosition": "top",
