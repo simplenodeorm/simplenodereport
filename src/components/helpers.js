@@ -140,7 +140,7 @@ export function getWaitMessage() {
     retval.style.position = 'absolute';
     retval.style.top = '100px';
     retval.style.left = '200px';
-    retval.style.width = '250px';
+    retval.style.width = '275px';
     retval.style.height = '30px';
     retval.style.border = 'none';
     retval.style.visibility = 'visible';
