@@ -228,9 +228,13 @@
     "defaultShape": "rectangle",
     "chartTypes": [
         "bar",
+        "horizontalBar",
         "line",
         "pie",
-        "doughnut"
+        "doughnut",
+        "polar",
+        "radar",
+        "scatter"
     ],
     "chartLegendPositions": [
         {

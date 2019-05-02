@@ -472,7 +472,7 @@ export function getOrmUrl(inurl) {
 
 
 export function allowMultipleChartDataAxis(chartType) {
-    return ((chartType !== 'pie') && (chartType !== 'doughnut'));
+    return ((chartType !== 'pie') && (chartType !== 'doughnut') && (chartType !== 'polar'));
 }
 
 export function formatSelectColumnForDisplay(selcol) {

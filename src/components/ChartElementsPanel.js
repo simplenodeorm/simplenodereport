@@ -32,7 +32,8 @@ class ChartElementsPanel extends BaseDesignComponent {
     }
     
     getContent() {
-        if (this.props.reportObject.chartType === 'line') {
+        if ((this.props.reportObject.chartType === 'line')
+            || (this.props.reportObject.chartType === 'radar')) {
             return <table>
                 <tr>
                     <th colSpan={2}>{config.textmsg.point}</th>
