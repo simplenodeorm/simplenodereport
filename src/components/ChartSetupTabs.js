@@ -40,7 +40,10 @@ class ChartSetupTabs extends BaseDesignComponent {
     showElementsTab() {
         switch(this.props.reportObject.chartType) {
             case 'line':
+            case 'radar':
             case 'bar':
+            case 'horizontalBar':
+            case 'scatter':
                 return true;
             default:
                 return false;

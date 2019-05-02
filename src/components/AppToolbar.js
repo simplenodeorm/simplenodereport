@@ -567,9 +567,13 @@ class AppToolbar extends BaseDesignComponent {
                     reportObject={reportObject}/>, mc);
                 break;
             case 'bar':
+            case 'horizontalBar':
             case 'line':
             case 'pie':
             case 'doughnut':
+            case 'polar':
+            case 'radar':
+            case 'scatter':
                 reportObject.objectType = 'chart';
                 reportObject.chartType = type;
                 rc = {left: 175, top: 50, width: 500, height: 425};

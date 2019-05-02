@@ -8,6 +8,10 @@ import { Bar } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 import { Doughnut } from 'react-chartjs-2';
+import { Radar } from 'react-chartjs-2';
+import { Polar } from 'react-chartjs-2';
+import { Scatter } from 'react-chartjs-2';
+import { HorizontalBar } from 'react-chartjs-2';
 import randomColor from 'randomcolor';
 import tinycolor from 'tinycolor2'
 
@@ -27,12 +31,20 @@ class ChartReportObject extends ReportObject {
         switch(this.props.config.chartType) {
             case 'bar':
                 return <Bar data={this.getData()} options={this.getOptions()}/>;
+            case 'horizontalBar':
+                return <HorizontalBar data={this.getData()} options={this.getOptions()}/>;
             case 'line':
                 return <Line data={this.getData()} options={this.getOptions()}/>;
             case 'pie':
                 return <Pie data={this.getData()} options={this.getOptions()}/>;
             case 'doughnut':
                 return <Doughnut data={this.getData()} options={this.getOptions()}/>;
+            case 'radar':
+                return <Radar data={this.getData()} options={this.getOptions()}/>;
+            case 'polar':
+                return <Polar data={this.getData()} options={this.getOptions()}/>;
+            case 'scatter':
+                return <Scatter data={this.getData()} options={this.getOptions()}/>;
         }
    }
    
@@ -80,16 +92,19 @@ class ChartReportObject extends ReportObject {
             if (dataAxes[i].color) {
                 switch(this.props.config.chartType) {
                     case 'bar':
+                    case 'horizontalBar':
                         ds.backgroundColor = dataAxes[i].color;
                         ds.borderColor = dataAxes[i].color;
                         ds.borderWidth = 1;
                         ds.hoverBackgroundColor = tinycolor(ds.backgroundColor).darken(15).toString();
                         break;
                     case 'line':
+                    case 'radar':
+                    case 'scatter':
                         ds.borderColor = dataAxes[i].color;
                         ds.borderWidth = dataAxes[i].borderWidth;
                         if (this.props.config.showBackground) {
-                            ds.backgroundColor = tinycolor(ds.borderColor).lighten(40).desaturate(20).toString();
+                            ds.backgroundColor = tinycolor(ds.borderColor).lighten(50).desaturate(25).toString();
                             ds.hoverBackgroundColor = tinycolor(ds.borderColor).darken(20).toString();
                         } else {
                             ds.backgroundColor = 'transparent';
@@ -102,19 +117,27 @@ class ChartReportObject extends ReportObject {
             }
             ds.data = [];
     
-            for (let i = 0; i < 5; i++) {
-                ds.data.push(Math.floor(Math.random() * 100));
-        
-                switch(this.props.config.chartType) {
-                    case 'pie':
-                    case 'doughnut':
-                        if (!ds.backgroundColor) {
-                            ds.backgroundColor = [];
-                        }
+            if (this.props.config.chartType === 'scatter') {
+                for (let i = 0; i < 20; ++i) {
+                    ds.data.push({x: Math.floor(Math.random() * 100), y: Math.floor(Math.random() * 100)});
+                }
                 
-                        ds.backgroundColor.push(randomColor({luminosity: 'dark'}));
-                        break;
+            } else {
+                for (let i = 0; i < 5; i++) {
+                    ds.data.push(Math.floor(Math.random() * 100));
+        
+                    switch (this.props.config.chartType) {
+                        case 'pie':
+                        case 'doughnut':
+                        case 'polar':
+                            if (!ds.backgroundColor) {
+                                ds.backgroundColor = [];
+                            }
+                
+                            ds.backgroundColor.push(randomColor({luminosity: 'dark'}));
+                            break;
             
+                    }
                 }
             }
             
