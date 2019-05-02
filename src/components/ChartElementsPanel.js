@@ -33,7 +33,8 @@ class ChartElementsPanel extends BaseDesignComponent {
     
     getContent() {
         if ((this.props.reportObject.chartType === 'line')
-            || (this.props.reportObject.chartType === 'radar')) {
+            || (this.props.reportObject.chartType === 'radar')
+            || (this.props.reportObject.chartType === 'scatter')) {
             return <table>
                 <tr>
                     <th colSpan={2}>{config.textmsg.point}</th>
@@ -48,22 +49,25 @@ class ChartElementsPanel extends BaseDesignComponent {
                     <td>{config.textmsg.stylelabel}</td>
                     <td><PointStyleSelect reportObject={this.props.reportObject}/></td>
                 </tr>
+                {(this.props.reportObject.chartType !== 'scatter') &&
                 <tr>
                     <td/>
                     <td><Checkbox label={config.textmsg.showbackground}
                                   isChecked={this.props.reportObject.showBackground}
                                   handleCheckboxChange={this.setShowBackground}/></td>
-                </tr>
+                </tr>}
+                {(this.props.reportObject.chartType === 'line') &&
                 <tr>
                     <td>{config.textmsg.yaxeslabel}</td>
                     <td><input type={'text'} defaultValue={this.props.reportObject.yAxes.label}
                                onBlur={this.setYAxesLabel}/></td>
-                </tr>
+                </tr>}
+                {(this.props.reportObject.chartType === 'line') &&
                 <tr>
                     <td>{config.textmsg.xaxeslabel}</td>
                     <td><input type={'text'} defaultValue={this.props.reportObject.xAxes.label}
                                onBlur={this.setXAxesLabel}/></td>
-                </tr>
+                </tr>}
             </table>;
         } else {
             return <table>

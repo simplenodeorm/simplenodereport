@@ -1,0 +1,1293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="def8da96-9b89-4c3d-99b7-9422696f8b4a" name="Default Changelist" comment="SIM-13 extend chart capabilities">
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/simplenodereport.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartElementsPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartElementsPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartReportObject.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="simplenodereport" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ChartReportObject.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="121" column="105" selection-start-line="121" selection-start-column="105" selection-end-line="121" selection-end-column="105" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/helpers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="156">
+              <caret line="473" column="42" selection-start-line="473" selection-start-column="16" selection-end-line="473" selection-end-column="42" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ChartSetupTabs.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="46" selection-start-line="45" selection-end-line="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/ChartElementsPanel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="97">
+              <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/ChartDataAxisLine.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="104">
+              <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>chartDataSelect</find>
+      <find>colorPick</find>
+      <find>colorPi</find>
+      <find>run</find>
+      <find>isNumeric</find>
+      <find>getFieldType</find>
+      <find>.function</find>
+      <find>formatSelectColumnForDisplay</find>
+      <find>/report/querycolumninfo</find>
+      <find>generateReport</find>
+      <find>showReport</find>
+      <find>---&gt;</find>
+      <find>in func</find>
+      <find>chartData</find>
+      <find>wait</find>
+      <find>showReportObjectSetupPanel</find>
+      <find>addReportObjectToReport</find>
+      <find>pie</find>
+      <find>randomColor</find>
+      <find>line</find>
+      <find>'line'</find>
+      <find>populateReportObjectData</find>
+      <find>showBackground</find>
+      <find>getOptions</find>
+      <find>getDatasets</find>
+      <find>radar</find>
+      <find>getData</find>
+      <find>'bar'</find>
+      <find>allowMultipleChartDataAxis</find>
+      <find>showElementsTab</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$/public</dir>
+      <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/src</dir>
+      <dir>$PROJECT_DIR$/src/components</dir>
+    </dirStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/components/AppToolbar.js" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/components/ShapeSetupPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/EmailSetupPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/EmailReportObject.js" />
+        <option value="$PROJECT_DIR$/src/components/DBDataReportObject.js" />
+        <option value="$PROJECT_DIR$/src/components/TextAlignSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/SpecialHandlingSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/LinkSetupPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/HelpButton.js" />
+        <option value="$PROJECT_DIR$/src/components/ReportSection.js" />
+        <option value="$PROJECT_DIR$/public/index.html" />
+        <option value="$PROJECT_DIR$/src/config/orms.json" />
+        <option value="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/QuerySelector.js" />
+        <option value="$PROJECT_DIR$/src/components/SaveReportPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/DocumentTree.js" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/components/ChartTypeSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/LegendPositionSelect.js" />
+        <option value="$PROJECT_DIR$/src/config/defaults.json" />
+        <option value="$PROJECT_DIR$/src/components/BorderSelectPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/TitlePositionSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartTitlePanel.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartAxisSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/Checkbox.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartColumnSelectLine.js" />
+        <option value="$PROJECT_DIR$/src/components/DesignPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartLegendPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartTitlePositionSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartTitleSetupPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartFontSelectPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/SizeSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/PointStyleSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartSetupPanel.js" />
+        <option value="$PROJECT_DIR$/src/app/App.css" />
+        <option value="$PROJECT_DIR$/src/components/ChartDataAxisLine.js" />
+        <option value="$PROJECT_DIR$/src/components/ColumnSelectLine.js" />
+        <option value="$PROJECT_DIR$/src/components/ColorSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartDataSelect.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartCategorySelect.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/ReportContainer.js" />
+        <option value="$PROJECT_DIR$/src/auth/LoginPage.js" />
+        <option value="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" />
+        <option value="$PROJECT_DIR$/src/config/runreportconfig.json" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/components/AppToolbar.js" />
+        <option value="$PROJECT_DIR$/src/config/appconfig.json" />
+        <option value="$PROJECT_DIR$/src/components/helpers.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartReportObject.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartSetupTabs.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartElementsPanel.js" />
+      </list>
+    </option>
+  </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupnpm">
+      <scroll-view-position x="0" y="0" />
+    </layout>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="128" />
+    <option name="y" value="17" />
+    <option name="width" value="1159" />
+    <option name="height" value="708" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/node_modules/react-scripts/scripts/start.js" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components" />
+      <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$/src/config" />
+      <recent name="$PROJECT_DIR$/src/auth" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration default="true" type="NodeJSConfigurationType" path-to-js-file="src/index.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="start" />
+      <arguments value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="debug start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="debug" />
+      </scripts>
+      <arguments value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="npm.start" />
+      <item itemvalue="npm.debug start" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.debug start" />
+        <item itemvalue="npm.debug start" />
+        <item itemvalue="npm.debug start" />
+        <item itemvalue="npm.debug start" />
+        <item itemvalue="npm.debug start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="StructureViewFactory">
+    <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="def8da96-9b89-4c3d-99b7-9422696f8b4a" name="Default Changelist" comment="" />
+      <created>1547778046391</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1547778046391</updated>
+      <workItem from="1547778049167" duration="727000" />
+      <workItem from="1547778907902" duration="3353000" />
+      <workItem from="1547782750027" duration="1341000" />
+      <workItem from="1547852666682" duration="13573000" />
+      <workItem from="1547920660047" duration="6200000" />
+      <workItem from="1547927515424" duration="330000" />
+      <workItem from="1547928542544" duration="6742000" />
+      <workItem from="1547947970287" duration="7999000" />
+      <workItem from="1548011864640" duration="10319000" />
+      <workItem from="1548025874297" duration="6671000" />
+      <workItem from="1548035188446" duration="1650000" />
+      <workItem from="1548117125400" duration="3413000" />
+      <workItem from="1548121336663" duration="4511000" />
+      <workItem from="1548201048624" duration="13182000" />
+      <workItem from="1548282527717" duration="13242000" />
+      <workItem from="1548353670093" duration="6002000" />
+      <workItem from="1548370323814" duration="15667000" />
+      <workItem from="1548425363951" duration="6674000" />
+      <workItem from="1548444117536" duration="5531000" />
+      <workItem from="1548450663314" duration="574000" />
+      <workItem from="1548467826826" duration="13718000" />
+      <workItem from="1548516109293" duration="2902000" />
+      <workItem from="1548519108495" duration="17000" />
+      <workItem from="1548520516756" duration="12570000" />
+      <workItem from="1548537448814" duration="3839000" />
+      <workItem from="1548548769403" duration="3853000" />
+      <workItem from="1548598759058" duration="2898000" />
+      <workItem from="1548633158256" duration="11876000" />
+      <workItem from="1548719387894" duration="12717000" />
+      <workItem from="1548809728221" duration="8758000" />
+      <workItem from="1548869835289" duration="21882000" />
+      <workItem from="1548895240395" duration="10021000" />
+      <workItem from="1548940075816" duration="11990000" />
+      <workItem from="1548954292795" duration="6660000" />
+      <workItem from="1548982500367" duration="3898000" />
+      <workItem from="1549059802162" duration="9503000" />
+      <workItem from="1549422572982" duration="700000" />
+      <workItem from="1549466689744" duration="673000" />
+      <workItem from="1549467390638" duration="2257000" />
+      <workItem from="1549469690426" duration="36000" />
+      <workItem from="1549469747806" duration="13000" />
+      <workItem from="1549472474241" duration="3330000" />
+      <workItem from="1549493243700" duration="2648000" />
+      <workItem from="1549497253244" duration="12594000" />
+      <workItem from="1549559201696" duration="17027000" />
+      <workItem from="1549579391998" duration="7978000" />
+      <workItem from="1549588611226" duration="10456000" />
+      <workItem from="1549636535623" duration="2677000" />
+      <workItem from="1549640262258" duration="1289000" />
+      <workItem from="1549646067018" duration="1504000" />
+      <workItem from="1549684873564" duration="557000" />
+      <workItem from="1549722329096" duration="21842000" />
+      <workItem from="1549773113777" duration="1167000" />
+      <workItem from="1549817654565" duration="14727000" />
+      <workItem from="1549840743292" duration="15003000" />
+      <workItem from="1549893541910" duration="12993000" />
+      <workItem from="1549914022081" duration="2628000" />
+      <workItem from="1549927907662" duration="15392000" />
+      <workItem from="1550157187092" duration="14907000" />
+      <workItem from="1550181831562" duration="8085000" />
+      <workItem from="1550242765260" duration="5433000" />
+      <workItem from="1550251434134" duration="15093000" />
+      <workItem from="1550286378492" duration="4619000" />
+      <workItem from="1550336141277" duration="6666000" />
+      <workItem from="1550422754772" duration="5925000" />
+      <workItem from="1550438941708" duration="11927000" />
+      <workItem from="1550528137884" duration="2766000" />
+      <workItem from="1550538766663" duration="7854000" />
+      <workItem from="1550620539932" duration="9636000" />
+      <workItem from="1550702621224" duration="8803000" />
+      <workItem from="1550759062680" duration="2918000" />
+      <workItem from="1550845016109" duration="13896000" />
+      <workItem from="1550864990262" duration="3983000" />
+      <workItem from="1550956953149" duration="8222000" />
+      <workItem from="1551037386839" duration="4279000" />
+      <workItem from="1551053976868" duration="5247000" />
+      <workItem from="1551108104518" duration="398000" />
+      <workItem from="1551108526204" duration="10886000" />
+      <workItem from="1551229289043" duration="4970000" />
+      <workItem from="1551319106760" duration="1930000" />
+      <workItem from="1551364726132" duration="6648000" />
+      <workItem from="1551378192975" duration="511000" />
+      <workItem from="1551382789434" duration="608000" />
+      <workItem from="1551386950670" duration="8105000" />
+      <workItem from="1551407220578" duration="504000" />
+      <workItem from="1551408409512" duration="1968000" />
+      <workItem from="1551483743169" duration="8448000" />
+      <workItem from="1551567005080" duration="6146000" />
+      <workItem from="1551621246146" duration="4169000" />
+      <workItem from="1551641264889" duration="840000" />
+      <workItem from="1551656230118" duration="6463000" />
+      <workItem from="1551742309325" duration="5119000" />
+      <workItem from="1551751572289" duration="3232000" />
+      <workItem from="1551915655822" duration="11603000" />
+      <workItem from="1552007878978" duration="6358000" />
+      <workItem from="1552069932068" duration="6328000" />
+      <workItem from="1552078229076" duration="266000" />
+      <workItem from="1552079094395" duration="395000" />
+      <workItem from="1552080054861" duration="4355000" />
+      <workItem from="1552136737279" duration="868000" />
+      <workItem from="1552167363107" duration="6539000" />
+      <workItem from="1552178191203" duration="4945000" />
+      <workItem from="1552236846445" duration="2912000" />
+      <workItem from="1552248089729" duration="4972000" />
+      <workItem from="1552253885083" duration="3045000" />
+      <workItem from="1552266584383" duration="6460000" />
+      <workItem from="1552338488591" duration="1831000" />
+      <workItem from="1552411875611" duration="6801000" />
+      <workItem from="1552499304656" duration="3354000" />
+      <workItem from="1552514697496" duration="1554000" />
+      <workItem from="1552574521576" duration="10495000" />
+      <workItem from="1552590913071" duration="480000" />
+      <workItem from="1552594011711" duration="405000" />
+      <workItem from="1552605511369" duration="374000" />
+      <workItem from="1552607296574" duration="53000" />
+      <workItem from="1552607374327" duration="25000" />
+      <workItem from="1552618934588" duration="1436000" />
+      <workItem from="1552654000314" duration="665000" />
+      <workItem from="1552673409697" duration="32000" />
+      <workItem from="1552674135029" duration="155000" />
+      <workItem from="1552790796746" duration="87000" />
+      <workItem from="1552795083559" duration="760000" />
+      <workItem from="1552839951774" duration="2277000" />
+      <workItem from="1552872290474" duration="903000" />
+      <workItem from="1552873922319" duration="524000" />
+      <workItem from="1552874688912" duration="160000" />
+      <workItem from="1552874972806" duration="788000" />
+      <workItem from="1552879174934" duration="14000" />
+      <workItem from="1552946889409" duration="797000" />
+      <workItem from="1553374558006" duration="193000" />
+      <workItem from="1553607462289" duration="610000" />
+      <workItem from="1553796334271" duration="433000" />
+      <workItem from="1553797992111" duration="189000" />
+      <workItem from="1553800804568" duration="37000" />
+      <workItem from="1553805515617" duration="267000" />
+      <workItem from="1553822803798" duration="245000" />
+      <workItem from="1553824068764" duration="195000" />
+      <workItem from="1553829693631" duration="923000" />
+      <workItem from="1553877629051" duration="347000" />
+      <workItem from="1553907739177" duration="131000" />
+      <workItem from="1554313253623" duration="90000" />
+      <workItem from="1554322001610" duration="28000" />
+      <workItem from="1554348635328" duration="131000" />
+      <workItem from="1555017499553" duration="5172000" />
+      <workItem from="1555113200222" duration="1829000" />
+      <workItem from="1555276949199" duration="856000" />
+      <workItem from="1555279956814" duration="4137000" />
+      <workItem from="1555422923903" duration="14193000" />
+      <workItem from="1555467187677" duration="4233000" />
+      <workItem from="1555514366470" duration="12120000" />
+      <workItem from="1555542188189" duration="10357000" />
+      <workItem from="1555593307158" duration="7733000" />
+      <workItem from="1555607072875" duration="7521000" />
+      <workItem from="1555635768003" duration="4603000" />
+      <workItem from="1555679843974" duration="14462000" />
+      <workItem from="1555700688575" duration="7164000" />
+      <workItem from="1555715620538" duration="10831000" />
+      <workItem from="1555768017877" duration="2568000" />
+      <workItem from="1555786628310" duration="5764000" />
+      <workItem from="1555806601884" duration="4715000" />
+      <workItem from="1555860117270" duration="11230000" />
+      <workItem from="1555883659925" duration="925000" />
+      <workItem from="1555890954360" duration="332000" />
+      <workItem from="1555942671929" duration="1012000" />
+      <workItem from="1555944582677" duration="1638000" />
+      <workItem from="1555948887229" duration="153000" />
+      <workItem from="1555949262923" duration="175000" />
+      <workItem from="1555951008382" duration="422000" />
+      <workItem from="1555955429794" duration="185000" />
+      <workItem from="1555955842608" duration="693000" />
+      <workItem from="1555957294345" duration="7172000" />
+      <workItem from="1555966877147" duration="3492000" />
+      <workItem from="1555971099409" duration="161000" />
+      <workItem from="1555971861814" duration="2469000" />
+      <workItem from="1555975473398" duration="48000" />
+      <workItem from="1556294036289" duration="1166000" />
+      <workItem from="1556322680826" duration="1100000" />
+      <workItem from="1556379546395" duration="125000" />
+      <workItem from="1556381529071" duration="1081000" />
+      <workItem from="1556392967451" duration="502000" />
+      <workItem from="1556667985944" duration="3996000" />
+      <workItem from="1556752134391" duration="442000" />
+      <workItem from="1556759278305" duration="3802000" />
+      <workItem from="1556800864401" duration="1228000" />
+    </task>
+    <task id="LOCAL-00140" summary="add documentation">
+      <created>1552654040336</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1552654040337</updated>
+    </task>
+    <task id="LOCAL-00141" summary="add documentation">
+      <created>1552673422780</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1552673422781</updated>
+    </task>
+    <task id="LOCAL-00142" summary="add documentation">
+      <created>1552674186124</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1552674186127</updated>
+    </task>
+    <task id="LOCAL-00143" summary="add documentation">
+      <created>1552874826459</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1552874826460</updated>
+    </task>
+    <task id="LOCAL-00144" summary="update documentation, add some flags for demo mode operation">
+      <created>1553798132071</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1553798132073</updated>
+    </task>
+    <task id="LOCAL-00145" summary="update documentation, add some flags for demo mode operation">
+      <created>1553824226058</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1553824226060</updated>
+    </task>
+    <task id="LOCAL-00146" summary="update documentation, add some flags for demo mode operation">
+      <created>1553830530019</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1553830530020</updated>
+    </task>
+    <task id="LOCAL-00147" summary="update documentation, add some flags for demo mode operation">
+      <created>1553877693789</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1553877693791</updated>
+    </task>
+    <task id="LOCAL-00148" summary="update package.json keywords">
+      <created>1553907834342</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1553907834343</updated>
+    </task>
+    <task id="LOCAL-00149" summary="update readme">
+      <created>1554313314304</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1554313314306</updated>
+    </task>
+    <task id="LOCAL-00150" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555020020666</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1555020020667</updated>
+    </task>
+    <task id="LOCAL-00151" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555021088876</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1555021088876</updated>
+    </task>
+    <task id="LOCAL-00152" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555290442829</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1555290442830</updated>
+    </task>
+    <task id="LOCAL-00153" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555291457341</created>
+      <option name="number" value="00153" />
+      <option name="presentableId" value="LOCAL-00153" />
+      <option name="project" value="LOCAL" />
+      <updated>1555291457342</updated>
+    </task>
+    <task id="LOCAL-00154" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555445618495</created>
+      <option name="number" value="00154" />
+      <option name="presentableId" value="LOCAL-00154" />
+      <option name="project" value="LOCAL" />
+      <updated>1555445618495</updated>
+    </task>
+    <task id="LOCAL-00155" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555471354524</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1555471354525</updated>
+    </task>
+    <task id="LOCAL-00156" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555520777545</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1555520777546</updated>
+    </task>
+    <task id="LOCAL-00157" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555523087839</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1555523087839</updated>
+    </task>
+    <task id="LOCAL-00158" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555529038457</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1555529038457</updated>
+    </task>
+    <task id="LOCAL-00159" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555553970503</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1555553970504</updated>
+    </task>
+    <task id="LOCAL-00160" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555596017344</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1555596017345</updated>
+    </task>
+    <task id="LOCAL-00161" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555598402967</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1555598402967</updated>
+    </task>
+    <task id="LOCAL-00162" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555598429360</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1555598429360</updated>
+    </task>
+    <task id="LOCAL-00163" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555601082752</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1555601082753</updated>
+    </task>
+    <task id="LOCAL-00164" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555610543206</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1555610543207</updated>
+    </task>
+    <task id="LOCAL-00165" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555644059760</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1555644059761</updated>
+    </task>
+    <task id="LOCAL-00166" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555704368892</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1555704368894</updated>
+    </task>
+    <task id="LOCAL-00167" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555707865819</created>
+      <option name="number" value="00167" />
+      <option name="presentableId" value="LOCAL-00167" />
+      <option name="project" value="LOCAL" />
+      <updated>1555707865820</updated>
+    </task>
+    <task id="LOCAL-00168" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555717938693</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1555717938695</updated>
+    </task>
+    <task id="LOCAL-00169" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555724412771</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1555724412772</updated>
+    </task>
+    <task id="LOCAL-00170" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555724680290</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1555724680291</updated>
+    </task>
+    <task id="LOCAL-00171" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555725998378</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1555725998378</updated>
+    </task>
+    <task id="LOCAL-00172" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555728247641</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1555728247641</updated>
+    </task>
+    <task id="LOCAL-00173" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555770061845</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1555770061846</updated>
+    </task>
+    <task id="LOCAL-00174" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555818899287</created>
+      <option name="number" value="00174" />
+      <option name="presentableId" value="LOCAL-00174" />
+      <option name="project" value="LOCAL" />
+      <updated>1555818899289</updated>
+    </task>
+    <task id="LOCAL-00175" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555864890894</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1555864890895</updated>
+    </task>
+    <task id="LOCAL-00176" summary="SIM-3 adding graph support with Chart.js">
+      <created>1555877076189</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1555877076189</updated>
+    </task>
+    <task id="LOCAL-00177" summary="update version">
+      <created>1555880455193</created>
+      <option name="number" value="00177" />
+      <option name="presentableId" value="LOCAL-00177" />
+      <option name="project" value="LOCAL" />
+      <updated>1555880455193</updated>
+    </task>
+    <task id="LOCAL-00178" summary="update documentation">
+      <created>1555890539054</created>
+      <option name="number" value="00178" />
+      <option name="presentableId" value="LOCAL-00178" />
+      <option name="project" value="LOCAL" />
+      <updated>1555890539057</updated>
+    </task>
+    <task id="LOCAL-00179" summary="SIM-9 only 1 chart report object shows on report">
+      <created>1555943032282</created>
+      <option name="number" value="00179" />
+      <option name="presentableId" value="LOCAL-00179" />
+      <option name="project" value="LOCAL" />
+      <updated>1555943032283</updated>
+    </task>
+    <task id="LOCAL-00180" summary="SIM-10 standalone report with chart will not run">
+      <created>1555969245839</created>
+      <option name="number" value="00180" />
+      <option name="presentableId" value="LOCAL-00180" />
+      <option name="project" value="LOCAL" />
+      <updated>1555969245840</updated>
+    </task>
+    <task id="LOCAL-00181" summary="SIM-10 standalone report with chart will not run">
+      <created>1555969483804</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1555969483804</updated>
+    </task>
+    <task id="LOCAL-00182" summary="SIM-10 standalone report with chart will not run">
+      <created>1555972971836</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1555972971837</updated>
+    </task>
+    <task id="LOCAL-00183" summary="SIM-10 standalone report with chart will not run">
+      <created>1555973270469</created>
+      <option name="number" value="00183" />
+      <option name="presentableId" value="LOCAL-00183" />
+      <option name="project" value="LOCAL" />
+      <updated>1555973270469</updated>
+    </task>
+    <task id="LOCAL-00184" summary="SIM-10 standalone report with chart will not run">
+      <created>1555975503481</created>
+      <option name="number" value="00184" />
+      <option name="presentableId" value="LOCAL-00184" />
+      <option name="project" value="LOCAL" />
+      <updated>1555975503482</updated>
+    </task>
+    <task id="LOCAL-00185" summary="clean up some demoMode settings">
+      <created>1556324217371</created>
+      <option name="number" value="00185" />
+      <option name="presentableId" value="LOCAL-00185" />
+      <option name="project" value="LOCAL" />
+      <updated>1556324217405</updated>
+    </task>
+    <task id="LOCAL-00186" summary="clean up some demoMode settings">
+      <created>1556382573132</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1556382573133</updated>
+    </task>
+    <task id="LOCAL-00187" summary="clean up some demoMode settings">
+      <created>1556752169112</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1556752169113</updated>
+    </task>
+    <task id="LOCAL-00188" summary="add extended reports">
+      <created>1556763054675</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1556763054676</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="882344000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="128" y="17" width="1159" height="708" extended-state="0" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.71708184" visible="true" weight="0.3271605" />
+      <window_info id="Structure" order="1" sideWeight="0.2852349" side_tool="true" weight="0.26366842" />
+      <window_info id="npm" order="2" sideWeight="0.43396226" side_tool="true" weight="0.39633027" />
+      <window_info id="Favorites" order="3" sideWeight="0.28291816" side_tool="true" weight="0.3271605" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49460432" weight="0.39679715" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48741007" weight="0.23487544" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39811322" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32849365" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.16192171" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5053957" side_tool="true" weight="0.33096084" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.49370503" visible="true" weight="0.1975089" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Google Cloud Storage" order="3" weight="0.32886505" />
+    </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7060998" visible="true" weight="0.24662466" />
+      <window_info id="Structure" order="1" sideWeight="0.22392638" side_tool="true" weight="0.43610367" />
+      <window_info id="npm" order="2" sideWeight="0.43396226" side_tool="true" weight="0.39633027" />
+      <window_info id="Favorites" order="3" sideWeight="0.2939002" side_tool="true" weight="0.24212421" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49535865" weight="0.40480593" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48945147" visible="true" weight="0.3271719" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39811322" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32849365" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.4692623" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5037975" side_tool="true" weight="0.2712766" />
+      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.4970464" visible="true" weight="0.36065573" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Google Cloud Storage" order="3" weight="0.32886505" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactor the add report object functionality" />
+    <MESSAGE value="get the db data grid report object working" />
+    <MESSAGE value="add resize/move functionality to report object" />
+    <MESSAGE value="clean up resource from REACTDOM.render" />
+    <MESSAGE value="refactor the vertical scroll logic a bit" />
+    <MESSAGE value="fix document refresh after new document load" />
+    <MESSAGE value="implement report object logic" />
+    <MESSAGE value="implement report run logic" />
+    <MESSAGE value="implement report object align" />
+    <MESSAGE value="implement ability to individually place query columns and labels" />
+    <MESSAGE value="add run report functionality" />
+    <MESSAGE value="fix new report initialization logic" />
+    <MESSAGE value="clean up report display for printing" />
+    <MESSAGE value="add documentation" />
+    <MESSAGE value="update documentation, add some flags for demo mode operation" />
+    <MESSAGE value="update package.json keywords" />
+    <MESSAGE value="update readme" />
+    <MESSAGE value="SIM-3 adding graph support with Chart.js" />
+    <MESSAGE value="update version" />
+    <MESSAGE value="update documentation" />
+    <MESSAGE value="SIM-9 only 1 chart report object shows on report" />
+    <MESSAGE value="SIM-10 standalone report with chart will not run" />
+    <MESSAGE value="clean up some demoMode settings" />
+    <MESSAGE value="add extended reports" />
+    <MESSAGE value="SIM-13 extend chart capabilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="SIM-13 extend chart capabilities" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/DocumentTree.js</url>
+          <line>105</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/components/NumericInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="17" column="18" lean-forward="true" selection-start-line="17" selection-start-column="18" selection-end-line="17" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/BorderSelectPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="81" column="36" selection-start-line="81" selection-start-column="36" selection-end-line="81" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DBDataGridDisplayFontPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-239" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/defaults.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="15" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/TitlePositionSelect.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/ChartTitlePanel.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/ColumnDataSetupPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="829">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DBColumnSelectPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="5" column="75" selection-start-line="5" selection-start-column="75" selection-end-line="5" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartAxisSelect.js" />
+    <entry file="file://$PROJECT_DIR$/src/components/Checkbox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/BaseDesignComponent.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/App.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-chartjs-2/package.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-chartjs-2/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-1590">
+            <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DBDataReportObject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="50" column="75" selection-start-line="50" selection-start-column="75" selection-end-line="50" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/color/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="-615">
+            <caret line="25" column="39" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="39" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/color/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="33" selection-start-line="27" selection-start-column="33" selection-end-line="27" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/tinycolor2/docs/tinycolor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/tinycolor2/demo/jquery-1.9.1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6030" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartTitlePositionSelect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="24" column="51" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/FontSelectPanel.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PointStyleSelect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="33" column="49" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartFontSelectPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="90" column="44" selection-start-line="90" selection-start-column="44" selection-end-line="90" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/SizeSelect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="23" column="20" lean-forward="true" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartTitleSetupPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1194">
+          <caret line="16" column="50" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ColumnSelectLine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-175">
+          <caret line="45" column="56" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ColorSelect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartCategorySelect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="22" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/orms.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ReportContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1605">
+          <caret line="107" column="63" selection-start-line="107" selection-start-column="63" selection-end-line="107" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor>
+            <caret column="30" selection-start-column="30" selection-end-column="30" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DocumentTree.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1485">
+          <caret line="99" column="224" selection-start-line="99" selection-start-column="224" selection-end-line="99" selection-end-column="224" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/auth/RunReportLoginPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-855">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="41" column="15" selection-start-line="41" selection-start-column="15" selection-end-line="41" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/App.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-151">
+          <caret line="544" column="5" selection-start-line="544" selection-start-column="1" selection-end-line="544" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/runreportconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="70" column="20" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="70" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/PageNumberReportObject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1215" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ReportSection.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="19" lean-forward="true" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartDataSelect.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1341">
+          <caret line="4" column="63" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartSetupPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/appconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="236" column="17" selection-start-line="236" selection-start-column="17" selection-end-line="236" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="4" selection-end-line="45" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/AppToolbar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8520">
+          <caret line="568" column="17" selection-start-line="568" selection-start-column="17" selection-end-line="568" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/DesignPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="385" column="51" selection-start-line="385" selection-start-column="51" selection-end-line="385" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartReportObject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="121" column="105" selection-start-line="121" selection-start-column="105" selection-end-line="121" selection-end-column="105" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/helpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="473" column="42" selection-start-line="473" selection-start-column="16" selection-end-line="473" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartDataAxisLine.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartSetupTabs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="46" selection-start-line="45" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ChartElementsPanel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

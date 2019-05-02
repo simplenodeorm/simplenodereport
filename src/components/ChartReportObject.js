@@ -117,20 +117,27 @@ class ChartReportObject extends ReportObject {
             }
             ds.data = [];
     
-            for (let i = 0; i < 5; i++) {
-                ds.data.push(Math.floor(Math.random() * 100));
-        
-                switch(this.props.config.chartType) {
-                    case 'pie':
-                    case 'doughnut':
-                    case 'polar':
-                        if (!ds.backgroundColor) {
-                            ds.backgroundColor = [];
-                        }
+            if (this.props.config.chartType === 'scatter') {
+                for (let i = 0; i < 20; ++i) {
+                    ds.data.push({x: Math.floor(Math.random() * 100), y: Math.floor(Math.random() * 100)});
+                }
                 
-                        ds.backgroundColor.push(randomColor({luminosity: 'dark'}));
-                        break;
+            } else {
+                for (let i = 0; i < 5; i++) {
+                    ds.data.push(Math.floor(Math.random() * 100));
+        
+                    switch (this.props.config.chartType) {
+                        case 'pie':
+                        case 'doughnut':
+                        case 'polar':
+                            if (!ds.backgroundColor) {
+                                ds.backgroundColor = [];
+                            }
+                
+                            ds.backgroundColor.push(randomColor({luminosity: 'dark'}));
+                            break;
             
+                    }
                 }
             }
             
