@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="def8da96-9b89-4c3d-99b7-9422696f8b4a" name="Default Changelist" comment="SIM-13 extend chart capabilities">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/simplenodereport.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ChartElementsPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartElementsPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ChartReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartReportObject.js" afterDir="false" />
+    <list default="true" id="def8da96-9b89-4c3d-99b7-9422696f8b4a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/helpers.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,30 +18,12 @@
     <favorites_list name="simplenodereport" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/ChartReportObject.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="202">
-              <caret line="121" column="105" selection-start-line="121" selection-start-column="105" selection-end-line="121" selection-end-column="105" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/helpers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="473" column="42" selection-start-line="473" selection-start-column="16" selection-end-line="473" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ChartSetupTabs.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="46" selection-start-line="45" selection-end-line="46" />
+            <state relative-caret-position="320">
+              <caret line="114" selection-start-line="114" selection-end-line="114" />
             </state>
           </provider>
         </entry>
@@ -56,17 +31,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/ChartElementsPanel.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="97">
+            <state relative-caret-position="437">
               <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/ChartDataAxisLine.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -82,8 +48,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>chartDataSelect</find>
-      <find>colorPick</find>
       <find>colorPi</find>
       <find>run</find>
       <find>isNumeric</find>
@@ -111,13 +75,15 @@
       <find>getData</find>
       <find>'bar'</find>
       <find>allowMultipleChartDataAxis</find>
+      <find>number</find>
+      <find>DECIMAL</find>
       <find>showElementsTab</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/public</dir>
+      <dir>$PROJECT_DIR$/src/components</dir>
       <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/src</dir>
-      <dir>$PROJECT_DIR$/src/components</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -181,10 +147,10 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/AppToolbar.js" />
         <option value="$PROJECT_DIR$/src/config/appconfig.json" />
-        <option value="$PROJECT_DIR$/src/components/helpers.js" />
-        <option value="$PROJECT_DIR$/src/components/ChartReportObject.js" />
         <option value="$PROJECT_DIR$/src/components/ChartSetupTabs.js" />
         <option value="$PROJECT_DIR$/src/components/ChartElementsPanel.js" />
+        <option value="$PROJECT_DIR$/src/components/helpers.js" />
+        <option value="$PROJECT_DIR$/src/components/ChartReportObject.js" />
       </list>
     </option>
   </component>
@@ -224,12 +190,6 @@
               <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="components" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
-              <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -509,14 +469,9 @@
       <workItem from="1556667985944" duration="3996000" />
       <workItem from="1556752134391" duration="442000" />
       <workItem from="1556759278305" duration="3802000" />
-      <workItem from="1556800864401" duration="1228000" />
-    </task>
-    <task id="LOCAL-00140" summary="add documentation">
-      <created>1552654040336</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1552654040337</updated>
+      <workItem from="1556800864401" duration="2819000" />
+      <workItem from="1556803972817" duration="597000" />
+      <workItem from="1556805011597" duration="1672000" />
     </task>
     <task id="LOCAL-00141" summary="add documentation">
       <created>1552673422780</created>
@@ -854,11 +809,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556763054676</updated>
     </task>
-    <option name="localTasksCounter" value="189" />
+    <task id="LOCAL-00189" summary="SIM-13 extend chart capabilities">
+      <created>1556802137997</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1556802137998</updated>
+    </task>
+    <option name="localTasksCounter" value="190" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="882344000" />
+    <option name="totallyTimeSpent" value="886204000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -872,22 +834,22 @@
   <component name="ToolWindowManager">
     <frame x="128" y="17" width="1159" height="708" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.71708184" visible="true" weight="0.3271605" />
-      <window_info id="Structure" order="1" sideWeight="0.2852349" side_tool="true" weight="0.26366842" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.82366073" visible="true" weight="0.3271605" />
+      <window_info id="Structure" order="1" sideWeight="0.17633928" side_tool="true" weight="0.3271605" />
       <window_info id="npm" order="2" sideWeight="0.43396226" side_tool="true" weight="0.39633027" />
-      <window_info id="Favorites" order="3" sideWeight="0.28291816" side_tool="true" weight="0.3271605" />
+      <window_info id="Favorites" order="3" sideWeight="0.17633928" side_tool="true" weight="0.3271605" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49460432" weight="0.39679715" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48741007" weight="0.23487544" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.49382716" visible="true" weight="0.20284697" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48589066" visible="true" weight="0.23487544" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39811322" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32849365" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.16192171" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5053957" side_tool="true" weight="0.33096084" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5141094" side_tool="true" visible="true" weight="0.23487544" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" sideWeight="0.49370503" visible="true" weight="0.1975089" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49370503" weight="0.28825623" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1131,13 +1093,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/orms.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ReportContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1605">
@@ -1187,13 +1142,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="21" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="70" column="20" lean-forward="true" selection-start-line="68" selection-start-column="17" selection-end-line="70" selection-end-column="20" />
         </state>
       </provider>
     </entry>
@@ -1254,17 +1202,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ChartReportObject.js">
+    <entry file="file://$PROJECT_DIR$/src/components/helpers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
-          <caret line="121" column="105" selection-start-line="121" selection-start-column="105" selection-end-line="121" selection-end-column="105" />
+        <state relative-caret-position="73">
+          <caret line="41" column="8" selection-start-line="41" selection-start-column="8" selection-end-line="41" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/helpers.js">
+    <entry file="file://$PROJECT_DIR$/src/components/ChartSetupTabs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="473" column="42" selection-start-line="473" selection-start-column="16" selection-end-line="473" selection-end-column="42" />
+        <state relative-caret-position="164">
+          <caret line="46" selection-start-line="45" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="108" column="78" lean-forward="true" selection-start-line="108" selection-start-column="35" selection-end-line="108" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/orms.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
@@ -1275,16 +1237,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ChartSetupTabs.js">
+    <entry file="file://$PROJECT_DIR$/src/components/ChartReportObject.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="46" selection-start-line="45" selection-end-line="46" />
+        <state relative-caret-position="320">
+          <caret line="114" selection-start-line="114" selection-end-line="114" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ChartElementsPanel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="97">
+        <state relative-caret-position="437">
           <caret line="36" column="14" selection-start-line="36" selection-start-column="14" selection-end-line="36" selection-end-column="14" />
         </state>
       </provider>

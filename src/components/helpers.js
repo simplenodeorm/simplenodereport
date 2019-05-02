@@ -37,7 +37,9 @@ export function getPrecision(dbType) {
 export function getFieldType(dbType) {
     let retval;
     let check = dbType.toLowerCase();
-    if (check.startsWith('number') || check.startsWith('decimal')) {
+    if (check.startsWith('number')
+        || check.startsWith('decimal')
+        || check.startsWith('numeric')) {
         check = 'number';
     }
     switch (check) {
