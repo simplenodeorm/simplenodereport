@@ -128,7 +128,6 @@ class ReportContainer extends BaseDesignComponent {
             chartCode += '; window.stop()';
             new Function(chartCode)();
         }
-    
     }
     
     cancelReport() {

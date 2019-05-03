@@ -232,7 +232,7 @@
         "line",
         "pie",
         "doughnut",
-        "polar",
+        "polarArea",
         "radar",
         "scatter"
     ],

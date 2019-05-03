@@ -200,7 +200,7 @@ class AppToolbar extends BaseDesignComponent {
             }
             if (selectedObjects && fs) {
                 for (let j = 0; j < selectedObjects.length; ++j) {
-                    if (selectedObjects[j] != fs) {
+                    if (selectedObjects[j] !== fs) {
                         switch (pos) {
                             case 'left':
                                 selectedObjects[j].rect.left = fs.rect.left;
@@ -384,30 +384,31 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     showReport(data) {
-        let chartscript1 = '';
-        let chartscript2 = '';
-        
+        let chartscript = '';
+        let script = '';
         if (data.chartData) {
-            chartscript1 = '<script src="' + data.chartData.chartjsurl + '"/></script>';
+            chartscript = '<script src="' + data.chartData.chartjsurl + '"/></script>';
             for (let i = 0; i < data.chartData.charts.length; ++i) {
-                chartscript2 += 'new Chart(document.getElementById("'
+                script += 'new Chart(document.getElementById("'
                     + data.chartData.charts[i].canvasId
                     + '").getContext("2d"),'
                     + JSON.stringify(data.chartData.charts[i])
                     + ');\n'
             }
     
-            chartscript2 = '<script>' + chartscript2 + 'window.stop();</script>'
+            script = '<script>' + script + 'window.stop();</script>'
+        } else {
+            script = '<script>window.stop();</script>'
         }
         
         let myWindow = window.open("", "_blank", "titlebar=yes,toolbar=yes,scrollbars=yes,resizable=yes,top=100,left=100,width=600,height=800");
         myWindow.document.write('<html><head><style>'
             + data.style
             + '</style>'
-            + chartscript1
+            + chartscript
             + '</head><body style="background-color: #202020">'
             + data.html
-            + chartscript2
+            + script
             + '</body></html>');
         
     }
@@ -571,7 +572,7 @@ class AppToolbar extends BaseDesignComponent {
             case 'line':
             case 'pie':
             case 'doughnut':
-            case 'polar':
+            case 'polarArea':
             case 'radar':
             case 'scatter':
                 reportObject.objectType = 'chart';
@@ -599,7 +600,7 @@ class AppToolbar extends BaseDesignComponent {
             let ypos = 20;
             let pb = reportObject.pageBreakController;
             reportObject.pageBreakController = false;
-            let id = document.designData.currentReport.reportObjects.length
+            let id = document.designData.currentReport.reportObjects.length;
             for (let i = 0; i < reportObject.reportColumns.length; ++i) {
                 if (reportObject.reportColumns[i].displayResult) {
                     let dbcol = copyObject(getReportColumn(reportObject.reportColumns[i].key));

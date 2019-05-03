@@ -41,7 +41,7 @@ class ChartReportObject extends ReportObject {
                 return <Doughnut data={this.getData()} options={this.getOptions()}/>;
             case 'radar':
                 return <Radar data={this.getData()} options={this.getOptions()}/>;
-            case 'polar':
+            case 'polarArea':
                 return <Polar data={this.getData()} options={this.getOptions()}/>;
             case 'scatter':
                 return <Scatter data={this.getData()} options={this.getOptions()}/>;
@@ -129,7 +129,7 @@ class ChartReportObject extends ReportObject {
                     switch (this.props.config.chartType) {
                         case 'pie':
                         case 'doughnut':
-                        case 'polar':
+                        case 'polarArea':
                             if (!ds.backgroundColor) {
                                 ds.backgroundColor = [];
                             }
