@@ -104,7 +104,7 @@ class ChartReportObject extends ReportObject {
                         ds.borderColor = dataAxes[i].color;
                         ds.borderWidth = dataAxes[i].borderWidth;
                         if (this.props.config.showBackground) {
-                            ds.backgroundColor = tinycolor(ds.borderColor).lighten(50).desaturate(25).toString();
+                            ds.backgroundColor = tinycolor(ds.borderColor).lighten(40).desaturate(20).toString();
                             ds.hoverBackgroundColor = tinycolor(ds.borderColor).darken(20).toString();
                         } else {
                             ds.backgroundColor = 'transparent';
