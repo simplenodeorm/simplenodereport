@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ChartReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,11 +14,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/ChartReportObject.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="1620">
               <caret line="108" selection-start-line="108" selection-end-line="108" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
             </state>
           </provider>
         </entry>
@@ -50,8 +59,8 @@
         <option value="$PROJECT_DIR$/src/config/appconfig.json" />
         <option value="$PROJECT_DIR$/src/components/ReportContainer.js" />
         <option value="$PROJECT_DIR$/src/components/AppToolbar.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/components/ChartReportObject.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -65,6 +74,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -81,13 +91,12 @@
               <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
               <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -137,7 +146,8 @@
       <workItem from="1556917352259" duration="4003000" />
       <workItem from="1556922045422" duration="949000" />
       <workItem from="1556923222800" duration="52000" />
-      <workItem from="1556930034100" duration="60000" />
+      <workItem from="1556930034100" duration="119000" />
+      <workItem from="1556973726133" duration="472000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -181,11 +191,18 @@
       <option name="project" value="LOCAL" />
       <updated>1556923255163</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="fix some chart color issues">
+      <created>1556930130097</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1556930130097</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7046000" />
+    <option name="totallyTimeSpent" value="7577000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="106" y="0" width="1159" height="708" extended-state="0" />
@@ -197,14 +214,14 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4973545" visible="true" weight="0.2153025" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4973545" weight="0.21708184" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49647266" visible="true" weight="0.21708184" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49911818" weight="0.3291815" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="9" sideWeight="0.5026455" side_tool="true" visible="true" weight="0.2153025" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50352734" side_tool="true" visible="true" weight="0.21708184" />
       <window_info anchor="bottom" id="Terminal" order="10" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49911818" visible="true" weight="0.3291815" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -219,7 +236,8 @@
     <MESSAGE value="update version" />
     <MESSAGE value="SIM-19 fix for polar chart not displaying in run mode" />
     <MESSAGE value="SIM-16 fix footer printing issues" />
-    <option name="LAST_COMMIT_MESSAGE" value="SIM-16 fix footer printing issues" />
+    <MESSAGE value="fix some chart color issues" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix some chart color issues" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/config/orms.json">
@@ -246,13 +264,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ReportContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
@@ -269,8 +280,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/ChartReportObject.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
+        <state relative-caret-position="1620">
           <caret line="108" selection-start-line="108" selection-end-line="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
         </state>
       </provider>
     </entry>
