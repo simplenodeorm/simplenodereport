@@ -42,7 +42,7 @@ class ChartReportObject extends ReportObject {
             case 'radar':
                 return <Radar data={this.getData()} options={this.getOptions()}/>;
             case 'polarArea':
-                return <Polar data={this.getData()} options={this.getOptions()}/>;
+                return <Polar fillOpacity={0.3} data={this.getData()} options={this.getOptions()}/>;
             case 'scatter':
                 return <Scatter data={this.getData()} options={this.getOptions()}/>;
         }
@@ -71,6 +71,7 @@ class ChartReportObject extends ReportObject {
         let ds = this.getDatasets();
         return {
             title: this.props.config.title,
+            fillOpacity: 0.3,
             labels: ['catvalue1', 'catvalue2', 'catvalue3', 'catvalue4', 'catvalue5'],
             datasets: ds
         };
@@ -104,7 +105,7 @@ class ChartReportObject extends ReportObject {
                         ds.borderColor = dataAxes[i].color;
                         ds.borderWidth = dataAxes[i].borderWidth;
                         if (this.props.config.showBackground) {
-                            ds.backgroundColor = tinycolor(ds.borderColor).lighten(40).desaturate(20).toString();
+                            ds.backgroundColor = tinycolor(ds.borderColor).lighten(40).desaturate(20).setAlpha(0.3).toString();
                             ds.hoverBackgroundColor = tinycolor(ds.borderColor).darken(20).toString();
                         } else {
                             ds.backgroundColor = 'transparent';
@@ -133,8 +134,12 @@ class ChartReportObject extends ReportObject {
                             if (!ds.backgroundColor) {
                                 ds.backgroundColor = [];
                             }
-                
-                            ds.backgroundColor.push(randomColor({luminosity: 'dark'}));
+    
+                            if (this.props.config.chartType === 'polarArea') {
+                                ds.backgroundColor.push(randomColor({luminosity: 'dark', alpha: 0.3, format: 'rgba'}));
+                            } else {
+                                ds.backgroundColor.push(randomColor({luminosity: 'dark'}));
+                            }
                             break;
             
                     }
