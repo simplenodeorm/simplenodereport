@@ -12,34 +12,27 @@ class LoginPage extends BaseDesignComponent {
     constructor(props) {
         super(props);
     
-        if (config.demoMode) {
-            this.state = {
-                username: 'testuser',
-                password: 'testpass',
-                orm: this.findOrm(document.reportId.split('.')[0]),
-                submitted: false,
-                loading: false,
-                error: ''
-            }
-        } else {
-            this.state = {
-                username: '',
-                password: '',
-                orm: this.findOrm(document.reportId.split('.')[0]),
-                submitted: false,
-                loading: false,
-                error: ''
-            }
-    
-        }
+        this.state = {
+            username: '',
+            password: '',
+            orm: this.findOrm(document.reportId.split('.')[0]),
+            submitted: false,
+            loading: false,
+            error: ''
+        };
 
          this.handleSubmit = this.handleSubmit.bind(this);
          this.handleChange = this.handleChange.bind(this);
-        
+    
+        if (config.demoMode) {
+            this.login('user', 'pass', orms[0], config);
+        }
     }
     
     componentDidMount() {
-        this.username.focus();
+        if (!config.demoMode) {
+            this.username.focus();
+        }
     }
 
     handleSubmit(e) {
@@ -76,44 +69,51 @@ class LoginPage extends BaseDesignComponent {
     }
     
     render() {
-        const {username, password, orm, submitted, loading, error} = this.state;
-
-        return (
-            <div>
-                <h1 className="loginTitle">{config.textmsg.logintitletext}</h1>
-                <div className="errorDisplay">{error}</div>
-                <div className="login">
-                    <h3>{config.textmsg.reportlogin}</h3>
-                    <form name="form" onSubmit={this.handleSubmit}>
-                        <div>
-                            <label htmlFor="username">{config.textmsg.username}</label>
-                            <input type="text" name="username"
-                                   ref={(input) => { this.username = input; }}
-                                   defaultValue={username} onBlur={this.handleChange} />
-                            {submitted && !username &&
+        if (!config.demoMode) {
+            const {username, password, orm, submitted, loading, error} = this.state;
+    
+            return (
+                <div>
+                    <h1 className="loginTitle">{config.textmsg.logintitletext}</h1>
+                    <div className="errorDisplay">{error}</div>
+                    <div className="login">
+                        <h3>{config.textmsg.reportlogin}</h3>
+                        <form name="form" onSubmit={this.handleSubmit}>
+                            <div>
+                                <label htmlFor="username">{config.textmsg.username}</label>
+                                <input type="text" name="username"
+                                       ref={(input) => {
+                                           this.username = input;
+                                       }}
+                                       defaultValue={username} onBlur={this.handleChange}/>
+                                {submitted && !username &&
                                 <div className="errorDisplay">*{config.textmsg.usernamerequired}</div>
-                            }
-                        </div>
-                        <div>
-                            <label htmlFor="password">{config.textmsg.password}</label>
-                            <input type="password" name="password" defaultValue={password} onBlur={this.handleChange} />
-                            {submitted && !password &&
+                                }
+                            </div>
+                            <div>
+                                <label htmlFor="password">{config.textmsg.password}</label>
+                                <input type="password" name="password" defaultValue={password}
+                                       onBlur={this.handleChange}/>
+                                {submitted && !password &&
                                 <div className="errorDisplay">*{config.textmsg.passwordrequired}</div>
-                            }
-                        </div>
-                        <div>
-                            <label>ORM:</label>
-                            <input type="text" name="orm" defaultValue={orm.name} disabled={true}/>
-
-                        </div>
-                        <div>
-                            <input type="submit" disabled={loading} value={config.textmsg.login}/>
-                        </div>
-
-                    </form>
+                                }
+                            </div>
+                            <div>
+                                <label>ORM:</label>
+                                <input type="text" name="orm" defaultValue={orm.name} disabled={true}/>
+                    
+                            </div>
+                            <div>
+                                <input type="submit" disabled={loading} value={config.textmsg.login}/>
+                            </div>
+                
+                        </form>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return '';
+        }
     }
 
     login(username, password, selectedOrm, cfg) {
