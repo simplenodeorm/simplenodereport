@@ -37,18 +37,13 @@ class LoginPage extends BaseDesignComponent {
     
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        if (config.demoMode) {
+            this.login('user', 'pass', orms[0], config);
+        }
    }
 
     componentDidMount() {
-        if (config.demoMode) {
-            this.handleChange({
-                name: 'orm',
-                target: {
-                    name: 'orm',
-                    value: 'hr'
-                }
-            });
-        } else {
+        if (!config.demoMode) {
             this.username.focus();
         }
     }
@@ -94,46 +89,55 @@ class LoginPage extends BaseDesignComponent {
     }
 
     render() {
-        const {username, password, orm, submitted, loading, error} = this.state;
-
-        return (
-            <div>
-                <h1 className="loginTitle">{config.textmsg.logintitletext}</h1>
-                <div className="errorDisplay">{error}</div>
-                <div className="login">
-                    <h3>Design Login</h3>
-                    <form name="form" onSubmit={this.handleSubmit}>
-                        <div>
-                            <label htmlFor="username">{config.textmsg.username}</label>
-                            <input type="text" name="username"
-                                   ref={(input) => { this.username = input; }}
-                                   defaultValue={username} onBlur={this.handleChange} />
-                            {submitted && !username &&
+        if (!config.demoMode) {
+            const {username, password, orm, submitted, loading, error} = this.state;
+    
+            return (
+                <div>
+                    <h1 className="loginTitle">{config.textmsg.logintitletext}</h1>
+                    <div className="errorDisplay">{error}</div>
+                    <div className="login">
+                        <h3>Design Login</h3>
+                        <form name="form" onSubmit={this.handleSubmit}>
+                            <div>
+                                <label htmlFor="username">{config.textmsg.username}</label>
+                                <input type="text" name="username"
+                                       ref={(input) => {
+                                           this.username = input;
+                                       }}
+                                       defaultValue={username} onBlur={this.handleChange}/>
+                                {submitted && !username &&
                                 <div className="errorDisplay">*{config.textmsg.usernamerequired}</div>
-                            }
-                        </div>
-                        <div><label>{config.textmsg.password}</label>
-                            <input type="password" name="password" defaultValue={password} onBlur={this.handleChange} />
-                            {submitted && !password &&
+                                }
+                            </div>
+                            <div><label>{config.textmsg.password}</label>
+                                <input type="password" name="password" defaultValue={password}
+                                       onBlur={this.handleChange}/>
+                                {submitted && !password &&
                                 <div className="errorDisplay">*{config.textmsg.passwordrequired}</div>
-                            }
-                        </div>
-                        <div>
-                            <label>{config.textmsg.targetorm}</label>
-                            <select name="orm" onChange={this.handleChange}><option/>{options}</select>
-
-                            {submitted && !orm &&
+                                }
+                            </div>
+                            <div>
+                                <label>{config.textmsg.targetorm}</label>
+                                <select name="orm" onChange={this.handleChange}>
+                                    <option/>
+                                    {options}</select>
+                        
+                                {submitted && !orm &&
                                 <div className="errorDisplay">*{config.textmsg.targetormrequired}</div>
-                            }
-                        </div>
-                        <div>
-                            <input type="submit" disabled={loading} value={config.textmsg.login}/>
-                        </div>
-
-                    </form>
+                                }
+                            </div>
+                            <div>
+                                <input type="submit" disabled={loading} value={config.textmsg.login}/>
+                            </div>
+                
+                        </form>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        } else {
+            return '';
+        }
     }
 
     login(username, password, selectedOrm, cfg) {
