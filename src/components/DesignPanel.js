@@ -161,6 +161,7 @@ class DesignPanel extends BaseDesignComponent {
     }
     
     onWheel(e) {
+        e.preventDefault();
         if (this.verticalRule) {
             this.verticalRule.onWheel(e);
         }

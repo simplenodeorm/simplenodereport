@@ -213,12 +213,13 @@ input[type="submit"] {
 }
 
 .buttonbar {
-    position: absolute;
+    position: fixed;
     height: 25px;
     top:0;
     left: 100px;
     z-index: 1;
     width: 100%;
+    white-space: nowrap;
     background-color: var(--bar-color);
     color: var(--text-color-toolbar);
 }
@@ -262,7 +263,7 @@ input[type="submit"] {
 
 .minimalist-toolbar{
    overflow-y: visible;
-    position: absolute;
+    position: fixed;
     width:200px;
     top: 0;
     z-index: 1;

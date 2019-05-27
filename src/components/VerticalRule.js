@@ -84,13 +84,14 @@ class VerticalRule extends React.Component {
     }
 
     onWheel(e) {
+        e.preventDefault();
         let newval = this.slider.getValue() - (e.deltaY * config.wheelIncrement);
 
         if ((newval <= 0) && (newval >= this.slider.getLowerBound())) {
             this.slider.onChange({value: newval});
             this.onAfterChange(newval);
         }
-    }
+   }
 
     onAfterChange(value) {
         this.props.verticalPositionChange(-value);
