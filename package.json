@@ -27,14 +27,29 @@
     "react-scripts": "1.1.5",
     "react-split-pane": "^0.1.84",
     "react-tabs": "^2.3.0",
+    "react-test-renderer": "^16.8.6",
     "tinycolor2": "^1.4.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.4.5",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.8.0",
+    "jest": "^24.8.0",
+    "react-test-renderer": "^16.8.6"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+    }
   },
   "bugs": {
     "url": "https://github.com/simplenodeorm/simplenodereport/issues"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "test": "jest"
   },
   "keywords": [
     "oracle",

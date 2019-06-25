@@ -4,6 +4,9 @@ import {getWaitMessage} from './helpers';
 import {removeWaitMessage} from './helpers';
 
 class BaseDesignComponent extends React.Component {
+    componentDidCatch(error, info) {
+        alert(error);
+    }
 
     isModalClick(e) { 
         let retval = false;
