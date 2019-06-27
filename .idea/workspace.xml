@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/__mocks__/fileMock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__mocks__/localStorageMock.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/LoginPage.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +14,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app/App.test.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+              <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" selection-start-line="7" selection-end-line="7" />
             </state>
           </provider>
         </entry>
@@ -77,7 +80,6 @@
         <option value="$PROJECT_DIR$/src/components/helpers.js" />
         <option value="$PROJECT_DIR$/src/components/ReportContainer.js" />
         <option value="$PROJECT_DIR$/src/components/ChartReportObject.js" />
-        <option value="$PROJECT_DIR$/src/auth/LoginPage.js" />
         <option value="$PROJECT_DIR$/src/config/appconfig.json" />
         <option value="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" />
         <option value="$PROJECT_DIR$/src/components/DesignPanel.js" />
@@ -92,6 +94,7 @@
         <option value="$PROJECT_DIR$/jest.config.js" />
         <option value="$PROJECT_DIR$/babel.config.js" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/auth/LoginPage.js" />
       </list>
     </option>
   </component>
@@ -101,7 +104,8 @@
     </layout>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="100" />
+    <option name="x" value="106" />
+    <option name="y" value="23" />
     <option name="width" value="1159" />
     <option name="height" value="708" />
   </component>
@@ -110,6 +114,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -133,11 +138,16 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -147,7 +157,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/__mocks__" />
     <property name="nodejs.jest.jest_package" value="$PROJECT_DIR$/node_modules/react-scripts" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -235,7 +245,9 @@
       <workItem from="1561417224657" duration="40000" />
       <workItem from="1561418457975" duration="2169000" />
       <workItem from="1561426526687" duration="285000" />
-      <workItem from="1561597827931" duration="1353000" />
+      <workItem from="1561597827931" duration="1563000" />
+      <workItem from="1561600320494" duration="31000" />
+      <workItem from="1561600870202" duration="268000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -335,7 +347,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561426778236</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="SIM-18 adding tests">
+      <created>1561599214783</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1561599214783</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -362,15 +381,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33660000" />
+    <option name="totallyTimeSpent" value="34169000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="100" y="0" width="1159" height="708" extended-state="0" />
-    <editor active="true" />
+    <frame x="106" y="23" width="1159" height="708" extended-state="1" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4954683" visible="true" weight="0.2892416" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4911032" visible="true" weight="0.2892416" />
       <window_info id="Structure" order="1" sideWeight="0.50132626" side_tool="true" weight="0.40828925" />
-      <window_info id="npm" order="2" sideWeight="0.50453174" side_tool="true" visible="true" weight="0.2892416" />
+      <window_info id="npm" order="2" sideWeight="0.50889677" side_tool="true" visible="true" weight="0.2892416" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4973545" weight="0.17615658" />
@@ -449,13 +467,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2340">
           <caret line="156" column="21" selection-start-line="156" selection-start-column="21" selection-end-line="156" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="42" lean-forward="true" selection-start-line="39" selection-end-line="42" />
         </state>
       </provider>
     </entry>
@@ -583,7 +594,14 @@
     <entry file="file://$PROJECT_DIR$/src/app/App.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="3" lean-forward="true" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+          <caret line="11" column="3" selection-start-line="11" selection-start-column="3" selection-end-line="11" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="7" />
         </state>
       </provider>
     </entry>

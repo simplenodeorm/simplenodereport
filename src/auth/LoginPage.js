@@ -5,7 +5,6 @@ import base64 from 'base-64';
 import axios from 'axios';
 import {BaseDesignComponent} from '../components/BaseDesignComponent';
 import {removeWaitMessage,getOrmUrl} from '../components/helpers';
-import { withRouter } from 'react-router';
 
 import '../app/App.css';
 
@@ -174,4 +173,4 @@ class LoginPage extends BaseDesignComponent {
     }
 }
 
-export default withRouter(LoginPage);
+export {LoginPage};
