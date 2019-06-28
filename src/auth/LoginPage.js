@@ -41,12 +41,6 @@ class LoginPage extends BaseDesignComponent {
         }
    }
 
-    componentDidMount() {
-        if (!config.demoMode) {
-            this.username.focus();
-        }
-    }
-    
     handleChange(e) {
         const {name, value} = e.target;
 
@@ -57,8 +51,6 @@ class LoginPage extends BaseDesignComponent {
                         this.setState({orm: orms[i]});
                         this.setState({username: orms[i].defaultUsername});
                         this.setState({password: orms[i].defaultPassword});
-                        this.username.focus();
-    
                         break;
                     }
                 }
@@ -100,10 +92,7 @@ class LoginPage extends BaseDesignComponent {
                         <form name="form" onSubmit={this.handleSubmit}>
                             <div>
                                 <label htmlFor="username">{config.textmsg.username}</label>
-                                <input type="text" name="username"
-                                       ref={(input) => {
-                                           this.username = input;
-                                       }}
+                                <input autoFocus type="text" name="username"
                                        defaultValue={username} onBlur={this.handleChange}/>
                                 {submitted && !username &&
                                 <div className="errorDisplay">*{config.textmsg.usernamerequired}</div>
