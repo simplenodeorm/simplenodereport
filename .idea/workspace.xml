@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/auth/LoginPage.test.js" afterDir="false" />
+    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="SIM-18 adding tests">
+      <change afterPath="$PROJECT_DIR$/src/auth/PrivateRoute.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/jest.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/jest.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/helpers.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,15 +19,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app/App.test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="60" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="540">
@@ -37,25 +27,83 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="1033">
+              <caret line="83" selection-start-line="83" selection-end-line="83" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config/orms.json">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/app/App.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="209">
+              <caret line="31" column="43" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="43" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="33" column="53" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
+            <state relative-caret-position="225">
+              <caret line="15" column="4" lean-forward="true" selection-start-line="8" selection-end-line="15" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/auth/PrivateRoute.test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="69" column="138" selection-start-line="69" selection-start-column="138" selection-end-line="69" selection-end-column="138" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/jest.config.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/HorizontalRule.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="40" column="66" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="66" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/helpers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="228" column="4" lean-forward="true" selection-start-line="228" selection-start-column="4" selection-end-line="228" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/HomePage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-817">
+              <caret line="14" column="57" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/auth/RunReportLoginPage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1356">
+              <caret line="101" column="103" selection-start-line="101" selection-start-column="103" selection-end-line="101" selection-end-column="103" />
             </state>
           </provider>
         </entry>
@@ -87,6 +135,8 @@
       <find>onWhee</find>
       <find>buttonb</find>
       <find>minimalist-toolbar</find>
+      <find>getPi</find>
+      <find>getPixelsPerInch</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -105,11 +155,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/components/helpers.js" />
         <option value="$PROJECT_DIR$/src/components/ReportContainer.js" />
         <option value="$PROJECT_DIR$/src/components/ChartReportObject.js" />
         <option value="$PROJECT_DIR$/src/config/appconfig.json" />
-        <option value="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" />
         <option value="$PROJECT_DIR$/src/components/DesignPanel.js" />
         <option value="$PROJECT_DIR$/src/components/VerticalRule.js" />
         <option value="$PROJECT_DIR$/src/components/HomePage.js" />
@@ -119,11 +167,15 @@
         <option value="$PROJECT_DIR$/__mocks__/styleMock.js" />
         <option value="$PROJECT_DIR$/__mocks__/localStorageMock.js" />
         <option value="$PROJECT_DIR$/babel.config.js" />
-        <option value="$PROJECT_DIR$/jest.config.js" />
         <option value="$PROJECT_DIR$/src/app/App.test.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/auth/LoginPage.test.js" />
         <option value="$PROJECT_DIR$/src/auth/LoginPage.js" />
+        <option value="$PROJECT_DIR$/src/app/App.js" />
+        <option value="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" />
+        <option value="$PROJECT_DIR$/src/components/helpers.js" />
+        <option value="$PROJECT_DIR$/jest.config.js" />
+        <option value="$PROJECT_DIR$/src/auth/PrivateRoute.test.js" />
       </list>
     </option>
   </component>
@@ -133,8 +185,8 @@
     </layout>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="67" />
-    <option name="y" value="21" />
+    <option name="x" value="123" />
+    <option name="y" value="13" />
     <option name="width" value="1159" />
     <option name="height" value="708" />
   </component>
@@ -143,6 +195,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -164,13 +217,30 @@
               <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
               <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="auth" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="simplenodereport" type="b2602c69:ProjectViewProjectNode" />
+              <item name="simplenodereport" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -210,6 +280,19 @@
       <scope-kind value="ALL" />
       <method v="2" />
     </configuration>
+    <configuration name="LoginPage route check" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/auth/PrivateRoute.test.js" />
+      <test-names>
+        <test-name value="LoginPage route check" />
+      </test-names>
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -223,10 +306,12 @@
     <list>
       <item itemvalue="Jest.All Tests" />
       <item itemvalue="npm.start" />
+      <item itemvalue="Jest.LoginPage route check" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Jest.All Tests" />
+        <item itemvalue="Jest.LoginPage route check" />
       </list>
     </recent_temporary>
   </component>
@@ -272,7 +357,8 @@
       <workItem from="1561600320494" duration="31000" />
       <workItem from="1561600870202" duration="367000" />
       <workItem from="1561679376129" duration="5207000" />
-      <workItem from="1561685926487" duration="1869000" />
+      <workItem from="1561685926487" duration="1908000" />
+      <workItem from="1561764529868" duration="5424000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -386,46 +472,53 @@
       <option name="project" value="LOCAL" />
       <updated>1561601236665</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="SIM-18 adding tests">
+      <created>1561688717146</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1561688717146</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="App_test_js - 2019.06.26 at 18h 16m 58s.xml">
-      <configuration name="App.test.js" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="App_test_js - 2019.06.26 at 18h 18m 24s.xml">
-      <configuration name="App.test.js" configurationId="JavaScriptTestRunnerJest" />
-    </history-entry>
-    <history-entry file="All_Tests - 2019.06.26 at 18h 19m 43s.xml">
+    <history-entry file="All_Tests - 2019.06.28 at 18h 47m 39s.xml">
       <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.26 at 18h 32m 56s.xml">
+    <history-entry file="All_Tests - 2019.06.28 at 18h 51m 15s.xml">
       <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.27 at 19h 05m 27s.xml">
+    <history-entry file="All_Tests - 2019.06.28 at 18h 51m 37s.xml">
       <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.27 at 19h 09m 05s.xml">
+    <history-entry file="All_Tests - 2019.06.28 at 18h 53m 41s.xml">
       <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.27 at 19h 11m 46s.xml">
+    <history-entry file="All_Tests - 2019.06.28 at 18h 54m 50s.xml">
       <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.27 at 19h 15m 11s.xml">
+    <history-entry file="All_Tests - 2019.06.28 at 18h 56m 27s.xml">
       <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.27 at 19h 20m 25s.xml">
+    <history-entry file="All_Tests - 2019.06.28 at 18h 57m 22s.xml">
       <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
-    <history-entry file="All_Tests - 2019.06.27 at 19h 20m 54s.xml">
+    <history-entry file="All_Tests - 2019.06.28 at 18h 58m 02s.xml">
+      <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.06.28 at 18h 58m 34s.xml">
+      <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
+    </history-entry>
+    <history-entry file="All_Tests - 2019.06.28 at 18h 58m 58s.xml">
       <configuration name="All Tests" configurationId="JavaScriptTestRunnerJest" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41344000" />
+    <option name="totallyTimeSpent" value="46807000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="21" width="1159" height="708" extended-state="0" />
+    <frame x="123" y="13" width="1159" height="708" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4833837" visible="true" weight="0.2892416" />
@@ -434,7 +527,7 @@
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" sideWeight="0.4973545" weight="0.17615658" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.48765433" visible="true" weight="0.41103202" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48765433" weight="0.39145908" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -466,20 +559,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="SIM-18 adding tests" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/components/helpers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7140">
-          <caret line="476" column="92" selection-start-line="476" selection-start-column="92" selection-end-line="476" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/ReportContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="129" column="9" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-chartjs-2/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -512,20 +591,6 @@
     <entry file="file://$PROJECT_DIR$/src/config/runreportconfig.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="31" column="96" selection-start-line="31" selection-start-column="81" selection-end-line="31" selection-end-column="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/auth/RunReportLoginPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="23" column="58" selection-start-line="23" selection-start-column="58" selection-end-line="23" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/jest/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
@@ -537,13 +602,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1740">
           <caret line="116" column="70" selection-start-line="116" selection-start-column="55" selection-end-line="116" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/HomePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
         </state>
       </provider>
     </entry>
@@ -565,13 +623,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3210">
           <caret line="214" column="8" selection-start-line="214" selection-start-column="1" selection-end-line="214" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/BaseDesignComponent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
@@ -599,13 +650,6 @@
     <entry file="file://$PROJECT_DIR$/__mocks__/fileMock.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/__mocks__/localStorageMock.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__mocks__/styleMock.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -615,13 +659,6 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/ide/ide-scripting.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jest.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/app/App.test.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -640,17 +677,90 @@
     <entry file="file://$PROJECT_DIR$/src/config/orms.json">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.test.js">
+    <entry file="file://$PROJECT_DIR$/__mocks__/localStorageMock.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="33" column="53" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
+        <state relative-caret-position="90">
+          <caret line="6" column="4" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/auth/PrivateRoute.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="31" column="43" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="1033">
+          <caret line="83" selection-start-line="83" selection-end-line="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/auth/LoginPage.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="4" lean-forward="true" selection-start-line="8" selection-end-line="15" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/auth/RunReportLoginPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1356">
+          <caret line="101" column="103" selection-start-line="101" selection-start-column="103" selection-end-line="101" selection-end-column="103" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/ReportContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1935">
+          <caret line="129" column="9" selection-start-line="129" selection-start-column="9" selection-end-line="129" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/BaseDesignComponent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/helpers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="228" column="4" lean-forward="true" selection-start-line="228" selection-start-column="4" selection-end-line="228" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/HorizontalRule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="40" column="66" selection-start-line="40" selection-start-column="53" selection-end-line="40" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/HomePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-817">
+          <caret line="14" column="57" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jest.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/auth/PrivateRoute.test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="69" column="138" selection-start-line="69" selection-start-column="138" selection-end-line="69" selection-end-column="138" />
         </state>
       </provider>
     </entry>

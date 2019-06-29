@@ -2,8 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { PrivateRoute } from '../auth/PrivateRoute';
 import { HomePage } from '../components/HomePage';
-import LoginPage from '../auth/LoginPage';
-import RunReportLoginPage from '../auth/RunReportLoginPage';
+import {LoginPage} from '../auth/LoginPage';
+import {RunReportLoginPage} from '../auth/RunReportLoginPage';
 import {ReportContainer} from '../components/ReportContainer';
 import './App.css';
 

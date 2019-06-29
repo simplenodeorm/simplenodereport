@@ -224,9 +224,14 @@ export function getPixelsPerInch() {
         dpiTestElement.setAttribute('id', 'dpi-test');
         body.appendChild(dpiTestElement);
         ppi = document.getElementById('dpi-test').offsetHeight/config.zoomFactor;
+        
     }
     
-    return ppi;
+    if (!ppi || isNaN(ppi)) {
+        return 96;
+    } else {
+        return ppi;
+    }
 }
 
 export function getFontHeight(fontName, fontSize, text) {
