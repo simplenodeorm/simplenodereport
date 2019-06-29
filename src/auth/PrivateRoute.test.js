@@ -32,6 +32,7 @@ it('LoginPage route check',()=>
     let wrapper = mount(<MemoryRouter initialEntries={[ '/' ]}><App /></MemoryRouter>);
     expect(wrapper.find(LoginPage)).toHaveLength(1);
     expect(wrapper.find(HomePage)).toHaveLength(0);
+    wrapper.unmount();
     console.error = originalError;
  });
 
@@ -45,6 +46,7 @@ it('RunReportLoginPage route check',()=>
     let wrapper = mount(<MemoryRouter initialEntries={[ '/' ]}><App /></MemoryRouter>);
     expect(wrapper.find(RunReportLoginPage)).toHaveLength(1);
     expect(wrapper.find(ReportContainer)).toHaveLength(0);
+    wrapper.unmount();
     console.error = originalError;
 });
 
@@ -58,6 +60,7 @@ it('HomePage route check', ()=>
     let wrapper = mount(<MemoryRouter initialEntries={[ '/' ]}><PrivateRoute exact path="/" component={HomePage}/></MemoryRouter>);
     expect(wrapper.find(LoginPage)).toHaveLength(0);
     expect(wrapper.find(HomePage)).toHaveLength(1);
+    wrapper.unmount();
     console.error = originalError;
 });
 
@@ -70,6 +73,7 @@ it('ReportContainer route check', ()=>
     let wrapper = mount(<MemoryRouter initialEntries={[ '/' ]}><PrivateRoute exact path="/" component={ReportContainer}/></MemoryRouter>);
     expect(wrapper.find(RunReportLoginPage)).toHaveLength(0);
     expect(wrapper.find(ReportContainer)).toHaveLength(1);
+    wrapper.unmount();
     console.error = originalError;
 });
 
