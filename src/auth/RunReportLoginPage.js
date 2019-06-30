@@ -28,12 +28,6 @@ class RunReportLoginPage extends BaseDesignComponent {
         }
     }
     
-    componentDidMount() {
-        if (!config.demoMode) {
-            this.username.focus();
-        }
-    }
-
     handleSubmit(e) {
         e.preventDefault();
 
@@ -80,7 +74,7 @@ class RunReportLoginPage extends BaseDesignComponent {
                         <form name="form" onSubmit={this.handleSubmit}>
                             <div>
                                 <label htmlFor="username">{config.textmsg.username}</label>
-                                <input type="text" name="username"
+                                <input autoFocus type="text" name="username"
                                        ref={(input) => {
                                            this.username = input;
                                        }}

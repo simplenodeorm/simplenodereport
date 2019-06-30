@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {LoginPage} from './LoginPage';
+import {RunReportLoginPage} from './RunReportLoginPage';
 import {shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import localStorage from '../../__mocks__/localStorageMock';
@@ -19,23 +19,21 @@ jest.mock('../config/orms.json', () => ([
 ]));
 
 it('initializes successfully', () => {
+    document.reportId = "hr.100";
     const div = document.createElement('div');
-    ReactDOM.render(<LoginPage />, div);
+    ReactDOM.render(<RunReportLoginPage />, div);
     ReactDOM.unmountComponentAtNode(div);
 });
 
-
 it('login check',()=>
 {
-    let wrapper = shallow(<LoginPage/>);
-    wrapper.find('select').simulate('change', {target: { name: 'orm', value : 'hr'}});
-    let res = wrapper.state('orm');
-    expect(res).toBeDefined();
-    expect(res.name).toEqual('hr');
-    wrapper.find('input[type="text"]').simulate('blur', {target: {name: 'password', value: 'pass'}});
+    document.reportId = "hr.100";
+    let wrapper = shallow(<RunReportLoginPage/>);
+    wrapper.find('input[type="password"]').simulate('blur', {target: {name: 'password', value: 'pass'}});
     expect(wrapper.state('password')).toEqual('pass');
-    wrapper.find('input[type="text"]').simulate('blur', {target: {name: 'username', value: 'user'}});
+    wrapper.findWhere(n => n.name() === 'input' && n.prop('name') === 'username').simulate('blur', {target: {name: 'username', value: 'user'}});
     expect(wrapper.state('username')).toEqual('user');
+    wrapper.findWhere(n => n.name() === 'input' && n.prop('name') === 'orm').value = {'name': 'hr'};
     wrapper.instance().login = jest.fn();
     wrapper.update();
     wrapper.find('form').simulate('submit', { preventDefault() {} });
