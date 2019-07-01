@@ -87,7 +87,7 @@ class AppToolbar extends BaseDesignComponent {
     
     render() {
         const {canSave, canAddObject, itemsSelected} = this.state;
-        const menu =  [
+        let menu =  [
             {
                 text: config.textmsg.filemenuname,
                 items: [
@@ -168,11 +168,13 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     newReport() {
+        // added to aid unit tests
+        this.testHelper();
         let rc = {left: 200, top: 75, width: 400, height: 400};
         let mc = getModalContainer(rc);
         ReactDOM.render(<PreferencesPanel newDocument={true} onOk={this.initializeNewReport}/>, mc);
     }
-
+    
     alignLeft() {
         this.alignObject('left');
     }
@@ -457,6 +459,7 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     preferences() {
+        this.testHelper();
         let rc = {left: 200, top: 75, width: 400, height: 350};
         let mc = getModalContainer(rc);
         ReactDOM.render(<PreferencesPanel onOk={this.savePreferences}/>, mc);

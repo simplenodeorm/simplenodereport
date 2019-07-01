@@ -6,9 +6,14 @@ import {removeWaitMessage} from './helpers';
 class BaseDesignComponent extends React.Component {
     componentDidCatch(error, info) {
         alert(error);
+        
+        // help for unit tests of functions getting called
+        this.testHelper = this.testHelper.bind(this);
     }
+    
+    testHelper() {};
 
-    isModalClick(e) { 
+    isModalClick(e) {
         let retval = false;
         while (e) {
             if (e.id && (e.id === 'modalcontainer')) {
