@@ -4,6 +4,3 @@ HTML reports in simplenodeorm
 
 Source: 
 https://github.com/simplenodeorm/simplenodereport.git
-
-Website (demo and documentation):
-http://simplenodeorm.org
