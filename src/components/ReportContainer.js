@@ -88,7 +88,7 @@ class ReportContainer extends BaseDesignComponent {
         };
     
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);
-        axios.post(getOrmUrl(orm.url) + '/report/run/' + docid, {"parameters": results.parameters}, config)
+        axios.post(getOrmUrl(orm.url) + '/api/report/run/' + docid, {"parameters": results.parameters}, config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.showReport(response.data);
@@ -143,7 +143,7 @@ class ReportContainer extends BaseDesignComponent {
         };
         
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);
-        axios.get(getOrmUrl(orm.url) + '/report/run/' + docid, config)
+        axios.get(getOrmUrl(orm.url) + '/api/report/run/' + docid, config)
             .then((response) => {
                 if (response.status === 200) {
                     if (response.data.userInputRequired) {

@@ -3,37 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppToolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppToolbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DocumentTree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DocumentTree.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuerySelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuerySelector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReportContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SaveReportPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SaveReportPanel.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>scatter</find>
-      <find>generateReport</find>
-      <find>polar</find>
-      <find>_blank</find>
-      <find>showReport</find>
-      <find>ReportContainer</find>
-      <find>tinycolor</find>
-      <find>spli</find>
-      <find>getData</find>
-      <find>fill</find>
-      <find>opac</find>
-      <find>buttonbar</find>
-      <find>wheel</find>
-      <find>onWhee</find>
-      <find>buttonb</find>
-      <find>minimalist-toolbar</find>
-    </findStrings>
-    <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
-      <dir>$PROJECT_DIR$/node_modules/react-chartjs-2</dir>
-      <dir>$PROJECT_DIR$/src</dir>
-    </dirStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -103,6 +87,8 @@
       <workItem from="1558927156464" duration="82000" />
       <workItem from="1558928795552" duration="2854000" />
       <workItem from="1565229604250" duration="220000" />
+      <workItem from="1565277477809" duration="38000" />
+      <workItem from="1565365198245" duration="238000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -188,7 +174,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557252812738</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="update readme">
+      <created>1565277491551</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1565277491551</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,7 +192,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -214,6 +209,7 @@
     <MESSAGE value="add background opacity settings to selected charts" />
     <MESSAGE value="up version" />
     <MESSAGE value="do not prompt for login in demo mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="do not prompt for login in demo mode" />
+    <MESSAGE value="update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
   </component>
 </project>

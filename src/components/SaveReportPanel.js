@@ -127,7 +127,7 @@ class SaveReportPanel extends ModalDialog {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/report/authorizers', config)
+        axios.get(getOrmUrl(orm.url) + '/api/report/authorizers', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({authorizers: response.data});
@@ -147,7 +147,7 @@ class SaveReportPanel extends ModalDialog {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/report/document/groups', config)
+        axios.get(getOrmUrl(orm.url) + '/api/report/document/groups', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({groups: response.data});

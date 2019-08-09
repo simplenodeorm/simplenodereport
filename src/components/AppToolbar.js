@@ -327,7 +327,7 @@ class AppToolbar extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
     
-        axios.get(getOrmUrl(orm.url) + '/report/userinputrequired/'
+        axios.get(getOrmUrl(orm.url) + '/api/report/userinputrequired/'
             + document.designData.currentReport.queryDocumentId, config)
             .then((response) => {
                 if (response.status === 200) {
@@ -358,7 +358,7 @@ class AppToolbar extends BaseDesignComponent {
             inputParams = params.parameters;
         }
         document.designData.currentReport.pixelsPerInch = getPixelsPerInch();
-        axios.post(getOrmUrl(orm.url) + '/report/runfordesign', {report: {document: document.designData.currentReport}, parameters: inputParams}, config)
+        axios.post(getOrmUrl(orm.url) + '/api/report/runfordesign', {report: {document: document.designData.currentReport}, parameters: inputParams}, config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.showReport(response.data);
@@ -438,7 +438,7 @@ class AppToolbar extends BaseDesignComponent {
         }
     
         doc.document.pixelsPerInch = getPixelsPerInch();
-        axios.post(getOrmUrl(orm.url) + '/report/save', doc, config)
+        axios.post(getOrmUrl(orm.url) + '/api/report/save', doc, config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.props.setStatus('report saved', false);

@@ -108,7 +108,7 @@ class DBColumnSelectPanel extends BaseDesignComponent {
             headers: {'Authorization': orm.authString }
         };
 
-        axios.get(getOrmUrl(orm.url) + '/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId, config)
+        axios.get(getOrmUrl(orm.url) + '/api/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId, config)
             .then((response) => {
                 if (response.status === 200) {
                     document.designData.currentReport.reportColumns = response.data;

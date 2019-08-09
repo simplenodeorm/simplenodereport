@@ -110,7 +110,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/report/load/' + selectedDocument, axiosConfig)
+        axios.get(getOrmUrl(orm.url) + '/api/report/load/' + selectedDocument, axiosConfig)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.loadDocumentData(response.data);
@@ -136,7 +136,7 @@ class DocumentTree extends BaseDesignComponent {
                 headers: {'Authorization': orm.authString}
             };
 
-            axios.get(getOrmUrl(orm.url) + '/report/delete/' + selectedDocument, config)
+            axios.get(getOrmUrl(orm.url) + '/api/report/delete/' + selectedDocument, config)
                 .then((response) => {
                     if (response.status === 200) {
                         curcomp.loadDocuments();
@@ -160,7 +160,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/report/document/groups', config)
+        axios.get(getOrmUrl(orm.url) + '/api/report/document/groups', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({groups: response.data});
@@ -182,7 +182,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': orm.authString}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/report/documents', config)
+        axios.get(getOrmUrl(orm.url) + '/api/report/documents', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({documents: response.data});

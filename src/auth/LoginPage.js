@@ -153,7 +153,7 @@ class LoginPage extends BaseDesignComponent {
         
         const orm = selectedOrm;
         const instance = axios.create({baseURL: getOrmUrl(orm.url)});
-        instance.get('/design/login', config)
+        instance.get('/api/query/login', config)
                 .then((response) => {
                     if (response.status === 200) {
                         localStorage.setItem('orm', JSON.stringify(orm));

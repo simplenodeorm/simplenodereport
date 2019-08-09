@@ -47,7 +47,7 @@ class QuerySelector extends React.Component {
         const config = {
             headers: {'Authorization': orm.authString}
         };
-        axios.get(getOrmUrl(orm.url) + '/report/querydocuments', config)
+        axios.get(getOrmUrl(orm.url) + '/api/report/querydocuments', config)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({queryDocuments: response.data});
