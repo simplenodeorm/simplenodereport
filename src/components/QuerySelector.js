@@ -1,7 +1,7 @@
 import React from 'react';
 import "../app/App.css";
+import config from '../config/appconfig.json';
 import axios from 'axios';
-import {getOrmUrl} from './helpers';
 
 const loop = (data, qid) => {
     return data.map((item) => {
@@ -43,11 +43,10 @@ class QuerySelector extends React.Component {
     
     loadAvailableQueryDocuments() {
         const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
-        axios.get(getOrmUrl(orm.url) + '/api/report/querydocuments', config)
+        axios.get(config.apiServerUrl + '/api/report/querydocuments', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({queryDocuments: response.data});

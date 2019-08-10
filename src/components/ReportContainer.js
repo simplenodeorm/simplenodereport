@@ -3,7 +3,7 @@ import '../app/RunReport.css';
 import config from '../config/runreportconfig.json';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import axios from "axios";
-import {getModalContainer,clearModalContainer,getOrmUrl} from "./helpers";
+import {getModalContainer,clearModalContainer} from "./helpers";
 import ReactDOM from "react-dom";
 import {ParameterInputPanel} from "./ParameterInputPanel";
 
@@ -82,13 +82,12 @@ class ReportContainer extends BaseDesignComponent {
     runWithParameters(results) {
         clearModalContainer();
         const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
     
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);
-        axios.post(getOrmUrl(orm.url) + '/api/report/run/' + docid, {"parameters": results.parameters}, config)
+        axios.post(config.apiServerUrl + '/api/report/run/' + docid, {"parameters": results.parameters}, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.showReport(response.data);
@@ -137,13 +136,12 @@ class ReportContainer extends BaseDesignComponent {
     
     run() {
         const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
         
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);
-        axios.get(getOrmUrl(orm.url) + '/api/report/run/' + docid, config)
+        axios.get(config.apiServerUrl + '/api/report/run/' + docid, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     if (response.data.userInputRequired) {

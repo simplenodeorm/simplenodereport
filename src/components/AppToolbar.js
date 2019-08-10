@@ -19,8 +19,7 @@ import {
     setDefaultReportObjectSize,
     getPixelsPerInch,
     getModalContainer,
-    getDocumentDimensions,
-    getOrmUrl
+    getDocumentDimensions
 } from './helpers';
 
 import axios from 'axios';
@@ -102,9 +101,9 @@ class AppToolbar extends BaseDesignComponent {
                 ]
             }
         ];
-        const orm = JSON.parse(localStorage.getItem('orm'));
+
         return <div>
-            <Toolbar menu={menu} brand={orm.name} logo="logo.png"/>
+            <Toolbar menu={menu} logo="logo.png"/>
             <div className="buttonbar">
                 <button className="button" title={config.textmsg.newreport} onClick={this.newReport}>
                     <img alt={config.textmsg.newreport} src='/images/newreport.png'/>
@@ -152,9 +151,9 @@ class AppToolbar extends BaseDesignComponent {
                     {!itemsSelected && <img alt={config.textmsg.delete} src='/images/delete-disabled.png'/>}
                     <span className="label">{config.textmsg.delete}</span>
                 </button>
-                <button className="button" title={config.textmsg.save} disabled={config.demoMode || !canSave} onClick={this.onSave}>
-                    {!config.demoMode && canSave && <img alt={config.textmsg.save} src='/images/save.png'/>}
-                    {(config.demoMode || !canSave) && <img alt={config.textmsg.save} src='/images/save-disabled.png'/>}
+                <button className="button" title={config.textmsg.save} disabled={!canSave} onClick={this.onSave}>
+                    {canSave && <img alt={config.textmsg.save} src='/images/save.png'/>}
+                    {!canSave && <img alt={config.textmsg.save} src='/images/save-disabled.png'/>}
                     <span className="label">{config.textmsg.save}</span>
                 </button>
                 <button className="button" title={config.textmsg.run} disabled={!canSave} onClick={this.onRun}>
@@ -322,13 +321,12 @@ class AppToolbar extends BaseDesignComponent {
     
     onRun() {
         const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
     
-        axios.get(getOrmUrl(orm.url) + '/api/report/userinputrequired/'
-            + document.designData.currentReport.queryDocumentId, config)
+        axios.get(config.apiServerUrl + '/api/report/userinputrequired/'
+            + document.designData.currentReport.queryDocumentId, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     if (response.data.userInputRequired) {
@@ -346,10 +344,10 @@ class AppToolbar extends BaseDesignComponent {
     }
     
     generateReport(params) {
-        this.showWaitMessage(cfg.textmsg.runningreportmsg.replace('?', document.designData.currentReport.reportName));       const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
+        this.showWaitMessage(cfg.textmsg.runningreportmsg.replace('?', document.designData.currentReport.reportName));
+        const curcomp = this;
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
         
         let inputParams;
@@ -358,7 +356,7 @@ class AppToolbar extends BaseDesignComponent {
             inputParams = params.parameters;
         }
         document.designData.currentReport.pixelsPerInch = getPixelsPerInch();
-        axios.post(getOrmUrl(orm.url) + '/api/report/runfordesign', {report: {document: document.designData.currentReport}, parameters: inputParams}, config)
+        axios.post(config.apiServerUrl + '/api/report/runfordesign', {report: {document: document.designData.currentReport}, parameters: inputParams}, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.showReport(response.data);
@@ -416,9 +414,8 @@ class AppToolbar extends BaseDesignComponent {
     saveReport(params) {
         this.showWaitMessage(cfg.textmsg.savingreportmsg);
         const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString }
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
         
         let doc = this.getReportDocument(params);
@@ -438,7 +435,7 @@ class AppToolbar extends BaseDesignComponent {
         }
     
         doc.document.pixelsPerInch = getPixelsPerInch();
-        axios.post(getOrmUrl(orm.url) + '/api/report/save', doc, config)
+        axios.post(config.apiServerUrl + '/api/report/save', doc, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.props.setStatus('report saved', false);

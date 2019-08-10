@@ -1,10 +1,9 @@
 import React from 'react';
-import orms from '../config/orms.json';
 import config from '../config/runreportconfig.json';
 import base64 from 'base-64';
 import axios from 'axios';
 import {BaseDesignComponent} from '../components/BaseDesignComponent';
-import {removeWaitMessage,getOrmUrl} from '../components/helpers';
+import {removeWaitMessage} from '../components/helpers';
 import { withRouter } from 'react-router';
 import '../app/RunReport.css';
 
@@ -15,7 +14,6 @@ class LoginPage extends BaseDesignComponent {
         this.state = {
             username: '',
             password: '',
-            orm: this.findOrm(document.reportId.split('.')[0]),
             submitted: false,
             loading: false,
             error: ''
@@ -23,18 +21,8 @@ class LoginPage extends BaseDesignComponent {
 
          this.handleSubmit = this.handleSubmit.bind(this);
          this.handleChange = this.handleChange.bind(this);
-    
-        if (config.demoMode) {
-            this.login('user', 'pass', orms[0], config);
-        }
     }
     
-    componentDidMount() {
-        if (!config.demoMode) {
-            this.username.focus();
-        }
-    }
-
     handleSubmit(e) {
         e.preventDefault();
 
@@ -47,7 +35,7 @@ class LoginPage extends BaseDesignComponent {
         }
 
         this.setState({loading: true});
-        this.login(username, password, orm, config);
+        this.login(username, password, config);
     }
     
 
@@ -56,83 +44,60 @@ class LoginPage extends BaseDesignComponent {
         this.setState({[name]: value});
     }
     
-    findOrm(ormName) {
-        let retval;
-        for (let i = 0; i < orms.length; ++i) {
-            if (orms[i].name === ormName) {
-                retval = orms[i];
-                break;
-            }
-        }
-    
-        return retval;
-    }
-    
     render() {
-        if (!config.demoMode) {
-            const {username, password, orm, submitted, loading, error} = this.state;
-    
-            return (
-                <div>
-                    <h1 className="loginTitle">{config.textmsg.logintitletext}</h1>
-                    <div className="errorDisplay">{error}</div>
-                    <div className="login">
-                        <h3>{config.textmsg.reportlogin}</h3>
-                        <form name="form" onSubmit={this.handleSubmit}>
-                            <div>
-                                <label htmlFor="username">{config.textmsg.username}</label>
-                                <input type="text" name="username"
-                                       ref={(input) => {
-                                           this.username = input;
-                                       }}
-                                       defaultValue={username} onBlur={this.handleChange}/>
-                                {submitted && !username &&
-                                <div className="errorDisplay">*{config.textmsg.usernamerequired}</div>
-                                }
-                            </div>
-                            <div>
-                                <label htmlFor="password">{config.textmsg.password}</label>
-                                <input type="password" name="password" defaultValue={password}
-                                       onBlur={this.handleChange}/>
-                                {submitted && !password &&
-                                <div className="errorDisplay">*{config.textmsg.passwordrequired}</div>
-                                }
-                            </div>
-                            <div>
-                                <label>ORM:</label>
-                                <input type="text" name="orm" defaultValue={orm.name} disabled={true}/>
-                    
-                            </div>
-                            <div>
-                                <input type="submit" disabled={loading} value={config.textmsg.login}/>
-                            </div>
-                
-                        </form>
-                    </div>
+        const {username, password, submitted, loading, error} = this.state;
+
+        return (
+            <div>
+                <h1 className="loginTitle">{config.textmsg.logintitletext}</h1>
+                <div className="errorDisplay">{error}</div>
+                <div className="login">
+                    <h3>{config.textmsg.reportlogin}</h3>
+                    <form name="form" onSubmit={this.handleSubmit}>
+                        <div style={{paddingTop: "15px"}}>
+                            <label htmlFor="username">{config.textmsg.username}</label>
+                            <input type="text" name="username"
+                                   ref={(input) => {
+                                       this.username = input;
+                                   }}
+                                   defaultValue={username} onBlur={this.handleChange}/>
+                            {submitted && !username &&
+                            <div className="errorDisplay">*{config.textmsg.usernamerequired}</div>
+                            }
+                        </div>
+                        <div>
+                            <label htmlFor="password">{config.textmsg.password}</label>
+                            <input type="password" name="password" defaultValue={password}
+                                   onBlur={this.handleChange}/>
+                            {submitted && !password &&
+                            <div className="errorDisplay">*{config.textmsg.passwordrequired}</div>
+                            }
+                        </div>
+                        <div>
+                            <input type="submit" disabled={loading} value={config.textmsg.login}/>
+                        </div>
+
+                    </form>
                 </div>
-            );
-        } else {
-            return '';
-        }
+            </div>
+        );
     }
 
-    login(username, password, selectedOrm, cfg) {
+    login(username, password, cfg) {
         this.showWaitMessage(cfg.textmsg.authenticating);
         const curcomp = this;
         const authString = 'Basic ' + base64.encode(username + ':' + password);
-        const config = {
+        const httpcfg = {
             headers: {'Authorization': authString, 'Cache-Control': 'no-cache'}
         };
 
-        localStorage.removeItem('orm');
+        localStorage.removeItem('auth');
         
-        const {orm} = this.state;
-        orm.authString = authString;
-        const instance = axios.create({baseURL: getOrmUrl(orm.url)});
-        instance.get('/api/query/login', config)
+        const instance = axios.create({baseURL: config.apiServerUrl});
+        instance.get(config.apiServerUrl + '/api/query/login', httpcfg)
                 .then((response) => {
                     if (response.status === 200) {
-                        localStorage.setItem('orm', JSON.stringify(orm));
+                        localStorage.setItem('auth', authString);
                         curcomp.props.history.push('/');
                     } else {
                         curcomp.setState({error: response.statusText, loading: false, submitted: false});
@@ -146,7 +111,7 @@ class LoginPage extends BaseDesignComponent {
     }
 
     logout() {
-        localStorage.removeItem('orm');
+        localStorage.removeItem('auth');
     }
 }
 

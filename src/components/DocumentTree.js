@@ -11,8 +11,7 @@ import {
     clearDocumentDesignData,
     copyObject,
     getContextMenu,
-    removeWaitMessage,
-    getOrmUrl} from './helpers';
+    removeWaitMessage} from './helpers';
 const rdimage = <img alt="report document" src="/images/report-document.png"/>;
 const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 
@@ -105,12 +104,11 @@ class DocumentTree extends BaseDesignComponent {
         clearContextMenu();
         const curcomp = this;
         let {selectedDocument} = this.state;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const axiosConfig = {
-            headers: {'Authorization': orm.authString}
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/api/report/load/' + selectedDocument, axiosConfig)
+        axios.get(config.apiServerUrl + '/api/report/load/' + selectedDocument, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.loadDocumentData(response.data);
@@ -131,12 +129,11 @@ class DocumentTree extends BaseDesignComponent {
 
         let response = window.confirm('Delete document ' + selectedDocument.substring(pos+1).replace('_', ' ').replace('.json', '') + '?');
         if (response) {
-            const orm = JSON.parse(localStorage.getItem('orm'));
-            const config = {
-                headers: {'Authorization': orm.authString}
+            const httpcfg = {
+                headers: {'Authorization': localStorage.getItem('auth')}
             };
 
-            axios.get(getOrmUrl(orm.url) + '/api/report/delete/' + selectedDocument, config)
+            axios.get(config.apiServerUrl + '/api/report/delete/' + selectedDocument, httpcfg)
                 .then((response) => {
                     if (response.status === 200) {
                         curcomp.loadDocuments();
@@ -155,12 +152,11 @@ class DocumentTree extends BaseDesignComponent {
     
     loadDocumentGroups() {
         const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/api/report/document/groups', config)
+        axios.get(config.apiServerUrl + '/api/report/document/groups', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({groups: response.data});
@@ -177,12 +173,11 @@ class DocumentTree extends BaseDesignComponent {
 
     loadDocuments() {
         const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/api/report/documents', config)
+        axios.get(config.apiServerUrl + '/api/report/documents', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({documents: response.data});

@@ -1,4 +1,5 @@
 {
+    "apiServerUrl": "http://localhost:8888",
     "textmsg": {
         "logintitletext": "Report Designer",
         "selectdata": "Select Data",
@@ -109,7 +110,7 @@
         "columnnamelabel": "Column Name:",
         "columnpathlabel": "Column Path:",
         "columnfont": "Column Font",
-        "designlogin": "Design Login",
+        "designlogin": "Login",
         "username": "Username:",
         "password": "Password:",
         "targetorm": "Target ORM:",
@@ -154,7 +155,6 @@
         "xaxeslabel": "X Axes Name:",
         "yaxeslabel": "Y Axes Name:"
     },
-    "demoMode": false,
     "defaultDataAxisColor": "blue",
     "defaultLegendPosition": "bottom",
     "defaultTitlePosition": "top",

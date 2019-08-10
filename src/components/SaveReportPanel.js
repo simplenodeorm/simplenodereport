@@ -5,7 +5,6 @@ import Tree from 'rc-tree';
 import './defaultTree.css';
 import "../app/App.css";
 import axios from 'axios';
-import {getOrmUrl} from './helpers';
 
 const rfimage = <img alt="query folder" src="/images/report-folder.png"/>;
 class SaveReportPanel extends ModalDialog {
@@ -122,12 +121,11 @@ class SaveReportPanel extends ModalDialog {
     
     loadAuthorizers() {
         const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/api/report/authorizers', config)
+        axios.get(config.apiServerUrl + '/api/report/authorizers', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({authorizers: response.data});
@@ -142,12 +140,11 @@ class SaveReportPanel extends ModalDialog {
     
     loadDocumentGroups() {
         const curcomp = this;
-        const orm = JSON.parse(localStorage.getItem('orm'));
-        const config = {
-            headers: {'Authorization': orm.authString}
+        const httpcfg = {
+            headers: {'Authorization': localStorage.getItem('auth')}
         };
 
-        axios.get(getOrmUrl(orm.url) + '/api/report/document/groups', config)
+        axios.get(config.apiServerUrl + '/api/report/document/groups', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({groups: response.data});

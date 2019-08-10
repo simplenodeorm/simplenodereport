@@ -1,9 +1,0 @@
-[
-{
-    "name" : "hr",
-    "url"  : "http://localhost:8888/hrorm",
-    "defaultUsername" : "user",
-    "defaultPassword" : "pass"
-}
-]
-
