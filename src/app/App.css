@@ -1,43 +1,4 @@
-:root {
-    --bar-color:#202020;
-    --default-bkcolor: white;
-    --default-text-color: black;
-    --default-font-size:10pt;
-    --default-font-weight:100;
-    --main-color:-moz-linear-gradient(top, slateGray, black), -webkit-linear-gradient(slateGray, black), linear-gradient(to bottom, slateGray, black);
-    --main-color-high:#222;
-    --text-color-toolbar:#cccccc;
-    --text-hover: #fff;
-    --popup-background: white;
-    --popup-border-color: darkGray;
-    --popup-text-color: black;
-    --popup-hover-background: slateGray;
-    --popup-hover-text-color: white;
-    --font-family: Arial, Helvetica, sans-serif;
-    --small-font-size:8pt;
-    --med-font-size:12pt;
-    --large-font-size:14pt;
-    --strong-font-weight:700;
-    --submit-bkcolor: #37a69b;
-    --header-background: -moz-linear-gradient(top, lightGray, silver), -webkit-linear-gradient(lightGray, silver), linear-gradient(to bottom, lightGray, silver);
-    --header-text-color:darkSlateGray;
-    --menu-button-color:darkBlue;
-    --default-border-color: gray;
-    --modal-button-color: #0099CC;
-    --split-resizer-color: slateGray;
-    --query-results-font-color: indigo;
-    --sql-text-font-color: indigo;
-    --wait-message-font-color: navy;
-    --error-message-color: red;
-    --info-message-color: lightGreen;
-    --input-background:linear-gradient(top, #d6d7d7, #dee0e0);
-    --sidebar-hover-text-color: khaki;
-    --rule-background-color: lightGray;
-    --default-input-height: 22px;
-    --status-bar-height: 18px;
-    --wait-message-height: 30px;
-    --active-report-object-border: dotted crimson 1px;
-  }
+@import "theme.css";
 
 html {
     overflow:hidden;
