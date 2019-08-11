@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="simplify report to api server interface">
+    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/PrivateRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppToolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppToolbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DocumentTree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DocumentTree.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/QuerySelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuerySelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ReportContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SaveReportPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SaveReportPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/config/appconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/appconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/orms.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/runreportconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/runreportconfig.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +83,8 @@
       <workItem from="1565277477809" duration="38000" />
       <workItem from="1565365198245" duration="502000" />
       <workItem from="1565371740716" duration="57000" />
-      <workItem from="1565396253833" duration="3801000" />
+      <workItem from="1565396253833" duration="4471000" />
+      <workItem from="1565491453550" duration="27000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -195,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565365668707</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="simplify report to api server interface">
+      <created>1565400888757</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1565400888757</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -233,7 +229,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/auth/LoginPage.js</url>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

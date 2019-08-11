@@ -5,7 +5,7 @@
     "type": "git",
     "url": "git+https://github.com/simplenodeorm/simplenodereport.git"
   },
-  "homepage": "./",
+  "homepage": "reportdesign",
   "author": "Rob Tucker <rbtucker16@gmail.com>",
   "license": "ISC",
   "dependencies": {

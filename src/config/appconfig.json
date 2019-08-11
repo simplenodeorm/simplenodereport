@@ -1,5 +1,5 @@
 {
-    "apiServerUrl": "http://localhost:8888",
+    "apiServerUrl": "https://localhost:8443",
     "textmsg": {
         "logintitletext": "Report Designer",
         "selectdata": "Select Data",
