@@ -1,4 +1,5 @@
 {
+    "apiServerUrl": "https://localhost:8443",
     "textmsg": {
         "logintitletext": "Run Report",
         "reportlogin": "Login",
@@ -15,7 +16,6 @@
 
     },
    "pageSections": ["header", "body", "footer"],
-    "defaultReportAuthenticator": "DefaultAuthorizer",
     "zoomFactor": 1.25,
     "wheelIncrement": 25
 }

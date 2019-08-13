@@ -11,19 +11,11 @@ class SaveReportPanel extends ModalDialog {
     constructor(props) {
         super(props);
         this.onSelect = this.onSelect.bind(this);
-        this.onAuthenticatorChange = this.onAuthenticatorChange.bind(this);
         this.onReportName = this.onReportName.bind(this);
-        
-        this.authenticator = document.designData.currentReport.authenticator;
-        
-        if (!this.authenticator) {
-            this.authenticator = config.defaultReportAuthenticator;
-        }
         
         this.selectedGroup = document.designData.currentReport.group;
         this.reportName = document.designData.currentReport.reportName.replace(/_/g, ' ');
         this.state = {
-            authorizers: '',
             groups: ''
         };
 
@@ -60,14 +52,6 @@ class SaveReportPanel extends ModalDialog {
                             defaultValue={this.reportName}
                             onChange={this.onReportName} /></td>
                     </tr>
-                    <tr>
-                        <td className="inputLabel">{config.textmsg.authenticatorlabel}</td>
-                        <td>
-                            <select onChange={this.onAuthenticatorChange}>
-                                {authorizers && authorizerLoop(this.authenticator, authorizers) } 
-                            </select>
-                        </td>
-                    </tr>
                 </table>
              </div>
             <hr />
@@ -89,10 +73,6 @@ class SaveReportPanel extends ModalDialog {
         this.selectedGroup = selkey;
     }
     
-    onAuthenticatorChange(e) {
-        this.authenticator = e.target.value;
-    }
-    
     onReportName(e) {
         this.reportName = e.target.value;
     }
@@ -102,7 +82,7 @@ class SaveReportPanel extends ModalDialog {
     }
         
     isComplete() {
-        return (this.selectedGroup && this.authenticator);
+        return (this.selectedGroup);
     }
     
     getError() { 
@@ -113,29 +93,8 @@ class SaveReportPanel extends ModalDialog {
     getResult() {
         return { 
             group: this.selectedGroup, 
-            authenticator: this.authenticator,
             reportName: this.reportName
         };
-    }
-    
-    
-    loadAuthorizers() {
-        const curcomp = this;
-        const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
-        };
-
-        axios.get(config.apiServerUrl + '/api/report/authorizers', httpcfg)
-            .then((response) => {
-                if (response.status === 200) {
-                    curcomp.setState({authorizers: response.data});
-                } else {
-                    curcomp.setState({error: response.statusText});
-                }
-            })
-            .catch((err) => {
-                curcomp.setState({error: err.toString()});
-            });
     }
     
     loadDocumentGroups() {
