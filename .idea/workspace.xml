@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="" />
+    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="changes to make changing look and feel simpler">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +85,8 @@
       <workItem from="1565371740716" duration="57000" />
       <workItem from="1565396253833" duration="4471000" />
       <workItem from="1565491453550" duration="226000" />
+      <workItem from="1565493084099" duration="470000" />
+      <workItem from="1565657152004" duration="112000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -194,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565491513150</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="changes to make changing look and feel simpler">
+      <created>1565493316278</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1565493316278</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,7 +238,8 @@
     <MESSAGE value="update readme" />
     <MESSAGE value="update server calls for new url path" />
     <MESSAGE value="simplify report to api server interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="simplify report to api server interface" />
+    <MESSAGE value="changes to make changing look and feel simpler" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes to make changing look and feel simpler" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

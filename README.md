@@ -4,3 +4,5 @@ HTML reports in simplenodeorm
 
 Source: 
 https://github.com/simplenodeorm/simplenodereport.git
+
+For more detailed information see <a href="https://github.com/simplenodeorm/simplenodereport/blob/master/public/docs/rdesigner-full.pdf">Report Designer Documentation</a>
