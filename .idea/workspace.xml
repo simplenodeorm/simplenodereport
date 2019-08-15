@@ -90,7 +90,8 @@
       <workItem from="1565703183469" duration="818000" />
       <workItem from="1565832378376" duration="102000" />
       <workItem from="1565833829538" duration="520000" />
-      <workItem from="1565885939372" duration="42000" />
+      <workItem from="1565885939372" duration="76000" />
+      <workItem from="1565886151076" duration="12000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -232,7 +233,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565834329299</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="update readme">
+      <created>1565885995179</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1565885995179</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,13 +268,13 @@
     <MESSAGE value="add background opacity settings to selected charts" />
     <MESSAGE value="up version" />
     <MESSAGE value="do not prompt for login in demo mode" />
-    <MESSAGE value="update readme" />
     <MESSAGE value="update server calls for new url path" />
     <MESSAGE value="simplify report to api server interface" />
     <MESSAGE value="changes to make changing look and feel simpler" />
     <MESSAGE value="update docs" />
     <MESSAGE value="fix problems caused by orm resdesign" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix problems caused by orm resdesign" />
+    <MESSAGE value="update readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
