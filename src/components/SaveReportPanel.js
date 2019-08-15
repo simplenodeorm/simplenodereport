@@ -27,22 +27,8 @@ class SaveReportPanel extends ModalDialog {
     }
     
     getContent() {
-        const {authorizers, groups} = this.state;
+        const {groups} = this.state;
         
-        if (!authorizers) {
-            this.loadAuthorizers();
-        }
-        
-        const authorizerLoop = (auth, data) => {
-            return data.map((authorizer) => {
-                if (auth === authorizer) {
-                    return <option value={authorizer} selected>{authorizer}</option>;
-                } else {
-                    return <option value={authorizer}>{authorizer}</option>;
-                }
-            });
-        };
-
         return <div className="saveReportPanel">
             <div className="parameterInputPanel">
                 <table>

@@ -76,8 +76,7 @@ class ParameterInputPanel extends ModalDialog {
     getResult() {
         return { 
             interactive: true,
-            parameters: this.params,
-            authenticator: config.defaultDesignAuthenticator
+            parameters: this.params
         };
     }
 }

@@ -4,10 +4,8 @@
     <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/docs/rdesigner-full.odt" beforeDir="false" afterPath="$PROJECT_DIR$/public/docs/rdesigner-full.odt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/docs/rdesigner-full.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/public/docs/rdesigner-full.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ParameterInputPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ParameterInputPanel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SaveReportPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SaveReportPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/runreportconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/runreportconfig.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +88,9 @@
       <workItem from="1565491453550" duration="226000" />
       <workItem from="1565493084099" duration="470000" />
       <workItem from="1565657152004" duration="146000" />
-      <workItem from="1565703183469" duration="744000" />
+      <workItem from="1565703183469" duration="818000" />
+      <workItem from="1565832378376" duration="102000" />
+      <workItem from="1565833829538" duration="470000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -218,7 +218,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565657278494</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="update docs">
+      <created>1565703947194</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1565703947194</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,7 +257,8 @@
     <MESSAGE value="update server calls for new url path" />
     <MESSAGE value="simplify report to api server interface" />
     <MESSAGE value="changes to make changing look and feel simpler" />
-    <option name="LAST_COMMIT_MESSAGE" value="changes to make changing look and feel simpler" />
+    <MESSAGE value="update docs" />
+    <option name="LAST_COMMIT_MESSAGE" value="update docs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
