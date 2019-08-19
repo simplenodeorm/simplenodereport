@@ -28,7 +28,6 @@ class DocumentTree extends BaseDesignComponent {
         this.onRightClick = this.onRightClick.bind(this);
         this.loadDocument = this.loadDocument.bind(this);
         this.deleteDocument = this.deleteDocument.bind(this);
-        this.loadDocuments = this.loadDocuments.bind(this);
         this.setCurrentReport = this.setCurrentReport.bind(this);
     }
     
@@ -41,11 +40,10 @@ class DocumentTree extends BaseDesignComponent {
     }
 
     render() {
-        const {documents, groups} = this.state;
+        const {groups} = this.state;
         if (groups) {
             let treeData = copyObject(groups);
-            this.traverseDocumentGroups(treeData,  documents);
-            
+
             return <div className="treeContainer">
                 <Tree 
                   onRightClick={this.onRightClick}
@@ -60,37 +58,6 @@ class DocumentTree extends BaseDesignComponent {
         }
     }
     
-    traverseDocumentGroups(grp,  documents) {
-        if (!grp.isLeaf) {
-            let canRecurse = grp.children;
-            if (documents) {
-                let docs = documents[grp.key];
-                if (docs) {
-                    if (!grp.children) {
-                        grp.children = [];
-                        canRecurse = false;
-                    } 
-
-                    for (let j = 0; j < docs.length; ++j) {
-                        let leaf = {
-                            title: docs[j].replace(/_/g, ' ').replace('.json', ''),
-                            isLeaf: true,
-                            key: (grp.key + '.' + docs[j])
-                        };
-                        grp.children.push(leaf);
-
-                   }
-               }
-            }
-
-            if (canRecurse) {
-                for (let i = 0; i < grp.children.length; ++i) {
-                    this.traverseDocumentGroups(grp.children[i], documents);
-                }
-            }
-        }
-    }
-
     onRightClick(info) {
         const tree = this;
         if (info.node.props.isLeaf) {
@@ -160,7 +127,6 @@ class DocumentTree extends BaseDesignComponent {
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({groups: response.data});
-                    curcomp.loadDocuments();
                 } else {
                     curcomp.props.setStatus(response.statusText, true);
                 }
@@ -171,26 +137,6 @@ class DocumentTree extends BaseDesignComponent {
 
     }
 
-    loadDocuments() {
-        const curcomp = this;
-        const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
-        };
-
-        axios.get(config.apiServerUrl + '/api/report/documents', httpcfg)
-            .then((response) => {
-                if (response.status === 200) {
-                    curcomp.setState({documents: response.data});
-                } else {
-                    curcomp.props.setStatus(response.statusText, true);
-                }
-            })
-            .catch((err) => {
-                curcomp.props.setStatus(err.toString(), true);
-            });
-
-    }
-    
     loadDocumentData(doc) {
         clearDocumentDesignData();
         this.props.getDesignPanel().removeAllReportObjects();
