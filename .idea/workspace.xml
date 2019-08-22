@@ -97,7 +97,10 @@
       <workItem from="1566143206946" duration="102000" />
       <workItem from="1566173427672" duration="276000" />
       <workItem from="1566174174890" duration="672000" />
-      <workItem from="1566179010982" duration="152000" />
+      <workItem from="1566179010982" duration="243000" />
+      <workItem from="1566355787535" duration="29000" />
+      <workItem from="1566429542199" duration="21000" />
+      <workItem from="1566432842960" duration="551000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -253,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1565886168895</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="refactor to move document tree load logic to server">
+      <created>1566179211847</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1566179211847</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -287,7 +297,8 @@
     <MESSAGE value="update docs" />
     <MESSAGE value="fix problems caused by orm resdesign" />
     <MESSAGE value="update readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="update readme" />
+    <MESSAGE value="refactor to move document tree load logic to server" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor to move document tree load logic to server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -103,7 +103,7 @@ class DocumentTree extends BaseDesignComponent {
             axios.get(config.apiServerUrl + '/api/report/delete/' + selectedDocument, httpcfg)
                 .then((response) => {
                     if (response.status === 200) {
-                        curcomp.loadDocuments();
+                        curcomp.loadDocumentGroups();
                         curcomp.props.setStatus('document deleted', false);
                     } else {
                         curcomp.props.setStatus(response.statusText, true);
