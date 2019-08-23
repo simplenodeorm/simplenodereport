@@ -98,6 +98,7 @@ class LoginPage extends BaseDesignComponent {
                 .then((response) => {
                     if (response.status === 200) {
                         localStorage.setItem('auth', authString);
+                        localStorage.setItem('lastLogin', new Date().getMilliseconds());
                         curcomp.props.history.push('/');
                         removeWaitMessage();
                     } else {

@@ -19,6 +19,7 @@ class SaveReportPanel extends ModalDialog {
             groups: ''
         };
 
+        this.removeReports = this.removeReports.bind(this);
         this.loadDocumentGroups();
     }
 
@@ -92,6 +93,7 @@ class SaveReportPanel extends ModalDialog {
         axios.get(config.apiServerUrl + '/api/report/document/groups', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
+                    curcomp.removeReports(response.data);
                     curcomp.setState({groups: response.data});
                 } else {
                     curcomp.props.setStatus(response.statusText, true);
@@ -101,6 +103,19 @@ class SaveReportPanel extends ModalDialog {
                 curcomp.setStatus(err.toString(), true);
             });
 
+    }
+
+    removeReports(node) {
+        if (node.children) {
+            var i = node.children.length;
+            while (i--) {
+                if (node.children[i].isLeaf) {
+                    node.children.splice(i, 1);
+                } else {
+                    this.removeReports(node.children[i]);
+                }
+            }
+        }
     }
 }
 
