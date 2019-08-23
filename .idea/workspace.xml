@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
+    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="update for now document groups logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DocumentTree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DocumentTree.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuerySelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuerySelector.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,7 +101,13 @@
       <workItem from="1566179010982" duration="243000" />
       <workItem from="1566355787535" duration="29000" />
       <workItem from="1566429542199" duration="21000" />
-      <workItem from="1566432842960" duration="551000" />
+      <workItem from="1566432842960" duration="683000" />
+      <workItem from="1566438429502" duration="207000" />
+      <workItem from="1566439298273" duration="524000" />
+      <workItem from="1566443170209" duration="1548000" />
+      <workItem from="1566511058522" duration="8715000" />
+      <workItem from="1566525780761" duration="329000" />
+      <workItem from="1566526146214" duration="856000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -263,11 +270,28 @@
       <option name="project" value="LOCAL" />
       <updated>1566179211847</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="update for now document groups logic">
+      <created>1566433443413</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1566433443413</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -298,7 +322,8 @@
     <MESSAGE value="fix problems caused by orm resdesign" />
     <MESSAGE value="update readme" />
     <MESSAGE value="refactor to move document tree load logic to server" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor to move document tree load logic to server" />
+    <MESSAGE value="update for now document groups logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="update for now document groups logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

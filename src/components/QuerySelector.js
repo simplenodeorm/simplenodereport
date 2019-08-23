@@ -5,13 +5,10 @@ import axios from 'axios';
 
 const loop = (data, qid) => {
     return data.map((item) => {
-        let docid = item.key + '.' + item.documentName;
-        let displayName = item.group + ': ' + item.documentName.replace(/_/g, ' ').replace('.json', '');
-
-        if (qid && (qid === docid)) {
-            return <option value={docid} selected>{displayName}</option>;
+        if (qid && (qid === item.docid)) {
+            return <option value={item.docid} selected>{item.displayName}</option>;
         } else {
-            return <option value={docid}>{displayName}</option>;
+            return <option value={item.docid}>{item.displayName}</option>;
         }
     });
 };
@@ -23,7 +20,7 @@ class QuerySelector extends React.Component {
         this.state = {
             queryDocuments: ''
         };
-        
+        this.convertToList = this.convertToList.bind(this);
         this.loadAvailableQueryDocuments();
     }
     
@@ -46,10 +43,14 @@ class QuerySelector extends React.Component {
         const httpcfg = {
             headers: {'Authorization': localStorage.getItem('auth')}
         };
-        axios.get(config.apiServerUrl + '/api/report/querydocuments', httpcfg)
+
+        axios.get(config.apiServerUrl + '/api/query/document/groups', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
-                    curcomp.setState({queryDocuments: response.data});
+                    let list = [];
+                    curcomp.convertToList(response.data, list);
+                    list.sort();
+                    curcomp.setState({queryDocuments: list});
                 } else {
                     curcomp.props.setStatus(response.statusText, true);
                 }
@@ -58,6 +59,20 @@ class QuerySelector extends React.Component {
                 curcomp.props.setStatus(err.toString(), true);
             });
     }
+
+    convertToList(node, list)  {
+        if (node.children) {
+            for (let i = 0; i < node.children.length; ++i) {
+                if (node.children[i].isLeaf) {
+                    let displayName = node.title + ': ' + node.children[i].title;
+                    list.push({docid: node.children[i].key.replace('.json', ''), displayName: displayName});
+                } else {
+                    this.convertToList(node.children[i], list);
+                }
+            }
+        }
+    }
 }
+
 
 export {QuerySelector};

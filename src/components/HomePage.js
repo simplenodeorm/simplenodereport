@@ -26,7 +26,7 @@ class HomePage extends React.Component {
     }
 
     reloadDocuments() {
-        this.documentTree.loadDocuments();
+        this.documentTree.loadDocumentGroups();
     }
 
     setCurrentReport(report) {
