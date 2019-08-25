@@ -11,7 +11,8 @@ import {
     clearDocumentDesignData,
     copyObject,
     getContextMenu,
-    removeWaitMessage} from './helpers';
+    removeWaitMessage,
+    getServerContext} from './helpers';
 const rdimage = <img alt="report document" src="/images/report-document.png"/>;
 const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 
@@ -75,7 +76,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': localStorage.getItem('auth')}
         };
 
-        axios.get(config.apiServerUrl + '/api/report/load/' + selectedDocument, httpcfg)
+        axios.get(getServerContext() + '/api/report/load/' + selectedDocument, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.loadDocumentData(response.data);
@@ -100,7 +101,7 @@ class DocumentTree extends BaseDesignComponent {
                 headers: {'Authorization': localStorage.getItem('auth')}
             };
 
-            axios.get(config.apiServerUrl + '/api/report/delete/' + selectedDocument, httpcfg)
+            axios.get(getServerContext() + '/api/report/delete/' + selectedDocument, httpcfg)
                 .then((response) => {
                     if (response.status === 200) {
                         curcomp.loadDocumentGroups();
@@ -123,7 +124,7 @@ class DocumentTree extends BaseDesignComponent {
             headers: {'Authorization': localStorage.getItem('auth')}
         };
 
-        axios.get(config.apiServerUrl + '/api/report/document/groups', httpcfg)
+        axios.get(getServerContext() + '/api/report/document/groups', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.setState({groups: response.data});

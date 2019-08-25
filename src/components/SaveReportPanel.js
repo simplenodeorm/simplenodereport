@@ -1,6 +1,7 @@
 import React from 'react';
 import config from '../config/appconfig.json';
 import {ModalDialog} from './ModalDialog';
+import{getServerContext} from './helpers';
 import Tree from 'rc-tree';
 import './defaultTree.css';
 import "../app/App.css";
@@ -90,7 +91,7 @@ class SaveReportPanel extends ModalDialog {
             headers: {'Authorization': localStorage.getItem('auth')}
         };
 
-        axios.get(config.apiServerUrl + '/api/report/document/groups', httpcfg)
+        axios.get(getServerContext() + '/api/report/document/groups', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.removeReports(response.data);

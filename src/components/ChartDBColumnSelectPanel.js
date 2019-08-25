@@ -2,7 +2,7 @@ import React from 'react';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import {ChartCategorySelect} from './ChartCategorySelect';
 import {ChartDataSelect} from './ChartDataSelect';
-import config from '../config/appconfig.json';
+import {getServerContext} from './helpers';
 import axios from "axios";
 import "../app/App.css";
 import {getUniqueKey, isNumeric,isString,isDate,removeWaitMessage,precision} from './helpers';
@@ -68,7 +68,7 @@ class ChartDBColumnSelectPanel extends BaseDesignComponent {
             headers: {'Authorization': localStorage.getItem('auth') }
         };
 
-        axios.get(config.apiServerUrl + '/api/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId, httpcfg)
+        axios.get(getServerContext() + '/api/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     document.designData.currentReport.reportColumns = response.data;

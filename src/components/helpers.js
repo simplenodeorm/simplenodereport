@@ -468,3 +468,10 @@ export function formatSelectColumnForDisplay(selcol) {
     
     return retval;
 }
+
+export function getServerContext() {
+    let search = window.location.search;
+    let params = new URLSearchParams(search);
+    return (config.apiServerUrl + '/' + params.get('context'))
+}
+

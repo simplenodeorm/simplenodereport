@@ -1,6 +1,6 @@
 import React from 'react';
 import "../app/App.css";
-import config from '../config/appconfig.json';
+import {getServerContext} from './helpers';
 import axios from 'axios';
 
 const loop = (data, qid) => {
@@ -44,7 +44,7 @@ class QuerySelector extends React.Component {
             headers: {'Authorization': localStorage.getItem('auth')}
         };
 
-        axios.get(config.apiServerUrl + '/api/query/document/groups', httpcfg)
+        axios.get(getServerContext() + '/api/query/document/groups', httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     let list = [];

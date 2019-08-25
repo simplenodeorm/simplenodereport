@@ -19,7 +19,8 @@ import {
     setDefaultReportObjectSize,
     getPixelsPerInch,
     getModalContainer,
-    getDocumentDimensions
+    getDocumentDimensions,
+    getServerContext
 } from './helpers';
 
 import axios from 'axios';
@@ -325,7 +326,7 @@ class AppToolbar extends BaseDesignComponent {
             headers: {'Authorization': localStorage.getItem('auth')}
         };
     
-        axios.get(config.apiServerUrl + '/api/report/userinputrequired/'
+        axios.get(getServerContext() + '/api/report/userinputrequired/'
             + document.designData.currentReport.queryDocumentId, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
@@ -356,7 +357,7 @@ class AppToolbar extends BaseDesignComponent {
             inputParams = params.parameters;
         }
         document.designData.currentReport.pixelsPerInch = getPixelsPerInch();
-        axios.post(config.apiServerUrl + '/api/report/runfordesign', {report: {document: document.designData.currentReport}, parameters: inputParams}, httpcfg)
+        axios.post(getServerContext() + '/api/report/runfordesign', {report: {document: document.designData.currentReport}, parameters: inputParams}, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.showReport(response.data);
@@ -435,7 +436,7 @@ class AppToolbar extends BaseDesignComponent {
         }
     
         doc.document.pixelsPerInch = getPixelsPerInch();
-        axios.post(config.apiServerUrl + '/api/report/save', doc, httpcfg)
+        axios.post(getServerContext() + '/api/report/save', doc, httpcfg)
             .then((response) => {
                 if (response.status === 200) {
                     curcomp.props.setStatus('report saved', false);
