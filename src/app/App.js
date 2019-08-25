@@ -5,6 +5,7 @@ import { HomePage } from '../components/HomePage';
 import LoginPage from '../auth/LoginPage';
 import RunReportLoginPage from '../auth/RunReportLoginPage';
 import {ReportContainer} from '../components/ReportContainer';
+import uuid from 'uuid';
 import './App.css';
 
 const millisPerDay = 1000 * 60 * 60 * 24;
@@ -17,7 +18,10 @@ class App extends React.Component  {
         let lastLogin = localStorage.getItem('lastLogin');
         if (!lastLogin || ((new Date().getMilliseconds() - Number(lastLogin)) > millisPerDay)) {
             localStorage.removeItem('auth')
+        } else {
+            localStorage.setItem('my-session', uuid());
         }
+
         window.addEventListener("beforeunload", this.onUnload)
     }
 
@@ -30,13 +34,14 @@ class App extends React.Component  {
             document.runReportMode = true;
             document.reportId = document.location.pathname.substring('/runreport'.length + 1);
         }
+
         return (<div>
             <Router>
                 <div>
-                    {document.runReportMode && <PrivateRoute path="/" component={ReportContainer}/>}
-                    {document.runReportMode && <Route path="/login" component={RunReportLoginPage}/>}
                     {!document.runReportMode && <PrivateRoute exact path="/" component={HomePage}/>}
                     {!document.runReportMode && <Route path="/login" component={LoginPage}/>}
+                    {document.runReportMode && <PrivateRoute path="/" component={ReportContainer}/>}
+                    {document.runReportMode && <Route path="/login" component={RunReportLoginPage}/>}
                 </div>
             </Router>
         </div>);

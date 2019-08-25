@@ -83,7 +83,7 @@ class ReportContainer extends BaseDesignComponent {
         clearModalContainer();
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
+            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
         };
     
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);
@@ -137,7 +137,7 @@ class ReportContainer extends BaseDesignComponent {
     run() {
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
+            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
         };
         
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);

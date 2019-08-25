@@ -73,7 +73,7 @@ class DocumentTree extends BaseDesignComponent {
         const curcomp = this;
         let {selectedDocument} = this.state;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
+            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
         };
 
         axios.get(getServerContext() + '/api/report/load/' + selectedDocument, httpcfg)
@@ -98,7 +98,7 @@ class DocumentTree extends BaseDesignComponent {
         let response = window.confirm('Delete document ' + selectedDocument.substring(pos+1).replace('_', ' ').replace('.json', '') + '?');
         if (response) {
             const httpcfg = {
-                headers: {'Authorization': localStorage.getItem('auth')}
+                headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
             };
 
             axios.get(getServerContext() + '/api/report/delete/' + selectedDocument, httpcfg)
@@ -121,7 +121,7 @@ class DocumentTree extends BaseDesignComponent {
     loadDocumentGroups() {
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
+            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
         };
 
         axios.get(getServerContext() + '/api/report/document/groups', httpcfg)

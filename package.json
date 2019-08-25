@@ -1,6 +1,6 @@
 {
   "name": "@simplenodeorm/simplenodereport",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simplenodeorm/simplenodereport.git"
@@ -13,6 +13,7 @@
     "base-64": "^0.1.0",
     "chart.js": "^2.8.0",
     "color": "^3.1.0",
+    "uuid": "^3.3.3",
     "moment": "^2.23.0",
     "randomcolor": "^0.5.4",
     "rc-slider": "^8.6.4",

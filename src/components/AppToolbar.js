@@ -323,7 +323,7 @@ class AppToolbar extends BaseDesignComponent {
     onRun() {
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
+            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
         };
     
         axios.get(getServerContext() + '/api/report/userinputrequired/'
@@ -348,7 +348,7 @@ class AppToolbar extends BaseDesignComponent {
         this.showWaitMessage(cfg.textmsg.runningreportmsg.replace('?', document.designData.currentReport.reportName));
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
+            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
         };
         
         let inputParams;
@@ -416,7 +416,7 @@ class AppToolbar extends BaseDesignComponent {
         this.showWaitMessage(cfg.textmsg.savingreportmsg);
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
+            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
         };
         
         let doc = this.getReportDocument(params);

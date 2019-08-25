@@ -105,7 +105,7 @@ class DBColumnSelectPanel extends BaseDesignComponent {
         this.showWaitMessage('Loading available columns...');
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth') }
+            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session') }
         };
 
         axios.get(getServerContext() + '/api/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId, httpcfg)

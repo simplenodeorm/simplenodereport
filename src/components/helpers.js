@@ -470,8 +470,16 @@ export function formatSelectColumnForDisplay(selcol) {
 }
 
 export function getServerContext() {
+    let retval = localStorage.getItem('context');
     let search = window.location.search;
     let params = new URLSearchParams(search);
-    return (config.apiServerUrl + '/' + params.get('context'))
+    let context = params.get('context');
+
+    if ((!retval && context) || (retval && context && (context !== retval))) {
+        localStorage.setItem('context', context);
+        retval = context;
+    }
+
+    return (config.apiServerUrl + '/' + retval);
 }
 

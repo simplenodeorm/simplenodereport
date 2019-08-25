@@ -88,7 +88,7 @@ class SaveReportPanel extends ModalDialog {
     loadDocumentGroups() {
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth')}
+            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
         };
 
         axios.get(getServerContext() + '/api/report/document/groups', httpcfg)
