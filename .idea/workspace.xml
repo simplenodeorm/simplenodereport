@@ -3,19 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="refactor for multitenant use">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppToolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppToolbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DocumentTree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DocumentTree.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/QuerySelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuerySelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ReportContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SaveReportPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SaveReportPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/helpers.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -122,7 +111,7 @@
       <workItem from="1566697909838" duration="2312000" />
       <workItem from="1566748000610" duration="41000" />
       <workItem from="1566748085807" duration="165000" />
-      <workItem from="1566770992874" duration="4931000" />
+      <workItem from="1566770992874" duration="5238000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -313,7 +302,14 @@
       <option name="project" value="LOCAL" />
       <updated>1566701214167</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="refactor for multitenant use">
+      <created>1566776642309</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1566776642309</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

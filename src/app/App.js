@@ -17,9 +17,9 @@ class App extends React.Component  {
     componentDidMount() {
         let lastLogin = localStorage.getItem('lastLogin');
         if (!lastLogin || ((new Date().getMilliseconds() - Number(lastLogin)) > millisPerDay)) {
-            localStorage.removeItem('auth')
-        } else {
-            localStorage.setItem('my-session', uuid());
+            localStorage.removeItem('auth');
+            localStorage.removeItem('my-session', uuid());
+            localStorage.removeItem('lastLogin', uuid());
         }
 
         window.addEventListener("beforeunload", this.onUnload)
