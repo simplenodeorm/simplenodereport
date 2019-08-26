@@ -1,6 +1,9 @@
 Simple Node Report is a React report designer for the simplenodeorm. 
 Simple Node Report allows the user to create, save and run WYSIWYG style 
-HTML reports in simplenodeorm
+HTML reports in simplenodeorm. To use the report designer call the application
+with the desired simplenodeorm context:
+
+http://<reportdesignerurl>/?context=example
 
 Source: 
 https://github.com/simplenodeorm/simplenodereport.git
