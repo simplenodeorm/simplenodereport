@@ -483,3 +483,9 @@ export function getServerContext() {
     return (config.apiServerUrl + '/' + retval);
 }
 
+export function getRequestHeaders() {
+    return {
+        'Authorization': localStorage.getItem(config.appname + '-auth'),
+        'my-session': localStorage.getItem(config.appname + '-my-session')
+    };
+}

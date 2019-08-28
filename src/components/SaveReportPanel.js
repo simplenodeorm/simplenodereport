@@ -1,7 +1,7 @@
 import React from 'react';
 import config from '../config/appconfig.json';
 import {ModalDialog} from './ModalDialog';
-import{getServerContext} from './helpers';
+import{getServerContext,getRequestHeaders} from './helpers';
 import Tree from 'rc-tree';
 import './defaultTree.css';
 import "../app/App.css";
@@ -88,7 +88,7 @@ class SaveReportPanel extends ModalDialog {
     loadDocumentGroups() {
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
+            headers: getRequestHeaders()
         };
 
         axios.get(getServerContext() + '/api/report/document/groups', httpcfg)

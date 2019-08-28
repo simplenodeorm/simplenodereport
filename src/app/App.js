@@ -37,9 +37,9 @@ class App extends React.Component  {
         return (<div>
             <Router>
                 <div>
-                    {!document.runReportMode && <PrivateRoute exact path="/" component={HomePage}/>}
+                    {!document.runReportMode && <PrivateRoute exact config={config}  path="/" component={HomePage}/>}
                     {!document.runReportMode && <Route path="/login" component={LoginPage}/>}
-                    {document.runReportMode && <PrivateRoute path="/" component={ReportContainer}/>}
+                    {document.runReportMode && <PrivateRoute config={config} path="/" component={ReportContainer}/>}
                     {document.runReportMode && <Route path="/login" component={RunReportLoginPage}/>}
                 </div>
             </Router>

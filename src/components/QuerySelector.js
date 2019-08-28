@@ -1,6 +1,6 @@
 import React from 'react';
 import "../app/App.css";
-import {getServerContext} from './helpers';
+import {getServerContext,getRequestHeaders} from './helpers';
 import axios from 'axios';
 
 const loop = (data, qid) => {
@@ -41,7 +41,7 @@ class QuerySelector extends React.Component {
     loadAvailableQueryDocuments() {
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
+            headers: getRequestHeaders()
         };
 
         axios.get(getServerContext() + '/api/query/document/groups', httpcfg)

@@ -3,7 +3,7 @@ import '../app/RunReport.css';
 import config from '../config/runreportconfig.json';
 import {BaseDesignComponent} from './BaseDesignComponent';
 import axios from "axios";
-import {getModalContainer,clearModalContainer,getServerContext} from "./helpers";
+import {getModalContainer,clearModalContainer,getServerContext,getRequestHeaders} from "./helpers";
 import ReactDOM from "react-dom";
 import {ParameterInputPanel} from "./ParameterInputPanel";
 
@@ -83,7 +83,7 @@ class ReportContainer extends BaseDesignComponent {
         clearModalContainer();
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
+            headers: getRequestHeaders()
         };
     
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);
@@ -137,7 +137,7 @@ class ReportContainer extends BaseDesignComponent {
     run() {
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session')}
+            headers: getRequestHeaders()
         };
         
         const docid = document.reportId.substring(document.reportId.indexOf('.') + 1);

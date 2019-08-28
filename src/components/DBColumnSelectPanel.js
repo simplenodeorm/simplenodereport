@@ -4,7 +4,7 @@ import {ColumnSelectLine} from './ColumnSelectLine';
 import {getServerContext} from './helpers';
 import axios from "axios";
 import "../app/App.css";
-import {getUniqueKey, isNumeric,isString,isDate,removeWaitMessage} from './helpers';
+import {getUniqueKey, isNumeric,isString,isDate,removeWaitMessage,getRequestHeaders} from './helpers';
 
 
 class DBColumnSelectPanel extends BaseDesignComponent {
@@ -105,7 +105,7 @@ class DBColumnSelectPanel extends BaseDesignComponent {
         this.showWaitMessage('Loading available columns...');
         const curcomp = this;
         const httpcfg = {
-            headers: {'Authorization': localStorage.getItem('auth'), 'my-session': localStorage.getItem('my-session') }
+            headers: getRequestHeaders()
         };
 
         axios.get(getServerContext() + '/api/report/querycolumninfo/' + document.designData.currentReport.queryDocumentId, httpcfg)
