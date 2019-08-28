@@ -56,7 +56,6 @@ class LoginPage extends BaseDesignComponent {
         return (
             <div>
                 <h1 className="loginTitle">{config.textmsg.logintitletext}</h1>
-                <div className="errorDisplay">{error}</div>
                 <div className="login">
                     <h3>Design Login</h3>
                     <form name="form" onSubmit={this.handleSubmit}>
@@ -84,6 +83,7 @@ class LoginPage extends BaseDesignComponent {
 
                     </form>
                 </div>
+                <div className="errorDisplay">{error}</div>
             </div>
         );
     }
@@ -97,31 +97,30 @@ class LoginPage extends BaseDesignComponent {
             headers: {'Authorization': authString, 'Cache-Control': 'no-cache', 'my-session': mySession}
         };
 
-        localStorage.removeItem('auth');
-        localStorage.removeItem('lastLogin');
-        localStorage.removeItem('my-session');
+        localStorage.removeItem(cfg.appname + '-auth');
+        localStorage.removeItem(cfg.appname + '-my-session');
+        localStorage.removeItem(cfg.appname + '-lastLogin');
 
         axios.get(getServerContext() + '/api/query/login', httpcfg)
-                .then((response) => {
-                    if (response.status === 200) {
-                        localStorage.setItem('auth', authString);
-                        localStorage.setItem('lastLogin', new Date().getMilliseconds());
-                        localStorage.setItem('my-session', mySession);
-                        curcomp.props.history.push('/');
-                        removeWaitMessage();
-                    } else {
-                        curcomp.setState({error: response.statusText, loading: false, submitted: false});
-                    }
-                })
-                .catch((err) => {
-                    curcomp.setState({error: err.toString(), loading: false, submitted: false});
-                });
+            .then((response) => {
+                if (response.status === 200) {
+                    localStorage.setItem(cfg.appname + '-auth', authString);
+                    localStorage.setItem(cfg.appname + '-lastLogin', new Date().getTime());
+                    curcomp.props.history.push('/');
+                    removeWaitMessage();
+                } else  {
+                    curcomp.setState({error: cfg.textmsg.invalidlogin, loading: false, submitted: false});
+                }
+            })
+            .catch((err) => {
+                curcomp.setState({error: cfg.textmsg.invalidlogin, loading: false, submitted: false});
+            });
     }
 
     logout() {
-        localStorage.removeItem('auth');
-        localStorage.removeItem('lastLogin');
-        localStorage.removeItem('my-session');
+        localStorage.removeItem(config.appname + '-auth');
+        localStorage.removeItem(config.appname + '-my-session');
+        localStorage.removeItem(config.appname + '-lastLogin');
     }
 }
 

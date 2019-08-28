@@ -1,4 +1,6 @@
 :root {
+    --title-color: silver;
+    --app-background-color:#1a5276;
     --bar-color:#202020;
     --default-bkcolor: white;
     --default-text-color: black;

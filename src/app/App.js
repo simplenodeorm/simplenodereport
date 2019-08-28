@@ -5,28 +5,27 @@ import { HomePage } from '../components/HomePage';
 import LoginPage from '../auth/LoginPage';
 import RunReportLoginPage from '../auth/RunReportLoginPage';
 import {ReportContainer} from '../components/ReportContainer';
-import uuid from 'uuid';
 import './App.css';
-
-const millisPerDay = 1000 * 60 * 60 * 24;
+import config from '../config/appconfig.json';
 
 class App extends React.Component  {
-    onUnload() {
+    constructor(props) {
+        super(props);
+        this.lastActivity = new Date().getTime();
+        this.onActivity = this.onActivity.bind(this);
     }
 
     componentDidMount() {
-        let lastLogin = localStorage.getItem('lastLogin');
-        if (!lastLogin || ((new Date().getMilliseconds() - Number(lastLogin)) > millisPerDay)) {
-            localStorage.removeItem('auth');
-            localStorage.removeItem('my-session');
-            localStorage.removeItem('lastLogin');
+        let loginTimeout = Number(config.logintimeoutminutes) * 60 * 1000;
+
+        let lastLogin = localStorage.getItem(config.appname + '-lastLogin');
+        if (!lastLogin || ((new Date().getTime() - Number(lastLogin)) > loginTimeout)) {
+            localStorage.removeItem(config.appname + '-auth');
+            localStorage.removeItem(config.appname + '-my-session');
+            localStorage.removeItem(config.appname + '-lastLogin');
+            this.setState({refresh: true});
         }
-
-        window.addEventListener("beforeunload", this.onUnload)
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("beforeunload", this.onUnload)
+        window.addEventListener('keydown', this.onActivity);
     }
 
     render() {
@@ -45,6 +44,16 @@ class App extends React.Component  {
                 </div>
             </Router>
         </div>);
+    }
+
+    onActivity() {
+        let tm = new Date().getTime();
+        if ((tm - this.lastActivity) > 10000) {
+            if (localStorage.getItem(config.appname + '-auth')) {
+                localStorage.setItem(config.appname + '-lastLogin', tm);
+                this.lastActivity = tm;
+            }
+        }
     }
 }
 

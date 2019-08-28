@@ -1,16 +1,4 @@
-:root {
-    --login-bkcolor:#202020;
-    --page-bkcolor: white;
-    --default-text-color: black;
-    --default-font-size:10pt;
-    --default-font-weight:100;
-    --wait-message-font-color: navy;
-    --error-message-color: red;
-    --info-message-color: lightGreen;
-    --input-background:linear-gradient(top, #d6d7d7, #dee0e0);
-    --default-input-height: 22px;
-    --wait-message-height: 30px;
-  }
+@import "runtheme.css";
 
 html {
     overflow:auto;
@@ -192,7 +180,7 @@ input[type="checkbox"] {
 
 
 .loginTitle {
-    color: gray
+    color: var(--title-color);
 }
 
 .reportruninfo {

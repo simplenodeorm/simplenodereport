@@ -6,7 +6,7 @@ html {
 }
 
 body {
-    background-color: var(--bar-color);
+    background-color: var(--app-background-color);
     font-weight: var(--default-font-weight);
     color: var(--default-text-color);
     float:left;
@@ -554,6 +554,7 @@ input[type="checkbox"] {
 .errorDisplay {
     background: transparent;
     color: var(--error-message-color);
+    font-size: var(--large-font-size);
     padding-right: 10px;
     padding-left: 10px;
 }
@@ -566,7 +567,7 @@ input[type="checkbox"] {
 }
 
 .loginTitle {
-    color: gray
+    color: var(--title-color);
 }
 
 .designPanel {

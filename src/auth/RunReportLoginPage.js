@@ -90,34 +90,33 @@ class LoginPage extends BaseDesignComponent {
         const curcomp = this;
         const authString = 'Basic ' + base64.encode(username + ':' + password);
         const httpcfg = {
-            headers: {'Authorization': authString, 'Cache-Control': 'no-cache'}
+            headers: {'Authorization': authString, 'Cache-Control': 'no-cache', 'my-session': mySession}
         };
 
-        localStorage.removeItem('auth');
-        localStorage.removeItem('my-session');
-        localStorage.removeItem('lastLogin');
+        localStorage.removeItem(cfg.appname + '-auth');
+        localStorage.removeItem(cfg.appname + '-my-session');
+        localStorage.removeItem(cfg.appname + '-lastLogin');
 
         axios.get(getServerContext() + '/api/query/login', httpcfg)
-                .then((response) => {
-                    if (response.status === 200) {
-                        localStorage.setItem('auth', authString);
-                        localStorage.setItem('lastLogin', new Date().getMilliseconds());
-                        localStorage.setItem('my-session', mySession);
-                        curcomp.props.history.push('/');
-                    } else {
-                        curcomp.setState({error: response.statusText, loading: false, submitted: false});
-                    }
+            .then((response) => {
+                if (response.status === 200) {
+                    localStorage.setItem(cfg.appname + '-auth', authString);
+                    localStorage.setItem(cfg.appname + '-lastLogin', new Date().getTime());
+                    curcomp.props.history.push('/');
                     removeWaitMessage();
-                })
-                .catch((err) => {
-                    removeWaitMessage();
-                    curcomp.setState({error: err.toString(), loading: false, submitted: false});
-                });
+                } else  {
+                    curcomp.setState({error: cfg.textmsg.invalidlogin, loading: false, submitted: false});
+                }
+            })
+            .catch((err) => {
+                curcomp.setState({error: cfg.textmsg.invalidlogin, loading: false, submitted: false});
+            });
     }
 
     logout() {
-        localStorage.removeItem('auth');
-        localStorage.removeItem('my-session')
+        localStorage.removeItem(config.appname + '-auth');
+        localStorage.removeItem(config.appname + '-my-session');
+        localStorage.removeItem(config.appname + '-lastLogin');
     }
 }
 

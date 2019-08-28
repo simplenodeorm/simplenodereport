@@ -1,5 +1,4 @@
 {
-    "apiServerUrl": "https://localhost:8443",
     "textmsg": {
         "logintitletext": "Run Report",
         "reportlogin": "Login",
@@ -17,5 +16,8 @@
     },
    "pageSections": ["header", "body", "footer"],
     "zoomFactor": 1.25,
-    "wheelIncrement": 25
+    "wheelIncrement": 25,
+    "apiServerUrl": "https://localhost:8443",
+    "appname": "reportdesigner",
+    "logintimeoutminutes": 30
 }

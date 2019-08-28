@@ -1,5 +1,4 @@
 {
-    "apiServerUrl": "https://localhost:8443",
     "textmsg": {
         "logintitletext": "Report Designer",
         "selectdata": "Select Data",
@@ -324,5 +323,8 @@
         "DarkOrange",
         "LightCoral",
         "SandyBrown"
-    ]
+    ],
+    "apiServerUrl": "https://localhost:8443",
+    "appname": "reportdesigner",
+    "logintimeoutminutes": 30
 }
