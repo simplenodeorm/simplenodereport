@@ -324,7 +324,7 @@
         "LightCoral",
         "SandyBrown"
     ],
-    "apiServerUrl": "https://localhost:8443",
+    "apiServerUrl": "http://localhost:8888",
     "appname": "reportdesigner",
     "logintimeoutminutes": 30
 }
