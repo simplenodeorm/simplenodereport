@@ -3,19 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/LoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/PrivateRoute.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppToolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppToolbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DocumentTree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DocumentTree.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/QuerySelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuerySelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ReportContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SaveReportPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SaveReportPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/helpers.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +121,19 @@
       <workItem from="1566770992874" duration="5255000" />
       <workItem from="1566777620035" duration="48000" />
       <workItem from="1566838089727" duration="99000" />
-      <workItem from="1566995707176" duration="4412000" />
+      <workItem from="1566995707176" duration="4486000" />
+      <workItem from="1567036487645" duration="937000" />
+      <workItem from="1567227949960" duration="36000" />
+      <workItem from="1567311481630" duration="378000" />
+      <workItem from="1567477996602" duration="32000" />
+      <workItem from="1567616794160" duration="94000" />
+      <workItem from="1567786089910" duration="47000" />
+      <workItem from="1567800356426" duration="25000" />
+      <workItem from="1567800607980" duration="233000" />
+      <workItem from="1567801259633" duration="1007000" />
+      <workItem from="1567810605152" duration="488000" />
+      <workItem from="1570846035219" duration="89000" />
+      <workItem from="1570889517190" duration="34000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -359,7 +359,21 @@
       <option name="project" value="LOCAL" />
       <updated>1566998329369</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="update look and feel, improve login session logic">
+      <created>1567001694720</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1567001694720</updated>
+    </task>
+    <task id="LOCAL-00034" summary="update look and feel, improve login session logic">
+      <created>1570846104137</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1570846104137</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
