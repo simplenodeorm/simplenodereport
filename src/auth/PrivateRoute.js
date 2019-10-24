@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019 simplenodeorm.org
+ */
+
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 

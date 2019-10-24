@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019 simplenodeorm.org
+ */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Tree from 'rc-tree';

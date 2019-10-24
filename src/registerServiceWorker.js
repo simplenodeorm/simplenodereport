@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019 simplenodeorm.org
+ */
+
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
     // [::1] is the IPv6 localhost address.

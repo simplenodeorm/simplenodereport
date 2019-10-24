@@ -1,9 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
+    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="update look and feel, improve login session logic">
+      <change afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/copyright/simplenodeorm.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/RunReport.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/RunReport.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/runtheme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/runtheme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/LoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/LoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/PrivateRoute.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/PrivateRoute.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/auth/RunReportLoginPage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppToolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppToolbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BaseDesignComponent.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BaseDesignComponent.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BodyPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/BorderSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BorderSelectPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartCategorySelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartCategorySelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartDBColumnSelectPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartDataAxisLine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartDataAxisLine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartDataSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartDataSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartElementsPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartElementsPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartFontSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartFontSelectPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartSetupTabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartSetupTabs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartTitlePositionSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartTitlePositionSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChartTitleSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ChartTitleSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Checkbox.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Checkbox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ClipboardButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ClipboardButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColorSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColorSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColumnDataReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColumnDataReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColumnDataSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColumnDataSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColumnSelectLine.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColumnSelectLine.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ComparisonValueInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ComparisonValueInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CurrentDateReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentDateReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CurrentDateSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrentDateSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBColumnSelectPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DBDataGridDisplayBorderPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBDataGridDisplayBorderPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DBDataGridDisplayFontPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBDataGridDisplayFontPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DBDataGridSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBDataGridSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DBDataGridSetupTabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBDataGridSetupTabs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DBDataReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBDataReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DesignCanvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DesignCanvas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DesignPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DesignPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DocumentTree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DocumentTree.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EmailReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EmailReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/EmailSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/EmailSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FontSelectPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FontSelectPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/FooterPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FooterPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HeaderPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HeaderPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HelpButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HelpButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomePage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomePage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HorizontalRule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HorizontalRule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ImageReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImageReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ImageSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ImageSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LabelReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LabelReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LabelSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LabelSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LinkReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LinkReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/LinkSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/LinkSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ModalDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ModalDialog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/MoveButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/MoveButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NumericInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NumericInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/OrientationSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/OrientationSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageNumberReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageNumberReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageNumberSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageNumberSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ParameterInputPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ParameterInputPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PointStyleSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PointStyleSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PreferencesPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PreferencesPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/QuerySelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/QuerySelector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReportContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReportSection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportSection.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReportSectionSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportSectionSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Resizable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Resizable.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/RunButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/RunButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SaveButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SaveButton.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/SaveReportPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SaveReportPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ShapeReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ShapeReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ShapeSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ShapeSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ShapeSetupPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ShapeSetupPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SizeSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SizeSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SpecialHandlingSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SpecialHandlingSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/StatusBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/StatusBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/TextAlignSelect.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/TextAlignSelect.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/VerticalRule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/VerticalRule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/defaultTree.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/defaultTree.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/helpers.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/registerServiceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/registerServiceWorker.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +117,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../clinicalhelperbackend" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="copyright" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -133,7 +222,8 @@
       <workItem from="1567801259633" duration="1007000" />
       <workItem from="1567810605152" duration="488000" />
       <workItem from="1570846035219" duration="89000" />
-      <workItem from="1570889517190" duration="34000" />
+      <workItem from="1570889517190" duration="84000" />
+      <workItem from="1571930421188" duration="191000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -373,7 +463,14 @@
       <option name="project" value="LOCAL" />
       <updated>1570846104137</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="update look and feel, improve login session logic">
+      <created>1570889567797</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1570889567797</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -429,6 +526,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/auth/LoginPage.js</url>
+          <line>4</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

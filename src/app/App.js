@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019 simplenodeorm.org
+ */
+
 import React from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { PrivateRoute } from '../auth/PrivateRoute';

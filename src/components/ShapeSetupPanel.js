@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019 simplenodeorm.org
+ */
+
 import React from 'react';
 import "../app/App.css";
 import config from "../config/appconfig";
@@ -5,8 +9,6 @@ import {BorderSelectPanel} from "./BorderSelectPanel";
 import {ModalDialog} from "./ModalDialog";
 import {ReportSectionSelect} from "./ReportSectionSelect";
 import {ShapeSelect} from "./ShapeSelect";
-import {BodyPanel} from "./BodyPanel";
-
 
 class ShapeSetupPanel extends ModalDialog {
     constructor(props) {

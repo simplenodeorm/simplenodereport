@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019 simplenodeorm.org
+ */
+
 import React from 'react';
 import "../app/RunReport.css";
 import {BaseDesignComponent} from './BaseDesignComponent';

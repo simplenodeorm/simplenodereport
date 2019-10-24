@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019 simplenodeorm.org
+ */
+
 import React from 'react';
 
 class NumericInput extends React.Component {
@@ -10,7 +14,7 @@ class NumericInput extends React.Component {
         let myStyle = {
             width: '60px'
         };
-        return <input style={myStyle} type='text' maxlength={this.props.maxLength} 
+        return <input style={myStyle} type='text' maxLength={this.props.maxLength}
             onKeyDown={this.onKeyDown} onBlur={this.props.onBlur} 
             defaultValue={this.props.defaultValue}/>;
     }

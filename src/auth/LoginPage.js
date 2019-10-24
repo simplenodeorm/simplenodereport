@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2019 simplenodeorm.org
+ */
+
 import React from 'react';
 import config from '../config/appconfig.json';
 import base64 from 'base-64';
