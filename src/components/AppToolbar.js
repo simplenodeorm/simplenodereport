@@ -377,13 +377,29 @@ class AppToolbar extends BaseDesignComponent {
     }
 
     showInputPanel(content) {
-        let height = (150 + (22 * content.length));
-        let rc = {left: 150, top: 100, width: 300, height: height};
-        let mc = getModalContainer(rc);
-        ReactDOM.render(<ParameterInputPanel
-            whereComparisons={content}
-            onOk={this.generateReport}
-            onCancel={this.cancelReport}/>, mc);
+        const httpcfg = {
+            headers: getRequestHeaders()
+        };
+        const curobj = this;
+        const cntnt = content;
+        axios.get(getServerContext() + '/api/report/lookupdefinitions', httpcfg)
+            .then((response) => {
+                if (response.status === 200) {
+                    let height = (150 + (22 * cntnt.length));
+                    let rc = {left: 150, top: 100, width: 350, height: height};
+                    let mc = getModalContainer(rc);
+                    ReactDOM.render(<ParameterInputPanel
+                        lookupDefinitions={response.data}
+                        whereComparisons={cntnt}
+                        onOk={curobj.generateReport}
+                        onCancel={curobj.cancelReport}/>, mc);
+                } else {
+                    curobj.props.setStatus(response.statusText, true);
+                }
+            })
+            .catch((err) => {
+                curobj.setStatus(err.toString(), true);
+            });
     }
     
     showReport(data) {

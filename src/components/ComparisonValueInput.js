@@ -27,7 +27,9 @@ class ComparisonValueInput extends BaseDesignComponent {
                     onChange={this.onBlur} />;
             case 'number':
             case 'float':
-                return <NumericInput 
+            case 'int':
+            case 'bigint':
+                return <NumericInput
                     maxLength='8' 
                     onBlur={this.onBlur}
                     index={this.props.index}

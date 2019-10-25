@@ -64,21 +64,38 @@ class ReportContainer extends BaseDesignComponent {
                 <img alt="" src="/images/spinner.gif"/>
                 &nbsp;&nbsp;{config.textmsg.runningreport.replace('<1>', docname)}</div></div>;
         } else if (inputRequired) {
-            return this.showInputPanel(content);
+            let myContent = content;
+            if (!myContent) {
+                myContent = this.props.data;
+            }
+            return this.showInputPanel(myContent);
         }
     }
     
     showInputPanel(content) {
-        if (!content) {
-            content = this.props.data;
-        }
-        let height = (150 + (22 * content.length));
-        let rc = {left: 150, top: 100, width: 300, height: height};
-        let mc = getModalContainer(rc);
-        ReactDOM.render(<ParameterInputPanel
-            whereComparisons={content}
-            onOk={this.runWithParameters}
-            onCancel={this.cancelReport}/>, mc);
+        const curobj = this;
+        const cntnt = content;
+        const httpcfg = {
+            headers: getRequestHeaders()
+        };
+        axios.get(getServerContext() + '/api/report/lookupdefinitions', httpcfg)
+            .then((response) => {
+                if (response.status === 200) {
+                    let height = (150 + (22 * cntnt.length));
+                    let rc = {left: 150, top: 100, width: 300, height: height};
+                    let mc = getModalContainer(rc);
+                    ReactDOM.render(<ParameterInputPanel lookupDefinitions={response.data}
+                        whereComparisons={cntnt}
+                        onOk={curobj.runWithParameters}
+                        onCancel={curobj.cancelReport}/>, mc);
+                } else {
+                    curcomp.props.setStatus(response.statusText, true);
+                }
+            })
+            .catch((err) => {
+                curcomp.setStatus(err.toString(), true);
+            });
+
 
         return <div><h1 className="loginTitle">{config.textmsg.reportrunner}</h1></div>
     }

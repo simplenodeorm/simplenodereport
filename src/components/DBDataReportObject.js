@@ -102,18 +102,18 @@ class DBDataReportObject extends ReportObject {
 
     getHeaderHeight(columns, objectColumns) {
         let retval = 0;
-        if (!this.props.config.rowHeight) {
+        if (!this.props.config.headerHeight) {
             for (let i = 0; i < columns.length; ++i) {
                 let fh = getFontHeight(this.props.config.headerFontSettings.font,
                     this.props.config.headerFontSettings.fontSize,
                     objectColumns[i].width, columns[i].name);
-                +this.getConfigValue('defaulttablecellpadding');
+                + this.getConfigValue('defaulttablecellpadding');
                 if (Math.max(fh, retval) > retval) {
                     retval = fh;
                 }
             }
         } else {
-            retval = this.props.config.rowHeight;
+            retval = this.props.config.headerHeight;
         }
         return retval;
     }
@@ -258,7 +258,7 @@ class DBDataReportObject extends ReportObject {
     getCustomResizeCursor(clientRect, mouseX, mouseY) {
         let retval = '';
         let node = document.elementFromPoint(mouseX, mouseY).parentNode;
-        if (node.nodeName === 'TD') {
+        if ((node.nodeName === 'TD') || (node.nodeName === 'TH')) {
             let rc = node.getBoundingClientRect();
             if (Math.abs(rc.right - mouseX) <= config.resizeMargin) {
                 retval = config.columnResizeCursor;
@@ -296,9 +296,13 @@ class DBDataReportObject extends ReportObject {
     
     handleCustomResize(info, cursor) {
         let node = document.elementFromPoint(this.startInfo.clientX, this.startInfo.clientY).parentNode;
-        if (node.nodeName === 'TD') {
+        if ((node.nodeName === 'TD') || (node.nodeName === 'TH')) {
             if (cursor === config.rowResizeCursor) {
-                this.props.config.rowHeight = info.screenY - this.startInfo.y;
+                if (node.nodeName === 'TH') {
+                    this.props.config.headerHeight = info.screenY - this.startInfo.y;
+                } else {
+                    this.props.config.rowHeight = info.screenY - this.startInfo.y;
+                }
                 this.setState(this.state);
             } else if (cursor === config.columnResizeCursor) {
                 let index = [].indexOf.call(node.parentNode.children, node);
