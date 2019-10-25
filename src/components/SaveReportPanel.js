@@ -24,7 +24,6 @@ class SaveReportPanel extends ModalDialog {
             groups: ''
         };
 
-        this.removeLeafItems = this.removeLeafItems.bind(this);
         this.loadDocumentGroups();
     }
 

@@ -1,6 +1,5 @@
 {
     "textmsg": {
-        "logintitletext": "Report Designer",
         "selectdata": "Select Data",
         "displayformat": "Display Format",
         "addreport": "Add Report",
@@ -111,13 +110,9 @@
         "columnfont": "Column Font",
         "designlogin": "Login",
         "username": "Username:",
-        "password": "Password:",
         "targetorm": "Target ORM:",
         "login": "Login",
         "targetormrequired": "Target ORM is Required",
-        "passwordrequired": "Password is required",
-        "usernamerequired": "Username is required",
-        "authenticating": "Authenticating...",
         "bringtofront": "Bring to Front",
         "sendtoback": "Send to Back",
         "dbobjectdisplayformat": "Display Format:",
@@ -152,7 +147,22 @@
         "responsive": "Responsive",
         "showbackground": "Show Background",
         "xaxeslabel": "X Axes Name:",
-        "yaxeslabel": "Y Axes Name:"
+        "yaxeslabel": "Y Axes Name:",
+        "newpasswordrequired": "New password required",
+        "confirmpasswordrequired": "Confirm password required",
+        "newpassword": "New Password",
+        "confirmpassword": "Confirm Password",
+        "currentpassword": "Current Password",
+        "passwordmismatch": "New and confirm passwords are required and must match",
+        "passwordchangerequired": "Change Password",
+        "passwordmustbedifferent": "New password must be different from current",
+        "usernamerequired": "User name is required",
+        "password": "Password",
+        "passwordrequired": "Password is required",
+        "logintitle": "Login",
+        "authenticating": "Authenticating...",
+        "invalidlogin": "Invalid login",
+        "loginpageheader": "Report Designer"
     },
     "defaultDataAxisColor": "blue",
     "defaultLegendPosition": "bottom",
@@ -324,7 +334,7 @@
         "LightCoral",
         "SandyBrown"
     ],
-    "apiServerUrl": "http://localhost:8888",
+    "apiServerUrl": "https://localhost:8443",
     "appname": "reportdesigner",
     "logintimeoutminutes": 30
 }
