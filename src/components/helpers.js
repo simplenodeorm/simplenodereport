@@ -474,13 +474,13 @@ export function formatSelectColumnForDisplay(selcol) {
 }
 
 export function getServerContext() {
-    let retval = localStorage.getItem('context');
+    let retval = localStorage.getItem('__context');
     let search = window.location.search;
     let params = new URLSearchParams(search);
     let context = params.get('context');
 
     if ((!retval && context) || (retval && context && (context !== retval))) {
-        localStorage.setItem('context', context);
+        localStorage.setItem('__context', context);
         retval = context;
     }
 
@@ -488,8 +488,13 @@ export function getServerContext() {
 }
 
 export function getRequestHeaders() {
-    return {
-        'Authorization': localStorage.getItem(config.appname + '-auth'),
-        'my-session': localStorage.getItem(config.appname + '-my-session')
-    };
+    let session = sessionStorage.getItem("snosession");
+
+    if (session) {
+        return {
+            'X-snosession': sessionStorage.getItem("snosession")
+        };
+    } else {
+        return {};
+    }
 }
