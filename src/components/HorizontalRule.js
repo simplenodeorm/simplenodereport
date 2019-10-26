@@ -85,7 +85,7 @@ class HorizontalRule extends React.Component {
         const {left, width} = this.state;
         let x;
 
-        if (left === 0) {
+        if (!left || (left === 0)) {
             x = 0;
         } else {
             x = Math.round(Number(left.replace('px', '').replace('-', '')));

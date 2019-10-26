@@ -107,7 +107,7 @@ class VerticalRule extends React.Component {
 
         let eigthInch = getPixelsPerInch()/8;
         let y;
-        if (top === 0) {
+        if (!top || (top === 0)) {
             y = 0;
         } else {
             y = Math.round(Number(top.replace('px', '').replace('-', '')));
