@@ -3,12 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="get input parameter lookup logic working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BodyPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BodyPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DBDataReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBDataReportObject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/FooterPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/FooterPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HeaderPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HeaderPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HorizontalRule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HorizontalRule.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/VerticalRule.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/VerticalRule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -144,7 +139,8 @@
       <workItem from="1571942053230" duration="2445000" />
       <workItem from="1572007121994" duration="22946000" />
       <workItem from="1572053481286" duration="4299000" />
-      <workItem from="1572097076018" duration="1282000" />
+      <workItem from="1572097076018" duration="2031000" />
+      <workItem from="1572101742172" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -433,7 +429,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572056509553</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="get input parameter lookup logic working">
+      <created>1572098409097</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1572098409097</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
