@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="get input parameter lookup logic working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AppToolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppToolbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ComparisonValueInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ComparisonValueInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/DBDataReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBDataReportObject.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ParameterInputPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ParameterInputPanel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ReportContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/config/runreportconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/runreportconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DesignCanvas.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DesignCanvas.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -143,7 +137,8 @@
       <workItem from="1570889517190" duration="84000" />
       <workItem from="1571930421188" duration="266000" />
       <workItem from="1571942053230" duration="2445000" />
-      <workItem from="1572007121994" duration="21096000" />
+      <workItem from="1572007121994" duration="22946000" />
+      <workItem from="1572053481286" duration="2672000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -418,7 +413,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572013984606</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="get input parameter lookup logic working">
+      <created>1572033591250</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1572033591250</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -477,7 +479,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/app/App.js</url>
           <line>43</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

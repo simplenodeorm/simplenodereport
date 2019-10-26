@@ -59,6 +59,7 @@ class DesignCanvas extends React.Component {
         if (this.reportObjectConfigurations) {
             for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
                 if (this.reportObjectConfigurations[i].props.config.selected) {
+                    this.reportObjectConfigurations[i].props.config.objectType = 'deleted';
                     this.mountedReportObjects[i].remove();
                 }
             }
@@ -82,7 +83,7 @@ class DesignCanvas extends React.Component {
     removeAllReportObjects() {
         if (this.reportObjectConfigurations) {
             for (let i = 0; i < this.reportObjectConfigurations.length; ++i) {
-                this.mountedReportObjects[i].remove();
+               this.mountedReportObjects[i].remove();
             }
             this.setState(this.state);
         }
