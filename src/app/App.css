@@ -3,6 +3,12 @@
  */
 
 @import "theme.css";
+@import "../../node_modules/@simplenodeorm/simplenodeclientbase/lib/clientbase.css";
+
+:root {
+    --tab-background-color: white;
+    --default-content-bkcolor: white;
+}
 
 html {
     overflow:hidden;

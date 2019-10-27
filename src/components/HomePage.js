@@ -4,7 +4,7 @@
 
 import React from 'react';
 import SplitPane from 'react-split-pane';
-import { DocumentTree } from './DocumentTree';
+import { ReportDocumentTree } from './ReportDocumentTree';
 import { DesignPanel } from './DesignPanel';
 import {AppToolbar} from './AppToolbar';
 import {StatusBar} from './StatusBar';
@@ -70,11 +70,11 @@ class HomePage extends React.Component {
                     split="vertical" 
                     minSize={0} 
                     defaultSize={150}>
-                    <DocumentTree ref={(dt) => {curobj.documentTree = dt;}}
-                        getToolbar={curobj.getToolbar}
-                        setStatus={curobj.setStatus} 
-                        setCurrentReport={curobj.setCurrentReport}
-                        getDesignPanel={this.getDesignPanel} />
+                    <ReportDocumentTree ref={(dt) => {curobj.documentTree = dt;}}
+                                        getToolbar={curobj.getToolbar}
+                                        setStatus={curobj.setStatus}
+                                        setCurrentReport={curobj.setCurrentReport}
+                                        getDesignPanel={this.getDesignPanel} />
                     <DesignPanel ref={(dp) => {this.designPanel = dp;}}
                         getToolbar={curobj.getToolbar}
                         setCurrentReport={curobj.setCurrentReport}/>
