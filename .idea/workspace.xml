@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="">
+    <list default="true" id="fc3fa8b7-5d5b-4933-bbf8-0b7810c7f279" name="Default Changelist" comment="remove ReportDocumentTree images that are not needed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/report-document.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/report-folder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/RunReport.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/runtheme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/theme.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/theme.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AppToolbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AppToolbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ComparisonValueInput.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/DBDataReportObject.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/DBDataReportObject.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ParameterInputPanel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReportContainer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReportDocumentTree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportDocumentTree.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SaveReportPanel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SaveReportPanel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/runreportconfig.json" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -142,7 +157,8 @@
       <workItem from="1572097076018" duration="2031000" />
       <workItem from="1572101742172" duration="36000" />
       <workItem from="1572143377433" duration="1192000" />
-      <workItem from="1572144593209" duration="8000" />
+      <workItem from="1572144593209" duration="606000" />
+      <workItem from="1572208186680" duration="10899000" />
     </task>
     <task id="LOCAL-00001" summary="update version">
       <created>1556808413791</created>
@@ -452,7 +468,14 @@
       <option name="project" value="LOCAL" />
       <updated>1572144543308</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="get input parameter lookup logic working">
+      <created>1572144607591</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1572144607591</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

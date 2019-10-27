@@ -30,7 +30,6 @@
     --menu-button-color:darkBlue;
     --default-border-color: gray;
     --modal-button-color: #0099CC;
-    --split-resizer-color: slateGray;
     --query-results-font-color: indigo;
     --sql-text-font-color: indigo;
     --wait-message-font-color: navy;
@@ -43,4 +42,5 @@
     --status-bar-height: 18px;
     --wait-message-height: 30px;
     --active-report-object-border: dotted crimson 1px;
+    --modal-background-color: #eceeee;
 }

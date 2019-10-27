@@ -11,7 +11,8 @@ import './defaultTree.css';
 import "../app/App.css";
 import axios from 'axios';
 
-const rfimage = <img alt="query folder" src="/images/report-folder.png"/>;
+const rfimage = <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAScwAAEnMBjCK5BwAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMS40E0BoxAAAAtVJREFUOE+t03tIU1EcwPFTkARKkblUsE3H3MQU8jExGBlKouh8UBRIYRFIhFD4SK1oJUVLyRLNfKS21KmjTDOy+Wg+mjrb1AzRUirfm7OUWO3tr9+clZJQf3Tgw7ncy/3ec+Bc8l+GONvR9lkWxakpx8H5MRLlU+zw9ibr07+M9jyWt7SELu4XMhQD1e6KgVqGQiqgFbYUUOkiPn37hnieNquvE9JdwoibEe/VaV8HgG4gYNnwlr2s7PLSSMtcBySF1N51Sqi9bcXU3hf5LrznufbbVgLtBW5x00999V9a2aBq9oP5Nn9Qd7BhoYsNn6U4o/muAFB1BIKq02qwxlcu5vsdfpjsaItboMeOVfno+ov2wKQkGGZ7YmCm9yTMyM6hdJiWXYRZ+RVQvbmB+CuUg3zz+MuUhboMRhBpznGL6Mvz1vbc9QL9Ry6YZg+Bae4YGFWJYFBfRfdAr65ENesoB7O1dakeQUSc4xralOnxXV7qC8axCDBNYGQ6GkOxGDqCoVMYubwaEv4KTPbwvtZf8PInDdnUYFEa49tIDQf0Q5FgHI0E0ziyrGYyajV2GIzKeDCokjCUhYH78K4pcbL+EotF6vi7OYIkN83EkxDQyaJAL+eCfpALhmHu79gnjE1hbCYGV3UUYwmgqDygEKXQnEgtzyWgKp2umW0MBd2rKNBJUQ/qQ/0YGsLQCEbG0AdkWdVUNHTccZeIzuCBE2Y6+DRcY2rUTWHWwE+WUDeScUGnsIYMw7jF95GgHQ2Hztvuj8rjaVsJ/7R9YOstz6W5xoPmxZbwjbUhSZh5sTPcvNQdZlZKgk2tN90zixLIFrLf19b7+gmX3OKzzOrSJKvyZGZVWTJTaGG5FqSyKirOswSVaawHFelMQWUGs4h/3JnD45HNlsNo42RHKGwacdpHJ7s4DEJZK4hJHCxCPMjOUE9ib5kjvMkOPz/8+prxb3/eH4OQH1a2+ZFs8M3dAAAAAElFTkSuQmCC" alt="folder" />;
+
 class SaveReportPanel extends ModalDialog {
     constructor(props) {
         super(props);

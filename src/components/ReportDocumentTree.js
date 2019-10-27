@@ -6,11 +6,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../app/App.css';
 import {DocumentTree} from '@simplenodeorm/simplenodeclientbase/lib/DocumentTree';
-import {copyObject,clearDocumentDesignData} from './helpers';
+import {clearDocumentDesignData} from './helpers';
 import config from '../config/appconfig.json';
-
-const rdimage = <img alt="report document" src="/images/report-document.png"/>;
-const rfimage = <img alt="report folder" src="/images/report-folder.png"/>;
 
 class ReportDocumentTree extends DocumentTree {
      constructor(props) {
@@ -18,14 +15,6 @@ class ReportDocumentTree extends DocumentTree {
         this.loadDocument = this.loadDocument.bind(this);
         this.deleteDocument = this.deleteDocument.bind(this);
         this.setCurrentReport = this.setCurrentReport.bind(this);
-    }
-
-    getFolderImage() {
-        return rfimage;
-    }
-
-    getDocumentImage() {
-        return rdimage;
     }
 
     getConfig() {

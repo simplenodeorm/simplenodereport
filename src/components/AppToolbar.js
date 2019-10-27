@@ -36,7 +36,7 @@ import {EmailSetupPanel} from "./EmailSetupPanel";
 import {ShapeSetupPanel} from "./ShapeSetupPanel";
 import {CurrentDateSetupPanel} from './CurrentDateSetupPanel';
 import {PageNumberSetupPanel} from './PageNumberSetupPanel';
-import {ParameterInputPanel} from "./ParameterInputPanel";
+import {ParameterInputPanel} from "@simplenodeorm/simplenodeclientbase/lib/ParameterInputPanel";
 import {ChartSetupPanel} from "./ChartSetupPanel";
 
 const cfg = config;
@@ -386,9 +386,10 @@ class AppToolbar extends BaseDesignComponent {
             .then((response) => {
                 if (response.status === 200) {
                     let height = (150 + (22 * cntnt.length));
-                    let rc = {left: 150, top: 100, width: 350, height: height};
+                    let rc = {left: 150, top: 100, width: 375, height: height};
                     let mc = getModalContainer(rc);
                     ReactDOM.render(<ParameterInputPanel
+                        config={cfg}
                         lookupDefinitions={response.data}
                         whereComparisons={cntnt}
                         onOk={curobj.generateReport}
@@ -398,7 +399,7 @@ class AppToolbar extends BaseDesignComponent {
                 }
             })
             .catch((err) => {
-                curobj.setStatus(err.toString(), true);
+                curobj.props.setStatus(err.toString(), true);
             });
     }
     
@@ -529,7 +530,7 @@ class AppToolbar extends BaseDesignComponent {
     
         switch(type) {
             case 'dbdata':
-                rc = {left: 175, top: 50, width: 600, height: 425};
+                rc = {left: 175, top: 50, width: 600, height: 450};
                 mc = getModalContainer(rc);
                 ReactDOM.render(<DBDataGridSetupPanel
                     getDesignPanel={this.props.getDesignPanel}
