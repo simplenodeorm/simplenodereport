@@ -388,7 +388,7 @@ class AppToolbar extends BaseDesignComponent {
                     let height = (150 + (22 * cntnt.length));
                     let rc = {left: 150, top: 100, width: 375, height: height};
                     let mc = getModalContainer(rc);
-                    ReactDOM.render(<ParameterInputPanel
+                     ReactDOM.render(<ParameterInputPanel
                         config={cfg}
                         lookupDefinitions={response.data}
                         whereComparisons={cntnt}
