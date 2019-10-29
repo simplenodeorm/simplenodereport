@@ -294,6 +294,7 @@ class AppToolbar extends BaseDesignComponent {
                 headerHeight: headerHeight,
                 footerHeight: footerHeight,
                 documentSize: settings.documentSize,
+                orientation: settings.orientation,
                 margins: [
                     ppi * settings.marginLeft,
                     ppi * settings.marginTop,

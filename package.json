@@ -1,6 +1,6 @@
 {
   "name": "@simplenodeorm/simplenodereport",
-  "version": "0.2.20",
+  "version": "0.2.21",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simplenodeorm/simplenodereport.git"
@@ -9,7 +9,7 @@
   "author": "Rob Tucker <rbtucker16@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "@simplenodeorm/simplenodeclientbase": "0.1.264",
+    "@simplenodeorm/simplenodeclientbase": "0.2.2",
     "axios": "^0.18.0",
     "base-64": "^0.1.0",
     "chart.js": "^2.9.1",
