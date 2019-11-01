@@ -59,14 +59,13 @@ class DBDataReportObject extends ReportObject {
     
         let headerHeight = this.getHeaderHeight(columns, objectColumns) +
             this.getConfigValue('defaulttablecellpadding');
-        let dataRowHeight = this.props.config.rowHeight;
+        let dataRowHeight = this.props.config.dataRowHeight;
         
         if (!dataRowHeight) {
             dataRowHeight = getFontHeight(this.props.config.dataFontSettings.font,
                 this.props.config.dataFontSettings.fontSize) +
                 this.getConfigValue('defaulttablecellpadding');
         }
-    
         this.props.config.headerHeight = headerHeight;
         this.props.config.dataRowHeight = dataRowHeight;
         let numRows = Math.floor(height / dataRowHeight);
@@ -198,7 +197,7 @@ class DBDataReportObject extends ReportObject {
         }
     
         style.appendChild(document.createTextNode('.' + objectData.cssClassName + ' td {margin: 0; padding: 0;} '));
-        css = '.' + objectData.cssClassName + ' td div {font-family: '
+        css = '.' + objectData.cssClassName + ' td div {overflow: hidden; font-family: '
             + this.props.config.dataFontSettings.font
             + '; font-size: '
             + this.props.config.dataFontSettings.fontSize
@@ -223,7 +222,7 @@ class DBDataReportObject extends ReportObject {
                 + ') { text-align: '
                 + objectData.objectColumns[i].textAlign
                 + ';} ';
-            style.appendChild(document.createTextNode(css));
+             style.appendChild(document.createTextNode(css));
         }
 
         css = '.' + objectData.cssClassName + ' td {overflow: hidden; ';
@@ -299,9 +298,9 @@ class DBDataReportObject extends ReportObject {
         if ((node.nodeName === 'TD') || (node.nodeName === 'TH')) {
             if (cursor === config.rowResizeCursor) {
                 if (node.nodeName === 'TH') {
-                    this.props.config.headerHeight = info.screenY - this.startInfo.y;
+                    this.props.config.headerHeight += (info.screenY - this.startInfo.y);
                 } else {
-                    this.props.config.rowHeight = info.screenY - this.startInfo.y;
+                    this.props.config.dataRowHeight += (info.screenY - this.startInfo.y);
                 }
                 this.setState(this.state);
             } else if (cursor === config.columnResizeCursor) {
@@ -311,36 +310,38 @@ class DBDataReportObject extends ReportObject {
         
                 if (index >= 0) {
                     let delta = (info.screenX - this.startInfo.x);
-                    let newWidth = Math.max(10, width + delta);
-            
                     let reportColumnIndex = 0;
             
                     for (let i = 0; i < this.props.config.reportColumns.length; ++i) {
                         if (this.props.config.reportColumns[i].displayResult) {
                             if (index === reportColumnIndex) {
-                                this.props.config.reportColumns[i].width = newWidth;
+                                if (Math.abs(this.props.config.reportColumns[i].width + delta) > 5) {
+                                    this.props.config.reportColumns[i].width += delta;
+                                }
                                 break;
                             }
                             reportColumnIndex++;
                         }
                     }
-            
+                    let updateWidth = 0;
                     let updateCount = 0;
                     for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
-                        if (this.props.config.reportColumns[i].displayResult) {
+                        if (this.props.config.reportColumns[i].displayResult)  {
+                            updateWidth += this.props.config.reportColumns[i].width;
                             updateCount++;
                         }
                     }
-            
-                    if (updateCount > 0) {
-                        let change = Math.round((newWidth - width) / updateCount);
-                        for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
-                            if (this.props.config.reportColumns[i].displayResult) {
-                                this.props.config.reportColumns[i].width -= change;
-                            }
-                        }
-                    }
-            
+
+
+                   if (updateCount > 0) {
+                       let change = Math.round((updateWidth - delta) / updateCount);
+                       for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
+                           if (this.props.config.reportColumns[i].displayResult) {
+                               this.props.config.reportColumns[i].width -= change;
+                           }
+                       }
+                   }
+
                     this.setState(this.state);
                 }
             }
