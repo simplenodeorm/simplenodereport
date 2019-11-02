@@ -276,16 +276,9 @@ class DBDataReportObject extends ReportObject {
     getResizeColumn(clientX, clientY, screenX) {
         let retval;
         let node = document.elementFromPoint(clientX, clientY).parentNode;
-        if (node.nodeName === 'TD') {
-            retval = [].indexOf.call(node.parentNode.children, node);
-            let rc = node.getBoundingClientRect();
-            
-            if ((screenX-clientX) < rc.left) {
-                retval--;
-            }
+        if ((node.nodeName === 'TD') || (node.nodeName === 'TH')) {
+            return [].indexOf.call(node.parentNode.children, node);
         }
-        
-        return retval;
     }
     
     isCustomResizeCursor(cursor) {
@@ -305,9 +298,6 @@ class DBDataReportObject extends ReportObject {
                 this.setState(this.state);
             } else if (cursor === config.columnResizeCursor) {
                 let index = [].indexOf.call(node.parentNode.children, node);
-                let rc = node.getBoundingClientRect();
-                let width = rc.width;
-        
                 if (index >= 0) {
                     let delta = (info.screenX - this.startInfo.x);
                     let reportColumnIndex = 0;
@@ -323,24 +313,7 @@ class DBDataReportObject extends ReportObject {
                             reportColumnIndex++;
                         }
                     }
-                    let updateWidth = 0;
-                    let updateCount = 0;
-                    for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
-                        if (this.props.config.reportColumns[i].displayResult)  {
-                            updateWidth += this.props.config.reportColumns[i].width;
-                            updateCount++;
-                        }
-                    }
-
-
-                   if (updateCount > 0) {
-                       let change = Math.round((updateWidth - delta) / updateCount);
-                       for (let i = reportColumnIndex + 1; i < this.props.config.reportColumns.length; ++i) {
-                           if (this.props.config.reportColumns[i].displayResult) {
-                               this.props.config.reportColumns[i].width -= change;
-                           }
-                       }
-                   }
+                    this.props.config.rect.width += delta;
 
                     this.setState(this.state);
                 }
