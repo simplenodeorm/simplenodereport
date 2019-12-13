@@ -1,11 +1,11 @@
 {
   "name": "@simplenodeorm/simplenodereport",
-  "version": "0.2.22",
+  "version": "0.2.23",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simplenodeorm/simplenodereport.git"
   },
-  "homepage": "reportdesign",
+  "homepage": ".",
   "author": "Rob Tucker <rbtucker16@gmail.com>",
   "license": "ISC",
   "dependencies": {
