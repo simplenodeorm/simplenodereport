@@ -1,6 +1,6 @@
 {
   "name": "@simplenodeorm/simplenodereport",
-  "version": "0.2.23",
+  "version": "0.2.24",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/simplenodeorm/simplenodereport.git"
@@ -12,21 +12,21 @@
     "@simplenodeorm/simplenodeclientbase": "0.2.67",
     "axios": "^0.18.0",
     "base-64": "^0.1.0",
-    "chart.js": "^2.9.1",
+    "chart.js": "^2.9.3",
     "color": "^3.1.0",
     "moment": "^2.23.0",
     "randomcolor": "^0.5.4",
     "rc-slider": "^8.7.1",
     "rc-tree": "^1.15.3",
-    "react": "^16.11.0",
+    "react": "^16.12.0",
     "react-chartjs-2": "^2.8.0",
     "react-datepicker": "^1.7.0",
-    "react-dom": "^16.11.0",
+    "react-dom": "^16.12.0",
     "react-drag-resize": "^0.1.4",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.5",
-    "react-split-pane": "^0.1.84",
+    "react-split-pane": "^0.1.89",
     "react-tabs": "^2.3.0",
     "tinycolor2": "^1.4.1",
     "uuid": "^3.3.3"
